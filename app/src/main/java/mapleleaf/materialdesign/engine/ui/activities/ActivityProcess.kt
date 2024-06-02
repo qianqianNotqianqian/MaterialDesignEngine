@@ -59,9 +59,9 @@ class ActivityProcess : UniversalActivityBase() {
         val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
         val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-        materialCardView.setBackgroundColor(blendedColor)
-        materialCardView2.setBackgroundColor(blendedColor)
-        materialCardView3.setBackgroundColor(blendedColor)
+        materialCardView.setCardBackgroundColor(blendedColor)
+        materialCardView2.setCardBackgroundColor(blendedColor)
+        materialCardView3.setCardBackgroundColor(blendedColor)
         if (supported) {
             processUnsupported.isVisible = false
             processView.isVisible = true
@@ -241,7 +241,7 @@ class ActivityProcess : UniversalActivityBase() {
                 val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
                 val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
                 val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-                materialCardView.setBackgroundColor(blendedColor)
+                materialCardView.setCardBackgroundColor(blendedColor)
 
                 dialogView.run {
                     findViewById<TextView>(R.id.ProcessFriendlyName).text = detail.friendlyName
