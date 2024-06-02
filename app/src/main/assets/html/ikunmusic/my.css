@@ -1,0 +1,51 @@
+body{
+	width: 80%;
+	margin-left: 10%;
+	background: url(https://img1.baidu.com/it/u=1796936600,3524230947&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=890) repeat fixed center;
+	background-color: #ffffff;
+}
+#box{
+	width: 100%;
+}
+h1{
+	color:black;
+	text-align: left;
+}
+h2{
+   margin-top:20px;
+	text-align: center;
+	color: #dddddd;
+}
+p{
+	color: red;
+}
+table{
+	width: 100%;
+}
+button{
+	margin-left: 10%;
+	height: 40px;
+	border-radius: 360px;
+	margin-top: 5%;
+     border:0;
+     box-shadow:1px 1px 10px gold;
+	background-color: greenyellow;
+    transition: all 0.5s;
+}
+
+button:hover{
+	margin-left: 10%;
+	height: 40px;
+	border-radius: 360px;
+	margin-top: 5%;
+ box-shadow:1px 1px 20px gold;
+	background-color: white;
+ color:black;
+}
+img{
+	width: 100%;
+	border-radius: 10px;
+}
+audio{
+	display: none;
+}

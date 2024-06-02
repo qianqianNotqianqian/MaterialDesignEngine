@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>拉了吗？</title>
+    <style>
+        @media (prefers-color-scheme: dark) {
+          body {
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+          }
+          form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #afafaf;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #d3d3d3;
+            animation: fade-in 1s;
+          }
+
+          input[type="text"],
+          input[type="date"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #d3d3d3;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+          }
+
+          input[type="submit"] {
+            background-color: #4caf50;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+
+          .button {
+            background-color: #4caf50;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0px;
+            transition: background-color 0.3s ease;
+          }
+
+          th,
+          td {
+            border: 1px solid #d3d3d3;
+            padding: 10px;
+            text-align: center;
+            color: #ffffff;
+          }
+
+          tbody tr:nth-child(even) {
+            background-color: #000000;
+          }
+        }
+
+        @media (prefers-color-scheme: light) {
+          body {
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+          }
+
+          form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #afafaf;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #d3d3d3;
+            animation: fade-in 1s;
+          }
+
+          input[type="text"],
+          input[type="date"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #d3d3d3;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+          }
+
+          input[type="submit"] {
+            background-color: #4caf50;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+
+          .button {
+            background-color: #4caf50;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0px;
+            transition: background-color 0.3s ease;
+          }
+
+          th,
+          td {
+            border: 1px solid #d3d3d3;
+            padding: 10px;
+            text-align: center;
+            color: #000000;
+          }
+
+          tbody tr:nth-child(even) {
+            background-color: #ffffff;
+          }
+        }
+
+        .im_status {
+          color: #ffffff;
+        }
+
+        h1 {
+          text-align: center;
+          color: #4caf50;
+        }
+
+        label {
+          font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+          background-color: #3e8e41;
+        }
+
+        table {
+          border-collapse: collapse;
+          margin-top: 20px;
+          margin-bottom: 20px;
+        }
+        .button:hover {
+          background-color: #3e8e41;
+        }
+
+        th {
+          background-color: #4caf50;
+        }
+
+        @media screen and (max-width: 600px) {
+          form {
+            max-width: 300px;
+          }
+
+          input[type="submit"] {
+            width: 100%;
+          }
+        }
+
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+    </style>
+</head>
+<body>
+<h1>拉了吗？</h1>
+<form>
+    <label for="status">状态：</label><br/>
+    <input
+            id="status"
+            name="status"
+            placeholder="输入拉屎状态"
+            required
+            type="text"
+    />
+    <br/><br/>
+    <label for="date">日期：</label><br/>
+    <input id="date" name="date" required type="date"/>
+    <br/><br/>
+    <input type="submit" value="添加"/>
+</form>
+<button class="button" onclick="clearInputs()">清除输入</button>
+
+<table>
+    <thead>
+    <tr>
+        <th class="im_status">状态</th>
+        <th class="im_status">日期</th>
+        <th class="im_status">操作</th>
+    </tr>
+    </thead>
+    <tbody id="output"></tbody>
+</table>
+
+<script>
+    function clearInputs() {
+      document.querySelector("#status").value = "";
+      document.querySelector("#date").value = "";
+    }
+
+    document.querySelector("form").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const tbody = document.querySelector("#output");
+      const status = document.querySelector("#status").value;
+      const date = document.querySelector("#date").value;
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${status}</td>
+        <td>${date}</td>
+        <td><button class="button-delete" onclick="deleteRow(this)">删除</button></td>
+      `;
+      tbody.appendChild(row);
+
+      clearInputs();
+    });
+
+    function deleteRow(button) {
+      button.closest("tr").remove();
+    }
+</script>
+</body>
+</html>

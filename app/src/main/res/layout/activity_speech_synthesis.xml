@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".tools.activities.ActivityTTS">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/msgTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        tools:layout_editor_absoluteX="6dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:hint="@string/input_text"
+            android:nextFocusDown="@id/search_box"
+            android:padding="12dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/msgMaterialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/noiseSpinnerMaterialCardView">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textIsSelectable="true"
+            android:textSize="16sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/speakerSpinnerMaterialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/msgTextView">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/speakerSpinnerTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="发音人"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/speakerSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/lengthSpinnerMaterialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/speakerSpinnerMaterialCardView">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lengthSpinnerTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="默认为1"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/lengthSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/noisewSpinnerMaterialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/lengthSpinnerMaterialCardView">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/noisewSpinnerTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="控制音节发音长度变化程度，默认为0.8"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/noisewSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/sdpSpinnerMaterialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/noisewSpinnerMaterialCardView">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sdpSpinnerTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="Duration Predictor中SDP的占比，此值越大则语气波动越强烈，但可能偶发出现语调奇怪。默认0.4。"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/sdpSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/noiseSpinnerMaterialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/sdpSpinnerMaterialCardView">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/noiseSpinnerTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="控制感情变化程度，默认为0.6"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/noiseSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

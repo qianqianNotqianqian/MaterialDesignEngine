@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="mapleleaf.materialdesign.engine">
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.GET_INSTALLED_APPS" />
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS"
+        tools:ignore="HighSamplingRate" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <permission
+        android:name="mapleleaf.materialdesign.engine.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="mapleleaf.materialdesign.engine.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+
+    <application
+        android:name="mapleleaf.materialdesign.engine.MaterialDesignEngine"
+        android:allowBackup="false"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:extractNativeLibs="false"
+        android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher_sa"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:persistent="true"
+        android:preserveLegacyExternalStorage="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_sa"
+        android:supportsRtl="true"
+        tools:ignore="DiscouragedApi,LockedOrientationActivity"
+        android:theme="@style/CustomMaterial3Theme"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name="com.kongzue.dialogxdemo.activity.AppCompatActivityTest"
+            android:exported="false"
+            android:theme="@style/AppCompatTheme"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="com.kongzue.dialogxdemo.activity.ActivityDialogShow"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize|layoutDirection"
+            android:exported="true" />
+
+        <activity
+            android:name="com.kongzue.dialogx.util.DialogXFloatingWindowActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|locale|touchscreen|keyboard|navigation|fontScale"
+            android:exported="false"
+            android:theme="@style/DialogXFloatingWindow"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityAbout"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppAboutTheme" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.tools.activities.ActivityAnimeQuotes"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityAccelerometer"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityAllApplications"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:icon="@drawable/ic_app_manager"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityAppComponents"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize|stateVisible" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityApplicationDetails"
+            android:exported="true" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityApplications"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:icon="@drawable/ic_app_manager"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.tools.activities.ActivityBilibiliParse"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityBrowser"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityCheckPermission"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityColors"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityCpuControl"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityDeskClock"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.tools.activities.ActivityDictionary"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemInfo"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemSensors"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityDialog"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityFullScreenImage"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityFunctions"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.tools.activities.ActivityHotSearch"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.tools.activities.ActivityInfiniteList"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize|stateVisible" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityJ2box"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityMusic"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityMarqueeAbout"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityMarqueeView"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:enabled="true"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomMaterial3ThemeSplash"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity-alias
+            android:name="mapleleaf.materialdesign.engine.NoxIcon"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/icon_2_launcher_sa"
+            android:roundIcon="@mipmap/icon_2_launcher_sa"
+            android:targetActivity="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="mapleleaf.materialdesign.engine.PremiumIcon"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/icon_3_launcher_sa"
+            android:roundIcon="@mipmap/icon_3_launcher_sa"
+            android:targetActivity="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="mapleleaf.materialdesign.engine.AquaIcon"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/icon_4_launcher_sa"
+            android:roundIcon="@mipmap/icon_4_launcher_sa"
+            android:targetActivity="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="mapleleaf.materialdesign.engine.TurboIcon"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/icon_5_launcher_sa"
+            android:roundIcon="@mipmap/icon_5_launcher_sa"
+            android:targetActivity="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="mapleleaf.materialdesign.engine.VintageIcon"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/icon_6_launcher_sa"
+            android:roundIcon="@mipmap/icon_6_launcher_sa"
+            android:targetActivity="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="mapleleaf.materialdesign.engine.NoxIconRound"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/icon_2_launcher"
+            android:roundIcon="@mipmap/icon_2_launcher"
+            android:targetActivity="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="mapleleaf.materialdesign.engine.PremiumIconRound"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/icon_3_launcher"
+            android:roundIcon="@mipmap/icon_3_launcher"
+            android:targetActivity="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="mapleleaf.materialdesign.engine.AquaIconRound"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/icon_4_launcher"
+            android:roundIcon="@mipmap/icon_4_launcher"
+            android:targetActivity="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="mapleleaf.materialdesign.engine.TurboIconRound"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/icon_5_launcher"
+            android:roundIcon="@mipmap/icon_5_launcher"
+            android:targetActivity="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="mapleleaf.materialdesign.engine.VintageIconRound"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/icon_6_launcher"
+            android:roundIcon="@mipmap/icon_6_launcher"
+            android:targetActivity="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity
+            android:name="xzr.perfmon.ActivityPerfmonPlus"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Material.Dialog" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityProcess"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityQRCode"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.tools.activities.ActivityRandomPersonality"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.tools.activities.ActivityTTS"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemIcons"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemModify"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemOverview"
+            android:exported="true"
+            android:launchMode="standard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemVibration"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.tools.activities.ActivityText2MD5"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityWallpaper"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityApplicationDex"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name="xzr.perfmon.FloatingWindow"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="TODO" />
+        <service
+            android:name="mapleleaf.materialdesign.engine.services.CompileService"
+            android:enabled="true"
+            android:permission="" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="mapleleaf.materialdesign.engine.shareAPK"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths_share_apk" />
+        </provider>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="mapleleaf.materialdesign.engine.shareImage"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths_share_image" />
+        </provider>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="mapleleaf.materialdesign.engine.shareSingleImage"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths_share_single_image" />
+        </provider>
+
+        <uses-library
+            android:name="androidx.window.extensions"
+            android:required="false" />
+        <uses-library
+            android:name="androidx.window.sidecar"
+            android:required="false" />
+
+    </application>
+</manifest>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
+    <external-path
+        name="external_files"
+        path="." />
+    <!-- 配置root-path，避免无法获取到应用分身保存的资源，即出现java.lang.IllegalArgumentException -->
+    <root-path
+        name="root"
+        path="" />
+    <external-path
+        name="external_storage_root"
+        path="." />
+</paths>

@@ -1,0 +1,155 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="12dp"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp" >
+
+    <!-- 关闭按钮 -->
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:padding="8dp"
+        android:src="@drawable/ic_cancel"
+        android:tint="@color/text_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/colors"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="6dp"
+            app:cardCornerRadius="1000dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/colors_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/color_info"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/close_button">
+
+        <LinearLayout style="@style/CardItemContainer">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/CardLabel"
+                android:layout_height="32dp"
+                android:text="@string/hex" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/color_hex_text_view"
+                style="@style/CardValue"
+                android:textIsSelectable="true" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/CardItemContainer">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/CardLabel"
+                android:layout_height="32dp"
+                android:text="@string/rgb" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/color_rgb_text_view"
+                style="@style/CardValue"
+                android:textIsSelectable="true" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/CardItemContainer">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/CardLabel"
+                android:layout_height="32dp"
+                android:text="@string/cymk" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/color_cymk_text_view"
+                style="@style/CardValue"
+                android:textIsSelectable="true" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/CardItemContainer">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/CardLabel"
+                android:layout_height="32dp"
+                android:text="@string/hsv" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/color_hsv_text_view"
+                style="@style/CardValue"
+                android:textIsSelectable="true" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/CardItemContainer">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/CardLabel"
+                android:layout_height="32dp"
+                android:text="@string/name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/color_name_text_view"
+                style="@style/CardValue"
+                android:textIsSelectable="true" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/CardItemContainer">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/CardLabel"
+                android:layout_height="32dp"
+                android:text="@string/pinyin" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/color_pinyin_text_view"
+                style="@style/CardValue"
+                android:textIsSelectable="true" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_copy_item"
+        style="@style/dialogConfirmBtn"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_bg_large_warning"
+        android:text="@string/copy_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

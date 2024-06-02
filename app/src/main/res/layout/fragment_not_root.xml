@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context="mapleleaf.materialdesign.engine.ui.fragments.FragmentOverViewNotRoot">
+
+    <include
+        layout="@layout/this_application_toolbar"
+        android:visibility="gone" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/error_root"
+        android:textAlignment="center"
+        android:textColor="?android:colorAccent"
+        android:textSize="40sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/textSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/error_root_desc"
+        android:textAlignment="center"
+        android:textSize="11sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_retry"
+        style="@style/Widget.AppCompat.ActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/btn_retry"
+        android:textColor="@color/text_color" />
+</LinearLayout>

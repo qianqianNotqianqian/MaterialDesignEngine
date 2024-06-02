@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/google_assistant_verification_channel_name">
+    <target
+        android:name="path_2"
+        android:animation="@drawable/google_assistant_verification_notification_title" />
+    <target
+        android:name="path_4"
+        android:animation="@drawable/avd_flip_2" />
+    <target
+        android:name="group_1"
+        android:animation="@drawable/avd_flip_3" />
+    <target
+        android:name="group"
+        android:animation="@drawable/avd_flip_4" />
+</animated-vector>

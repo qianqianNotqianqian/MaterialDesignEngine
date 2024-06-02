@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_header_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="240.0dip"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/nav_header_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.25"
+        android:background="@color/black" />
+
+    <RelativeLayout
+        android:id="@+id/item_zuimei_wrapper_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="8.0dip"
+        android:paddingTop="24.0dip"
+        tools:ignore="RtlSymmetry">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_now_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8.0dip"
+            android:layout_marginTop="16.0dip"
+            android:shadowColor="@color/black"
+            android:shadowDx="4.0"
+            android:shadowDy="4.0"
+            android:shadowRadius="2.0"
+            android:text="@string/nav_header_day"
+            android:textColor="@color/white"
+            android:textSize="46.0sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_now_week_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/item_now_day"
+            android:layout_marginStart="2.0dip"
+            android:layout_toEndOf="@+id/item_now_day"
+            android:alpha="0.8"
+            android:gravity="center_vertical"
+            android:shadowColor="@color/black"
+            android:shadowDx="4.0"
+            android:shadowDy="4.0"
+            android:shadowRadius="2.0"
+            android:text="@string/nav_header_week"
+            android:textColor="@color/white"
+            android:textSize="14.0sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_now_month_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/item_now_week_tv"
+            android:layout_marginStart="2.0dip"
+            android:layout_toEndOf="@+id/item_now_day"
+            android:alpha="0.8"
+            android:gravity="center_vertical"
+            android:shadowColor="@color/black"
+            android:shadowDx="4.0"
+            android:shadowDy="4.0"
+            android:shadowRadius="2.0"
+            android:text="@string/nav_header_month"
+            android:textColor="@color/white"
+            android:textSize="14.0sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_now_content_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_now_day"
+            android:layout_marginLeft="8.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginRight="8.0dip"
+            android:ellipsize="end"
+            android:lineSpacingMultiplier="1.4"
+            android:shadowColor="@color/black"
+            android:shadowDx="4.0"
+            android:shadowDy="4.0"
+            android:shadowRadius="2.0"
+            android:text="@string/nav_header_title"
+            android:textColor="@color/white"
+            android:textSize="15.0sp" />
+    </RelativeLayout>
+</RelativeLayout>

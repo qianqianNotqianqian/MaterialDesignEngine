@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_title"
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="12dp"
+                    android:paddingTop="12dp"
+                    android:text="启动应用" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="12dp"
+                    android:paddingTop="8dp"
+                    android:text="选择想要打开应用的方式？" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/app_options_launch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/in_card_item"
+                        android:gravity="center_vertical"
+                        android:minHeight="70dp"
+                        android:orientation="horizontal"
+                        android:padding="6dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/dialog_icon_bg"
+                            android:backgroundTint="#0040C9"
+                            android:src="@drawable/app_options_launch"
+                            app:tint="@android:color/white" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="启动应用" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textSecondary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="启动该应用提供的主启动活动，若未提供或被隐藏、冻结，将无法打开" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/app_options_show_market"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/in_card_item"
+                        android:gravity="center_vertical"
+                        android:minHeight="70dp"
+                        android:orientation="horizontal"
+                        android:padding="6dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/dialog_icon_bg"
+                            android:backgroundTint="#00C93D"
+                            android:src="@drawable/app_options_search"
+                            app:tint="@android:color/white" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="在应用商店中查看" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textSecondary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="在应用商店搜索该应用" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                style="@style/dialogCancelBtn"
+                android:text="@string/btn_cancel" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

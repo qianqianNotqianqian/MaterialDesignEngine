@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.jaredrummler.materialspinner.MaterialSpinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp"
+        app:ms_background_color="@color/spinner_color"
+        app:ms_hide_arrow="false"
+        android:elevation="0dp"
+        app:ms_text_color="@color/text_color" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/iconRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:adjustViewBounds="true" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iconRecyclerView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

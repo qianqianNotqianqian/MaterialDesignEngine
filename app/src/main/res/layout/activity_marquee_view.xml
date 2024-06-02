@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/this_application_toolbar" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            style="@style/MDEngineTabLayout" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="6dp">
+
+            <mapleleaf.materialdesign.engine.view.XUIMarqueeView
+                android:id="@+id/marqueeViewXUI1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/background" />
+
+            <mapleleaf.materialdesign.engine.view.XUIMarqueeView
+                android:id="@+id/marqueeViewXUI2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/background"
+                app:mq_animDuration="2000"
+                app:mq_animIn="@anim/marquee_right_in"
+                app:mq_animOut="@anim/marquee_left_out"
+                app:mq_interval="2500"
+                tools:ignore="PrivateResource" />
+
+            <mapleleaf.materialdesign.engine.view.XUIMarqueeView
+                android:id="@+id/marqueeViewXUI3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/background" />
+
+            <mapleleaf.materialdesign.engine.view.XUIMarqueeView
+                android:id="@+id/marqueeViewXUI4"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/background" />
+
+            <mapleleaf.materialdesign.engine.view.XUIMarqueeView
+                android:id="@+id/marqueeViewXUI5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@color/background" />
+
+            <com.xuexiang.xui.widget.textview.MarqueeTextView
+                android:id="@+id/tv_marquee"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/background"
+                app:mtv_isAutoDisplay="true"
+                app:mtv_isAutoFit="true" />
+
+            <com.xuexiang.xui.widget.textview.MarqueeTextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/background"
+                app:mtv_entries="@array/marquee_text_entry"
+                app:mtv_isAutoDisplay="true"
+                app:mtv_isAutoFit="true" />
+        </LinearLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+            tools:layout_editor_absoluteX="6dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

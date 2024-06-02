@@ -1,0 +1,53 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="CustomMaterial3Theme" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">#06070D</item>
+<!--        <item name="android:colorPrimary">?colorPrimary</item>-->
+<!--        <item name="android:colorPrimaryDark">?colorPrimaryDark</item>-->
+<!--        <item name="android:colorAccent">?colorPrimary</item>-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/activityAnim2</item>
+        <item name="toolbarStyle">@style/Material3.Toolbar</item>
+    </style>
+
+    <style name="CustomMaterial3Theme_Light" parent="CustomMaterial3Theme" />
+
+    <style name="CustomMaterial3ThemeSplash" parent="CustomMaterial3Theme" />
+
+    <style name="AppTheme.PopupOverlay" parent="@style/Widget.Material3.PopupMenu">
+        <item name="popupMenuBackground">@color/spinner_color2</item>
+    </style>
+
+    <!-- 定义 Toolbar 的样式 -->
+    <style name="Material3.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextColor">@color/text_color</item>
+        <item name="subtitleTextColor">@color/text_color</item>
+    </style>
+
+    <style name="AppAboutTheme" parent="Theme.AppTheme.DayNight" />
+
+<!--    <style name="Theme.AppTheme.DayNight" parent="Theme.AppCompat.DayNight">-->
+    <style name="Theme.AppTheme.DayNight" parent="Theme.AppCompat.DayNight">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowAnimationStyle">@style/activityAnim2</item>
+    </style>
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="android:windowAnimationStyle">@style/CustomBottomSheetDialogAnimation</item>
+    </style>
+</resources>

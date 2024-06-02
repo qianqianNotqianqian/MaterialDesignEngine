@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        layout="@layout/this_application_toolbar"
+        android:visibility="gone" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <me.zhanghai.android.fastscroll.FastScrollWebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/functions_progressBar"
+        style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:id="@+id/app_options_single_only"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/app_logo"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/app_options_title"
+                                style="@style/textTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="应用名称" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/app_version_name"
+                                style="@style/textSecondary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="版本名称: " />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/app_version_code"
+                                style="@style/textSecondary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="版本代码: " />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical"
+                        android:minHeight="70dp"
+                        android:orientation="vertical">
+                        <!--复制应用包名-->
+                        <LinearLayout
+                            android:id="@+id/app_options_copay_package"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/in_card_item"
+                            android:orientation="vertical"
+                            android:padding="6dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textSecondary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="应用包名" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/app_package_name"
+                                    style="@style/textSmall"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:alpha="0.5"
+                                    android:padding="5dp"
+                                    android:src="@drawable/app_options_copy"
+                                    app:tint="@android:color/darker_gray" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--复制应用包名-->
+                        <LinearLayout
+                            android:id="@+id/app_options_copay_path"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/in_card_item"
+                            android:orientation="vertical"
+                            android:padding="6dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textSecondary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="安装路径" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/app_install_path"
+                                    style="@style/textSmall"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="" />
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:alpha="0.5"
+                                    android:padding="5dp"
+                                    android:src="@drawable/app_options_copy"
+                                    app:tint="@android:color/darker_gray" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="center_vertical"
+                        android:minHeight="50dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/in_card_item"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="6dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textSecondary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="6dp"
+                                android:text="目标SDK" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/app_target_sdk"
+                                style="@style/textSmall"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/in_card_item"
+                            android:orientation="vertical"
+                            android:padding="6dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textSecondary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="6dp"
+                                android:text="最小SDK" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/app_min_sdk"
+                                style="@style/textSmall"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/app_options_component_management"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/in_card_item"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="6dp">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:padding="4dp"
+                                android:src="@drawable/app_options_component"
+                                app:tint="?android:colorAccent" />
+
+                        </LinearLayout>
+                        <!--查看应用详情-->
+                        <LinearLayout
+                            android:id="@+id/app_options_open_detail"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/in_card_item"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="6dp">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:padding="4dp"
+                                android:src="@drawable/app_options_details"
+                                app:tint="?android:colorAccent" />
+                        </LinearLayout>
+
+                        <!--在应用商店查看-->
+                        <LinearLayout
+                            android:id="@+id/app_options_app_store"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/in_card_item"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="6dp">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:padding="6dp"
+                                android:src="@drawable/app_options_appstore"
+                                app:tint="?android:colorAccent" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--清空数据-->
+                <LinearLayout
+                    android:id="@+id/app_options_clear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/in_card_item"
+                    android:gravity="center_vertical"
+                    android:minHeight="70dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/dialog_icon_bg"
+                        android:backgroundTint="#FF9800"
+                        android:src="@drawable/app_options_clear"
+                        app:tint="@android:color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="清除数据" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textSecondary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="清空应用数据，回收存储空间" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--卸载应用-->
+                <LinearLayout
+                    android:id="@+id/app_options_uninstall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
+                    android:gravity="center_vertical"
+                    android:minHeight="70dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/dialog_icon_bg"
+                        android:backgroundTint="#FF5722"
+                        android:src="@drawable/app_options_uninstall"
+                        app:tint="@android:color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="卸载" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textSecondary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="卸载选中的应用" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/app_options_app_freeze"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
+                    android:gravity="center_vertical"
+                    android:minHeight="70dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/dialog_icon_bg"
+                        android:backgroundTint="@android:color/holo_blue_light"
+                        android:src="@drawable/app_options_freeze"
+                        app:tint="@android:color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="冻结/解冻" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textSecondary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="更改应用的禁用、隐藏状态" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--dex2oat-->
+                <LinearLayout
+                    android:id="@+id/app_options_dex2oat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
+                    android:gravity="center_vertical"
+                    android:minHeight="70dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/dialog_icon_bg"
+                        android:backgroundTint="#B3CA6E"
+                        android:padding="8dp"
+                        android:src="@drawable/app_options_dex2oat"
+                        app:tint="@android:color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="dex2oat" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textSecondary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="对此应用进行dex2oat处理" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--分享应用-->
+                <LinearLayout
+                    android:id="@+id/app_options_app_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
+                    android:gravity="center_vertical"
+                    android:minHeight="70dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/dialog_icon_bg"
+                        android:backgroundTint="#FFA800"
+                        android:padding="8dp"
+                        android:src="@drawable/app_options_share"
+                        app:tint="@android:color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="分享应用" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textSecondary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="分享应用的安装包" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/app_options_extra_package"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
+                    android:gravity="center_vertical"
+                    android:minHeight="70dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/dialog_icon_bg"
+                        android:backgroundTint="#FF84E8"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_android"
+                        app:tint="@android:color/white" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="提取安装包" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textSecondary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="提取应用的安装包到本地" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                style="@style/dialogCancelBtn"
+                android:text="@string/cancel" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

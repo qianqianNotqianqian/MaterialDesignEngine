@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.ActivitySystemInfo">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
+
+    <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
+        android:id="@+id/nestedScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/background"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/top_container"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/constraintlayout_background_half_radius"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/icon"
+                            android:layout_width="30.0dip"
+                            android:layout_height="30.0dip"
+                            android:contentDescription="@null"
+                            android:padding="4.0dip"
+                            android:src="@drawable/ic_smartphone" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/device_brand2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxWidth="180.0dip"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_color"
+                            android:textSize="18.0sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/device_name2"
+                            android:layout_width="0.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:paddingStart="@dimen/dp_24"
+                            android:paddingEnd="0.0dip"
+                            android:textColor="@color/text_color"
+                            android:textDirection="locale"
+                            android:textSize="14.0sp" />
+                    </LinearLayout>
+
+                    <include
+                        layout="@layout/card_device_info_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:cardBackgroundColor="@color/background"
+                app:cardCornerRadius="12dp">
+
+                <include
+                    layout="@layout/card_device_info_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </me.zhanghai.android.fastscroll.FastScrollNestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

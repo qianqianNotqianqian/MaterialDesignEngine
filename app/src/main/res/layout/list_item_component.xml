@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:paddingHorizontal="6dp"
+    android:paddingBottom="6dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/componentCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/componentIcon"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/todo" />
+
+            <LinearLayout
+                android:id="@+id/center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1.0"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/componentLabel"
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:lines="1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/componentName"
+                    style="@style/textDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_horizontal"
+                    android:maxLines="2" />
+            </LinearLayout>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/componentStatus"
+                android:layout_marginStart="6dp"
+                android:layout_gravity="center|end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

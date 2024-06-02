@@ -1,0 +1,590 @@
+package mapleleaf.materialdesign.engine.ui.activities
+
+import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.net.http.SslError
+import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
+import android.util.SparseArray
+import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.webkit.ClientCertRequest
+import android.webkit.JsResult
+import android.webkit.PermissionRequest
+import android.webkit.SslErrorHandler
+import android.webkit.WebChromeClient
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
+import com.google.android.material.snackbar.Snackbar
+import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
+import mapleleaf.materialdesign.engine.R
+import mapleleaf.materialdesign.engine.asynctask.ImageSaver
+import mapleleaf.materialdesign.engine.base.UniversalActivityBase
+import mapleleaf.materialdesign.engine.utils.clickListener.WebViewLongClickListener
+import mapleleaf.materialdesign.engine.utils.toast
+import me.zhanghai.android.fastscroll.FastScrollerBuilder
+import java.lang.reflect.Method
+import java.net.URISyntaxException
+import java.util.Arrays
+
+class ActivityBrowser : UniversalActivityBase() {
+
+    private val keyMyView = "key_my_view"
+    private val PERMISSION_REQUEST_CODE = 102
+
+    private val tag: String = this::class.java.name
+    private var myView: View? = null
+    private lateinit var webView: WebView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var titleTextView: TextView
+
+    override fun getLayoutResourceId() = R.layout.activity_browser
+
+    @SuppressLint("SetJavaScriptEnabled")
+    override fun initializeComponents(savedInstanceState: Bundle?) {
+        setToolbarTitle("")
+        progressBar = findViewById(R.id.progressBar)
+        webView = findViewById(R.id.webView)
+        titleTextView = findViewById(R.id.titleTextView)
+
+        FastScrollerBuilder(webView).build()
+        webView.settings.javaScriptEnabled = true
+        webView.settings.cacheMode = WebSettings.LOAD_DEFAULT
+        webView.settings.databaseEnabled = true
+        webView.settings.mediaPlaybackRequiresUserGesture = false
+        webView.settings.allowFileAccess = true
+        webView.settings.allowContentAccess = true
+        webView.settings.javaScriptCanOpenWindowsAutomatically = true
+        webView.settings.loadsImagesAutomatically = true
+        webView.settings.domStorageEnabled = true
+        webView.settings.loadWithOverviewMode = true
+        webView.settings.useWideViewPort = true
+        webView.settings.builtInZoomControls = true
+        webView.settings.displayZoomControls = false
+        webView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
+
+        val webViewClient = MyWebViewClient()
+        webView.webViewClient = webViewClient
+
+        webView.webChromeClient = object : WebChromeClient() {
+            override fun onPermissionRequest(request: PermissionRequest) {
+                Log.d(tag, "onPermissionRequest=" + Arrays.toString(request.resources))
+                val permissions = request.resources
+                var granted = true
+                for (permission in permissions) {
+                    if (permission == PermissionRequest.RESOURCE_AUDIO_CAPTURE &&
+                        ContextCompat.checkSelfPermission(
+                            this@ActivityBrowser,
+                            android.Manifest.permission.RECORD_AUDIO
+                        )
+                        != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        granted = false
+                        break
+                    }
+                    if (permission == PermissionRequest.RESOURCE_VIDEO_CAPTURE &&
+                        ContextCompat.checkSelfPermission(
+                            this@ActivityBrowser,
+                            android.Manifest.permission.CAMERA
+                        )
+                        != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        granted = false
+                        break
+                    }
+                }
+                if (granted) {
+                    request.grant(permissions)
+                } else {
+                    request.deny()
+                }
+            }
+
+            override fun onReceivedTitle(view: WebView, title: String) {
+                super.onReceivedTitle(view, title)
+                titleTextView.text = title
+                titleTextView.isSelected = true
+            }
+
+            override fun onProgressChanged(view: WebView, newProgress: Int) {
+                progressBar.progress = newProgress
+                if (newProgress == 100) {
+                    progressBar.postDelayed({ progressBar.isVisible = false }, 0)
+                } else {
+                    progressBar.isVisible = true
+                }
+            }
+
+            //扩展支持alert事件
+            override fun onJsAlert(
+                view: WebView,
+                url: String,
+                message: String,
+                result: JsResult,
+            ): Boolean {
+                return true
+            }
+        }
+
+        webView.setDownloadListener { url: String?, _: String?, _: String?, _: String?, _: Long ->
+            try {
+                // 检查 IDM 是否安装
+                val isIDMInstalled = isPackageInstalled(packageName)
+                if (isIDMInstalled) {
+                    // IDM 安装了，启动 IDM 下载
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    intent.setPackage("idm.internet.download.manager.plus")
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // 添加 FLAG_ACTIVITY_NEW_TASK
+                    context.startActivity(intent)
+                } else {
+                    // IDM 未安装，检查是否有活动可以处理该 Intent
+                    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    val packageManager: PackageManager = context.packageManager
+                    val resolveInfo = packageManager.resolveActivity(
+                        browserIntent,
+                        PackageManager.MATCH_DEFAULT_ONLY
+                    )
+                    if (resolveInfo != null) {
+
+                        browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // 添加 FLAG_ACTIVITY_NEW_TASK
+                        context.startActivity(browserIntent)
+                    } else {
+                        // 没有活动可以处理该 Intent，显示错误消息
+                        toast("没有找到可以处理此请求的活动。")
+                    }
+                }
+            } catch (e: ActivityNotFoundException) {
+                // 处理未找到活动的异常
+                toast("没有找到可以处理此请求的活动。")
+            }
+        }
+
+        val url = intent.getStringExtra("url")
+        if (url.isNullOrEmpty()) {
+            webView.loadUrl("https://www.bing.com/")
+        } else {
+            webView.loadUrl(url)
+        }
+
+        webView.setOnLongClickListener(
+            WebViewLongClickListener(
+                this, ImageSaver(this)
+            )
+        )
+    }
+
+    // 辅助函数：检查特定包名的应用是否已安装
+    fun isPackageInstalled(packageName: String): Boolean {
+        return try {
+            context.packageManager.getPackageInfo(packageName, 0)
+            true
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray,
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            var allPermissionsGranted = true
+            for (grantResult in grantResults) {
+                if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    allPermissionsGranted = false
+                    break
+                }
+            }
+            if (allPermissionsGranted) {
+                webView.reload()
+            } else {
+
+                toast("权限被拒绝，无法录音")
+            }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(keyMyView, myView?.let { saveViewState(it) })
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        myView = savedInstanceState.getParcelable(keyMyView)
+        myView?.let { restoreViewState(it) }
+    }
+
+    private fun saveViewState(view: View): Parcelable {
+        val state = Bundle()
+        val viewState = SparseArray<Parcelable>()
+        view.saveHierarchyState(viewState)
+        state.putSparseParcelableArray(keyMyView, viewState)
+        return state
+    }
+
+    private fun restoreViewState(view: View) {
+        val state = view.tag as? Bundle
+        if (state != null) {
+            val viewState = state.getSparseParcelableArray<Parcelable>(keyMyView)
+            if (viewState != null) {
+                view.restoreHierarchyState(viewState)
+            }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_browser, menu)
+        if (menu.javaClass.simpleName.equals("MenuBuilder", ignoreCase = true)) {
+            try {
+                val method: Method = menu.javaClass.getDeclaredMethod(
+                    "setOptionalIconsVisible",
+                    Boolean::class.javaPrimitiveType
+                )
+                method.isAccessible = true
+                method.invoke(menu, true)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) finish()
+        else if (item.itemId == R.id.menu_copy_link) {
+            copyCurrentPageLink()
+            return true
+        } else if (item.itemId == R.id.open_in_browser) openInExternalBrowser()
+        else if (item.itemId == R.id.back) {
+            if (webView.canGoBack()) webView.goBack()
+        } else if (item.itemId == R.id.stop_loading) webView.stopLoading()
+        else if (item.itemId == R.id.refresh) webView.reload()
+        else if (item.itemId == R.id.clear_all) {
+            webView.clearCache(true)
+            webView.clearFormData()
+            webView.clearHistory()
+            webView.clearMatches()
+            deleteDatabase("WebView.db")
+            deleteDatabase("WebViewCache.db")
+            cacheDir
+            toast("已清除所有数据")
+        } else if (item.itemId == R.id.forward) {
+            if (webView.canGoForward()) webView.goForward()
+        }
+        return true
+    }
+
+    private fun copyCurrentPageLink() {
+        webView.let {
+            val currentUrl = it.url
+            if (!currentUrl.isNullOrEmpty()) {
+                val clipboardManager =
+                    getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip = ClipData.newPlainText("URL", currentUrl)
+                clipboardManager.setPrimaryClip(clip)
+                toast("链接已复制")
+            } else {
+                toast("无法获取当前链接")
+            }
+        }
+    }
+
+    private fun openInExternalBrowser() {
+        webView.let {
+            val currentUrl = it.url
+            if (!currentUrl.isNullOrEmpty()) {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl))
+                startActivity(browserIntent)
+            } else {
+                toast("无法获取当前链接")
+            }
+        }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (webView.canGoBack()) {
+                webView.goBack()
+            } else {
+                finish()
+            }
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onDestroy() {
+        webView.let {
+            it.stopLoading()
+            val parent = it.parent as? ViewGroup
+            parent?.removeView(it)
+            it.removeAllViews()
+            it.destroy()
+        }
+        super.onDestroy()
+    }
+
+    private inner class MyWebViewClient : WebViewClient() {
+
+        override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+            val uri: Uri = request.url
+            val url = uri.toString()
+
+            return if (url.startsWith("http://") || url.startsWith("https://")) {
+                false
+            } else {
+                try {
+                    val intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME)
+                    if (intent != null) {
+                        when {
+                            url.startsWith("zhihu://") -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+
+                            url.startsWith("mqq://") -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+
+                            url.startsWith("sms://") -> {
+                                try {
+                                    // 获取短信号码
+                                    val phoneNumber = intent.data?.schemeSpecificPart
+                                    val smsIntent = Intent(
+                                        Intent.ACTION_SENDTO,
+                                        Uri.parse("smsto:$phoneNumber")
+                                    )
+                                    startActivity(smsIntent)
+                                } catch (e: Exception) {
+                                    Log.e(tag, "Error handling SMS URL: ${e.message}")
+                                    // 处理异常情况
+                                }
+                                return true
+                            }
+
+                            url.startsWith("itms-apps://") -> {
+                                try {
+                                    // 在这里执行打开App Store的逻辑
+                                    startActivity(intent)
+                                } catch (e: Exception) {
+                                    Log.e(tag, "Error handling App Store URL: ${e.message}")
+                                    // 处理异常情况
+                                }
+                                return true
+                            }
+
+                            url.startsWith("tel://") -> {
+                                try {
+                                    // 获取电话号码
+                                    val phoneNumber = intent.data?.schemeSpecificPart
+                                    // 在这里执行拨打电话的逻辑
+                                    val telIntent =
+                                        Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+                                    startActivity(telIntent)
+                                } catch (e: Exception) {
+                                    Log.e(tag, "Error handling Tel URL: ${e.message}")
+                                    // 处理异常情况
+                                }
+                                return true
+                            }
+
+                            url.startsWith("mobilenotes://") -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+
+                            url.startsWith("dingtalk://") -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+
+                            url.startsWith("taobao://") -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+
+                            url.startsWith("qqmusic://") -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+
+                            url.startsWith("qqmail://") -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+
+                            url.startsWith("weiyun://") -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+
+                            url.startsWith("sosomap://") -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+
+                            url.startsWith("weixin://") -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+
+                            url.startsWith("wechat://") -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+
+                            else -> {
+                                showOpenAppSnackBar(intent)
+                                return true
+                            }
+                        }
+                    }
+                } catch (e: URISyntaxException) {
+                    Log.e(tag, "URISyntaxException: ${e.message}")
+                } catch (e: ActivityNotFoundException) {
+                    // 处理异常，例如没有可处理该 Intent 的应用
+                    Log.e(tag, "Activity not found to handle Intent: $url")
+                    handleWebViewError()
+                    return true
+                }
+                false
+            }
+        }
+
+        @SuppressLint("QueryPermissionsNeeded")
+        private fun showOpenAppSnackBar(intent: Intent) {
+            // 使用PackageManager检查是否有应用能够处理该Intent
+            if (intent.resolveActivity(packageManager) != null) {
+                try {
+                    val packageManager = packageManager
+                    val packageName = intent.resolveActivity(packageManager)?.packageName
+                    val applicationInfo =
+                        packageName?.let { packageManager.getApplicationInfo(it, 0) }
+                    val appName =
+                        applicationInfo?.let { packageManager.getApplicationLabel(it) } as String
+
+                    val openAppSnackbar =
+                        Snackbar.make(webView, "是否允许打开 $appName 应用？", Snackbar.LENGTH_SHORT)
+                            .setAction("允许") { _ ->
+                                try {
+                                    startActivity(intent)
+                                } catch (e: ActivityNotFoundException) {
+                                    // 处理启动Activity时应用未找到的异常
+                                    e.printStackTrace()
+                                    // 可以显示一个提示或者其他处理逻辑
+                                } catch (e: Exception) {
+                                    // 处理其他异常
+                                    e.printStackTrace()
+                                }
+                            }
+                    openAppSnackbar.show()
+                } catch (e: Exception) {
+                    // 处理Snackbar显示时的异常
+                    e.printStackTrace()
+                }
+            } else {
+                // 如果没有应用可以处理Intent，可以显示一个提示
+//                toast("没有应用可以处理该操作")
+            }
+        }
+
+        private fun handleWebViewError() {
+            // 处理 WebView 加载错误
+            Log.d(
+                tag,
+                "onReceivedError=error=" + "Unknown URL scheme" + ",errorCode=" + "net::ERR_UNKNOWN_URL_SCHEME"
+            )
+        }
+
+        override fun onReceivedError(
+            view: WebView,
+            request: WebResourceRequest,
+            error: WebResourceError,
+        ) {
+            super.onReceivedError(view, request, error)
+            handleWebViewError(error)
+        }
+
+        override fun onReceivedHttpError(
+            view: WebView,
+            request: WebResourceRequest,
+            errorResponse: WebResourceResponse,
+        ) {
+            super.onReceivedHttpError(view, request, errorResponse)
+            handleWebViewError(errorResponse)
+        }
+
+        override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {
+            super.onReceivedSslError(view, handler, error)
+            handleSslError(error)
+        }
+
+        override fun onReceivedClientCertRequest(view: WebView, request: ClientCertRequest) {
+            super.onReceivedClientCertRequest(view, request)
+            // 处理客户端证书请求
+        }
+
+        private fun handleWebViewError(error: WebResourceError) {
+            // 处理通用的 WebView 加载错误
+            Log.d(
+                tag,
+                "onReceivedError=error=" + error.description + ",errorCode=" + error.errorCode
+            )
+//            showSnackbarWithStyle(webView,"WebView Error: " + error.description);
+        }
+
+        private fun handleWebViewError(errorResponse: WebResourceResponse) {
+            // 处理 HTTP 错误
+            Log.d(tag, "onReceivedHttpError=statusCode=" + errorResponse.statusCode)
+//            showSnackbarWithStyle(webView,"HTTP Error: " + errorResponse.statusCode);
+        }
+
+        private fun handleSslError(error: SslError) {
+            // 处理 SSL 错误
+            Log.d(tag, "onReceivedSslError=primaryError=" + error.getPrimaryError())
+            when (error.getPrimaryError()) {
+                SslError.SSL_INVALID, SslError.SSL_UNTRUSTED ->  // 可以选择继续加载页面
+                    // handler.proceed();
+//                    toast( "SSL Error: " + error.getPrimaryError())
+                    return
+
+                else ->  // 其他情况，取消加载
+                    // handler.cancel();
+//                    toast("SSL Error: " + error.getPrimaryError())
+                    return
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        webView.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        webView.onResume()
+    }
+}

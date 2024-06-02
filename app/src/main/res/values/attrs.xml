@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 定义 postSplashScreenTheme 属性 -->
+    <attr name="postSplashScreenTheme" format="reference" />
+    <attr name="windowSplashScreenAnimatedIcon" format="reference" />
+    <attr name="windowSplashScreenAnimationDuration" format="integer" />
+    <declare-styleable name="MovingImageView">
+        <attr name="miv_speed" format="integer" />
+        <attr name="miv_repetitions" format="integer" />
+        <attr name="miv_max_relative_size" format="float" />
+        <attr name="miv_min_relative_offset" format="float" />
+        <attr name="miv_start_delay" format="integer" />
+        <attr name="miv_load_on_create" format="boolean" />
+    </declare-styleable>
+
+    <!--************** RadiusImageView ****************-->
+    <declare-styleable name="RadiusImageView">
+        <attr name="borderWidth" format="dimension" />
+        <attr name="borderColor" format="color" />
+        <attr name="selectedMaskColor" format="color" />
+        <attr name="selectedBorderColor" format="color" />
+        <attr name="selectedBorderWidth" format="dimension" />
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="isOval" format="boolean" />
+        <attr name="isCircle" format="boolean" />
+        <attr name="isTouchSelectModeEnabled" format="boolean" />
+
+        <!-- Round the top-left corner. Ignored if isOval isCircle is used. -->
+        <attr name="roundTopLeft" format="boolean" />
+        <!-- Round the top-right corner. Ignored if isOval isCircle is used. -->
+        <attr name="roundTopRight" format="boolean" />
+        <!-- Round the bottom-right corner. Ignored if isOval isCircle is used. -->
+        <attr name="roundBottomRight" format="boolean" />
+        <!-- Round the bottom-left corner. Ignored if isOval isCircle is used. -->
+        <attr name="roundBottomLeft" format="boolean" />
+        <!-- A drawable or color to be be used as a placeholder. -->
+        <attr name="placeholderImage" format="reference" />
+    </declare-styleable>
+    <!--格式为引用-->
+    <attr name="radioButtonStyle" format="reference" />
+    <attr name="RadiusImageViewStyle" format="reference" />
+    <attr name="cardBg" format="color" />
+
+    <attr name="showHints">
+        <!-- Visible on screen; the default value. -->
+        <enum name="visible" value="0" />
+        <!-- Not displayed, but taken into account during layout (space is left for it). -->
+        <enum name="invisible" value="1" />
+        <!-- Completely hidden, as if the view had not been added. -->
+        <enum name="gone" value="2" />
+    </attr>
+
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="RamInfo">
+        <attr name="all" format="integer" />
+        <attr name="free" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="ProgressState">
+        <attr name="total" format="integer" />
+        <attr name="current" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="NavItem">
+        <attr name="text" format="string" />
+        <attr name="drawable" format="reference|integer" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomVerticalScrollBar">
+        <attr name="scrollBarColor" format="color" />
+        <attr name="scrollBarWidth" format="dimension" />
+        <attr name="scrollBarHandleColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="TitleBarLayout">
+        <attr name="text" />
+    </declare-styleable>
+
+    <declare-styleable name="MarqueeViewStyle">
+        <attr name="mvInterval" format="integer|reference"/>
+        <attr name="mvAnimDuration" format="integer|reference"/>
+        <attr name="mvTextSize" format="dimension|reference"/>
+        <attr name="mvTextColor" format="color|reference"/>
+        <attr name="mvSingleLine" format="boolean"/>
+        <attr name="mvFont" format="reference"/>
+        <attr name="mvGravity">
+            <enum name="left" value="0"/>
+            <enum name="center" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+        <attr name="mvDirection">
+            <enum name="bottom_to_top" value="0"/>
+            <enum name="top_to_bottom" value="1"/>
+            <enum name="right_to_left" value="2"/>
+            <enum name="left_to_right" value="3"/>
+        </attr>
+    </declare-styleable>
+</resources>

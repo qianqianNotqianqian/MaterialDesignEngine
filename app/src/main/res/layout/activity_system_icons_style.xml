@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activities.ActivitySystemIcons">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
+
+    <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
+        android:id="@+id/nestedScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/background">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="6dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/battery_icon"
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            android:contentDescription="@string/todo"
+                            android:src="@drawable/battery10" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/hour_first_digit"
+                                android:layout_width="70.5dip"
+                                android:layout_height="87.0dip"
+                                android:src="@drawable/font_a_0" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/hour_second_digit"
+                                android:layout_width="70.5dip"
+                                android:layout_height="87.0dip"
+                                android:src="@drawable/font_a_1" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="25dip"
+                                android:layout_height="87.0dip"
+                                android:src="@drawable/font_a_colon" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/minute_first_digit"
+                                android:layout_width="70.5dip"
+                                android:layout_height="87.0dip"
+                                android:src="@drawable/font_a_2" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/minute_second_digit"
+                                android:layout_width="70.5dip"
+                                android:layout_height="87.0dip"
+                                android:src="@drawable/font_a_3" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/appCompatCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/todo" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/todo" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/todo" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        style="@style/MDEngineSeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:max="100" />
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioButton1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/todo" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/todo" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/todo" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/todo" />
+
+                    </RadioGroup>
+                    <ProgressBar
+                        android:id="@+id/circularProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="50" />
+
+                    <GridLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:rowCount="2"
+                        android:columnCount="2"
+                        android:alignmentMode="alignMargins"
+                        android:layout_margin="8dp"
+                        android:columnOrderPreserved="false">
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:layout_marginEnd="6dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:cardBackgroundColor="@color/background">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <ProgressBar
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:indeterminate="false" />
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </GridLayout>
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:rowCount="2"
+                        android:columnCount="2"
+                        android:layout_gravity="center"
+                        android:alignmentMode="alignMargins"
+                        android:layout_marginTop="6dp"
+                        android:columnOrderPreserved="false" >
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:layout_marginEnd="6dp"
+                            app:cardBackgroundColor="@color/background">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/loading"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="12dp"
+                                    android:scaleType="fitCenter" />
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            app:cardBackgroundColor="@color/background">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/speed"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="12dp"
+                                    android:scaleType="fitCenter" />
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="6dp"
+                            app:cardBackgroundColor="@color/background">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/loop"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="12dp"
+                                    android:scaleType="fitCenter" />
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:layout_marginTop="6dp"
+                            app:cardBackgroundColor="@color/background">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/finger"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="12dp"
+                                    android:scaleType="fitCenter" />
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </GridLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/playButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/start_play" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </me.zhanghai.android.fastscroll.FastScrollNestedScrollView>
+
+</LinearLayout>

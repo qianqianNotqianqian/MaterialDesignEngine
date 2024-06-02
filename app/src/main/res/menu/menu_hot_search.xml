@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_hot_search_weibo"
+        android:title="微博热点" />
+    <item
+        android:id="@+id/menu_hot_search_toutiao"
+        android:title="头条热点" />
+    <item
+        android:id="@+id/menu_hot_search_hupu"
+        android:title="虎扑热点" />
+    <item
+        android:id="@+id/menu_hot_search_zhihu"
+        android:title="知乎实时" />
+    <item
+        android:id="@+id/menu_hot_search_zhihuDay"
+        android:title="知乎每日" />
+    <item
+        android:id="@+id/menu_hot_search_36ke"
+        android:title="32氪热点" />
+    <item
+        android:id="@+id/menu_hot_search_bilibili"
+        android:title="B站热点" />
+    <item
+        android:id="@+id/menu_hot_search_baiduRD"
+        android:title="百度热点" />
+    <item
+        android:id="@+id/menu_hot_search_douYin"
+        android:title="抖音热点" />
+    <item
+        android:id="@+id/menu_hot_search_douBan"
+        android:title="豆瓣热点" />
+    <item
+        android:id="@+id/menu_hot_itNew"
+        android:title="IT资讯" />
+    <item
+        android:id="@+id/menu_hot_search_huxiu"
+        android:title="虎嗅热点" />
+    <item
+        android:id="@+id/menu_hot_search_woShiPm"
+        android:title="人人都是产品经理" />
+</menu>

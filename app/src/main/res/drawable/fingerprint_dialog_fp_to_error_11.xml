@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="together">
+    <objectAnimator
+        android:duration="167"
+        android:interpolator="@drawable/fingerprint_dialog_fp_to_error_12"
+        android:propertyName="scaleX"
+        android:startOffset="0"
+        android:valueFrom="0"
+        android:valueTo="0"
+        android:valueType="floatType" />
+    <objectAnimator
+        android:duration="167"
+        android:interpolator="@drawable/fingerprint_dialog_fp_to_error_13"
+        android:propertyName="scaleY"
+        android:startOffset="0"
+        android:valueFrom="0"
+        android:valueTo="0"
+        android:valueType="floatType" />
+    <objectAnimator
+        android:duration="100"
+        android:interpolator="@drawable/fingerprint_dialog_fp_to_error_14"
+        android:propertyName="scaleX"
+        android:startOffset="167"
+        android:valueFrom="0"
+        android:valueTo="1.1"
+        android:valueType="floatType" />
+    <objectAnimator
+        android:duration="100"
+        android:interpolator="@drawable/fingerprint_dialog_fp_to_error_15"
+        android:propertyName="scaleY"
+        android:startOffset="167"
+        android:valueFrom="0"
+        android:valueTo="1.1"
+        android:valueType="floatType" />
+    <objectAnimator
+        android:duration="67"
+        android:interpolator="@drawable/fingerprint_dialog_fp_to_error_16"
+        android:propertyName="scaleX"
+        android:startOffset="267"
+        android:valueFrom="1.1"
+        android:valueTo="1"
+        android:valueType="floatType" />
+    <objectAnimator
+        android:duration="67"
+        android:interpolator="@drawable/fingerprint_dialog_fp_to_error_17"
+        android:propertyName="scaleY"
+        android:startOffset="267"
+        android:valueFrom="1.1"
+        android:valueTo="1"
+        android:valueType="floatType" />
+</set>

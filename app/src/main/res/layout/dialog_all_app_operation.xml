@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appIcon"
+                android:layout_width="60dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/todo" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/appName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="App Name"
+                    android:textColor="@color/text_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/appVersionName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="Version: 1.0" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/appSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:singleLine="true"
+                        android:text="Size: 5 MB" />
+
+                </LinearLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/appPackage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="Package: com.example.app" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/buttonOpen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#1600FF"
+                    android:src="@drawable/app_options_launch"
+                    app:tint="@android:color/white" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="启动应用" />
+
+            </LinearLayout>
+
+            <!--卸载应用-->
+            <LinearLayout
+                android:id="@+id/buttonUninstall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#FF5722"
+                    android:src="@drawable/app_options_uninstall"
+                    app:tint="@android:color/white" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="卸载" />
+
+            </LinearLayout>
+
+            <!--分享应用-->
+            <LinearLayout
+                android:id="@+id/buttonShare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="6dp">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#FFA800"
+                    android:padding="8dp"
+                    android:src="@drawable/app_options_share"
+                    app:tint="@android:color/white" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="分享应用" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonSaveApk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#FF84E8"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_android"
+                    app:tint="@android:color/white" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="提取安装包" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonSystemDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#FF3300"
+                    android:src="@drawable/app_options_uninstall_user"
+                    app:tint="@android:color/white" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="在系统设置查看" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#0013FF"
+                    android:src="@drawable/app_options_uninstall_user"
+                    app:tint="@android:color/white" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="在该应用中查看" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonComponent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#00FF26"
+                    android:src="@drawable/app_options_component"
+                    app:tint="@android:color/white" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="应用组件管理" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonDex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#0013FF"
+                    android:src="@drawable/app_options_component"
+                    app:tint="@android:color/white" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="应用Dex解析" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

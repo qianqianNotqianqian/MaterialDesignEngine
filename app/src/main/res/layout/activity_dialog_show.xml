@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
+            android:id="@+id/nestedScrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/background"
+                    app:cardCornerRadius="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/android_dialogs"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="12dp"
+                            android:textColor="@color/text_color" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="messageDialog"
+                            android:text="@string/alert_material_dialog" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="threeButtonDialog"
+                            android:text="@string/left_right_material_dialog" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="listDialog"
+                            android:text="@string/list_material_dialog" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="radioDialog"
+                            android:text="@string/radio_dialog_box" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="multipleChoiceDialog"
+                            android:text="@string/multiple_selection_dialog_box" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="progressBarDialog2"
+                            android:text="@string/round_progress_bar_dialog_box" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="customizeDialog"
+                            android:text="@string/customize_dialog" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="timePickerDialog"
+                            android:text="@string/time_picker_dialog" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="datePickerDialog"
+                            android:text="@string/date_picker_dialog" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    android:layout_marginTop="6dp"
+                    app:cardBackgroundColor="@color/background">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/material_dialogs"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="12dp"
+                            android:textColor="@color/text_color" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="alertMaterialDialog"
+                            android:text="@string/alert_material_dialog" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="leftRightMaterialDialog"
+                            android:text="@string/left_right_material_dialog" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="listMaterialDialog"
+                            android:text="@string/list_material_dialog" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="radioMaterialDialog"
+                            android:text="@string/radio_dialog_box" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="multipleChoiceMaterialDialog"
+                            android:text="@string/multiple_selection_dialog_box" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="timePickerMaterialDialog"
+                            android:text="@string/time_picker_dialog" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/MDEngineButtonStyle"
+                            android:layout_height="64dp"
+                            android:onClick="datePickerMaterialDialog"
+                            android:text="@string/date_picker_dialog" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </me.zhanghai.android.fastscroll.FastScrollNestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

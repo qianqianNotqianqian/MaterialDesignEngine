@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/CardItemContainer" >
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/device_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/device_name"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/model" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/device_model"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/manufacturer" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/device_manufacturer"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/tab_device" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/device"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/board" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/device_board"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/hardware" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/device_platform"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/brand" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/device_brand"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+</LinearLayout>

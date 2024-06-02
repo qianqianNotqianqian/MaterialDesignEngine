@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="150dp"
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_title"
+                    style="@style/dialogTitle"
+                    android:text="@string/dialog_prompt_title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_message"
+                    style="@style/dialogDesc"
+                    android:text="@string/dialog_prompt_content" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/answer_input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:hint="@string/answer"
+                    app:hintAnimationEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/answer_input_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                style="@style/dialogCancelBtn"
+                android:layout_marginEnd="8dp"
+                android:text="@string/cancel" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_confirm"
+                style="@style/dialogConfirmBtn"
+                android:background="@drawable/btn_bg_large_warning"
+                android:text="@string/confirm" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

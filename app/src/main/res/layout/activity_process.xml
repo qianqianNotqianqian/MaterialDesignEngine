@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activities.ActivityProcess">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
+
+    <LinearLayout
+        android:id="@+id/process_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include"
+        android:orientation="vertical"
+        android:padding="6dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/process_search"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/process_search_name"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textFilter"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/process_sort_mode"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:entries="@array/process_sort_modes"
+                    android:focusable="false"
+                    android:padding="0dp" />
+
+                <Spinner
+                    android:id="@+id/process_filter"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:entries="@array/process_filter"
+                    android:focusable="false"
+                    android:padding="0dp" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="12dp"
+                tools:ignore="RtlSymmetry">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textSmall"
+                    android:layout_width="46dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/process_app_icon"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textSmall"
+                    android:layout_width="138dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/process_pid"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textSmall"
+                    android:layout_width="138dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/process_res"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textSmall"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/process_cpu"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="12dp">
+
+            <ListView
+                android:id="@+id/process_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:fastScrollAlwaysVisible="true"
+                android:fastScrollEnabled="true" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/process_unsupported"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include"
+        android:layout_marginTop="?actionBarSize"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:text="@string/progress_unSupport"
+        android:textAlignment="center"
+        android:visibility="gone" />
+</RelativeLayout>

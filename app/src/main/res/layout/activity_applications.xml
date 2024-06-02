@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.ActivityApplications">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            style="@style/MDEngineTabLayoutTop" />
+
+    </LinearLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/apps_search_bar"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="12dp">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <FrameLayout
+        android:id="@id/apps_search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include"
+        android:layout_margin="6dp" >
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardViewEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="12dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@id/apps_search_box"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/apps_search"
+                    android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:singleLine="true"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonClear"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/buttonClear"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="12dp"
+                    android:visibility="gone"
+                    android:background="@color/transparent"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+</RelativeLayout>

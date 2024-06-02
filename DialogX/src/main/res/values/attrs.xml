@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DialogXMaxLayout">
+        <attr name="maxLayoutWidth" format="dimension"/>
+        <attr name="maxLayoutHeight" format="dimension"/>
+        <attr name="minLayoutWidth" format="dimension"/>
+        <attr name="minLayoutHeight" format="dimension"/>
+        <attr name="lockWidth" format="boolean"/>
+        <attr name="interceptTouch" format="boolean"/>
+
+        <attr name="dialogXSafetyMode" format="flags">
+            <flag name="none" value="0"/>
+            <flag name="top" value="0x1"/>
+            <flag name="left" value="0x2"/>
+            <flag name="bottom" value="0x4"/>
+            <flag name="right" value="0x8"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="RealtimeBlurView">
+        <attr name="realtimeBlurRadius" format="dimension"/>
+        <attr name="realtimeDownsampleFactor" format="float"/>
+        <attr name="realtimeOverlayColor" format="color"/>
+        <attr name="realtimeRadius" format="dimension"/>
+        <attr name="dialogxDarkMode" format="boolean"/>
+        <attr name="dialogxOverlayColorNoAlpha" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="ProgressView">
+        <attr name="progressStrokeWidth" format="dimension"/>
+        <attr name="progressStrokeColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="DialogXBaseRelativeLayout">
+        <attr name="baseFocusable" format="boolean"/>
+        <attr name="autoSafeArea" format="boolean"/>
+        <attr name="interceptBack" format="boolean"/>
+    </declare-styleable>
+</resources>

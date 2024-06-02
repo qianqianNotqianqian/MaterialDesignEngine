@@ -1,0 +1,98 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <GridLayout style="@style/ListCardItem">
+
+        <LinearLayout
+            android:layout_row="0"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/cluster_title"
+                style="@style/textTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:gravity="center_vertical"
+            android:text="@string/cpu_control_min_frequency"
+            android:textColor="@color/text_color" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cluster_min_freq"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:padding="5dp"
+            android:text="@string/cpu_control_min_freq"
+            android:textAlignment="textEnd"
+            android:textColor="@color/text_color" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:gravity="center_vertical"
+            android:text="@string/cpu_control_max_frequency"
+            android:textColor="@color/text_color" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cluster_max_freq"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:padding="5dp"
+            android:text="@string/cpu_control_max_freq"
+            android:textAlignment="textEnd"
+            android:textColor="@color/text_color" />
+
+        <com.google.android.material.textview.MaterialTextView
+
+            android:layout_row="3"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:gravity="center_vertical"
+            android:text="@string/cpu_control_scheduling_mode"
+            android:textColor="@color/text_color" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cluster_governor"
+            android:layout_width="150dp"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:padding="5dp"
+            android:text="@string/cpu_control_governor"
+            android:textAlignment="textEnd"
+            android:textColor="@color/text_color" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_row="4"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:gravity="center_vertical"
+            android:text="@string/cpu_control_fine_tune_parameters"
+            android:textColor="@color/text_color" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cluster_governor_params"
+            android:layout_width="150dp"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:padding="5dp"
+            android:text="@string/cpu_control_click_to_view"
+            android:textAlignment="textEnd"
+            android:textColor="@color/text_color" />
+
+    </GridLayout>
+</FrameLayout>

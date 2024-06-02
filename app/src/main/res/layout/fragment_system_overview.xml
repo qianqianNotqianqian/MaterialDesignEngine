@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.FragmentOverViewSystem">
+
+    <include
+        layout="@layout/this_application_toolbar"
+        android:visibility="gone" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/home_main_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/home_clear_ram"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/linearlayout_background"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="RAM"
+                            android:textSize="11sp" />
+
+                        <mapleleaf.materialdesign.engine.view.RamChartView
+                            android:id="@+id/home_raminfo"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            app:free="1"
+                            app:total="1" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:text="物理内存"
+                            android:textSize="12sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/home_raminfo_text"
+                            style="@style/textSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:text=""
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/home_clear_swap"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/linearlayout_background"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:textAlignment="viewEnd">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:text="交换分区"
+                            android:textSize="12dp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/home_zramsize_text"
+                            style="@style/textSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:text="0% (0MB)"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="SWAP"
+                            android:textSize="10sp" />
+
+                        <mapleleaf.materialdesign.engine.view.RamChartView
+                            android:id="@+id/home_swapstate_chat"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            app:free="1"
+                            app:total="1" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/linearlayout_background"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SwapCached " />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/home_swap_cached"
+                    style="@style/textSmallTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buffers " />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/home_buffers"
+                    style="@style/textSmallTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dirty " />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/home_dirty"
+                    style="@style/textSmallTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/home_gpuview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/linearlayout_background"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp">
+
+                        <mapleleaf.materialdesign.engine.view.CpuChartView
+                            android:id="@+id/home_gpu_chat"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            app:free="0"
+                            app:total="100" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="GPU"
+                            android:textSize="12dp" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/home_gpu_freq"
+                            style="@style/textTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="- Mhz" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/home_gpu_load"
+                            style="@style/textSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="3dp"
+                            android:text="- %" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/linearlayout_background"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:textAlignment="viewEnd">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cpu_core_count"
+                            style="@style/textTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:text="核心数" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/cpu_core_total_load"
+                            style="@style/textSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginTop="3dp"
+                            android:text="- %" />
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp">
+
+                        <mapleleaf.materialdesign.engine.view.CpuChartView
+                            android:id="@+id/home_cpu_chat"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            app:free="0"
+                            app:total="100" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="CPU"
+                            android:textSize="12dp" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <GridView
+                android:id="@+id/cpu_core_list"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/linearlayout_background"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="4"
+                android:padding="0dp"
+                android:scrollbars="none" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/linearlayout_background"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="-4dp"
+                            android:background="@android:color/transparent"
+                            android:padding="5dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_power_line" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/home_battery_now"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:textSize="13sp" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/home_battery_edit"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="-6dp"
+                            android:background="@android:color/transparent"
+                            android:padding="5dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_edit"
+                            app:tint="?android:colorPrimary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/home_battery_settings"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="-4dp"
+                            android:background="@android:color/transparent"
+                            android:padding="5dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_battery" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/home_battery_capacity"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="-4dp"
+                            android:background="@android:color/transparent"
+                            android:padding="5dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_temperature" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/home_battery_temperature"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/linearlayout_background"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="-4dp"
+                            android:background="@android:color/transparent"
+                            android:padding="5dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_android" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/home_device_name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:text="Andorid"
+                            android:textColor="@color/text_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="-4dp"
+                            android:background="@android:color/transparent"
+                            android:padding="5dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/power_on_time" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="已开机"
+                            android:textColor="@color/text_color" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/home_running_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="0s"
+                            android:textColor="@color/text_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/home_help"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="-4dp"
+                            android:background="@android:color/transparent"
+                            android:padding="5dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_global" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:text="访问官网"
+                            android:textColor="@color/text_color" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

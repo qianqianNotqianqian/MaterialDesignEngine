@@ -1,0 +1,232 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".tools.activities.ActivityDictionary">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
+            android:id="@+id/nestedScrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/background"
+                    app:cardCornerRadius="12dp"
+                    android:layout_margin="6dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/editTextHanzi"
+                            android:layout_width="92dp"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:maxLength="1"
+                            android:minEms="1"
+                            android:singleLine="true"
+                            android:textSize="64.0sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="12dp"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/editTextHanzi"
+                            app:layout_constraintStart_toEndOf="@+id/editTextHanzi"
+                            app:layout_constraintTop_toTopOf="@+id/editTextHanzi">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/pinyin_chinese"
+                                    android:textSize="15.0sp" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/textViewPinyin"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4.0dip"
+                                    android:textSize="15.0sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/buShou"
+                                    android:textSize="15.0sp" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/textViewBuShou"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4.0dip"
+                                    android:textSize="15.0sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/biHua"
+                                    android:textSize="15.0sp" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/textViewBiHua"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4.0dip"
+                                    android:textSize="15.0sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="6dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="8dp"
+                            android:gravity="start|center"
+                            android:includeFontPadding="false"
+                            android:text="@string/dictionary_detail"
+                            android:textColor="@color/text_color"
+                            app:drawableStartCompat="@drawable/dictionary_details"
+                            app:drawableTint="@color/text_color" />
+
+                        <View
+                            android:layout_width="0.0dip"
+                            android:layout_height="1.0dip"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1.0"
+                            android:background="@color/text_color" />
+                    </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/textViewBasicExplainMaterialCardView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:visibility="gone"
+                        app:cardBackgroundColor="@color/background">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/textViewBasicExplain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/textViewDetailExplainMaterialCardView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:visibility="gone"
+                        app:cardBackgroundColor="@color/background">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/textViewDetailExplain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/textViewWordMaterialCardView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:visibility="gone"
+                        app:cardBackgroundColor="@color/background">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/textViewWord"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp" />
+
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </me.zhanghai.android.fastscroll.FastScrollNestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonQuery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@string/todo"
+        android:backgroundTint="?colorPrimary"
+        android:src="@drawable/app_options_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

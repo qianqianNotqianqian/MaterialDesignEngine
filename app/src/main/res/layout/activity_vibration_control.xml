@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.ActivitySystemVibration">
+
+    <include layout="@layout/this_application_toolbar" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        app:cardBackgroundColor="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/durationEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Enter_Duration"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_hasVibrator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/item_app_bg"
+                android:text="判断是否有振动器"
+                android:textColor="@color/text_color" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_short"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/item_app_bg"
+                android:text="短振动"
+                android:textColor="@color/text_color" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_long"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/item_app_bg"
+                android:text="长振动"
+                android:textColor="@color/text_color" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_rhythm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/item_app_bg"
+                android:text="节奏振动"
+                android:textColor="@color/text_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/stopVibrationButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_app_bg"
+                    android:text="@string/Stop_Vibration"
+                    android:textColor="@color/text_color"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/startVibrationButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_app_bg"
+                    android:text="@string/start_vibration"
+                    android:textColor="@color/text_color" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

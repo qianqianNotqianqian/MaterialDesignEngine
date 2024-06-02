@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="12dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="12dp"
+            android:text="item"
+            android:textSize="16sp" />
+
+        <mapleleaf.materialdesign.engine.view.SunfushengMarqueeView
+            android:id="@+id/marqueeView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:mvDirection="bottom_to_top"
+            app:mvGravity="left" />
+    </LinearLayout>
+
+
+    <include layout="@layout/marquee_divider_1px" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

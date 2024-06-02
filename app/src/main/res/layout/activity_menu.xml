@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.ActivityMenu">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar_color"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/this_application_toolbar" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
+            android:id="@+id/nestedScrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/Browser"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/Accelerometer"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/MDDialog"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/Functions"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/DeskClock"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/SystemInformation"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/SystemVibration"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/SystemSensorInfo"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/SystemIconStyle"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/SystemProcess"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/AppManager"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/SystemSundry"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/SystemOverView"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/SystemCpuControl"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/Colors"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/J2box"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/QRCode"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/Text2MD5"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/TTS"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/Music"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/AnimeQuotes"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/RPG"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/HotSearch"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/InfiniteList"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/BilibiliParse"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/Dictionary"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/MarqueeView"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </me.zhanghai.android.fastscroll.FastScrollNestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="360dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/nav_header" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/relative_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="@color/spinner_color2"
+                app:cardCornerRadius="12dp"
+                app:strokeWidth="0dp"
+                app:strokeColor="@color/transparent"
+                android:layout_marginTop="-12.0dp" >
+
+                <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
+                    android:id="@+id/scrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="TooManyViews">
+
+                        <LinearLayout
+                            android:id="@+id/more_linearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:orientation="vertical"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/tv3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="12dp"
+                                android:text="@string/menu_recommended_services"
+                                android:textColor="@color/standardTextColor"
+                                android:textSize="16.0sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <include
+                                android:id="@+id/item_app_manager"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                android:id="@+id/item_download_project"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                android:id="@+id/item_support"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                android:id="@+id/item_feedback"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                android:id="@+id/item_about"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/menu_linearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:clickable="false"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            app:layout_constraintTop_toBottomOf="@id/more_linearLayout">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="12dp"
+                                android:text="@string/menu_other"
+                                android:textColor="@color/text_color"
+                                android:textSize="15.0sp"
+                                android:textStyle="bold" />
+
+                            <include
+                                android:id="@+id/item_perfmon_plus"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                android:id="@+id/item_sex"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                android:id="@+id/item_sex_line"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                android:id="@+id/item_exit"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            android:clickable="false"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/menu_linearLayout"
+                            tools:layout_editor_absoluteX="12dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="12dp"
+                                android:text="@string/menu_official_account"
+                                android:textColor="@color/text_color"
+                                android:textSize="15.0sp"
+                                android:textStyle="bold" />
+
+                            <include
+                                android:id="@+id/item_bilibili"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                android:id="@+id/item_acfun"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                android:id="@+id/item_gitee"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                            <include
+                                android:id="@+id/item_github"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </me.zhanghai.android.fastscroll.FastScrollNestedScrollView>
+
+                <ProgressBar
+                    android:id="@+id/progressBarWithNavView"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:visibility="gone" />
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    <color name="colorAccent">?attr/colorAccent</color>-->
+<!--    <color name="colorPrimary">?attr/colorPrimary</color>-->
+    <!--    <color name="colorPrimaryDark">?attr/colorPrimaryDark</color>-->
+
+    <color name="background">#88000000</color>
+    <color name="background_color">#88000000</color>
+    <color name="background_menu">#22000000</color>
+    <color name="colorPrimary_day_light">#0162A4</color>
+    <color name="background_select">#99FFFFFF</color>
+    <color name="item_background">#99AFAFAF</color>
+    <color name="stroke">#FF49454F</color>
+    <color name="background_no_transparent">#333333</color>
+    <color name="colorPrimaryVariant">#F5222222</color>
+    <color name="background_alpha">#55222222</color>
+    <color name="text_color">#FFFFFFFF</color>
+    <color name="swipe_refresh_layout_progress">#FF000000</color>
+    <color name="statusbar_color">#000000</color>
+    <color name="text_gray2">#FFADADAD</color>
+    <color name="orchid">#92289B</color><!--淡紫色 -->
+    <color name="text_view_color">#67ffffff</color>
+    <color name="battery_third_color">#ffffff</color>
+    <color name="battery_first_color">#ffffff</color>
+    <color name="custom_colorPrimary">#FFD0BCFF</color>
+
+    <color name="android_preview_logo_background">#1D1E21</color>
+
+    <color name="titleViewBgColor">#ff2d2f33</color>
+    <color name="standardBgColor">#ff202226</color>
+    <color name="standardHintColor">#ffcccccc</color>
+    <color name="standardTextColor">#ffeeeeee</color>
+    <color name="action_button_color">#FF000000</color>
+
+    <!-- 字体前景色 -->
+    <color name="colorTextForeground">#FFFFFF</color>
+    <color name="scrollbar_color">#FF69656C</color>
+    <color name="toolbar_color">#881D1B26</color>
+    <color name="spinner_color">#2E3032</color>
+    <color name="spinner_color2">#021625</color>
+</resources>

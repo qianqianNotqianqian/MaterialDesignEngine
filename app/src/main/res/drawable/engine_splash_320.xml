@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/engine_splash_320_0">
+    <target
+        android:name="circle"
+        android:animation="@drawable/engine_splash_320_1" />
+    <target
+        android:name="plane"
+        android:animation="@drawable/engine_splash_320_2" />
+    <target
+        android:name="fg"
+        android:animation="@drawable/engine_splash_320_3" />
+</animated-vector>

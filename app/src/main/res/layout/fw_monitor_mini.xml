@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:background="@drawable/fw_mini_monitor_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/fw_chart_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="4dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/fw_monitor_mini_cpu"
+            android:textAlignment="center"
+            android:textColor="#dddddd"
+            android:textSize="8sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fw_cpu_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:fontFamily="monospace"
+            android:minWidth="20dp"
+            android:text="@string/fw_monitor_mini_null"
+            android:textColor="#ffffff"
+            android:textSize="8sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:text="@string/fw_monitor_mini_gpu"
+            android:textColor="#dddddd"
+            android:textSize="8sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fw_gpu_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:fontFamily="monospace"
+            android:minWidth="20dp"
+            android:text="@string/fw_monitor_mini_null"
+            android:textColor="#ffffff"
+            android:textSize="8sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:text="@string/fw_monitor_mini_fps"
+            android:textAlignment="center"
+            android:textColor="#dddddd"
+            android:textSize="8sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fw_fps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:fontFamily="monospace"
+            android:minWidth="22dp"
+            android:text="@string/fw_monitor_mini_null"
+            android:textColor="#ffffff"
+            android:textSize="8sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fw_battery_current"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:fontFamily="monospace"
+            android:minWidth="34dp"
+            android:text="@string/fw_monitor_mini_null"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="8sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fw_battery_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:fontFamily="monospace"
+            android:minWidth="34dp"
+            android:text="@string/fw_monitor_mini_null"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="8sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

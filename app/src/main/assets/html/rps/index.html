@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>石头剪刀布</title>
+    <style>
+        @media (prefers-color-scheme: dark) {
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+          }
+          h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #ffffff;
+          }
+          .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+          }
+          .choice {
+            width: 120px;
+            height: 120px;
+            background-color: #00000000;
+            margin: 10px;
+            border: 2px solid #e1e1e1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+          }
+          .choice:hover {
+            border-color: #c2c1c1;
+          }
+          p {
+            color: #ffffff;
+          }
+          .choice p {
+            margin-top: 5px;
+          }
+          .result {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            font-size: 20px;
+            font-weight: bold;
+          }
+          .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+          }
+          .button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #c4c4c4;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+          }
+          .button:hover {
+            background-color: #dddddd;
+          }
+        }
+
+        @media (prefers-color-scheme: light) {
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+          }
+          h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #000000;
+          }
+          .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+          }
+          .choice {
+            width: 120px;
+            height: 120px;
+            background-color: #00000000;
+            margin: 10px;
+            border: 2px solid #e1e1e1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+          }
+          .choice:hover {
+            border-color: #c2c1c1;
+          }
+          p {
+            color: #000000;
+          }
+          .choice p {
+            margin-top: 5px;
+          }
+          .result {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            font-size: 20px;
+            font-weight: bold;
+          }
+          .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+          }
+          .button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #c4c4c4;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+          }
+          .button:hover {
+            background-color: #dddddd;
+          }
+        }
+
+    </style>
+</head>
+<body>
+<h1>石头剪刀布</h1>
+
+<div class="container">
+    <div class="choice" id="rock">
+        <p>石头</p>
+    </div>
+    <div class="choice" id="paper">
+        <p>剪刀</p>
+    </div>
+    <div class="choice" id="scissors">
+        <p>布</p>
+    </div>
+</div>
+
+<div class="result">
+    <p id="player"></p>
+    <p id="computer"></p>
+    <p id="result"></p>
+</div>
+
+<div class="buttons">
+    <button class="button" id="restart">重新开始</button>
+    <button class="button" id="clear">删除结果</button>
+</div>
+
+<script>
+    var choices = document.querySelectorAll(".choice");
+    var playerChoice;
+    var computerChoice;
+    var result;
+
+    choices.forEach(function (choice) {
+      choice.addEventListener("click", function () {
+        playerChoice = this.id;
+        computerChoice = Math.floor(Math.random() * 3);
+
+        switch (computerChoice) {
+          case 0:
+            computerChoice = "石头";
+            break;
+          case 1:
+            computerChoice = "剪刀";
+            break;
+          case 2:
+            computerChoice = "布";
+            break;
+        }
+
+        document.getElementById("player").innerHTML =
+          "玩家选择：" + this.querySelector("p").innerHTML;
+        document.getElementById("computer").innerHTML =
+          "电脑选择：" + computerChoice;
+
+        if (playerChoice == computerChoice.toLowerCase()) {
+          result = "平局";
+        } else if (playerChoice == "rock" && computerChoice == "剪刀") {
+          result = "玩家赢了！";
+        } else if (playerChoice == "paper" && computerChoice == "石头") {
+          result = "玩家赢了！";
+        } else if (playerChoice == "scissors" && computerChoice == "布") {
+          result = "玩家赢了！";
+        } else {
+          result = "电脑赢了！";
+        }
+
+        document.getElementById("result").innerHTML = result;
+      });
+    });
+
+    document.getElementById("restart").addEventListener("click", function () {
+      document.getElementById("player").innerHTML = "";
+      document.getElementById("computer").innerHTML = "";
+      document.getElementById("result").innerHTML = "";
+    });
+
+    document.getElementById("clear").addEventListener("click", function () {
+      document.getElementById("result").innerHTML = "";
+    });
+
+</script>
+</body>
+</html>

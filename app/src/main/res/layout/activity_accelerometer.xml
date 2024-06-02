@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activities.ActivityAccelerometer">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
+
+    <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
+        android:id="@+id/nestedScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/top_container"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/constraintlayout_background_half_radius"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="6dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_sensors" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/sensor_name_textview2"
+                            android:layout_width="0.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:gravity="start|center"
+                            android:layout_marginStart="12dp"
+                            android:textColor="@color/text_color"
+                            android:textDirection="locale"
+                            android:textSize="14.0sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="6dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="6dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/accelerometer_blue_dot" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/sensor_x"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dp"
+                                    android:text="@string/x"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:contentDescription="@string/todo"
+                                    android:src="@drawable/accelerometer_green_dot" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/sensor_y"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dp"
+                                    android:text="@string/y"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:contentDescription="@string/todo"
+                                    android:src="@drawable/accelerometer_red_dot" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/sensor_z"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="4dp"
+                                    android:text="@string/z"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/sensor_chart"
+                            android:layout_width="fill_parent"
+                            android:layout_height="240dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:cardBackgroundColor="@color/background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="6dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout style="@style/CardItemContainer">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/CardLabel"
+                            android:text="@string/sensor_name" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/sensor_name_textview"
+                            style="@style/CardValue"
+                            android:textIsSelectable="true" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CardItemContainer">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/CardLabel"
+                            android:text="@string/sensor_manufacturer" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/sensor_vendor_textview"
+                            style="@style/CardValue"
+                            android:textIsSelectable="true" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CardItemContainer">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/CardLabel"
+                            android:text="@string/sensor_version" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/sensor_version_textview"
+                            style="@style/CardValue"
+                            android:textIsSelectable="true" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CardItemContainer">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/CardLabel"
+                            android:text="@string/sensors_resolution" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/sensor_resolution_textview"
+                            style="@style/CardValue"
+                            android:textIsSelectable="true" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CardItemContainer">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/CardLabel"
+                            android:text="@string/sensors_power" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/sensor_power_textview"
+                            style="@style/CardValue"
+                            android:textIsSelectable="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/security_patch_level_container"
+                        style="@style/CardItemContainer">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/CardLabel"
+                            android:text="@string/sensor_maximum_range" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/sensor_max_range_textview"
+                            style="@style/CardValue"
+                            android:textIsSelectable="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/boot_loader_container"
+                        style="@style/CardItemContainer">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/CardLabel"
+                            android:text="@string/is_dynamic" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/sensor_dynamic_textview"
+                            style="@style/CardValue"
+                            android:textIsSelectable="true" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CardItemContainer">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/CardLabel"
+                            android:text="@string/is_wake_up_sensor" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/sensor_wake_up_textview"
+                            style="@style/CardValue"
+                            android:textIsSelectable="true" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CardItemContainer">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/CardLabel"
+                            android:text="@string/sensor_reporting_mode" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/sensor_reporting_mode_textview"
+                            style="@style/CardValue"
+                            android:textIsSelectable="true" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </me.zhanghai.android.fastscroll.FastScrollNestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

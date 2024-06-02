@@ -1,0 +1,173 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+}
+apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-kapt'
+android {
+    signingConfigs {
+        release {
+            v2SigningEnabled true
+            enableV3Signing true
+            storeFile file('C:\\Users\\Administrator.DESKTOP-Q5T4401\\AndroidStudioProjects\\MaterialDesignEngine\\key\\芊芊.jks')
+            storePassword 'chen0408'
+            keyPassword 'chen0408'
+            keyAlias 'qianqian'
+        }
+        debug {
+            v2SigningEnabled true
+            enableV3Signing true
+            storeFile file('C:\\Users\\Administrator.DESKTOP-Q5T4401\\AndroidStudioProjects\\MaterialDesignEngine\\key\\芊芊.jks')
+            storePassword 'chen0408'
+            keyAlias 'qianqian'
+            keyPassword 'chen0408'
+        }
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+
+    compileSdk 34
+
+    defaultConfig {
+        namespace 'mapleleaf.materialdesign.engine'
+        applicationId namespace
+        minSdk 31
+        targetSdk 34
+        versionCode 395
+        versionName '3.9.5'
+        project.archivesBaseName = "MaterialDesign引擎"
+        ndk {
+            // noinspection ChromeOsAbiSupport
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'
+        }
+        applicationVariants.configureEach { variant ->
+            variant.outputs.configureEach {
+                outputFileName = project.archivesBaseName + "_" + versionName + "(" + versionCode + ")_" + variant.buildType.name + ".apk"
+            }
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources false
+            multiDexEnabled true
+            versionNameSuffix "_" + DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now()) + "_release"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+            shrinkResources false
+            multiDexEnabled true
+            versionNameSuffix "_" + DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now()) + "_debug"
+//            versionNameSuffix "_debug"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path file('src/main/jni/Android.mk')
+        }
+    }
+
+    ndkVersion '25.1.8937393'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = '21'
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.5.12'
+    }
+
+    android {
+        packagingOptions {
+            exclude '/META-INF/AL2.0'
+            exclude '/META-INF/LGPL2.1'
+        }
+    }
+    buildToolsVersion '34.0.0'
+
+    buildFeatures {
+        compose true
+    }
+}
+
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.13.0'
+    implementation platform('androidx.compose:compose-bom:2023.08.00')
+    implementation 'androidx.compose.material3:material3'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.drakeet.about:about:2.5.2'
+    implementation 'androidx.palette:palette-ktx:1.0.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.preference:preference-ktx:1.2.1'
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.getActivity:XXPermissions:16.6'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+    implementation 'com.airbnb.android:lottie:6.4.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.google.zxing:core:3.4.1'
+    implementation fileTree("libs")
+    implementation 'com.jaredrummler:material-spinner:1.3.1'
+
+    implementation 'com.github.xuexiangjys:XUI:1.2.1'
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    //rxbinding的sdk
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.2.0'
+
+    implementation 'com.github.xuexiangjys:RxUtil2:1.2.0'
+
+//    def dialogx_version = "0.0.49"
+//    implementation "com.github.kongzue.DialogX:DialogX:${dialogx_version}"
+
+    implementation project(path: ':DialogX')
+    implementation project(path: ':DialogXIOSStyle')
+    implementation project(path: ':DialogXKongzueStyle')
+    implementation project(path: ':DialogXMIUIStyle')
+    implementation project(path: ':DialogXMaterialYou')
+
+    implementation "com.kongzue.baseframework:BaseFramework:6.8.8"
+    implementation 'com.kongzue.stacklabel:StackLabel:1.2.0'
+
+    // Retrofit & Gson
+//    implementation 'com.squareup.retrofit2:retrofit:2.10.0'
+//    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+//    implementation 'com.google.code.gson:gson:2.10.1'
+//    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+//    implementation 'androidx.room:room-common:2.6.1'
+//    implementation 'com.android.volley:volley:1.2.1'
+
+//    implementation 'com.bitvale:switcher:1.1.1'
+
+//    implementation 'com.afollestad.material-dialogs:core:0.9.0.2'
+//    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+//    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+//    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+//    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+//    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+}

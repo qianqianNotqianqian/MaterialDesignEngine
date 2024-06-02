@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.kongzue.dialogxdemo.activity.ActivityDialogShow">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/split_body"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#a6a8a9"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/include">
+
+        <LinearLayout
+            android:id="@+id/box_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="💬 DialogX对话框组件库，更加方便易用，可自定义程度更高，扩展性更强，轻松实现各种对话框、菜单和提示效果，更有Material You、iOS、MIUI等主题扩展可选"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="选择风格"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fadingEdge="horizontal"
+                android:overScrollMode="never"
+                android:requiresFadingEdge="horizontal"
+                android:scrollbars="none">
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/grp_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:checkedButton="@+id/rdo_material"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/rdo_material"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Material"
+                        android:textColor="@color/colorAccent"
+                        android:textAllCaps="false" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/rdo_ios"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="iOS"
+                        android:textColor="@color/colorAccent"
+                        android:textAllCaps="false" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/rdo_kongzue"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kongzue"
+                        android:textColor="@color/colorAccent"
+                        android:textAllCaps="false" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/rdo_miui"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MIUI"
+                        android:textColor="@color/colorAccent"
+                        android:textAllCaps="false" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/rdo_material_you"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Material You"
+                        android:textColor="@color/colorAccent"
+                        android:textAllCaps="false" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="选择主题"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/grp_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:checkedButton="@+id/rdo_auto"
+                app:singleSelection="true">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/rdo_auto"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="自动"
+                    android:textColor="@color/colorAccent"
+                    android:textAllCaps="false"
+                    app:icon="@mipmap/img_theme_auto"
+                    app:iconTint="@color/colorAccent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/rdo_light"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="亮色"
+                    android:textColor="@color/colorAccent"
+                    android:textAllCaps="false"
+                    app:icon="@mipmap/img_theme_light"
+                    app:iconTint="@color/colorAccent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/rdo_dark"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="暗色"
+                    android:textColor="@color/colorAccent"
+                    android:textAllCaps="false"
+                    app:icon="@mipmap/img_theme_night"
+                    app:iconTint="@color/colorAccent" />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="实现方式（实验性）"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fadingEdge="horizontal"
+                android:overScrollMode="never"
+                android:requiresFadingEdge="horizontal"
+                android:scrollbars="none">
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/grp_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:checkedButton="@+id/rdo_mode_view"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/rdo_mode_view"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="View"
+                        android:textColor="@color/colorAccent"
+                        android:textAllCaps="false" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/rdo_mode_window"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Window"
+                        android:textColor="@color/colorAccent"
+                        android:textAllCaps="false" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/rdo_mode_dialogFragment"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DialogFragment"
+                        android:textColor="@color/colorAccent"
+                        android:textAllCaps="false" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/rdo_mode_floatingActivity"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FloatingActivity"
+                        android:textColor="@color/colorAccent"
+                        android:textAllCaps="false" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="对话框"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_messageDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="消息对话框"
+                    android:textSize="13sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_messagedialog" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_selectDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="选择对话框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_selectdialog" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_inputDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="输入对话框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_inputdialog" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_select_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="单选菜单对话框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_messagemenu" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_multiSelect_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="多选菜单对话框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_messagemenu" />
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="阻断提示"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_waitDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="等待对话框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_waiting" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_waitAndTipDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="等待＋提示对话框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_alert" />
+
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_tipSuccess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="完成"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_right" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_tipWarning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="警告"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_warning" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_tipError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="错误"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_error" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_tipProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="模拟进度"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_progressing" />
+
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="非阻断提示"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_poptip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="轻量消息提示"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_simple_poptip" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_poptip_bigMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="复杂消息提示"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_big_poptip" />
+
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_poptip_success"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="完成"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_right" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_poptip_warning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="警告"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_warning" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_poptip_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="错误"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp"
+                    app:icon="@mipmap/img_button_error" />
+
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_popnotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="通知样式提示"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_popnotification_bigMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="复杂通知样式"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_popnotification_overlay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="跨界面测试"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="底部菜单"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_bottom_dialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="底部对话框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_bottom_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="底部菜单"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_bottom_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="底部输入框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_bottom_select_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="底部单选菜单"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_bottom_multiSelect_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="底部多选菜单"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_bottom_custom_recycleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="底部自定义滑动布局 RecycleView"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="自定义内容布局"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_customMessageDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="对话框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_customInputDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="输入框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_customBottomMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="底部菜单"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="完全自定义对话框"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_customDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="完全自定义对话框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_customDialogAlign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="对话框显示在按钮上"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="全屏对话框"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_fullScreenDialog_webPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="显示一个网页"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_fullScreenDialog_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="登录"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_fullScreenDialog_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="Fragment 全屏对话框"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="上下文菜单"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="TooManyViews">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_contextMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="基础菜单"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <TextView
+                    android:id="@+id/btn_selectMenu"
+                    android:layout_width="160dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/rect_dialogx_material_poptip_bkg"
+                    android:drawableRight="@mipmap/img_drawable_down"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:text="选项菜单"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="引导提示"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_showGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="普通引导"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_showGuideBaseView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="指定引导"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_showGuideBaseViewRectangle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="指定引导(矩形)"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+            </com.kongzue.stacklabelview.StackLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="其他功能演示"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.kongzue.stacklabelview.StackLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_showBreak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="显示Dialog时关闭Activity"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_listDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:text="队列对话框"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="99dp" />
+
+            </com.kongzue.stacklabelview.StackLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

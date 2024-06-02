@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.ActivityQRCode">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/id0466"
+            android:layout_width="0.0dip"
+            android:layout_height="186.5dp"
+            android:layout_weight="1.0"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_qr_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="false" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="1.0dip" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="186.5dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="12dp"
+                    android:drawableTint="?colorAccent"
+                    android:gravity="start|center"
+                    android:includeFontPadding="false"
+                    android:text="@string/qr_code_content"
+                    android:textColor="@color/text_color"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/ic_content" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="start"
+                    android:text="@string/qr_code_edit_content"
+                    android:textColor="@color/text_color"
+                    android:textSize="13sp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/clear_input"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="end"
+                    android:background="?selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_clear_all" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id014e"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/margin_padding"
+            android:textSize="17.0sp" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12.0dip"
+            app:thumbRadius="64dp"
+            app:thumbElevation="4dp"
+            android:stepSize="1.0"
+            android:value="1"
+            android:valueFrom="1"
+            android:valueTo="8" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,65 @@
+<resources>
+
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <integer name="addin_minimum_version">502</integer>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="app_width">60dp</dimen>
+    <dimen name="app_height">120dp</dimen>
+
+    <dimen name="common_card_elevation">0.0dip</dimen><!-- -->
+    <dimen name="content_padding">6.0dip</dimen><!-- -->
+    <dimen name="content_padding_half">6.0dip</dimen><!-- -->
+    <dimen name="gxzw_new_fingerprint_indicate_margin">50.0dp</dimen>
+    <dimen name="gxzw_new_fingerprint_step_height">184.72998dp</dimen>
+    <dimen name="gxzw_new_fingerprint_step_width">184.65dp</dimen>
+    <dimen name="gxzw_new_fingerprint_video_margin">280.0dp</dimen>
+
+    <dimen name="new_fingerprint_image_top">167.0dp</dimen>
+    <dimen name="new_fingerprint_image_top_pad">206.0dp</dimen>
+    <dimen name="new_fingerprint_instruction_img_top">174.0dp</dimen>
+    <dimen name="new_fingerprint_step_video_height">265.0dp</dimen>
+    <dimen name="new_fingerprint_step_video_width">367.0dp</dimen>
+    <dimen name="new_fingerprint_top_text_height">72.72998dp</dimen>
+    <dimen name="new_fingerprint_top_text_maxtextsize">15.0sp</dimen>
+    <dimen name="new_fingerprint_top_text_mintextsize">6.0sp</dimen>
+    <dimen name="new_fingerprint_top_title_height">72.72998dp</dimen>
+    <dimen name="new_fingerprint_top_title_horizontal_margin">26.909973dp</dimen>
+    <dimen name="new_fingerprint_top_title_maxtextsize">28.0sp</dimen>
+    <dimen name="new_fingerprint_top_title_mintextsize">12.0sp</dimen>
+    <dimen name="setup_choose_password_msg_size">13.799988sp</dimen>
+    <dimen name="setup_choose_password_title_size">32.0sp</dimen>
+    <dimen name="setup_completion_margin_top">88.0dp</dimen>
+    <dimen name="setup_footer_bottom_margin">21.0dp</dimen>
+    <dimen name="setup_footer_start_margin">22.899994dp</dimen>
+    <dimen name="setup_list_item_radius_size">12.0dp</dimen>
+    <dimen name="setup_preference_start_margin">19.599976dp</dimen>
+    <dimen name="setup_title_start_margin">47.299988dp</dimen>
+    <dimen name="setup_title_top_margin">98.19998dp</dimen>
+    <dimen name="provision_text_padding">23.0dp</dimen>
+    <dimen name="provision_text_padding_bottom">12.72998dp</dimen>
+    <dimen name="provision_text_padding_edge_new">9.0dp</dimen>
+    <dimen name="provision_text_padding_end">10.0dp</dimen>
+    <dimen name="provision_text_padding_skip">10.0dp</dimen>
+    <dimen name="provision_text_padding_start">10.0dp</dimen>
+    <dimen name="provision_text_padding_top">12.72998dp</dimen>
+    <dimen name="provision_text_size_explain">13.799988sp</dimen>
+    <dimen name="provision_step_text_maxwidth">200.0dp</dimen>
+    <dimen name="provision_step_text_size">18.179993sp</dimen>
+    <dimen name="header_icon_size">28.0dp</dimen>
+    <dimen name="wifi_icon_size">23.269989dp</dimen>
+    <dimen name="colorPickerInfoMarginBottom">48dp</dimen>
+    <dimen name="dp_1">1dp</dimen>
+    <dimen name="dp_24">24dp</dimen>
+    <dimen name="dp_32">32dp</dimen>
+    <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="app_icon_size">40dp</dimen>
+    <dimen name="stopwatch_circle_size">12dp</dimen>
+    <dimen name="first_item_top_margin">6dp</dimen>
+</resources>

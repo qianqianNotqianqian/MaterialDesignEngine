@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="12dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/dialogWarn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/system_modify_dpi_warn"
+        android:textColor="@android:color/holo_red_dark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/textDefault"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="@string/system_modify_dpi_dpi" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dialog_system_modify_input_dpi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/system_modify_dpi_min_example"
+                android:inputType="number"
+                android:maxLength="3" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="12dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/textDefault"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:text="@string/system_modify_dpi_resolution" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dialog_system_modify_dpi_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/system_modify_dpi_min_height"
+                    android:inputType="number"
+                    android:maxLength="4" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:paddingHorizontal="6dp"
+                android:text="@string/system_modify_dpi_and"
+                android:textAlignment="center" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dialog_system_modify_dpi_width"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/system_modify_dpi_min_width"
+                    android:inputType="number"
+                    android:maxLength="4" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/dialog_system_modify_dpi_quickchange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/system_modify_dpi_quick_change" />
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/textSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/dialog_system_modify_device_inner" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_dpi_720"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/item_app_bg"
+            android:padding="0dp"
+            android:text="@string/system_modify_dpi_hd" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_dpi_1080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/item_app_bg"
+            android:padding="0dp"
+            android:text="@string/system_modify_dpi_fhd" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_dpi_2k"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/item_app_bg"
+            android:padding="0dp"
+            android:text="@string/system_modify_dpi_2k" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_dpi_4k"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/item_app_bg"
+            android:padding="0dp"
+            android:text="@string/system_modify_dpi_4k" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_dpi_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/item_app_bg"
+            android:padding="0dp"
+            android:text="@string/system_modify_dpi_reset" />
+    </LinearLayout>
+
+</LinearLayout>

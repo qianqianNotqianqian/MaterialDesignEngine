@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:padding="6dp"
+    android:orientation="vertical">
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/android_device_id" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/device_id"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/hardware_serial" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/serial_number"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/build_fingerprint" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/device_fingerprint"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/device_signal_type" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/signal_type"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/network_operator" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/carrier"
+            style="@style/CardValue" />
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/network_type" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/network_type"
+            style="@style/CardValue" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/wifi_mac_address" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/wlan_mac"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/bluetooth_mac_address" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/bluetooth_mac"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/CardItemContainer">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/CardLabel"
+            android:text="@string/adb_debug" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/usb_debugging"
+            style="@style/CardValue"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+</LinearLayout>

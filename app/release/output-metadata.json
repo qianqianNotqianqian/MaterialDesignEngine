@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "mapleleaf.materialdesign.engine",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 395,
+      "versionName": "3.9.5_20240425",
+      "outputFile": "MaterialDesign引擎_3.9.5_20240425(395)_release.apk"
+    }
+  ],
+  "elementType": "File",
+  "baselineProfiles": [
+    {
+      "minApi": 28,
+      "maxApi": 30,
+      "baselineProfiles": [
+        "baselineProfiles/1/MaterialDesign引擎_3.9.5_20240425(395)_release.dm"
+      ]
+    },
+    {
+      "minApi": 31,
+      "maxApi": 2147483647,
+      "baselineProfiles": [
+        "baselineProfiles/0/MaterialDesign引擎_3.9.5_20240425(395)_release.dm"
+      ]
+    }
+  ],
+  "minSdkVersionForDexing": 28
+}

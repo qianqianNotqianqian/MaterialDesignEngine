@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+
+        <com.ortiz.touchview.TouchImageView
+            android:id="@+id/wallpaperImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/this_application_toolbar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/relativeLayout_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="6dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/get_image_download"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            app:backgroundTint="?colorPrimary"
+            android:contentDescription="@string/download"
+            android:src="@drawable/ic_download"
+            app:tint="@color/action_button_color" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/get_image_share"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="?colorPrimary"
+            android:contentDescription="@string/menu_share"
+            android:src="@drawable/ic_share"
+            app:tint="@color/action_button_color" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/get_image_more"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:backgroundTint="?colorPrimary"
+            android:contentDescription="@string/more_info"
+            android:src="@drawable/ic_overflow"
+            app:tint="@color/action_button_color" />
+    </LinearLayout>
+
+</RelativeLayout>

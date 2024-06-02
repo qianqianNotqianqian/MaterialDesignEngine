@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="150dp"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/confirm_title"
+                style="@style/textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/modify_dpi_confirm_title" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/confirm_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="@string/modify_dpi_instructions" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dpi_modify_timeout"
+                style="@style/textDefault"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="16dp"
+                android:textAlignment="center"
+                android:textColor="?android:colorAccent" />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            style="@style/dialogCancelBtn"
+            android:layout_marginEnd="8dp"
+            android:text="@string/btn_cancel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_confirm"
+            style="@style/dialogConfirmBtn"
+            android:background="@drawable/btn_bg_large_warning"
+            android:text="@string/btn_modify_confirm" />
+    </LinearLayout>
+
+</LinearLayout>

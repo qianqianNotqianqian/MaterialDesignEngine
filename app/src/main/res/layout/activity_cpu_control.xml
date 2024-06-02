@@ -1,0 +1,494 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activities.ActivityCpuControl">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        android:scrollbarSize="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <LinearLayout
+                android:id="@+id/cpu_help_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linearlayout_background"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/help"
+                    android:textColor="@color/text_color"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/core_control_helpinfo"
+                    android:textColor="@color/text_color" />
+            </LinearLayout>
+
+            <GridLayout style="@style/ListCardItem">
+
+                <LinearLayout
+                    android:layout_row="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="12dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cpu_control_cpuset" />
+
+                </LinearLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_user_background_application"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cpuset_bg"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_system_background_application"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cpuset_system_bg"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="2"
+                    android:layout_column="1"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="3"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_foreground_running_application"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cpuset_foreground"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="3"
+                    android:layout_column="1"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="4"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_foreground_application"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cpuset_top_app"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="4"
+                    android:layout_column="1"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_color" />
+
+            </GridLayout>
+
+            <LinearLayout
+                android:id="@+id/cpu_cluster_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <GridLayout
+                android:id="@+id/gpu_params"
+                style="@style/ListCardItem">
+
+                <LinearLayout
+                    android:layout_row="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="10dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cpu_control_gpu_governor" />
+
+                </LinearLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_min_frequency"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/gpu_min_freq"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:padding="5dp"
+                    android:text="@string/cpu_control_min_freq"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_max_frequency"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/gpu_max_freq"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="2"
+                    android:layout_column="1"
+                    android:padding="5dp"
+                    android:text="@string/cpu_control_max_freq"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="3"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_scheduling_mode"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/gpu_governor"
+                    android:layout_width="150dp"
+                    android:layout_row="3"
+                    android:layout_column="1"
+                    android:padding="5dp"
+                    android:text="@string/cpu_control_governor"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_color" />
+            </GridLayout>
+
+            <GridLayout
+                android:id="@+id/adreno_gpu_power"
+                style="@style/ListCardItem">
+
+                <LinearLayout
+                    android:layout_row="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="10dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/cpu_control_gpu_power" />
+
+                </LinearLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_min_powerLevel"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/adreno_gpu_min_pl"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:padding="5dp"
+                    android:text="@string/cpu_control_min_pl"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_max_powerLevel"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/adreno_gpu_max_pl"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="2"
+                    android:layout_column="1"
+                    android:padding="5dp"
+                    android:text="@string/cpu_control_max_pl"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_color" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="3"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_def_powerLevel"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/adreno_gpu_default_pl"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="3"
+                    android:layout_column="1"
+                    android:padding="5dp"
+                    android:text="@string/cpu_control_default_pl"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/text_color" />
+            </GridLayout>
+
+            <GridLayout
+                android:id="@+id/qualcomm_thermal"
+                style="@style/ListCardItem">
+
+                <LinearLayout
+                    android:layout_row="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="10dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cpu_control_qualcomm_thermal_control" />
+
+                </LinearLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_core_con"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/thermal_core_control"
+                    android:layout_row="1"
+                    android:layout_column="1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_vdd_limit"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/thermal_vdd"
+                    android:layout_row="2"
+                    android:layout_column="1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="3"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_temp_limit"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/thermal_paramters"
+                    android:layout_row="3"
+                    android:layout_column="1" />
+
+            </GridLayout>
+
+            <GridLayout
+                android:id="@+id/cpu_exynos"
+                style="@style/ListCardItem">
+
+                <LinearLayout
+                    android:layout_row="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="10dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cpu_control_exynos" />
+
+                </LinearLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_hot_plug"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/exynos_cpu_hotplug"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:enabled="false" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/cpu_control_up_threshold"
+                    android:textColor="@color/text_color" />
+
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/exynos_hmp_up"
+                    style="@style/MDEngineSeekBar"
+                    android:layout_row="3"
+                    android:layout_column="0"
+                    android:layout_gravity="fill_horizontal"
+                    android:enabled="false"
+                    android:max="1000"
+                    android:min="0" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/exynos_hmp_up_text"
+                    android:layout_row="3"
+                    android:layout_column="1"
+                    android:layout_gravity="center"
+                    android:text="@string/cpu_control_num_0"
+                    android:textAlignment="center" />
+
+                <com.google.android.material.textview.MaterialTextView
+
+                    android:layout_row="4"
+                    android:layout_column="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/cpu_control_down_threshold"
+                    android:textColor="@color/text_color" />
+
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/exynos_hmp_down"
+                    style="@style/MDEngineSeekBar"
+                    android:layout_row="5"
+                    android:layout_column="0"
+                    android:layout_gravity="fill_horizontal"
+                    android:enabled="false"
+                    android:max="1000" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/exynos_hmp_down_text"
+                    android:layout_row="5"
+                    android:layout_column="1"
+                    android:layout_gravity="center"
+                    android:text="@string/cpu_control_num_0"
+                    android:textAlignment="center" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_row="6"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:gravity="center_vertical"
+                    android:text="@string/cpu_control_big_core_first"
+                    android:textColor="@color/text_color" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/exynos_hmp_booster"
+                    android:layout_row="6"
+                    android:layout_column="1"
+                    android:layout_marginTop="5dp"
+                    android:enabled="false" />
+
+            </GridLayout>
+
+            <GridLayout style="@style/ListCardItemLast">
+
+                <LinearLayout
+                    android:layout_row="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="fill"
+                    android:layout_marginBottom="10dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cpu_control_core_online" />
+
+                </LinearLayout>
+
+                <GridLayout
+                    android:id="@+id/cpu_cores"
+                    android:layout_columnSpan="2"
+                    android:columnCount="4" />
+            </GridLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

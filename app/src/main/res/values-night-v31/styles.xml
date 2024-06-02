@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomMaterial3ThemeSplash" parent="CustomMaterial3Theme">
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/engine_splash_320</item>
+    </style>
+</resources>
