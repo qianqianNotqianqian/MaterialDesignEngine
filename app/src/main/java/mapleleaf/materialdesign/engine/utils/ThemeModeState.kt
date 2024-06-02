@@ -22,11 +22,9 @@ import java.io.FileOutputStream
 @SuppressLint("StaticFieldLeak")
 object ThemeModeState {
     private var themeMode: ThemeMode = ThemeMode()
-    private var wallpaperFile: File? = null
     private lateinit var progressBar: DialogProgressBar
 
     @SuppressLint("StaticFieldLeak")
-
     private suspend fun loadWallpaper(activity: Activity, nightMode: Boolean) {
         val wallpaperManager = WallpaperManager.getInstance(activity)
         progressBar = DialogProgressBar(activity)
@@ -34,29 +32,15 @@ object ThemeModeState {
         if (ThemeConfig(activity).getAllowTransparentUI()) {
             if (nightMode) {
                 themeMode.isDarkMode = true
-                activity.setTheme(R.style.CustomMaterial3Theme)
+                activity.setTheme(R.style.CustomMaterial3Theme_Dark)
             } else {
                 themeMode.isDarkMode = false
-                activity.setTheme(R.style.CustomMaterial3Theme)
+                activity.setTheme(R.style.CustomMaterial3Theme_Light)
             }
-            if (wallpaperFile == null) {
-                withContext(Dispatchers.IO) {
-                    val wallpaperBitmap = (wallpaperManager.drawable as BitmapDrawable).bitmap
-                    wallpaperFile = saveBitmapToFile(activity, wallpaperBitmap)
-                }
+            val wallpaperBitmap = withContext(Dispatchers.IO) {
+                (wallpaperManager.drawable as BitmapDrawable).bitmap
             }
-            progressBar.hideDialog()
-            // Set wallpaper from cached file
-            wallpaperFile?.let { file ->
-                withContext(Dispatchers.Main) {
-                    activity.window.setBackgroundDrawable(
-                        BitmapDrawable(
-                            activity.resources,
-                            file.absolutePath
-                        )
-                    )
-                }
-            }
+            setWallpaperAsWindowBackground(activity, wallpaperBitmap)
         } else {
             if (nightMode) {
                 themeMode.isDarkMode = true
@@ -65,18 +49,12 @@ object ThemeModeState {
                 themeMode.isDarkMode = false
             }
         }
+        progressBar.hideDialog()
     }
 
-    private fun saveBitmapToFile(context: Context, bitmap: Bitmap): File {
-        val wallpaperDir = File(context.filesDir, "wallpapers")
-        wallpaperDir.mkdirs()
-        val wallpaperFile = File(wallpaperDir, "wallpaper.jpg")
-
-        FileOutputStream(wallpaperFile).use { out ->
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
-        }
-
-        return wallpaperFile
+    private fun setWallpaperAsWindowBackground(context: Context, bitmap: Bitmap) {
+        val window = (context as Activity).window
+        window.setBackgroundDrawable(BitmapDrawable(context.resources, bitmap))
     }
 
     fun switchTheme(activity: Activity? = null): ThemeMode {
@@ -86,21 +64,19 @@ object ThemeModeState {
                     activity.applicationContext.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
                 val nightMode = (uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES)
                 loadWallpaper(activity, nightMode)
-                progressBar.hideDialog()
                 if (!themeMode.isDarkMode) {
-                    themeMode.isLightStatusBar = (true)
-                    activity.window.run {
-                        clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-                        decorView.systemUiVisibility =
-                            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            decorView.systemUiVisibility =
-                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                        } else {
-                            decorView.systemUiVisibility =
-                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                        }
+                    themeMode.isLightStatusBar = true
+                    val window = activity.window
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+                    window.decorView.systemUiVisibility =
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        window.decorView.systemUiVisibility =
+                            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                    } else {
+                        window.decorView.systemUiVisibility =
+                            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                     }
                 }
             }
