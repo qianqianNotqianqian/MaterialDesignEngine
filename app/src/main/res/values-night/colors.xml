@@ -23,7 +23,6 @@
     <color name="text_view_color">#67ffffff</color>
     <color name="battery_third_color">#ffffff</color>
     <color name="battery_first_color">#ffffff</color>
-    <color name="custom_colorPrimary">#FFD0BCFF</color>
 
     <color name="android_preview_logo_background">#1D1E21</color>
 
