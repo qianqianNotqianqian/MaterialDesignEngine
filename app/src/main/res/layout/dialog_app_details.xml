@@ -142,6 +142,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_cancel"
                 style="@style/dialogCancelBtn"
+                android:background="@drawable/btn_bg_large_warning"
                 android:text="@string/btn_cancel" />
         </LinearLayout>
     </LinearLayout>

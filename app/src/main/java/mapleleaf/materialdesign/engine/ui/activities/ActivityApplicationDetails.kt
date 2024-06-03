@@ -555,21 +555,16 @@ class ActivityApplicationDetails : UniversalActivityBase() {
 
         @SuppressLint("InflateParams")
         private fun showCopyDialog(item: String) {
-            MessageDialog(
-                context.getString(R.string.dialog_title),
-                item,
-                "确定",
-                "取消"
-            )
-                .setButtonOrientation(LinearLayout.HORIZONTAL)
-                .setOkTextInfo(TextInfo().setFontColor(Color.parseColor("#EB5545")).setBold(true))
-                .setCancelButton { _, _ ->
-                    false
-                }
-                .setOkButton { _, _ ->
-                    copyToClipboard(item)
-                    true
-                }.show()
+            val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_detail, null)
+            val dialog = DialogHelper.customDialog(context, dialogView)
+            dialogView.findViewById<TextView>(R.id.confirm_message).text = item
+            dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                copyToClipboard(item)
+                dialog.dismiss()
+            }
+            dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                dialog.dismiss()
+            }
         }
 
         private fun copyToClipboard(textToCopy: String) {
