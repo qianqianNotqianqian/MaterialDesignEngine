@@ -264,44 +264,33 @@ class FragmentComponentReceivers : UniversalFragmentBase() {
             override fun onClick(v: View?) {
                 val receiverInfo = receiverList[bindingAdapterPosition]
 
-                MessageDialog.show(null, null, "确定", null)
-                    .setDialogLifecycleCallback(object : BottomDialogSlideEventLifecycleCallback<MessageDialog>() {
-                        override fun onShow(dialog: MessageDialog) {
-                            super.onShow(dialog)
-                            dialog.dialogImpl.txtDialogTip.setPadding(0, 12, 0, 0)
-                        }
-                    })
-                    .setCustomView(object : OnBindView<MessageDialog>(R.layout.dialog_components_detail) {
-                        override fun onBind(dialog: MessageDialog, view: View) {
+                val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_components_detail, null)
+                val dialog = DialogHelper.customDialog(context, dialogView)
 
-                            fun setTextAndColor(textView: TextView, value: Boolean) {
-                                textView.text = value.toString()
-                                textView.setTextColor(
-                                    ContextCompat.getColor(
-                                        context,
-                                        if (value) R.color.green else R.color.red
-                                    )
-                                )
-                            }
+                fun setTextAndColor(textView: TextView, value: Boolean) {
+                    textView.text = value.toString()
+                    textView.setTextColor(
+                        ContextCompat.getColor(
+                            context,
+                            if (value) R.color.green else R.color.red
+                        )
+                    )
+                }
 
-                            val enabledTextView = view.findViewById<TextView>(R.id.state_enable)
-                            setTextAndColor(enabledTextView, receiverInfo.enabled)
+                val enabledTextView = dialogView.findViewById<TextView>(R.id.state_enable)
+                setTextAndColor(enabledTextView, receiverInfo.enabled)
 
-                            val exportedTextView = view.findViewById<TextView>(R.id.state_exported)
-                            setTextAndColor(exportedTextView, receiverInfo.exported)
+                val exportedTextView = dialogView.findViewById<TextView>(R.id.state_exported)
+                setTextAndColor(exportedTextView, receiverInfo.exported)
 
-                            view.findViewById<ImageView>(R.id.imageView_icon)
-                                .setImageDrawable(receiverInfo.loadIcon(context.packageManager))
-                            view.findViewById<EditText>(R.id.edit_title)
-                                .setText(receiverInfo.loadLabel(context.packageManager))
-                            view.findViewById<EditText>(R.id.edit_label).setText(receiverInfo.name)
-                        }
-                    })
-
-                    .setOkButton { dialog, v ->
-                        false
-                    }
-
+                dialogView.findViewById<ImageView>(R.id.imageView_icon)
+                    .setImageDrawable(receiverInfo.loadIcon(context.packageManager))
+                dialogView.findViewById<EditText>(R.id.edit_title)
+                    .setText(receiverInfo.loadLabel(context.packageManager))
+                dialogView.findViewById<EditText>(R.id.edit_label).setText(receiverInfo.name)
+                dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                    dialog.dismiss()
+                }
             }
 
             fun bind(receiverInfo: ActivityInfo) {

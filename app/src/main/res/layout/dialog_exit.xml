@@ -11,44 +11,31 @@
         android:padding="12dp">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="150dp"
             app:cardBackgroundColor="@color/background"
             app:cardCornerRadius="12dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="vertical">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_title"
+                    style="@style/dialogTitle"
+                    android:breakStrategy="simple"
+                    android:text="提示信息" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/confirm_title"
-                        style="@style/dialogTitle"
-                        android:breakStrategy="simple"
-                        android:text="提示信息" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_message"
+                    style="@style/dialogDesc"
+                    android:breakStrategy="simple"
+                    android:text="提示内容" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/confirm_message"
-                        style="@style/dialogDesc"
-                        android:breakStrategy="simple"
-                        android:text="提示内容" />
-
-                </LinearLayout>
-
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </RelativeLayout>
+            </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -59,8 +46,14 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                style="@style/dialogCancelBtn"
+                android:layout_marginEnd="8dp"
+                android:text="@string/cancel" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_confirm"
-                style="@style/dialogConfirmBtn"
+                style="@style/dialogCancelBtn"
                 android:background="@drawable/btn_bg_large_warning"
                 android:text="@string/confirm" />
         </LinearLayout>

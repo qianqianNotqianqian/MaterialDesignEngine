@@ -32,11 +32,6 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/start_menu_dex_parse"
-        android:title="@string/menu_dex_parse"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/start_menu_change_icon"
         android:title="@string/menu_change_icon"
         app:showAsAction="never" />

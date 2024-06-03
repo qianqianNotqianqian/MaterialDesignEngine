@@ -28,6 +28,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.CompoundButton
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -35,6 +36,7 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.ColorUtils
@@ -300,61 +302,46 @@ class ActivityAllApplications : UniversalActivityBase() {
         return super.onOptionsItemSelected(item)
     }
 
+    @SuppressLint("InflateParams")
     private fun showFilterDialog() {
-        var selectMenuIndexArray: IntArray
-        var multiSelectMenuResultCache = ""
+        val dialogView = layoutInflater.inflate(R.layout.dialog_filter, null)
+        val dialog = DialogHelper.customDialog(this, dialogView)
+        dialogView.findViewById<TextView>(R.id.confirm_title).text = "筛选应用"
 
-        selectMenuIndexArray = if (this@ActivityAllApplications.includeSystemApps && this@ActivityAllApplications.includeUserApps) {
-            intArrayOf(0, 1)
-        } else if (this@ActivityAllApplications.includeSystemApps) {
-            intArrayOf(0)
-        } else if (this@ActivityAllApplications.includeUserApps) {
-            intArrayOf(1)
-        } else {
-            intArrayOf()
+        val switchSystem = dialogView.findViewById<SwitchCompat>(R.id.switch_system)
+        val switchUser = dialogView.findViewById<SwitchCompat>(R.id.switch_user)
+
+        // 根据布尔值设置开关状态
+        switchSystem.isChecked = includeSystemApps
+        switchUser.isChecked = includeUserApps
+
+        dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+            if (!switchSystem.isChecked && !switchUser.isChecked) {
+                // 显示提示信息
+                toast("请选择至少一种类型")
+                return@setOnClickListener
+            }
+            dialog.dismiss()
+            // 直接修改类级别的成员变量
+            includeSystemApps = switchSystem.isChecked
+            includeUserApps = switchUser.isChecked
+
+            lifecycleScope.launch {
+                try {
+                    loading.isVisible = true
+                    animatedVectorDrawable?.start()
+
+                    filterAppsByType(includeSystemApps, includeUserApps)
+                    searchApp(appsSearchBox.text)
+                } finally {
+                    loading.isVisible = false
+                    animatedVectorDrawable?.stop()
+                }
+            }
         }
-
-        MessageMenu.show(arrayOf("系统应用", "用户应用"))
-            .setMessage("选中应用类型并筛选")
-            .setTitle("选择应用类型")
-            .setOnMenuItemClickListener(object : OnMenuItemSelectListener<MessageMenu>() {
-                override fun onMultiItemSelect(dialog: MessageMenu, text: Array<out CharSequence>, index: IntArray) {
-                    multiSelectMenuResultCache = text.joinToString(" ")
-                    selectMenuIndexArray = index
-                }
-            })
-            .setOkButton("确定", object : OnMenuButtonClickListener<MessageMenu> {
-                override fun onClick(dialog: MessageMenu, v: View): Boolean {
-
-                    val includeSystemApps = selectMenuIndexArray.contains(0)
-                    val includeUserApps = selectMenuIndexArray.contains(1)
-
-
-                    if (selectMenuIndexArray.isEmpty()) {
-                        toast("请至少选择一种应用类型")
-                        return true // 阻止对话框关闭
-                    }
-
-                    lifecycleScope.launch {
-                        try {
-                            loading.isVisible = true
-                            animatedVectorDrawable?.start()
-
-                            this@ActivityAllApplications.includeSystemApps = includeSystemApps
-                            this@ActivityAllApplications.includeUserApps = includeUserApps
-
-                            filterAppsByType(includeSystemApps, includeUserApps)
-                            searchApp(appsSearchBox.text)
-                        } finally {
-                            loading.isVisible = false
-                            animatedVectorDrawable?.stop()
-                        }
-                    }
-                    dialog.dismiss()
-                    return false
-                }
-            })
-            .setSelection(selectMenuIndexArray)
+        dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+            dialog.dismiss()
+        }
     }
 
     private suspend fun filterAppsByType(includeSystemApps: Boolean, includeUserApps: Boolean) {
@@ -363,19 +350,14 @@ class ActivityAllApplications : UniversalActivityBase() {
 
     @SuppressLint("InflateParams")
     private fun showInstructionsDialog() {
-        MessageDialog(
-            getString(R.string.dialog_title),
-            getString(R.string.usage_instructions),
-            "确定",
-            "取消"
-        )
-            .setOkTextInfo(TextInfo().setFontColor(Color.parseColor("#EB5545")).setBold(true))
-            .setCancelButton { _, _ ->
-                false
-            }
-            .setOkButton { _, _ ->
-                false
-            }.show()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_help_info, null)
+        val dialog = DialogHelper.customDialog(this, dialogView)
+        dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
+        dialogView.findViewById<TextView>(R.id.confirm_message).text = getString(R.string.usage_instructions)
+
+        dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+            dialog.dismiss()
+        }
     }
 
     class AppListViewModel : ViewModel() {
@@ -659,73 +641,69 @@ class ActivityAllApplications : UniversalActivityBase() {
 
         @SuppressLint("InflateParams")
         private fun showAppDetailsDialog(appInfo: AppInfo) {
-            MessageDialog.show(null, null, null, "取消")
+            val packageManager = context.packageManager
+            val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_all_app_operation, null)
+            val dialog = DialogHelper.customDialog(context, dialogView)
+            dialogView.findViewById<TextView>(R.id.appName).text = appInfo.appName
+            dialogView.findViewById<TextView>(R.id.appPackage).text = appInfo.packageName
+            dialogView.findViewById<TextView>(R.id.appVersionName).text = appInfo.versionName
+            dialogView.findViewById<TextView>(R.id.appSize).text = getApkSize(context, appInfo.packageName)
 
-                .setCustomView(object : OnBindView<MessageDialog>(R.layout.dialog_all_app_operation) {
-                    override fun onBind(dialog: MessageDialog, view: View) {
-                        val packageManager = context.packageManager
-                        view.findViewById<TextView>(R.id.appName).text = appInfo.appName
-                        view.findViewById<TextView>(R.id.appPackage).text = appInfo.packageName
-                        view.findViewById<TextView>(R.id.appVersionName).text = appInfo.versionName
-                        view.findViewById<TextView>(R.id.appSize).text = getApkSize(context, appInfo.packageName)
+            val appIcon = packageManager.getApplicationIcon(appInfo.packageName)
+            dialogView.findViewById<ImageView>(R.id.appIcon).setImageDrawable(appIcon)
 
-                        val appIcon = packageManager.getApplicationIcon(appInfo.packageName)
-                        view.findViewById<ImageView>(R.id.appIcon).setImageDrawable(appIcon)
-
-                        view.findViewById<View>(R.id.buttonOpen).setOnClickListener {
-                            val packageName = appInfo.packageName
-                            val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
-                            if (launchIntent != null) {
-                                context.startActivity(launchIntent)
-                            } else {
-                                toast("无法打开该应用程序")
-                            }
-                            dialog.dismiss()
-                        }
-                        view.findViewById<View>(R.id.buttonDetails).setOnClickListener {
-                            dialog.dismiss()
-                            val intent = Intent(context, ActivityApplicationDetails::class.java)
-                            intent.putExtra("packageName", appInfo.packageName)
-                            context.startActivity(intent)
-                        }
-                        view.findViewById<View>(R.id.buttonUninstall).setOnClickListener {
-                            dialog.dismiss()
-                            uninstallApp(appInfo.packageName)
-                        }
-                        view.findViewById<View>(R.id.buttonShare).setOnClickListener {
-                            dialog.dismiss()
-                            shareApp(appInfo.packageName)
-                        }
-                        view.findViewById<View>(R.id.buttonSystemDetails).setOnClickListener {
-                            dialog.dismiss()
-                            val intent =
-                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                            intent.data = Uri.parse("package:" + appInfo.packageName)
-                            context.startActivity(intent)
-                        }
-                        view.findViewById<View>(R.id.buttonSaveApk).setOnClickListener {
-                            dialog.dismiss()
-                            CoroutineScope(Dispatchers.Main).launch {
-                                saveApkToLocal(appInfo.packageName)
-                            }
-                        }
-                        view.findViewById<View>(R.id.buttonComponent).setOnClickListener {
-                            dialog.dismiss()
-                            val intent = Intent(context, ActivityAppComponents::class.java)
-                            intent.putExtra("packageName", appInfo.packageName)
-                            context.startActivity(intent)
-                        }
-                        view.findViewById<View>(R.id.buttonDex).setOnClickListener {
-                            dialog.dismiss()
-                            val intent = Intent(context, ActivityApplicationDex::class.java)
-                            intent.putExtra("packageName", appInfo.packageName)
-                            context.startActivity(intent)
-                        }
-                    }
-                })
-                .setCancelButton { dialog, v ->
-                    false
+            dialogView.findViewById<View>(R.id.buttonOpen).setOnClickListener {
+                val packageName = appInfo.packageName
+                val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
+                if (launchIntent != null) {
+                    context.startActivity(launchIntent)
+                } else {
+                    toast("无法打开该应用程序")
                 }
+                dialog.dismiss()
+            }
+            dialogView.findViewById<View>(R.id.buttonDetails).setOnClickListener {
+                dialog.dismiss()
+                val intent = Intent(context, ActivityApplicationDetails::class.java)
+                intent.putExtra("packageName", appInfo.packageName)
+                context.startActivity(intent)
+            }
+            dialogView.findViewById<View>(R.id.buttonUninstall).setOnClickListener {
+                dialog.dismiss()
+                uninstallApp(appInfo.packageName)
+            }
+            dialogView.findViewById<View>(R.id.buttonShare).setOnClickListener {
+                dialog.dismiss()
+                shareApp(appInfo.packageName)
+            }
+            dialogView.findViewById<View>(R.id.buttonSystemDetails).setOnClickListener {
+                dialog.dismiss()
+                val intent =
+                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                intent.data = Uri.parse("package:" + appInfo.packageName)
+                context.startActivity(intent)
+            }
+            dialogView.findViewById<View>(R.id.buttonSaveApk).setOnClickListener {
+                dialog.dismiss()
+                CoroutineScope(Dispatchers.Main).launch {
+                    saveApkToLocal(appInfo.packageName)
+                }
+            }
+            dialogView.findViewById<View>(R.id.buttonComponent).setOnClickListener {
+                dialog.dismiss()
+                val intent = Intent(context, ActivityAppComponents::class.java)
+                intent.putExtra("packageName", appInfo.packageName)
+                context.startActivity(intent)
+            }
+            dialogView.findViewById<View>(R.id.buttonDex).setOnClickListener {
+                dialog.dismiss()
+                val intent = Intent(context, ActivityApplicationDex::class.java)
+                intent.putExtra("packageName", appInfo.packageName)
+                context.startActivity(intent)
+            }
+            dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                dialog.dismiss()
+            }
         }
 
         private fun uninstallApp(packageName: String) {

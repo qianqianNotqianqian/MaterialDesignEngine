@@ -33,6 +33,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="65dp"
                         android:layout_marginEnd="12dp"
+                        android:background="@drawable/in_card_item"
                         android:layout_weight="1"
                         android:orientation="horizontal"
                         android:padding="6dp">
@@ -76,6 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="65dp"
                         android:layout_weight="1"
+                        android:background="@drawable/in_card_item"
                         android:orientation="horizontal"
                         android:padding="6dp">
 
@@ -122,6 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     android:padding="6dp">
@@ -167,6 +170,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     android:padding="6dp">
@@ -212,6 +216,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     android:padding="6dp">
@@ -257,6 +262,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     android:padding="6dp">

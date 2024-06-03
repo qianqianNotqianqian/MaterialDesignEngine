@@ -286,60 +286,12 @@ class FragmentComponentActivities : UniversalFragmentBase() {
             override fun onClick(v: View?) {
                 val activitiesInfo = activityList[bindingAdapterPosition]
 
-                MessageDialog.show(null, null, "启动", "取消")
-                    .setDialogLifecycleCallback(object : BottomDialogSlideEventLifecycleCallback<MessageDialog>() {
-                        override fun onShow(dialog: MessageDialog) {
-                            super.onShow(dialog)
-                            dialog.dialogImpl.txtDialogTip.setPadding(0, 12, 0, 0)
-                        }
-                    })
-                    .setCustomView(object : OnBindView<MessageDialog>(R.layout.dialog_components_detail) {
-                        override fun onBind(dialog: MessageDialog, view: View) {
-                            view.apply {
-                                findViewById<LinearLayout>(R.id.activity_full_name).isVisible = true
-                                findViewById<LinearLayout>(R.id.package_full_name).isVisible = true
-                                findViewById<LinearLayout>(R.id.component_full_name).isVisible = false
-                            }
+                val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_components_detail, null)
+                val dialog = DialogHelper.customDialog(context, dialogView)
 
-                            fun setTextAndColor(textView: TextView, value: Boolean) {
-                                textView.text = value.toString()
-                                textView.setTextColor(
-                                    ContextCompat.getColor(
-                                        context,
-                                        if (value) R.color.green else R.color.red
-                                    )
-                                )
-                            }
-
-
-                            val enabledTextView = view.findViewById<TextView>(R.id.state_enable)
-                            setTextAndColor(enabledTextView, activitiesInfo.activityInfo.enabled)
-
-                            val exportedTextView = view.findViewById<TextView>(R.id.state_exported)
-                            setTextAndColor(exportedTextView, activitiesInfo.activityInfo.exported)
-
-                            view.findViewById<ImageView>(R.id.imageView_icon)
-                                .setImageDrawable(activitiesInfo.activityInfo.loadIcon(context.packageManager))
-
-                            fun setTextToEditText(editText: EditText, text: String) {
-                                editText.setText(text)
-                            }
-                            setTextToEditText(
-                                view.findViewById(R.id.edit_title),
-                                activitiesInfo.activityInfo.loadLabel(context.packageManager).toString()
-                            )
-                            setTextToEditText(
-                                view.findViewById(R.id.edit_pkg),
-                                activitiesInfo.activityInfo.packageName
-                            )
-                            setTextToEditText(
-                                view.findViewById(R.id.edit_activity),
-                                activitiesInfo.activityInfo.name
-                            )
-                        }
-                    })
-
-                    .setOkButton { dialog, v ->
+                dialogView.findViewById<View>(R.id.btn_launch).apply {
+                    isVisible = true
+                    setOnClickListener {
                         if (activitiesInfo.activityInfo.exported) {
                             val intent = Intent().apply {
                                 component = ComponentName(
@@ -369,11 +321,52 @@ class FragmentComponentActivities : UniversalFragmentBase() {
                                 toast("启动 Activity 失败")
                             }
                         }
-                        false
                     }
-                    .setCancelButton { dialog, v ->
-                        false
-                    }
+                }
+                dialogView.apply {
+                    findViewById<LinearLayout>(R.id.activity_full_name).isVisible = true
+                    findViewById<LinearLayout>(R.id.package_full_name).isVisible = true
+                    findViewById<LinearLayout>(R.id.component_full_name).isVisible = false
+                }
+
+                fun setTextAndColor(textView: TextView, value: Boolean) {
+                    textView.text = value.toString()
+                    textView.setTextColor(
+                        ContextCompat.getColor(
+                            context,
+                            if (value) R.color.green else R.color.red
+                        )
+                    )
+                }
+
+
+                val enabledTextView = dialogView.findViewById<TextView>(R.id.state_enable)
+                setTextAndColor(enabledTextView, activitiesInfo.activityInfo.enabled)
+
+                val exportedTextView = dialogView.findViewById<TextView>(R.id.state_exported)
+                setTextAndColor(exportedTextView, activitiesInfo.activityInfo.exported)
+
+                dialogView.findViewById<ImageView>(R.id.imageView_icon)
+                    .setImageDrawable(activitiesInfo.activityInfo.loadIcon(context.packageManager))
+
+                fun setTextToEditText(editText: EditText, text: String) {
+                    editText.setText(text)
+                }
+                setTextToEditText(
+                    dialogView.findViewById(R.id.edit_title),
+                    activitiesInfo.activityInfo.loadLabel(context.packageManager).toString()
+                )
+                setTextToEditText(
+                    dialogView.findViewById(R.id.edit_pkg),
+                    activitiesInfo.activityInfo.packageName
+                )
+                setTextToEditText(
+                    dialogView.findViewById(R.id.edit_activity),
+                    activitiesInfo.activityInfo.name
+                )
+                dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                    dialog.dismiss()
+                }
             }
 
             fun bind(resolveInfo: ResolveInfo) {

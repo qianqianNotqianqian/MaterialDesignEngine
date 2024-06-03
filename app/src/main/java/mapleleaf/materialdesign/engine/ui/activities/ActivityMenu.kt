@@ -28,8 +28,8 @@ import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.Button
 import android.widget.CompoundButton
+import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -40,7 +40,6 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.ColorUtils
-import androidx.core.text.HtmlCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
@@ -57,18 +56,9 @@ import com.google.android.material.textview.MaterialTextView
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.jaredrummler.materialspinner.MaterialSpinner
-import com.kongzue.baseframework.BaseApp.dip2px
-import com.kongzue.dialogx.DialogX
-import com.kongzue.dialogx.dialogs.BottomDialog
-import com.kongzue.dialogx.dialogs.InputDialog
 import com.kongzue.dialogx.dialogs.MessageDialog
-import com.kongzue.dialogx.dialogs.PopTip
-import com.kongzue.dialogx.interfaces.BottomDialogSlideEventLifecycleCallback
-import com.kongzue.dialogx.interfaces.OnBindView
-import com.kongzue.dialogx.interfaces.OnInputDialogButtonClickListener
 import com.kongzue.dialogx.util.TextInfo
 import com.kongzue.dialogxdemo.activity.ActivityDialogShow
-import com.kongzue.dialogxmaterialyou.style.MaterialYouStyle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -131,16 +121,14 @@ import kotlin.random.Random
 class ActivityMenu : UniversalActivityBase() {
 
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var progressBar: ProgressBar
 
     override fun getLayoutResourceId() = R.layout.activity_menu
 
-    @SuppressLint("InflateParams")
+    @SuppressLint("InflateParams", "SetTextI18n", "CutPasteId")
     override fun initializeComponents(savedInstanceState: Bundle?) {
         val scrollingView = findViewById<FastScrollNestedScrollView>(R.id.nestedScrollView2)
         FastScrollerBuilder(scrollingView).build()
         drawerLayout = findViewById(R.id.drawer_layout)
-        progressBar = findViewById(R.id.progressBarWithNavView)
 
         val appBarLayout = findViewById<AppBarLayout>(R.id.appBarLayout)
         val toggle = ActionBarDrawerToggle(
@@ -233,10 +221,9 @@ class ActivityMenu : UniversalActivityBase() {
         }
 
         setNavigationViewMenuItem(R.id.item_sex, R.drawable.ic_image, R.string.sex_picture) {
-
             val random = Random.Default
             val num1 = random.nextInt(100)
-            val num2 = random.nextInt(100)
+            var num2 = random.nextInt(100)
             val operation = random.nextInt(4)
             val operationSymbol = when (operation) {
                 0 -> "+"
@@ -246,47 +233,69 @@ class ActivityMenu : UniversalActivityBase() {
                 else -> ""
             }
 
+            if (operationSymbol == "/" && num2 == 0) {
+                do {
+                    num2 = random.nextInt(100)
+                } while (num2 == 0)
+            }
             val answer = calculateAnswer(num1, num2, operationSymbol)
 
-            InputDialog(getString(R.string.dialog_title), "$num1$operationSymbol$num2 = ${String.format("%.2f", answer)}", "确定", "取消")
-                .setTitle(R.string.dialog_title)
-                .setInputText("")
-                .setOkButton { _, _, inputStr ->
-                    if (inputStr.isNotEmpty()) {
-                        try {
-                            val userAnswer = inputStr.toDouble()
-                            if (abs(userAnswer - answer) < 0.01) {
-                                toast(getString(R.string.menu_input_success) + userAnswer)
-                                val wallpaper = Intent(this, ActivityWallpaper::class.java)
-                                wallpaper.putExtra("isAnswerCorrect", userAnswer)
-                                startActivity(wallpaper)
-                                return@setOkButton false
-                            } else {
-                                toast(getString(R.string.menu_input_incorrect_answer))
-                                return@setOkButton true
-                            }
-                        } catch (e: NumberFormatException) {
-                            toast(getString(R.string.menu_input_number))
-                            return@setOkButton true
+            val dialogView = layoutInflater.inflate(R.layout.dialog_math, null)
+            val dialog = DialogHelper.customDialog(this, dialogView)
+            dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
+            dialogView.findViewById<TextView>(R.id.confirm_message).text = "$num1$operationSymbol$num2 = ${String.format("%.2f", answer)}"
+            val answerInputEdit = dialogView.findViewById<EditText>(R.id.answer_input_edit)
+
+            dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                val inputStr = answerInputEdit.text.toString()
+                if (inputStr.isNotEmpty()) {
+                    try {
+                        val userAnswer = inputStr.toDouble()
+                        val correctAnswer = calculateAnswer(num1, num2, operationSymbol)
+                        if (abs(userAnswer - correctAnswer) < 0.01) {
+                            toast(getString(R.string.menu_input_success) + userAnswer)
+                            val wallpaper = Intent(this, ActivityWallpaper::class.java)
+                            wallpaper.putExtra("isAnswerCorrect", userAnswer)
+                            startActivity(wallpaper)
+                            dialog.dismiss()
+                        } else {
+                            toast(getString(R.string.menu_input_incorrect_answer))
                         }
-                    } else {
-                        toast(getString(R.string.menu_input_answer))
-                        return@setOkButton true
+                    } catch (e: NumberFormatException) {
+                        toast(getString(R.string.menu_input_number))
                     }
+                } else {
+                    toast(getString(R.string.menu_input_answer))
                 }
-                .setCancelButton { _, _, _ ->
-                    false
-                }
-                .show()
+            }
+            dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+               dialog.dismiss()
+            }
+
         }
         setNavigationViewMenuItem(R.id.item_sex_line, R.drawable.ic_pixiv, R.string.sex_sentance) {
 
+            val dialogView = layoutInflater.inflate(R.layout.dialog_sex_sentence, null)
+            val dialog = DialogHelper.customDialog(this, dialogView)
+            dialogView.findViewById<TextView>(R.id.confirm_title).text =  getString(R.string.sex_sentance)
+            val messageTextView = dialogView.findViewById<TextView>(R.id.confirm_message)
+            val progressBar = dialogView.findViewById<ProgressBar>(R.id.progressBar)
+
+            dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                dialog.dismiss()
+            }
             progressBar.isIndeterminate = true
             progressBar.isVisible = true
-            CoroutineScope(Dispatchers.Main).launch {
+
+            val client = OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .build()
+
+            val job = CoroutineScope(Dispatchers.Main).launch {
                 try {
                     val responseBody = withContext(Dispatchers.IO) {
-                        val client = OkHttpClient()
                         val mediaType = "application/x-www-form-urlencoded".toMediaTypeOrNull()
                         val body = "format=json".toRequestBody(mediaType)
                         val request = Request.Builder()
@@ -306,44 +315,41 @@ class ActivityMenu : UniversalActivityBase() {
                     if (!responseBody.isNullOrEmpty()) {
                         val jsonObject = JSONObject(responseBody)
                         if (jsonObject.optInt("code") == 200) {
-
                             val newsList = jsonObject.optJSONObject("newslist")
                             val content = newsList?.optString("content")
-
+                            messageTextView.text = content
                             progressBar.isVisible = false
-                            MessageDialog(
-                                getString(R.string.sex_sentance),
-                                content,
-                                "确定",
-                            )
-                                .setOkButton { _, _ ->
-                                    false
-                                }.show()
                         }
                     }
                 } catch (e: Exception) {
                     Log.e("网络请求", "网络请求中出现异常", e)
                 }
             }
+
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(10000)
+                if (job.isActive) {
+                    job.cancel()
+                    Log.e("网络请求", "请求超时")
+                    // 这里可以添加超时后的处理逻辑
+                }
+            }
         }
         setNavigationViewMenuItem(R.id.item_exit, R.drawable.ic_exit, R.string.exit) {
 
-            MessageDialog(
-                getString(R.string.dialog_title),
-                getString(R.string.confirm_exit),
-                "确定",
-                "取消"
-            )
-                .setTitleIcon(R.mipmap.img_demo_avatar)
-                .setButtonOrientation(LinearLayout.HORIZONTAL)
-                .setOkTextInfo(TextInfo().setFontColor(Color.parseColor("#EB5545")).setBold(true))
-                .setCancelButton { _, _ ->
-                    false
-                }
-                .setOkButton { _, _ ->
-                    finish()
-                    true
-                }.show()
+            val dialogView = layoutInflater.inflate(R.layout.dialog_exit, null)
+            val dialog = DialogHelper.customDialog(this, dialogView)
+            dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
+            val messageTextView = dialogView.findViewById<TextView>(R.id.confirm_message)
+            messageTextView.text = getString(R.string.confirm_exit)
+
+            dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                dialog.dismiss()
+                finish()
+            }
 
         }
         setNavigationViewMenuItem(
@@ -856,32 +862,16 @@ class ActivityMenu : UniversalActivityBase() {
     private lateinit var spinner: MaterialSpinner
     private lateinit var adapter: IconAdapter
 
+    @SuppressLint("InflateParams")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-
             android.R.id.home -> {
                 finish()
                 return true
             }
 
             R.id.start_menu_about -> {
-                val htmlText: String = getString(R.string.about_dialog_body)
-                val aboutText = HtmlCompat.fromHtml(htmlText, HtmlCompat.FROM_HTML_MODE_LEGACY)
-                MessageDialog(
-                    getString(R.string.dialog_title),
-                    aboutText,
-                    "确定",null,"更多"
-                )
-                    .setOkTextInfo(TextInfo().setFontColor(Color.parseColor("#EB5545")).setBold(true))
-                    .setOtherButton { _, _ ->
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            startActivity(Intent(this@ActivityMenu, ActivityAbout::class.java))
-                        }, 200)
-                        false
-                    }
-                    .setOkButton { _, _ ->
-                        false
-                    }.show()
+                MDEngineHelpers.showAbout(this)
                 return true
             }
 
@@ -929,142 +919,127 @@ class ActivityMenu : UniversalActivityBase() {
                 return true
             }
 
-            R.id.start_menu_dex_parse -> {
-                val dexParse = Intent(this@ActivityMenu, ActivityApplicationDex::class.java)
-                this@ActivityMenu.startActivity(dexParse)
-                return true
-            }
-
             R.id.start_menu_change_icon -> {
-                MessageDialog.show(getString(R.string.dialog_title), "选择图标样式并切换", "确定", "取消")
-                    .setDialogLifecycleCallback(object : BottomDialogSlideEventLifecycleCallback<MessageDialog>() {
-                        override fun onShow(dialog: MessageDialog) {
-                            super.onShow(dialog)
-                            dialog.dialogImpl.txtDialogTip.setPadding(0, 12, 0, 0)
+                val dialogView = layoutInflater.inflate(R.layout.layout_custom_recycleview, null)
+                val dialog = DialogHelper.customDialog(this, dialogView)
+                dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
+                dialogView.findViewById<TextView>(R.id.confirm_message).text = "选择图标样式并切换"
+                val recyclerView = dialogView.findViewById<RecyclerView>(R.id.iconRecyclerView)
+                val progressBar = dialogView.findViewById<ProgressBar>(R.id.progressBar)
+                spinner = dialogView.findViewById(R.id.spinner)
+
+                initMenu()
+                progressBar.isVisible = true
+
+                // 使用协程加载图标并更新适配器
+                lifecycleScope.launch(Dispatchers.Main) {
+                    delay(300)
+                    recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                    adapter = IconAdapter(emptyList()).apply {
+                        animationEnable = true
+                        isAnimationFirstOnly = false
+                    }
+                    recyclerView.adapter = adapter
+
+                    val loadedIcons = withContext(Dispatchers.Main) {
+                        loadIcons()
+                    }
+                    adapter.updateIcons(loadedIcons)
+                    progressBar.isVisible = false
+                }
+
+                dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                    dialog.dismiss()
+                    val selectedIcon = adapter.getSelectedIcon()
+                    selectedIcon?.let {
+                        // 在这里处理选中的图标
+                        // 显示选中的图标名称
+                        toast("选中了 $selectedIcon")
+
+                        // 获取包管理器
+                        val packageManager = applicationContext.packageManager
+
+                        // 获取用户选择的图标别名
+                        val selectedIconAlias = when (selectedIcon) {
+                            "NoxIcon" -> "mapleleaf.materialdesign.engine.NoxIcon"
+                            "PremiumIcon" -> "mapleleaf.materialdesign.engine.PremiumIcon"
+                            "AquaIcon" -> "mapleleaf.materialdesign.engine.AquaIcon"
+                            "TurboIcon" -> "mapleleaf.materialdesign.engine.TurboIcon"
+                            "VintageIcon" -> "mapleleaf.materialdesign.engine.VintageIcon"
+                            "NoxIconRound" -> "mapleleaf.materialdesign.engine.NoxIconRound"
+                            "PremiumIconRound" -> "mapleleaf.materialdesign.engine.PremiumIconRound"
+                            "AquaIconRound" -> "mapleleaf.materialdesign.engine.AquaIconRound"
+                            "TurboIconRound" -> "mapleleaf.materialdesign.engine.TurboIconRound"
+                            "VintageIconRound" -> "mapleleaf.materialdesign.engine.VintageIconRound"
+                            "MainActivityIcon" -> "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
+                            else -> ""
                         }
-                    })
-                    .setCustomView(object : OnBindView<MessageDialog>(R.layout.layout_custom_recycleview) {
-                        override fun onBind(dialog: MessageDialog, view: View) {
-                            val recyclerView = view.findViewById<RecyclerView>(R.id.iconRecyclerView)
-                            val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
-                            spinner = view.findViewById(R.id.spinner)
 
-                            initMenu()
-                            progressBar.isVisible = true
+                        // 获取所有活动别名列表
+                        val activityAliases = listOf(
+                            "mapleleaf.materialdesign.engine.NoxIcon",
+                            "mapleleaf.materialdesign.engine.PremiumIcon",
+                            "mapleleaf.materialdesign.engine.AquaIcon",
+                            "mapleleaf.materialdesign.engine.TurboIcon",
+                            "mapleleaf.materialdesign.engine.VintageIcon",
+                            "mapleleaf.materialdesign.engine.NoxIconRound",
+                            "mapleleaf.materialdesign.engine.PremiumIconRound",
+                            "mapleleaf.materialdesign.engine.AquaIconRound",
+                            "mapleleaf.materialdesign.engine.TurboIconRound",
+                            "mapleleaf.materialdesign.engine.VintageIconRound",
+                            "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
+                        )
 
-                            // 使用协程加载图标并更新适配器
-                            lifecycleScope.launch(Dispatchers.Main) {
-                                delay(300)
-                                recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                                adapter = IconAdapter(emptyList()).apply {
-                                    // 打开 Adapter 的动画
-                                    animationEnable = true
-                                    // 是否是首次显示时候加载动画
-                                    isAnimationFirstOnly = false
-                                }
-                                recyclerView.adapter = adapter
+                        // 隐藏主 activity 的图标
+                        val mainActivityAlias = "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
+                        val mainActivityComponentName = ComponentName(packageName, mainActivityAlias)
+                        packageManager.setComponentEnabledSetting(
+                            mainActivityComponentName,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.DONT_KILL_APP
+                        )
 
-                                val loadedIcons = withContext(Dispatchers.Main) {
-                                    loadIcons()
-                                }
-                                adapter.updateIcons(loadedIcons)
-                                progressBar.isVisible = false
+                        // 如果已经启用了某个别名，则在下一次选中图标时禁用其他别名
+                        var alreadyEnabled = false
+                        for (alias in activityAliases) {
+                            val componentName = ComponentName(packageName, alias)
+                            val currentState = packageManager.getComponentEnabledSetting(componentName)
+                            if (alias == selectedIconAlias) {
+                                alreadyEnabled =
+                                    currentState == PackageManager.COMPONENT_ENABLED_STATE_ENABLED
                             }
-                        }
-                    })
-                    .setOkButton { dialog, v ->
+                            if (!alreadyEnabled && alias != selectedIconAlias) {
 
-                        val selectedIcon = adapter.getSelectedIcon()
-                        selectedIcon?.let {
-                            // 在这里处理选中的图标
-                            // 显示选中的图标名称
-                            toast("选中的图标是 $selectedIcon")
-
-                            // 获取包管理器
-                            val packageManager = applicationContext.packageManager
-
-                            // 获取用户选择的图标别名
-                            val selectedIconAlias = when (selectedIcon) {
-                                "NoxIcon" -> "mapleleaf.materialdesign.engine.NoxIcon"
-                                "PremiumIcon" -> "mapleleaf.materialdesign.engine.PremiumIcon"
-                                "AquaIcon" -> "mapleleaf.materialdesign.engine.AquaIcon"
-                                "TurboIcon" -> "mapleleaf.materialdesign.engine.TurboIcon"
-                                "VintageIcon" -> "mapleleaf.materialdesign.engine.VintageIcon"
-                                "NoxIconRound" -> "mapleleaf.materialdesign.engine.NoxIconRound"
-                                "PremiumIconRound" -> "mapleleaf.materialdesign.engine.PremiumIconRound"
-                                "AquaIconRound" -> "mapleleaf.materialdesign.engine.AquaIconRound"
-                                "TurboIconRound" -> "mapleleaf.materialdesign.engine.TurboIconRound"
-                                "VintageIconRound" -> "mapleleaf.materialdesign.engine.VintageIconRound"
-                                "MainActivityIcon" -> "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
-                                else -> ""
-                            }
-
-                            // 获取所有活动别名列表
-                            val activityAliases = listOf(
-                                "mapleleaf.materialdesign.engine.NoxIcon",
-                                "mapleleaf.materialdesign.engine.PremiumIcon",
-                                "mapleleaf.materialdesign.engine.AquaIcon",
-                                "mapleleaf.materialdesign.engine.TurboIcon",
-                                "mapleleaf.materialdesign.engine.VintageIcon",
-                                "mapleleaf.materialdesign.engine.NoxIconRound",
-                                "mapleleaf.materialdesign.engine.PremiumIconRound",
-                                "mapleleaf.materialdesign.engine.AquaIconRound",
-                                "mapleleaf.materialdesign.engine.TurboIconRound",
-                                "mapleleaf.materialdesign.engine.VintageIconRound",
-                                "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
-                            )
-
-                            // 隐藏主 activity 的图标
-                            val mainActivityAlias = "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
-                            val mainActivityComponentName = ComponentName(packageName, mainActivityAlias)
-                            packageManager.setComponentEnabledSetting(
-                                mainActivityComponentName,
-                                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                                PackageManager.DONT_KILL_APP
-                            )
-
-                            // 如果已经启用了某个别名，则在下一次选中图标时禁用其他别名
-                            var alreadyEnabled = false
-                            for (alias in activityAliases) {
-                                val componentName = ComponentName(packageName, alias)
-                                val currentState = packageManager.getComponentEnabledSetting(componentName)
-                                if (alias == selectedIconAlias) {
-                                    alreadyEnabled =
-                                        currentState == PackageManager.COMPONENT_ENABLED_STATE_ENABLED
-                                }
-                                if (!alreadyEnabled && alias != selectedIconAlias) {
-
-                                    packageManager.setComponentEnabledSetting(
-                                        componentName,
-                                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                                        PackageManager.DONT_KILL_APP
-                                    )
-                                }
-                            }
-
-                            if (!alreadyEnabled && selectedIconAlias.isNotBlank()) {
-                                val componentName = ComponentName(packageName, selectedIconAlias)
                                 packageManager.setComponentEnabledSetting(
                                     componentName,
-                                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                                     PackageManager.DONT_KILL_APP
                                 )
                             }
-                        } ?: run {
-                            // 恢复主 activity 的图标
-                            val mainActivityAlias = "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
-                            val mainActivityComponentName = ComponentName(packageName, mainActivityAlias)
+                        }
+
+                        if (!alreadyEnabled && selectedIconAlias.isNotBlank()) {
+                            val componentName = ComponentName(packageName, selectedIconAlias)
                             packageManager.setComponentEnabledSetting(
-                                mainActivityComponentName,
+                                componentName,
                                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                                 PackageManager.DONT_KILL_APP
                             )
                         }
-                        false
+                    } ?: run {
+                        // 恢复主 activity 的图标
+                        val mainActivityAlias = "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
+                        val mainActivityComponentName = ComponentName(packageName, mainActivityAlias)
+                        packageManager.setComponentEnabledSetting(
+                            mainActivityComponentName,
+                            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                            PackageManager.DONT_KILL_APP
+                        )
                     }
-                    .setCancelButton { dialog, v ->
-                        false
+                    dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                        dialog.dismiss()
                     }
+                }
                 return true
             }
 
@@ -1279,11 +1254,11 @@ class ActivityMenu : UniversalActivityBase() {
                         toast(getString(R.string.permission_granted_complete))
                     } else {
                         val dialogView = layoutInflater.inflate(R.layout.dialog_check_permission, null)
-                        val dialog = DialogHelper.customDialog(context, dialogView)
+                        val dialog = DialogHelper.customDialog(this, dialogView)
                         dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
                         dialogView.findViewById<TextView>(R.id.confirm_message).text = getString(R.string.permission_granted_complete)
 
-                        dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                        dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
                             dialog.dismiss()
                         }
                     }
@@ -1301,15 +1276,14 @@ class ActivityMenu : UniversalActivityBase() {
                     if (!all) {
                         toast(getString(R.string.permission_granted_complete))
                     } else {
-                        MessageDialog(
-                            getString(R.string.dialog_title),
-                            getString(R.string.permission_granted_complete),
-                            "确定",
-                        )
-                            .setOkTextInfo(TextInfo().setFontColor(Color.parseColor("#EB5545")).setBold(true))
-                            .setOkButton { _, _ ->
-                                false
-                            }.show()
+                        val dialogView = layoutInflater.inflate(R.layout.dialog_check_permission, null)
+                        val dialog = DialogHelper.customDialog(this, dialogView)
+                        dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
+                        dialogView.findViewById<TextView>(R.id.confirm_message).text = getString(R.string.permission_granted_complete)
+
+                        dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                            dialog.dismiss()
+                        }
                     }
                 }
         }

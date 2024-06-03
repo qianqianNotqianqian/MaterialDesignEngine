@@ -574,4 +574,7 @@
 
     <string name="marquee_text">心中有阳光，脚底有力量。</string>
     <string name="marquee_texts">心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。</string>
+    <string name="show_system_apps_only">仅显示系统应用</string>
+    <string name="show_user_apps_only">仅显示用户应用</string>
+    <string name="launch">启动</string>
 </resources>

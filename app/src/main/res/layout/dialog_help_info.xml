@@ -52,6 +52,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_confirm"
                 style="@style/dialogCancelBtn"
+                android:background="@drawable/btn_bg_large_warning"
                 android:text="@string/ok" />
         </LinearLayout>
 
