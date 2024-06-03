@@ -231,6 +231,7 @@ class ActivityMenu : UniversalActivityBase() {
                     false
                 }.show()
         }
+
         setNavigationViewMenuItem(R.id.item_sex, R.drawable.ic_image, R.string.sex_picture) {
 
             val random = Random.Default
@@ -1266,7 +1267,7 @@ class ActivityMenu : UniversalActivityBase() {
         }
     }
 
-    @SuppressLint("InflateParams", "ObsoleteSdkInt")
+    @SuppressLint("InflateParams")
     private fun checkPermissions() {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
             XXPermissions.with(this)
@@ -1277,15 +1278,14 @@ class ActivityMenu : UniversalActivityBase() {
                     if (!all) {
                         toast(getString(R.string.permission_granted_complete))
                     } else {
-                        MessageDialog(
-                            getString(R.string.dialog_title),
-                            getString(R.string.permission_granted_complete),
-                            "确定",
-                        )
-                            .setOkTextInfo(TextInfo().setFontColor(Color.parseColor("#EB5545")).setBold(true))
-                            .setOkButton { _, _ ->
-                                false
-                            }.show()
+                        val dialogView = layoutInflater.inflate(R.layout.dialog_check_permission, null)
+                        val dialog = DialogHelper.customDialog(context, dialogView)
+                        dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
+                        dialogView.findViewById<TextView>(R.id.confirm_message).text = getString(R.string.permission_granted_complete)
+
+                        dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                            dialog.dismiss()
+                        }
                     }
                 }
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

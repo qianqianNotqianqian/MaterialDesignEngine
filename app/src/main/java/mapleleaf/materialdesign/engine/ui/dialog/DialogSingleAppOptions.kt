@@ -71,7 +71,6 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
     @SuppressLint("InflateParams")
     private fun showUserAppOptions() {
         val dialogView = context.layoutInflater.inflate(R.layout.dialog_app_options_user, null)
-
         val dialog = DialogHelper.customDialog(context, dialogView)
         dialogView.findViewById<TextView>(R.id.app_target_sdk).text =
             context.getString(R.string.app_target_sdk, app.targetSdkVersion.toString())

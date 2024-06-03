@@ -11,6 +11,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,58 +36,52 @@ import mapleleaf.materialdesign.engine.utils.toast
 class DialogMonitor(var context: Activity) {
     @SuppressLint("InflateParams")
     fun show() {
-        MessageDialog.show(null, null, null, "取消")
-            .setDialogLifecycleCallback(object : BottomDialogSlideEventLifecycleCallback<MessageDialog>() {
-                override fun onShow(dialog: MessageDialog) {
-                    super.onShow(dialog)
-                    dialog.dialogImpl.txtDialogTip.setPadding(0, 6, 0, 0)
-                }
-            })
-            .setCustomView(object : OnBindView<MessageDialog>(R.layout.dialog_float_monitor) {
-                override fun onBind(dialog: MessageDialog, view: View) {
-                    view.findViewById<CompoundButton>(R.id.monitor_perf).run {
-                        isChecked = FloatMonitor.show == true
-                        setOnCheckedChangeListener { _, isChecked ->
-                            if (isChecked) {
-                                FloatMonitor(context).showPopupWindow()
-                            } else {
-                                FloatMonitor(context).hidePopupWindow()
-                            }
-                        }
-                    }
-                    view.findViewById<CompoundButton>(R.id.monitor_proc).run {
-                        isChecked = FloatTaskManager.show == true
-                        // 合并滑动事件监听器和点击事件监听器
-                        setOnCheckedChangeListener { _, isChecked ->
-                            if (isChecked) {
-                                val floatTaskManager = FloatTaskManager(context)
-                                if (floatTaskManager.supported) {
-                                    FloatTaskManager(context).showPopupWindow()
-                                } else {
-                                    toast(context.getString(R.string.monitor_process_unsupported))
-                                    // 如果不支持，则将开关状态改为关闭
-                                    this.isChecked = false
-                                }
-                            } else {
-                                FloatTaskManager(context).hidePopupWindow()
-                            }
-                        }
-                    }
+        val dialogView = context.layoutInflater.inflate(R.layout.dialog_float_monitor, null)
+        val dialog = DialogHelper.customDialog(context, dialogView)
+        dialogView.findViewById<TextView>(R.id.confirm_title).text = "选择监视器"
+        dialogView.findViewById<TextView>(R.id.confirm_message).text = "监控系统占用情况及其温度等详细信息"
 
-                    view.findViewById<CompoundButton>(R.id.monitor_game).run {
-                        isChecked = FloatMonitorMini.show == true
-                        setOnCheckedChangeListener { _, isChecked ->
-                            if (isChecked) {
-                                FloatMonitorMini(context).showPopupWindow()
-                            } else {
-                                FloatMonitorMini(context).hidePopupWindow()
-                            }
-                        }
-                    }
+        dialogView.findViewById<CompoundButton>(R.id.monitor_perf).run {
+            isChecked = FloatMonitor.show == true
+            setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    FloatMonitor(context).showPopupWindow()
+                } else {
+                    FloatMonitor(context).hidePopupWindow()
                 }
-            })
-            .setCancelButton { dialog, v ->
-                false
             }
+        }
+        dialogView.findViewById<CompoundButton>(R.id.monitor_proc).run {
+            isChecked = FloatTaskManager.show == true
+            // 合并滑动事件监听器和点击事件监听器
+            setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    val floatTaskManager = FloatTaskManager(context)
+                    if (floatTaskManager.supported) {
+                        FloatTaskManager(context).showPopupWindow()
+                    } else {
+                        toast(context.getString(R.string.monitor_process_unsupported))
+                        // 如果不支持，则将开关状态改为关闭
+                        this.isChecked = false
+                    }
+                } else {
+                    FloatTaskManager(context).hidePopupWindow()
+                }
+            }
+        }
+
+        dialogView.findViewById<CompoundButton>(R.id.monitor_game).run {
+            isChecked = FloatMonitorMini.show == true
+            setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    FloatMonitorMini(context).showPopupWindow()
+                } else {
+                    FloatMonitorMini(context).hidePopupWindow()
+                }
+            }
+        }
+        dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+            dialog.dismiss()
+        }
     }
 }

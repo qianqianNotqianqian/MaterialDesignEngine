@@ -7,169 +7,209 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="12dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/textSmall"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginTop="12dp"
-            android:padding="@dimen/activity_vertical_margin"
-            android:text="@string/dialog_float_Instructions" />
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_title"
+                    style="@style/dialogTitle"
+                    android:text="提示信息" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_message"
+                    style="@style/dialogDesc"
+                    android:text="提示内容" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/in_card_item"
+                    android:layout_marginHorizontal="12dp"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="12dp"
+                    android:text="@string/dialog_float_Instructions" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/in_card_item"
+                        android:gravity="center_vertical"
+                        android:minHeight="70dp"
+                        android:orientation="horizontal"
+                        android:padding="6dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/dialog_icon_bg"
+                            android:backgroundTint="#FB8C00"
+                            android:src="@drawable/ic_float_monitor"
+                            app:tint="@android:color/white" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dialog_float_monitor_load" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textSecondary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dialog_float_monitor_cpu_gpu_ram_status" />
+                        </LinearLayout>
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/monitor_perf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:checked="false"
+                            android:enabled="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/in_card_item"
+                        android:gravity="center_vertical"
+                        android:minHeight="70dp"
+                        android:orientation="horizontal"
+                        android:padding="6dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/dialog_icon_bg"
+                            android:backgroundTint="#7CB342"
+                            android:src="@drawable/ic_float_monitor"
+                            app:tint="@android:color/white" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dialog_float_monitor_process" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textSecondary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dialog_float_monitor_sort" />
+                        </LinearLayout>
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/monitor_proc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:checked="false"
+                            android:enabled="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/in_card_item"
+                        android:gravity="center_vertical"
+                        android:minHeight="70dp"
+                        android:orientation="horizontal"
+                        android:padding="6dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@drawable/dialog_icon_bg"
+                            android:backgroundTint="#5E35B1"
+                            android:src="@drawable/ic_float_monitor"
+                            app:tint="@android:color/white" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dialog_float_monitor_mini" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/textSecondary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dialog_float_monitor_cpu_gpu_bat_temp" />
+                        </LinearLayout>
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/monitor_game"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:checked="false"
+                            android:enabled="true" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="12dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:minHeight="70dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                style="@style/dialogCancelBtn"
+                android:background="@drawable/btn_bg_large_warning"
+                android:text="@string/cancel" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/dialog_icon_bg"
-                    android:backgroundTint="#FB8C00"
-                    android:src="@drawable/ic_float_monitor"
-                    app:tint="@android:color/white" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/textTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/dialog_float_monitor_load" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/textSecondary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/dialog_float_monitor_cpu_gpu_ram_status" />
-                </LinearLayout>
-
-                <com.google.android.material.materialswitch.MaterialSwitch
-                    android:id="@+id/monitor_perf"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:checked="false"
-                    android:enabled="true" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center_vertical"
-                android:minHeight="70dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/dialog_icon_bg"
-                    android:backgroundTint="#7CB342"
-                    android:src="@drawable/ic_float_monitor"
-                    app:tint="@android:color/white" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/textTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/dialog_float_monitor_process" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/textSecondary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/dialog_float_monitor_sort" />
-                </LinearLayout>
-
-                <com.google.android.material.materialswitch.MaterialSwitch
-                    android:id="@+id/monitor_proc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:checked="false"
-                    android:enabled="true" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center_vertical"
-                android:minHeight="70dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/dialog_icon_bg"
-                    android:backgroundTint="#5E35B1"
-                    android:src="@drawable/ic_float_monitor"
-                    app:tint="@android:color/white" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/textTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/dialog_float_monitor_mini" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/textSecondary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/dialog_float_monitor_cpu_gpu_bat_temp" />
-                </LinearLayout>
-
-                <com.google.android.material.materialswitch.MaterialSwitch
-                    android:id="@+id/monitor_game"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:checked="false"
-                    android:enabled="true" />
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
