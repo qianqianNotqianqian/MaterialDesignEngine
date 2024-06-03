@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.kongzue.baseframework.BaseApp
 import com.kongzue.dialogx.DialogX
 import com.kongzue.dialogx.style.MIUIStyle
+import com.kongzue.dialogxmaterialyou.style.MaterialYouStyle
 import mapleleaf.materialdesign.engine.store.SpfConfig
 
 class MaterialDesignEngine : BaseApp<MaterialDesignEngine>() {
@@ -35,7 +36,7 @@ class MaterialDesignEngine : BaseApp<MaterialDesignEngine>() {
         context = this
         DialogX.init(this)
         DialogX.useHaptic = true
-        DialogX.globalStyle = MIUIStyle()
+        DialogX.globalStyle = MaterialYouStyle()
         DialogX.globalTheme = DialogX.THEME.AUTO
         DialogX.onlyOnePopTip = false
     }
