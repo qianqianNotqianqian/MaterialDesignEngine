@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.view.View
+import android.view.WindowInsetsController
 import android.view.WindowManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -76,6 +77,35 @@ object ThemeModeState {
         return wallpaperFile
     }
 
+//    fun switchTheme(activity: Activity? = null): ThemeMode {
+//        if (activity != null) {
+//            CoroutineScope(Dispatchers.Main).launch {
+//                val uiModeManager =
+//                    activity.applicationContext.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+//                val nightMode = (uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES)
+//                loadWallpaper(activity, nightMode)
+//                progressBar.hideDialog()
+//                if (!themeMode.isDarkMode) {
+//                    themeMode.isLightStatusBar = (true)
+//                    activity.window.run {
+//                        clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+//                        decorView.systemUiVisibility =
+//                            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                        addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                            decorView.systemUiVisibility =
+//                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+//                        } else {
+//                            decorView.systemUiVisibility =
+//                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return themeMode
+//    }
+
     fun switchTheme(activity: Activity? = null): ThemeMode {
         if (activity != null) {
             CoroutineScope(Dispatchers.Main).launch {
@@ -84,24 +114,41 @@ object ThemeModeState {
                 val nightMode = (uiModeManager.nightMode == UiModeManager.MODE_NIGHT_YES)
                 loadWallpaper(activity, nightMode)
                 progressBar.hideDialog()
+
                 if (!themeMode.isDarkMode) {
                     themeMode.isLightStatusBar = (true)
                     activity.window.run {
                         clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-                        decorView.systemUiVisibility =
-                            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            decorView.systemUiVisibility =
-                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            val controller = insetsController
+                            controller?.setSystemBarsAppearance(
+                                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                            )
+                            controller?.setSystemBarsAppearance(
+                                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                            )
+                        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            decorView.systemUiVisibility = (
+                                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                            or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                                            or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                                    )
                         } else {
-                            decorView.systemUiVisibility =
-                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                            decorView.systemUiVisibility = (
+                                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                            or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                                    )
                         }
+
+                        addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
                     }
                 }
             }
         }
         return themeMode
     }
+
 }

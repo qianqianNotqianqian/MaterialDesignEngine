@@ -16,12 +16,12 @@ import android.widget.HeaderViewListAdapter
 import android.widget.ListView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.kongzue.dialogx.dialogs.WaitDialog
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.databinding.FragmentAppListBinding
 import mapleleaf.materialdesign.engine.model.AppInfo
 import mapleleaf.materialdesign.engine.ui.adapter.AdapterAppList
 import mapleleaf.materialdesign.engine.ui.dialog.DialogAppOptions
+import mapleleaf.materialdesign.engine.ui.dialog.DialogProgressBar
 import mapleleaf.materialdesign.engine.ui.dialog.DialogSingleAppOptions
 import mapleleaf.materialdesign.engine.utils.helper.AppListHelper
 import mapleleaf.materialdesign.engine.utils.toast
@@ -31,6 +31,7 @@ class FragmentApplicationSystem(private val myHandler: Handler) : Fragment() {
     private lateinit var appListHelper: AppListHelper
     private var appList: ArrayList<AppInfo>? = null
     private lateinit var binding: FragmentAppListBinding
+    private lateinit var progressBar: DialogProgressBar
     private var keywords = ""
 
     constructor() : this(Handler(Looper.getMainLooper()))
@@ -39,7 +40,7 @@ class FragmentApplicationSystem(private val myHandler: Handler) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        WaitDialog.show("正在加载")
+        progressBar = DialogProgressBar(requireActivity(), "FragmentApplicationSystem")
         appListHelper = AppListHelper(requireContext())
         binding = FragmentAppListBinding.inflate(layoutInflater)
         return binding.root
@@ -94,11 +95,11 @@ class FragmentApplicationSystem(private val myHandler: Handler) : Fragment() {
     }
 
     private fun setList() {
-        WaitDialog.show("正在加载")
+        progressBar.showDialog()
         Thread {
             appList = appListHelper.getSystemAppList()
             myHandler.post {
-                WaitDialog.dismiss()
+                progressBar.hideDialog()
             }
             binding.appList.run {
                 setListData(appList, this)
