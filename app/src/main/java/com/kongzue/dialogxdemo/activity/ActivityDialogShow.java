@@ -157,7 +157,7 @@ public class ActivityDialogShow extends UniversalActivityBase {
 
     @Override
     protected int getLayoutResourceId() {
-        return R.layout.activity_main;
+        return R.layout.activity_dialog_style;
     }
 
     @Override
