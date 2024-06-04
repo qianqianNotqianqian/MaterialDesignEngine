@@ -1,4 +1,4 @@
-package mapleleaf.materialdesign.engine.tools.activities
+package mapleleaf.materialdesign.engine.ui.activities
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
@@ -27,7 +27,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
-import mapleleaf.materialdesign.engine.ui.activities.ActivityBrowser
 import mapleleaf.materialdesign.engine.utils.toast
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import okhttp3.OkHttpClient

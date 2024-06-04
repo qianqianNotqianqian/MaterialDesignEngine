@@ -1,4 +1,4 @@
-package mapleleaf.materialdesign.engine.tools.activities
+package mapleleaf.materialdesign.engine.ui.activities
 
 import android.annotation.SuppressLint
 import android.content.Context

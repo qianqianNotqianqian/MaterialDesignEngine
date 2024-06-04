@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".tools.activities.ActivityDictionary">
+    tools:context=".ui.activities.ActivityDictionary">
 
     <include
         android:id="@+id/include"

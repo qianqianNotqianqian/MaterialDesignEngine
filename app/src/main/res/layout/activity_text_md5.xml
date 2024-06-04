@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".tools.activities.ActivityText2MD5">
+    tools:context=".ui.activities.ActivityText2MD5">
 
     <include
         android:id="@+id/include"

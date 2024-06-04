@@ -1,4 +1,4 @@
-package mapleleaf.materialdesign.engine.tools.activities
+package mapleleaf.materialdesign.engine.ui.activities
 
 import android.os.Bundle
 import android.text.Editable
