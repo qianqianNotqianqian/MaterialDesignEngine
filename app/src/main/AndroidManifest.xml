@@ -82,149 +82,138 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name="com.kongzue.dialogxdemo.activity.AppCompatActivityTest"
-            android:exported="false"
-            android:theme="@style/AppCompatTheme"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name="com.kongzue.dialogxdemo.activity.ActivityDialogShow"
-            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize|layoutDirection"
-            android:exported="true" />
-
-        <activity
-            android:name="com.kongzue.dialogx.util.DialogXFloatingWindowActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|locale|touchscreen|keyboard|navigation|fontScale"
-            android:exported="false"
-            android:theme="@style/DialogXFloatingWindow"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityAbout"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppAboutTheme" />
-        <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityAnimeQuotes"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityAccelerometer"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityAllApplications"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:icon="@drawable/ic_app_manager"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityAnimeQuotes"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityAppComponents"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:windowSoftInputMode="adjustResize|stateVisible" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityApplicationDetails"
             android:exported="true" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityApplications"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:icon="@drawable/ic_app_manager"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityApplicationDex"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityBilibiliParse"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityBrowser"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityCheckPermission"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityColors"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityCpuControl"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityDeskClock"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityDictionary"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemInfo"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemSensors"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityDialog"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityFullScreenImage"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityFunctions"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityHotSearch"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityInfiniteList"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:windowSoftInputMode="adjustResize|stateVisible" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityJ2box"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityMusic"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityMarqueeAbout"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityMarqueeView"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
@@ -391,66 +380,107 @@
         </activity-alias>
 
         <activity
-            android:name="xzr.perfmon.ActivityPerfmonPlus"
-            android:excludeFromRecents="true"
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityMusic"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Material.Dialog" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityProcess"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityQRCode"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityRandomPersonality"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityTTS"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemIcons"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemInfo"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemModify"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemOverview"
             android:exported="true"
             android:launchMode="standard"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemSensors"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemVibration"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityText2MD5"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityTTS"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityWallpaper"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityApplicationDex"
+            android:name="com.kongzue.dialogxdemo.activity.AppCompatActivityTest"
+            android:exported="false"
+            android:theme="@style/AppCompatTheme"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="com.kongzue.dialogxdemo.activity.ActivityDialogShow"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize|layoutDirection"
+            android:exported="true" />
+
+        <activity
+            android:name="com.kongzue.dialogx.util.DialogXFloatingWindowActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|locale|touchscreen|keyboard|navigation|fontScale"
+            android:exported="false"
+            android:theme="@style/DialogXFloatingWindow"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="xzr.perfmon.ActivityPerfmonPlus"
+            android:excludeFromRecents="true"
             android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Material.Dialog" />
 
         <service
             android:name="xzr.perfmon.FloatingWindow"
