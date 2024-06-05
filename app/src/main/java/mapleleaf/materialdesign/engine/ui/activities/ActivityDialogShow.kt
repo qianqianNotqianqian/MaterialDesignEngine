@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -24,7 +23,6 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.kongzue.baseframework.BaseApp.dip2px
@@ -41,7 +39,6 @@ import com.kongzue.dialogx.dialogs.MessageMenu
 import com.kongzue.dialogx.dialogs.PopMenu
 import com.kongzue.dialogx.dialogs.PopNotification
 import com.kongzue.dialogx.dialogs.PopTip
-import com.kongzue.dialogx.dialogs.PopTip.tip
 import com.kongzue.dialogx.dialogs.TipDialog
 import com.kongzue.dialogx.dialogs.WaitDialog
 import com.kongzue.dialogx.interfaces.BaseDialog
@@ -59,8 +56,6 @@ import com.kongzue.dialogx.util.TextInfo
 import com.kongzue.dialogxdemo.fragment.CustomFragment
 import com.kongzue.dialogxmaterialyou.style.MaterialYouStyle
 import com.xuexiang.xui.utils.XToastUtils.toast
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
