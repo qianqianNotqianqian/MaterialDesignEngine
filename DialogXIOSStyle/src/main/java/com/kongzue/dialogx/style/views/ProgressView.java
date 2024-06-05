@@ -26,8 +26,8 @@ import com.kongzue.dialogx.style.R;
 
 /**
  * @author: Kongzue
- * @github: https://github.com/kongzue/
- * @homepage: http://kongzue.com/
+ * @github: <a href="https://github.com/kongzue/">...</a>
+ * @homepage: <a href="http://kongzue.com/">...</a>
  * @mail: myzcxhh@live.cn
  * @createTime: 2020/9/27 16:16
  * @license: Apache License 2.0

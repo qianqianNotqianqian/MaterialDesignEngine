@@ -149,7 +149,7 @@ class ActivityDialogShow: UniversalActivityBase() {
     private lateinit var webView: WebView
 
     var selectMenuIndex = 0
-    private lateinit var selectMenuIndexArray: IntArray
+    private var selectMenuIndexArray: IntArray? = null
     private lateinit var multiSelectMenuResultCache: String
 
     override fun getLayoutResourceId() = R.layout.activity_dialog_style
