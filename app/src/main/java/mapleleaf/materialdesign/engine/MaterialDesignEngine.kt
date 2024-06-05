@@ -12,7 +12,6 @@ import mapleleaf.materialdesign.engine.store.SpfConfig
 class MaterialDesignEngine : BaseApp<MaterialDesignEngine>() {
     companion object {
         lateinit var context: Application
-            private set
         private var config: SharedPreferences? = null
 
         private fun getGlobalConfig(): SharedPreferences {

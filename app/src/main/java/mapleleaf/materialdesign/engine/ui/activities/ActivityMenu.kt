@@ -58,7 +58,6 @@ import com.hjq.permissions.XXPermissions
 import com.jaredrummler.materialspinner.MaterialSpinner
 import com.kongzue.dialogx.dialogs.MessageDialog
 import com.kongzue.dialogx.util.TextInfo
-import com.kongzue.dialogxdemo.activity.ActivityDialogShow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

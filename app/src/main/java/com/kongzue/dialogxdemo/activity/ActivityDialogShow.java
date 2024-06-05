@@ -4,6 +4,7 @@ import static com.kongzue.baseframework.BaseApp.dip2px;
 import static com.kongzue.baseframework.BaseFrameworkSettings.log;
 import static com.kongzue.dialogx.dialogs.PopTip.tip;
 import static com.kongzue.dialogx.interfaces.BaseDialog.isNull;
+import static mapleleaf.materialdesign.engine.MaterialDesignEngine.context;
 import static mapleleaf.materialdesign.engine.utils.TopLevelFuncationKt.toast;
 
 import android.animation.ValueAnimator;
@@ -16,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,6 +33,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
@@ -129,7 +132,6 @@ public class ActivityDialogShow extends UniversalActivityBase {
     private MaterialButton btnShowGuideBaseView;
     private MaterialButton btnShowGuideBaseViewRectangle;
     private MaterialButton btnListDialog;
-    private float progress = 0;
     private int waitId;
     private TextView btnReplyCommit;
     private EditText editReplyCommit;
@@ -352,7 +354,6 @@ public class ActivityDialogShow extends UniversalActivityBase {
             @Override
             public void onClick(View v) {
                 waitId = 0;
-                progress = 0;
                 WaitDialog.show("假装连接...").setOnBackPressedListener(dialog -> {
                     MessageDialog.show("正在进行", "是否取消？", "是", "否").setOkButton((OnDialogButtonClickListener) (baseDialog, v1) -> {
                         waitId = -1;
@@ -430,37 +431,25 @@ public class ActivityDialogShow extends UniversalActivityBase {
                 BottomMenu.build()
                         .setBottomDialogMaxHeight(0.6f)
                         .setMenuList(new String[]{"添加", "查看", "编辑", "删除", "分享", "评论", "下载", "收藏", "赞！", "不喜欢", "所属专辑", "复制链接", "类似推荐", "添加", "查看", "编辑", "删除", "分享", "评论", "下载", "收藏", "赞！", "不喜欢", "所属专辑", "复制链接", "类似推荐"})
-                        .setOnIconChangeCallBack(new OnIconChangeCallBack<BottomMenu>(true) {
+                        .setOnIconChangeCallBack(new OnIconChangeCallBack<>(true) {
                             @Override
                             public int getIcon(BottomMenu bottomMenu, int index, String menuText) {
-                                if (menuText.equals("添加")) {
-                                    return R.mipmap.img_dialogx_demo_add;
-                                } else if (menuText.equals("查看")) {
-                                    return R.mipmap.img_dialogx_demo_view;
-                                } else if (menuText.equals("编辑")) {
-                                    return R.mipmap.img_dialogx_demo_edit;
-                                } else if (menuText.equals("删除")) {
-                                    return R.mipmap.img_dialogx_demo_delete;
-                                } else if (menuText.equals("分享")) {
-                                    return R.mipmap.img_dialogx_demo_share;
-                                } else if (menuText.equals("评论")) {
-                                    return R.mipmap.img_dialogx_demo_comment;
-                                } else if (menuText.equals("下载")) {
-                                    return R.mipmap.img_dialogx_demo_download;
-                                } else if (menuText.equals("收藏")) {
-                                    return R.mipmap.img_dialogx_demo_favorite;
-                                } else if (menuText.equals("赞！")) {
-                                    return R.mipmap.img_dialogx_demo_good;
-                                } else if (menuText.equals("不喜欢")) {
-                                    return R.mipmap.img_dialogx_demo_dislike;
-                                } else if (menuText.equals("所属专辑")) {
-                                    return R.mipmap.img_dialogx_demo_album;
-                                } else if (menuText.equals("复制链接")) {
-                                    return R.mipmap.img_dialogx_demo_link;
-                                } else if (menuText.equals("类似推荐")) {
-                                    return R.mipmap.img_dialogx_demo_recommend;
-                                }
-                                return 0;
+                                return switch (menuText) {
+                                    case "添加" -> R.mipmap.img_dialogx_demo_add;
+                                    case "查看" -> R.mipmap.img_dialogx_demo_view;
+                                    case "编辑" -> R.mipmap.img_dialogx_demo_edit;
+                                    case "删除" -> R.mipmap.img_dialogx_demo_delete;
+                                    case "分享" -> R.mipmap.img_dialogx_demo_share;
+                                    case "评论" -> R.mipmap.img_dialogx_demo_comment;
+                                    case "下载" -> R.mipmap.img_dialogx_demo_download;
+                                    case "收藏" -> R.mipmap.img_dialogx_demo_favorite;
+                                    case "赞！" -> R.mipmap.img_dialogx_demo_good;
+                                    case "不喜欢" -> R.mipmap.img_dialogx_demo_dislike;
+                                    case "所属专辑" -> R.mipmap.img_dialogx_demo_album;
+                                    case "复制链接" -> R.mipmap.img_dialogx_demo_link;
+                                    case "类似推荐" -> R.mipmap.img_dialogx_demo_recommend;
+                                    default -> 0;
+                                };
                             }
                         })
                         .setOnMenuItemClickListener((dialog, text, index) -> {
@@ -490,7 +479,7 @@ public class ActivityDialogShow extends UniversalActivityBase {
             }
         });
 
-        btnBottomReply.setOnClickListener(v -> BottomDialog.show(new OnBindView<BottomDialog>(rdoDark.isChecked() ? R.layout.layout_custom_reply_dark : R.layout.layout_custom_reply) {
+        btnBottomReply.setOnClickListener(v -> BottomDialog.show(new OnBindView<>(rdoDark.isChecked() ? R.layout.layout_custom_reply_dark : R.layout.layout_custom_reply) {
                     @Override
                     public void onBind(final BottomDialog dialog, View v) {
                         btnReplyCommit = v.findViewById(R.id.btn_reply_commit);
@@ -532,43 +521,7 @@ public class ActivityDialogShow extends UniversalActivityBase {
                     }
                 }));
 
-        //仅使用渐变动画的实现示例
-        DialogXAnimInterface<BottomDialog> alphaDialogAnimation = new DialogXAnimInterface<>() {
-
-            @Override
-            //入场动画
-            public void doShowAnim(BottomDialog dialog, ViewGroup dialogBodyView) {
-                //设置好位置，将默认预设会在屏幕底外部恢复为屏幕内
-                dialog.getDialogImpl().boxBkg.setY(dialog.getDialogImpl().boxRoot.getUnsafePlace().top);
-                //创建 0f~1f 的数值动画
-                ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
-                animator.addUpdateListener(animation -> {
-                    float value = (float) animation.getAnimatedValue();
-                    //修改背景遮罩透明度
-                    dialog.getDialogImpl().boxRoot.setBkgAlpha(value);
-                    //修改内容透明度
-                    dialog.getDialogImpl().bkg.setAlpha(value);
-                });
-                //使用真正的动画时长
-                animator.setDuration(dialog.getDialogImpl().getEnterAnimationDuration());
-                animator.start();
-            }
-
-            @Override
-            //出场动画
-            public void doExitAnim(BottomDialog dialog, ViewGroup dialogBodyView) {
-                ValueAnimator animator = ValueAnimator.ofFloat(1f, 0f);
-                animator.addUpdateListener(animation -> {
-                    float value = (float) animation.getAnimatedValue();
-                    //这里可以直接修改整体透明度淡出
-                    dialog.getDialogImpl().boxRoot.setAlpha(value);
-                });
-                animator.setDuration(dialog.getDialogImpl().getExitAnimationDuration());
-                animator.start();
-            }
-        };
-
-        btnCustomBottomMenu.setOnClickListener(v -> BottomMenu.show(new String[]{"新标签页中打开", "稍后阅读", "复制链接网址"})
+        btnCustomBottomMenu.setOnClickListener(v -> BottomMenu.show("新标签页中打开", "稍后阅读", "复制链接网址")
                 .setMessage("http://www.kongzue.com/DialogX")
                 .setOnMenuItemClickListener((dialog, text, index) -> {
                     PopTip.show(text);
@@ -679,7 +632,7 @@ public class ActivityDialogShow extends UniversalActivityBase {
                                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                                     startActivity(intent);
                                 } catch (ActivityNotFoundException e) {
-                                    e.printStackTrace();
+                                    Log.d("webView", "shouldOverrideUrlLoading: " + e);
                                 }
                                 return true;
                             }
@@ -696,20 +649,17 @@ public class ActivityDialogShow extends UniversalActivityBase {
             }
         });
 
-        btnCustomDialog.setOnClickListener(v -> {
-            CustomDialog.show(new OnBindView<>(R.layout.layout_custom_dialog) {
-                        @Override
-                        public void onBind(final CustomDialog dialog, View v) {
-                            ImageView btnOk;
-                            btnOk = v.findViewById(R.id.btn_ok);
-                            btnOk.setOnClickListener(v112 -> dialog.dismiss());
-                        }
-                    })
-                    .setAlign(CustomDialog.ALIGN.LEFT)
-                    .setAnimResId(R.anim.anim_right_in, R.anim.anim_right_out)
-                    .setMaskColor(getResources().getColor(com.kongzue.dialogx.R.color.black30))
-            ;
-        });
+        btnCustomDialog.setOnClickListener(v -> CustomDialog.show(new OnBindView<>(R.layout.layout_custom_dialog) {
+                    @Override
+                    public void onBind(final CustomDialog dialog, View v) {
+                        ImageView btnOk;
+                        btnOk = v.findViewById(R.id.btn_ok);
+                        btnOk.setOnClickListener(v112 -> dialog.dismiss());
+                    }
+                })
+//                    .setAlign(CustomDialog.ALIGN.LEFT)
+//                    .setAnimResId(R.anim.anim_right_in, R.anim.anim_right_out)
+                .setMaskColor(ContextCompat.getColor(context, com.kongzue.dialogx.R.color.black30)));
 
         btnCustomDialogAlign.setOnClickListener(v -> CustomDialog.show(new OnBindView<>(R.layout.layout_custom_dialog_align) {
 
@@ -856,7 +806,6 @@ public class ActivityDialogShow extends UniversalActivityBase {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         return metrics.widthPixels;
     }
-
 
     @Override
     public void onBackPressed() {

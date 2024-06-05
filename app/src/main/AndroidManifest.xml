@@ -464,7 +464,7 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name="com.kongzue.dialogxdemo.activity.ActivityDialogShow"
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityDialogShow"
             android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize|layoutDirection"
             android:exported="true" />
 
