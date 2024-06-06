@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context=".ui.activities.ActivityDialogShow">
+    tools:context=".ui.activities.ActivityDialogShow"
+    tools:ignore="HardcodedText">
 
     <include
         android:id="@+id/include"
@@ -24,8 +24,8 @@
     <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include">
 
         <LinearLayout
@@ -33,14 +33,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:paddingBottom="12dp">
+            android:padding="12dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:text="💬 DialogX对话框组件库，更加方便易用，可自定义程度更高，扩展性更强，轻松实现各种对话框、菜单和提示效果，更有Material You、iOS、MIUI等主题扩展可选"
                 android:textSize="14sp" />
 
@@ -73,8 +70,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Material"
-                        android:textColor="@color/colorAccent"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorAccent" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/rdo_ios"
@@ -82,8 +79,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="iOS"
-                        android:textColor="@color/colorAccent"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorAccent" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/rdo_kongzue"
@@ -91,8 +88,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kongzue"
-                        android:textColor="@color/colorAccent"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorAccent" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/rdo_miui"
@@ -100,8 +97,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="MIUI"
-                        android:textColor="@color/colorAccent"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorAccent" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/rdo_material_you"
@@ -109,8 +106,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Material You"
-                        android:textColor="@color/colorAccent"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorAccent" />
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -137,8 +134,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="自动"
-                    android:textColor="@color/colorAccent"
                     android:textAllCaps="false"
+                    android:textColor="@color/colorAccent"
                     app:icon="@mipmap/img_theme_auto"
                     app:iconTint="@color/colorAccent" />
 
@@ -148,8 +145,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="亮色"
-                    android:textColor="@color/colorAccent"
                     android:textAllCaps="false"
+                    android:textColor="@color/colorAccent"
                     app:icon="@mipmap/img_theme_light"
                     app:iconTint="@color/colorAccent" />
 
@@ -159,8 +156,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="暗色"
-                    android:textColor="@color/colorAccent"
                     android:textAllCaps="false"
+                    android:textColor="@color/colorAccent"
                     app:icon="@mipmap/img_theme_night"
                     app:iconTint="@color/colorAccent" />
 
@@ -195,8 +192,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="View"
-                        android:textColor="@color/colorAccent"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorAccent" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/rdo_mode_window"
@@ -204,8 +201,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Window"
-                        android:textColor="@color/colorAccent"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorAccent" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/rdo_mode_dialogFragment"
@@ -213,8 +210,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="DialogFragment"
-                        android:textColor="@color/colorAccent"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorAccent" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/rdo_mode_floatingActivity"
@@ -222,8 +219,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="FloatingActivity"
-                        android:textColor="@color/colorAccent"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorAccent" />
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -246,15 +243,13 @@
                     android:id="@+id/btn_messageDialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="15dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
                     android:paddingBottom="10dp"
                     android:text="消息对话框"
-                    android:textSize="13sp"
                     android:textColor="@color/white"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     app:cornerRadius="99dp"
                     app:icon="@mipmap/img_button_messagedialog" />
@@ -263,8 +258,6 @@
                     android:id="@+id/btn_selectDialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="15dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -280,8 +273,6 @@
                     android:id="@+id/btn_inputDialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="15dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -297,8 +288,6 @@
                     android:id="@+id/btn_select_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="15dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -314,8 +303,6 @@
                     android:id="@+id/btn_multiSelect_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="15dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -384,7 +371,6 @@
                     android:id="@+id/btn_tipSuccess"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -400,7 +386,6 @@
                     android:id="@+id/btn_tipWarning"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -416,7 +401,6 @@
                     android:id="@+id/btn_tipError"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -432,7 +416,6 @@
                     android:id="@+id/btn_tipProgress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -451,7 +434,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="非阻断提示"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <com.kongzue.stacklabelview.StackLayout
@@ -463,7 +446,6 @@
                     android:id="@+id/btn_poptip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -479,7 +461,6 @@
                     android:id="@+id/btn_poptip_bigMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -502,7 +483,6 @@
                     android:id="@+id/btn_poptip_success"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -518,7 +498,6 @@
                     android:id="@+id/btn_poptip_warning"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -534,7 +513,6 @@
                     android:id="@+id/btn_poptip_error"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -557,7 +535,6 @@
                     android:id="@+id/btn_popnotification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -572,7 +549,6 @@
                     android:id="@+id/btn_popnotification_bigMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -587,7 +563,6 @@
                     android:id="@+id/btn_popnotification_overlay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -616,7 +591,6 @@
                     android:id="@+id/btn_bottom_dialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -631,7 +605,6 @@
                     android:id="@+id/btn_bottom_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -646,7 +619,6 @@
                     android:id="@+id/btn_bottom_reply"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -668,7 +640,6 @@
                     android:id="@+id/btn_bottom_select_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -683,7 +654,6 @@
                     android:id="@+id/btn_bottom_multiSelect_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -706,7 +676,6 @@
                     android:id="@+id/btn_bottom_custom_recycleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -736,7 +705,6 @@
                     android:id="@+id/btn_customMessageDialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -751,7 +719,6 @@
                     android:id="@+id/btn_customInputDialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -766,7 +733,6 @@
                     android:id="@+id/btn_customBottomMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -797,7 +763,6 @@
                     android:id="@+id/btn_customDialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -812,7 +777,6 @@
                     android:id="@+id/btn_customDialogAlign"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -842,7 +806,6 @@
                     android:id="@+id/btn_fullScreenDialog_webPage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -857,7 +820,6 @@
                     android:id="@+id/btn_fullScreenDialog_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -872,7 +834,6 @@
                     android:id="@+id/btn_fullScreenDialog_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -904,8 +865,6 @@
                     android:id="@+id/btn_contextMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="15dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -920,17 +879,16 @@
                     android:id="@+id/btn_selectMenu"
                     android:layout_width="160dp"
                     android:layout_height="48dp"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="5dp"
                     android:background="@drawable/rect_dialogx_material_poptip_bkg"
-                    android:drawableRight="@mipmap/img_drawable_down"
                     android:gravity="center_vertical"
                     android:paddingStart="15dp"
                     android:paddingEnd="5dp"
                     android:singleLine="true"
                     android:text="选项菜单"
                     android:textColor="@color/black"
-                    android:textSize="16dp" />
+                    android:textSize="16sp"
+                    app:drawableRightCompat="@mipmap/img_drawable_down" />
 
             </LinearLayout>
 
@@ -951,7 +909,6 @@
                     android:id="@+id/btn_showGuide"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -967,7 +924,6 @@
                     android:id="@+id/btn_showGuideBaseView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -983,7 +939,6 @@
                     android:id="@+id/btn_showGuideBaseViewRectangle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -1014,7 +969,6 @@
                     android:id="@+id/btn_showBreak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
@@ -1030,10 +984,9 @@
                     android:id="@+id/btn_listDialog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
                     android:paddingTop="10dp"
-                    android:paddingRight="15dp"
+                    android:paddingEnd="15dp"
                     android:paddingBottom="10dp"
                     android:text="队列对话框"
                     android:textColor="@color/white"
