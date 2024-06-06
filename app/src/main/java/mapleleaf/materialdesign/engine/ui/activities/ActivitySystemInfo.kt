@@ -175,7 +175,6 @@ class ActivitySystemInfo : UniversalActivityBase() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.S)
     private suspend fun loadDeviceInfo() {
         val deviceInfo = loadDeviceInfoInBackground()
         updateUI(deviceInfo)
@@ -265,7 +264,6 @@ class ActivitySystemInfo : UniversalActivityBase() {
         deviceBrandTextView2.text = deviceInfo.brand
     }
 
-    @RequiresApi(Build.VERSION_CODES.S)
     @SuppressLint("HardwareIds")
     private suspend fun loadDeviceInfoInBackground(): DeviceInfo {
         return withContext(Dispatchers.IO) {

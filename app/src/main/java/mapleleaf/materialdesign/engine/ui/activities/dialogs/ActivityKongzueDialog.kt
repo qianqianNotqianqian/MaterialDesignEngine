@@ -58,7 +58,7 @@ import com.kongzue.dialogx.style.KongzueStyle
 import com.kongzue.dialogx.style.MIUIStyle
 import com.kongzue.dialogx.style.MaterialStyle
 import com.kongzue.dialogx.util.TextInfo
-import com.kongzue.dialogxdemo.fragment.CustomFragment
+import mapleleaf.materialdesign.engine.ui.fragments.FragmentCustomView
 import com.kongzue.dialogxmaterialyou.style.MaterialYouStyle
 import com.xuexiang.xui.utils.XToastUtils.toast
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
@@ -285,9 +285,9 @@ class ActivityKongzueDialog : UniversalActivityBase() {
         }
 
         btnFullScreenDialogFragment.setOnClickListener {
-            val customFragment = CustomFragment()
+            val fragmentCustomView = FragmentCustomView()
                 .setAddButtonClickListener { v12 -> btnFullScreenDialogFragment.callOnClick() }
-            FullScreenDialog.build(object : OnBindView<FullScreenDialog>(customFragment) {
+            FullScreenDialog.build(object : OnBindView<FullScreenDialog>(fragmentCustomView) {
                 override fun onBind(dialog: FullScreenDialog, v: View) {
                 }
             })

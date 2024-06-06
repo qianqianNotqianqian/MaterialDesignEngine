@@ -1,4 +1,4 @@
-package com.kongzue.dialogxdemo.fragment;
+package mapleleaf.materialdesign.engine.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,7 +19,7 @@ import mapleleaf.materialdesign.engine.R;
  * @mail: myzcxhh@live.cn
  * @createTime: 2021/8/17 13:50
  */
-public class CustomFragment extends Fragment {
+public class FragmentCustomView extends Fragment {
 
     private static int index = 0;
     private View.OnClickListener addButtonClickListener;
@@ -50,7 +50,7 @@ public class CustomFragment extends Fragment {
         return addButtonClickListener;
     }
 
-    public CustomFragment setAddButtonClickListener(View.OnClickListener addButtonClickListener) {
+    public FragmentCustomView setAddButtonClickListener(View.OnClickListener addButtonClickListener) {
         this.addButtonClickListener = addButtonClickListener;
         return this;
     }
