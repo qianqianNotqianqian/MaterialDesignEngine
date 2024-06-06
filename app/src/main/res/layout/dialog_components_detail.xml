@@ -262,9 +262,9 @@
                 android:id="@+id/btn_launch"
                 style="@style/dialogCancelBtn"
                 android:layout_marginStart="12dp"
-                android:visibility="gone"
                 android:background="@drawable/btn_bg_large_warning"
-                android:text="@string/launch" />
+                android:text="@string/launch"
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

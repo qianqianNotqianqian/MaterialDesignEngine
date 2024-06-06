@@ -137,6 +137,7 @@ dependencies {
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.2.0'
     implementation 'com.github.xuexiangjys:RxUtil2:1.2.1'
 
+    implementation project(path: ':CalcDialog')
     implementation project(path: ':DialogX')
     implementation project(path: ':DialogXIOSStyle')
     implementation project(path: ':DialogXKongzueStyle')
@@ -146,6 +147,7 @@ dependencies {
     implementation "com.kongzue.baseframework:BaseFramework:6.8.8"
     implementation 'com.kongzue.stacklabel:StackLabel:1.2.0'
 
+//    implementation "com.github.kongzue.DialogX:DialogX:0.0.50.beta14"
     // Retrofit & Gson
 //    implementation 'com.squareup.retrofit2:retrofit:2.10.0'
 //    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'

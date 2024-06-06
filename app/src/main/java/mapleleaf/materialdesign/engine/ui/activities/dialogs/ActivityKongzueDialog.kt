@@ -1,4 +1,4 @@
-package mapleleaf.materialdesign.engine.ui.activities
+package mapleleaf.materialdesign.engine.ui.activities.dialogs
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
@@ -67,7 +67,7 @@ import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.Random
 
-class ActivityDialogShow: UniversalActivityBase() {
+class ActivityKongzueDialog: UniversalActivityBase() {
 
     private val singleSelectMenuText = arrayOf("拒绝", "询问", "始终允许", "仅在使用中允许")
     private val multiSelectMenuText = arrayOf("上海", "北京", "广州", "深圳")
@@ -158,7 +158,7 @@ class ActivityDialogShow: UniversalActivityBase() {
     private var selectMenuIndexArray: IntArray? = null
     private lateinit var multiSelectMenuResultCache: String
 
-    override fun getLayoutResourceId() = R.layout.activity_dialog_style
+    override fun getLayoutResourceId() = R.layout.activity_dialog_show
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
@@ -773,7 +773,7 @@ class ActivityDialogShow: UniversalActivityBase() {
                     .setTitle("这是一条消息 $notificationIndex")
                     .setIcon(icon)
                     .setButton("回复") { baseDialog, v120 ->
-                        val intent1 = Intent(context, ActivityDialogShow::class.java)
+                        val intent1 = Intent(context, ActivityKongzueDialog::class.java)
                         intent1.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
                         startActivity(intent1)
                         false
@@ -831,7 +831,7 @@ class ActivityDialogShow: UniversalActivityBase() {
                 .setSelection(selectMenuIndexArray)
         }
         handler = Handler(Looper.getMainLooper())
-        setToolbarTitle(getString(R.string.toolbar_title_activity_md_dialog))
+        setToolbarTitle(getString(R.string.toolbar_title_activity_kongzue_dialog))
     }
     private var notificationIndex = 0
     @Deprecated("Deprecated in Java")

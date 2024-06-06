@@ -167,6 +167,11 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityDialogStyle"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize|layoutDirection"
+            android:exported="true" />
+
+        <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityDictionary"
             android:exported="true"
             android:launchMode="singleTask"
@@ -201,6 +206,11 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="mapleleaf.materialdesign.engine.ui.activities.dialogs.ActivityKongzueDialog"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize|layoutDirection"
+            android:exported="true" />
 
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityMarqueeAbout"
@@ -458,15 +468,16 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.activities.dialogs.ActivityCalcDialog"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.kongzue.dialogxdemo.activity.AppCompatActivityTest"
             android:exported="false"
             android:theme="@style/AppCompatTheme"
             android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityDialogShow"
-            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize|layoutDirection"
-            android:exported="true" />
 
         <activity
             android:name="com.kongzue.dialogx.util.DialogXFloatingWindowActivity"

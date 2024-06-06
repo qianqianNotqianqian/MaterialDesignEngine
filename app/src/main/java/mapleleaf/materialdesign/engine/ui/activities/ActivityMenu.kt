@@ -117,7 +117,7 @@ class ActivityMenu : UniversalActivityBase() {
 
     @SuppressLint("InflateParams", "SetTextI18n", "CutPasteId")
     override fun initializeComponents(savedInstanceState: Bundle?) {
-        val scrollingView = findViewById<FastScrollNestedScrollView>(R.id.nestedScrollView2)
+        val scrollingView = findViewById<FastScrollNestedScrollView>(R.id.nestedScrollView)
         FastScrollerBuilder(scrollingView).build()
         drawerLayout = findViewById(R.id.drawer_layout)
 
@@ -151,8 +151,7 @@ class ActivityMenu : UniversalActivityBase() {
             R.drawable.ic_app_manager,
             R.string.application_manager
         ) {
-            val allApp = Intent(this@ActivityMenu, ActivityAllApplications::class.java)
-            this@ActivityMenu.startActivity(allApp)
+            this@ActivityMenu.startActivity(Intent(this@ActivityMenu, ActivityAllApplications::class.java))
         }
         setNavigationViewMenuItem(
             R.id.item_support,
@@ -179,8 +178,7 @@ class ActivityMenu : UniversalActivityBase() {
             R.drawable.ic_support_development,
             R.string.about_this
         ) {
-            val about = Intent(this@ActivityMenu, ActivityAbout::class.java)
-            this@ActivityMenu.startActivity(about)
+            this@ActivityMenu.startActivity(Intent(this@ActivityMenu, ActivityAbout::class.java))
         }
         setNavigationViewMenuItem(
             R.id.item_perfmon_plus,
@@ -198,7 +196,8 @@ class ActivityMenu : UniversalActivityBase() {
                     false
                 }
                 .setOkButton { _, _ ->
-                    Handler(Looper.getMainLooper()).postDelayed({
+                    lifecycleScope.launch {
+                        delay(300)
                         val intent = Intent(this@ActivityMenu, ActivityPerfmonPlus::class.java)
                         val options = ActivityOptionsCompat.makeCustomAnimation(
                             this@ActivityMenu,
@@ -206,7 +205,8 @@ class ActivityMenu : UniversalActivityBase() {
                             android.R.anim.fade_out
                         )
                         ActivityCompat.startActivity(this@ActivityMenu, intent, options.toBundle())
-                    }, 300)
+                    }
+
                     false
                 }.show()
         }
@@ -233,8 +233,10 @@ class ActivityMenu : UniversalActivityBase() {
 
             val dialogView = layoutInflater.inflate(R.layout.dialog_math, null)
             val dialog = DialogHelper.customDialog(this, dialogView)
-            dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
-            dialogView.findViewById<TextView>(R.id.confirm_message).text = "$num1$operationSymbol$num2 = ${String.format("%.2f", answer)}"
+            dialogView.findViewById<TextView>(R.id.confirm_title).text =
+                getString(R.string.dialog_title)
+            dialogView.findViewById<TextView>(R.id.confirm_message).text =
+                "$num1$operationSymbol$num2 = ${String.format("%.2f", answer)}"
             val answerInputEdit = dialogView.findViewById<EditText>(R.id.answer_input_edit)
 
             dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
@@ -245,9 +247,13 @@ class ActivityMenu : UniversalActivityBase() {
                         val correctAnswer = calculateAnswer(num1, num2, operationSymbol)
                         if (abs(userAnswer - correctAnswer) < 0.01) {
                             toast(getString(R.string.menu_input_success) + userAnswer)
-                            val wallpaper = Intent(this, ActivityWallpaper::class.java)
-                            wallpaper.putExtra("isAnswerCorrect", userAnswer)
-                            startActivity(wallpaper)
+
+                            startActivity(
+                                Intent(
+                                    this,
+                                    ActivityWallpaper::class.java
+                                ).putExtra("isAnswerCorrect", userAnswer)
+                            )
                             dialog.dismiss()
                         } else {
                             toast(getString(R.string.menu_input_incorrect_answer))
@@ -260,7 +266,7 @@ class ActivityMenu : UniversalActivityBase() {
                 }
             }
             dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
-               dialog.dismiss()
+                dialog.dismiss()
             }
 
         }
@@ -268,7 +274,8 @@ class ActivityMenu : UniversalActivityBase() {
 
             val dialogView = layoutInflater.inflate(R.layout.dialog_sex_sentence, null)
             val dialog = DialogHelper.customDialog(this, dialogView)
-            dialogView.findViewById<TextView>(R.id.confirm_title).text =  getString(R.string.sex_sentance)
+            dialogView.findViewById<TextView>(R.id.confirm_title).text =
+                getString(R.string.sex_sentance)
             val messageTextView = dialogView.findViewById<TextView>(R.id.confirm_message)
             val progressBar = dialogView.findViewById<ProgressBar>(R.id.progressBar)
 
@@ -326,11 +333,21 @@ class ActivityMenu : UniversalActivityBase() {
                 }
             }
         }
+
+        setNavigationViewMenuItem(
+            R.id.item_dialog_style,
+            R.drawable.ic_tab_system_app,
+            R.string.dialog_style
+        ) {
+            this@ActivityMenu.startActivity(Intent(this@ActivityMenu, ActivityDialogStyle::class.java))
+        }
+
         setNavigationViewMenuItem(R.id.item_exit, R.drawable.ic_exit, R.string.exit) {
 
             val dialogView = layoutInflater.inflate(R.layout.dialog_exit, null)
             val dialog = DialogHelper.customDialog(this, dialogView)
-            dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
+            dialogView.findViewById<TextView>(R.id.confirm_title).text =
+                getString(R.string.dialog_title)
             val messageTextView = dialogView.findViewById<TextView>(R.id.confirm_message)
             messageTextView.text = getString(R.string.confirm_exit)
 
@@ -343,6 +360,7 @@ class ActivityMenu : UniversalActivityBase() {
             }
 
         }
+
         setNavigationViewMenuItem(
             R.id.item_bilibili,
             R.drawable.ic_bilibili,
@@ -384,12 +402,6 @@ class ActivityMenu : UniversalActivityBase() {
                 R.drawable.ic_bilibili,
                 R.string.menu_start_desk_clock,
                 ActivityDeskClock::class.java
-            ),
-            MenuItemInfo(
-                R.id.MDDialog,
-                R.drawable.ic_bilibili,
-                R.string.menu_start_md_dialog,
-                ActivityDialogShow::class.java
             ),
             MenuItemInfo(
                 R.id.Functions,
@@ -524,6 +536,7 @@ class ActivityMenu : UniversalActivityBase() {
                 ActivityMarqueeView::class.java
             )
         )
+
         for (menuItem in menuItems) {
             setMenuItem(menuItem)
         }
@@ -595,8 +608,7 @@ class ActivityMenu : UniversalActivityBase() {
                 setTextColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
             }
             setOnClickListener {
-                val intent = Intent(context, menuItemInfo.activityClass)
-                context.startActivity(intent)
+                context.startActivity(Intent(context, menuItemInfo.activityClass))
             }
         }
     }
@@ -913,7 +925,8 @@ class ActivityMenu : UniversalActivityBase() {
             R.id.start_menu_change_icon -> {
                 val dialogView = layoutInflater.inflate(R.layout.layout_custom_recycleview, null)
                 val dialog = DialogHelper.customDialog(this, dialogView)
-                dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
+                dialogView.findViewById<TextView>(R.id.confirm_title).text =
+                    getString(R.string.dialog_title)
                 dialogView.findViewById<TextView>(R.id.confirm_message).text = "选择图标样式并切换"
                 val recyclerView = dialogView.findViewById<RecyclerView>(R.id.iconRecyclerView)
                 val progressBar = dialogView.findViewById<ProgressBar>(R.id.progressBar)
@@ -925,7 +938,8 @@ class ActivityMenu : UniversalActivityBase() {
                 // 使用协程加载图标并更新适配器
                 lifecycleScope.launch(Dispatchers.Main) {
                     delay(300)
-                    recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                    recyclerView.layoutManager =
+                        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     adapter = IconAdapter(emptyList()).apply {
                         animationEnable = true
                         isAnimationFirstOnly = false
@@ -982,8 +996,10 @@ class ActivityMenu : UniversalActivityBase() {
                         )
 
                         // 隐藏主 activity 的图标
-                        val mainActivityAlias = "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
-                        val mainActivityComponentName = ComponentName(packageName, mainActivityAlias)
+                        val mainActivityAlias =
+                            "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
+                        val mainActivityComponentName =
+                            ComponentName(packageName, mainActivityAlias)
                         packageManager.setComponentEnabledSetting(
                             mainActivityComponentName,
                             PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
@@ -994,7 +1010,8 @@ class ActivityMenu : UniversalActivityBase() {
                         var alreadyEnabled = false
                         for (alias in activityAliases) {
                             val componentName = ComponentName(packageName, alias)
-                            val currentState = packageManager.getComponentEnabledSetting(componentName)
+                            val currentState =
+                                packageManager.getComponentEnabledSetting(componentName)
                             if (alias == selectedIconAlias) {
                                 alreadyEnabled =
                                     currentState == PackageManager.COMPONENT_ENABLED_STATE_ENABLED
@@ -1019,8 +1036,10 @@ class ActivityMenu : UniversalActivityBase() {
                         }
                     } ?: run {
                         // 恢复主 activity 的图标
-                        val mainActivityAlias = "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
-                        val mainActivityComponentName = ComponentName(packageName, mainActivityAlias)
+                        val mainActivityAlias =
+                            "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
+                        val mainActivityComponentName =
+                            ComponentName(packageName, mainActivityAlias)
                         packageManager.setComponentEnabledSetting(
                             mainActivityComponentName,
                             PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
@@ -1244,10 +1263,13 @@ class ActivityMenu : UniversalActivityBase() {
                     if (!all) {
                         toast(getString(R.string.permission_granted_complete))
                     } else {
-                        val dialogView = layoutInflater.inflate(R.layout.dialog_check_permission, null)
+                        val dialogView =
+                            layoutInflater.inflate(R.layout.dialog_check_permission, null)
                         val dialog = DialogHelper.customDialog(this, dialogView)
-                        dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
-                        dialogView.findViewById<TextView>(R.id.confirm_message).text = getString(R.string.permission_granted_complete)
+                        dialogView.findViewById<TextView>(R.id.confirm_title).text =
+                            getString(R.string.dialog_title)
+                        dialogView.findViewById<TextView>(R.id.confirm_message).text =
+                            getString(R.string.permission_granted_complete)
 
                         dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
                             dialog.dismiss()
@@ -1267,10 +1289,13 @@ class ActivityMenu : UniversalActivityBase() {
                     if (!all) {
                         toast(getString(R.string.permission_granted_complete))
                     } else {
-                        val dialogView = layoutInflater.inflate(R.layout.dialog_check_permission, null)
+                        val dialogView =
+                            layoutInflater.inflate(R.layout.dialog_check_permission, null)
                         val dialog = DialogHelper.customDialog(this, dialogView)
-                        dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
-                        dialogView.findViewById<TextView>(R.id.confirm_message).text = getString(R.string.permission_granted_complete)
+                        dialogView.findViewById<TextView>(R.id.confirm_title).text =
+                            getString(R.string.dialog_title)
+                        dialogView.findViewById<TextView>(R.id.confirm_message).text =
+                            getString(R.string.permission_granted_complete)
 
                         dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
                             dialog.dismiss()

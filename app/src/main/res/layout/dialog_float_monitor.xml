@@ -13,8 +13,8 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardBackgroundColor="@color/background">
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="12dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -35,8 +35,8 @@
                     style="@style/textSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/in_card_item"
                     android:layout_marginHorizontal="12dp"
+                    android:background="@drawable/in_card_item"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="12dp"
                     android:text="@string/dialog_float_Instructions" />

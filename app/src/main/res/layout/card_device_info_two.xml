@@ -3,8 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
-    android:padding="6dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="6dp">
 
     <LinearLayout style="@style/CardItemContainer">
 

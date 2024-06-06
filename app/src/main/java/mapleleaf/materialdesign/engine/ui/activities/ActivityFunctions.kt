@@ -28,6 +28,7 @@ class ActivityFunctions : UniversalActivityBase() {
     private lateinit var tabLayout: TabLayout
     private lateinit var appBarLayout: AppBarLayout
     private lateinit var loading: AppCompatImageView
+    private lateinit var splitBody: AppCompatImageView
 
     override fun getLayoutResourceId() = R.layout.activity_functions
 
@@ -36,7 +37,8 @@ class ActivityFunctions : UniversalActivityBase() {
         tabLayout = findViewById(R.id.tab_layout)
         viewPager = findViewById(R.id.view_pager)
         appBarLayout = findViewById(R.id.appBarLayout)
-
+        splitBody = findViewById(R.id.split_body)
+        splitBody.isVisible = false
         setToolbarTitle(getString(R.string.toolbar_title_activity_functions))
 
         getToolbar().setBackgroundColor(getColor(R.color.transparent))

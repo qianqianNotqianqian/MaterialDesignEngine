@@ -16,7 +16,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp" >
+        android:layout_marginTop="12dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dialog_system_modify_model"
@@ -30,7 +30,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp" >
+        android:layout_marginTop="12dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dialog_system_modify_brand"
@@ -44,7 +44,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp" >
+        android:layout_marginTop="12dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dialog_system_modify_name"
@@ -58,7 +58,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp" >
+        android:layout_marginTop="12dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dialog_system_modify_device"
@@ -69,19 +69,19 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dialog_system_modify_manufacturer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp" >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dialog_system_modify_manufacturer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="@string/ro_product_manufacturer"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:background="@null"
+            android:hint="@string/ro_product_manufacturer"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -43,9 +43,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
-            app:backgroundTint="?colorPrimary"
             android:contentDescription="@string/download"
             android:src="@drawable/ic_download"
+            app:backgroundTint="?colorPrimary"
             app:tint="@color/action_button_color" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

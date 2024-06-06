@@ -51,9 +51,9 @@
                         android:id="@+id/app_name_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
                         android:ellipsize="marquee"
                         android:marqueeRepeatLimit="marquee_forever"
+                        android:singleLine="true"
                         android:textColor="@color/text_color"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -82,9 +82,9 @@
                         android:id="@+id/app_package_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
                         android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever" />
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:singleLine="true" />
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

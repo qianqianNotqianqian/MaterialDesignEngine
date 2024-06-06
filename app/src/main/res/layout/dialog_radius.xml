@@ -10,8 +10,8 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="24dp"
         android:gravity="center"
+        android:padding="24dp"
         android:text="有半径的对话框"
         android:textSize="18sp" />
 </com.google.android.material.card.MaterialCardView>
