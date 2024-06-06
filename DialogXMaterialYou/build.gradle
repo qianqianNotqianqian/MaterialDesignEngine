@@ -28,5 +28,5 @@ android {
 dependencies {
     implementation project(path: ':DialogX')
     compileOnly project(path: ':DialogXInterface')
-    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'com.google.android.material:material:1.12.0'
 }
