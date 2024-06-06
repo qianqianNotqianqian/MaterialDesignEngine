@@ -41,8 +41,8 @@
         android:id="@+id/null_list"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:visibility="gone"
+        android:layout_centerInParent="true"
         android:src="@drawable/ic_empty_list"
-        android:layout_centerInParent="true" />
+        android:visibility="gone" />
 
 </RelativeLayout>

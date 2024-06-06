@@ -54,9 +54,9 @@
                     style="@style/dialogConfirmBtn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="gone"
                     android:background="@drawable/btn_bg_large_warning"
-                    android:text="@string/clear_all" />
+                    android:text="@string/clear_all"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

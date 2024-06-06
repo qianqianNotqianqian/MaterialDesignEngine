@@ -1,8 +1,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context=".ui.activities.ActivityDictionary">
 
@@ -21,7 +21,7 @@
         <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
             android:id="@+id/nestedScrollView2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,9 +32,9 @@
                     android:id="@+id/materialCardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
                     app:cardBackgroundColor="@color/background"
-                    app:cardCornerRadius="12dp"
-                    android:layout_margin="6dp">
+                    app:cardCornerRadius="12dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
@@ -223,8 +223,8 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
-        android:contentDescription="@string/todo"
         android:backgroundTint="?colorPrimary"
+        android:contentDescription="@string/todo"
         android:src="@drawable/app_options_search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

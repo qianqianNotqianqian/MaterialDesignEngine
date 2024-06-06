@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/include"
-        android:layout_margin="6dp" >
+        android:layout_margin="6dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardViewEdit"
@@ -87,10 +87,10 @@
                     android:id="@+id/buttonClear"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:padding="12dp"
-                    android:visibility="gone"
                     android:background="@color/transparent"
+                    android:padding="12dp"
                     android:src="@drawable/ic_close"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
