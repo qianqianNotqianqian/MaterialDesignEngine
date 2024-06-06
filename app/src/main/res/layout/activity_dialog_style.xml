@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
+
+    <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="3dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                    <include
+                        android:id="@+id/KongzueDialog"
+                        layout="@layout/this_app_card_view" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                    <include
+                        android:id="@+id/CalcDialog"
+                        layout="@layout/this_app_card_view" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </me.zhanghai.android.fastscroll.FastScrollNestedScrollView>
+
+</LinearLayout>
