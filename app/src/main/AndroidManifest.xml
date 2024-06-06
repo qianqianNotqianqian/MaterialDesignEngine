@@ -474,18 +474,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.kongzue.dialogxdemo.activity.ActivityTestAppCompat"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name="com.kongzue.dialogxdemo.activity.ActivityTestMain"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
             android:name="com.kongzue.dialogx.util.DialogXFloatingWindowActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|locale|touchscreen|keyboard|navigation|fontScale"
             android:exported="false"

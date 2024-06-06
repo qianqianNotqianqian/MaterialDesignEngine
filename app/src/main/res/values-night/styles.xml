@@ -47,7 +47,4 @@
         <item name="android:windowAnimationStyle">@style/activityAnim2</item>
     </style>
 
-    <style name="CustomBottomSheetDialogTheme" parent="Theme.Material3.DayNight.BottomSheetDialog">
-        <item name="android:windowAnimationStyle">@style/CustomBottomSheetDialogAnimation</item>
-    </style>
 </resources>
