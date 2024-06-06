@@ -74,6 +74,10 @@ public abstract class XUIMarqueeFactory<T extends View, E> {
         }
     }
 
+    public void setAttachedToMarqueeView(XUIMarqueeView XUIMarqueeView) {
+        mXUIMarqueeView = XUIMarqueeView;
+    }
+
     /**
      * 条目点击监听
      *
@@ -127,9 +131,5 @@ public abstract class XUIMarqueeFactory<T extends View, E> {
             mPosition = position;
             return this;
         }
-    }
-
-    public void setAttachedToMarqueeView(XUIMarqueeView XUIMarqueeView) {
-        mXUIMarqueeView = XUIMarqueeView;
     }
 }

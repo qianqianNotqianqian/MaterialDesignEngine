@@ -16,7 +16,8 @@ class SlideInBottomAnimation @JvmOverloads constructor(
     private val interpolator = DecelerateInterpolator(1.3f)
 
     override fun animator(view: View): Animator {
-        val animator = ObjectAnimator.ofFloat(view, "translationY", view.measuredHeight.toFloat(), 0f)
+        val animator =
+            ObjectAnimator.ofFloat(view, "translationY", view.measuredHeight.toFloat(), 0f)
         animator.duration = duration
         animator.interpolator = interpolator
         return animator

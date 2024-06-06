@@ -202,7 +202,8 @@ class ActivitySystemVibration : UniversalActivityBase() {
             // 当用户点击了除编辑框以外的任何地方时，取消编辑框的焦点
             durationEditText.clearFocus()
         }
-        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         // 在失去焦点后隐藏输入法键盘
         durationEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {

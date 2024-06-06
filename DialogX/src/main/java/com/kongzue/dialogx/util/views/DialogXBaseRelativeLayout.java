@@ -177,7 +177,7 @@ public class DialogXBaseRelativeLayout extends RelativeLayout {
                 boolean hasLeft = (dialogxSafetyMode & 0x2) != 0;
                 boolean hasBottom = (dialogxSafetyMode & 0x4) != 0;
                 boolean hasRight = (dialogxSafetyMode & 0x8) != 0;
-                log("    KONGZUE DEBUG DIALOGX: dialogXSafetyArea" + dialogXSafetyArea + " hasLeft=" + hasLeft + "hasTop=" + hasTop + " hasRight=" + hasRight + " hasBottom=" + hasBottom);
+                log("KONGZUE DEBUG DIALOGX: dialogXSafetyArea" + dialogXSafetyArea + " hasLeft=" + hasLeft + "hasTop=" + hasTop + " hasRight=" + hasRight + " hasBottom=" + hasBottom);
                 dialogXSafetyArea.setPadding(hasLeft ? start : 0, hasTop ? top : 0, hasRight ? end : 0, hasBottom ? bottom : 0);
                 if (hasTop) {
                     top = 0;

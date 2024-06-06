@@ -2,13 +2,11 @@ package mapleleaf.materialdesign.engine.ui.activities
 
 import android.animation.Animator
 import android.annotation.SuppressLint
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -27,8 +25,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.CompoundButton
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -49,16 +45,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.card.MaterialCardView
-import com.google.android.material.materialswitch.MaterialSwitch
 import com.jaredrummler.materialspinner.MaterialSpinner
-import com.kongzue.dialogx.dialogs.MessageDialog
-import com.kongzue.dialogx.dialogs.MessageMenu
-import com.kongzue.dialogx.dialogs.PopTip
-import com.kongzue.dialogx.interfaces.BottomDialogSlideEventLifecycleCallback
-import com.kongzue.dialogx.interfaces.OnBindView
-import com.kongzue.dialogx.interfaces.OnMenuButtonClickListener
-import com.kongzue.dialogx.interfaces.OnMenuItemSelectListener
-import com.kongzue.dialogx.util.TextInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -67,7 +54,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.animator.AlphaInAnimation
@@ -126,7 +112,10 @@ class ActivityAllApplications : UniversalActivityBase() {
         val progressColors = ContextCompat.getColor(this, R.color.swipe_refresh_layout_progress)
         swipeRefreshLayout.setColorSchemeColors(colorRed, colorGreen, colorBlue, colorOrange)
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(progressColors)
-        animatedVectorDrawable = AppCompatResources.getDrawable(this, R.drawable.progress_loading_manager) as AnimatedVectorDrawable
+        animatedVectorDrawable = AppCompatResources.getDrawable(
+            this,
+            R.drawable.progress_loading_manager
+        ) as AnimatedVectorDrawable
         loading.setImageDrawable(animatedVectorDrawable)
         animatedVectorDrawable!!.start()
         swipeRefreshLayout.isEnabled = false
@@ -137,7 +126,13 @@ class ActivityAllApplications : UniversalActivityBase() {
         val materialCardView = findViewById<MaterialCardView>(R.id.materialCardView)
         val baseColor = ContextCompat.getColor(context, R.color.background)
         val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-        materialCardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+        materialCardView.setCardBackgroundColor(
+            ColorUtils.blendARGB(
+                baseColor,
+                primaryColor,
+                0.15f
+            )
+        )
 
 //        recyclerView.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -161,6 +156,7 @@ class ActivityAllApplications : UniversalActivityBase() {
                             adapter.loadVisibleIcons()
                         }
                     }
+
                     RecyclerView.SCROLL_STATE_DRAGGING, RecyclerView.SCROLL_STATE_SETTLING -> {
                         adapter.setScrolling(true)
                     }
@@ -229,7 +225,11 @@ class ActivityAllApplications : UniversalActivityBase() {
                 if (searchQuery.isNotBlank()) {
                     searchApp(appsSearchBox.text)
                 } else {
-                    viewModel.loadApps(this@ActivityAllApplications, includeSystemApps, includeUserApps)
+                    viewModel.loadApps(
+                        this@ActivityAllApplications,
+                        includeSystemApps,
+                        includeUserApps
+                    )
                 }
                 animatedVectorDrawable!!.stop()
                 loading.isVisible = false
@@ -253,7 +253,8 @@ class ActivityAllApplications : UniversalActivityBase() {
 
     private fun clearEditFocus() {
         appsSearchBox.clearFocus()
-        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         // 在失去焦点后隐藏输入法键盘
         appsSearchBox.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
@@ -352,8 +353,10 @@ class ActivityAllApplications : UniversalActivityBase() {
     private fun showInstructionsDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_help_info, null)
         val dialog = DialogHelper.customDialog(this, dialogView)
-        dialogView.findViewById<TextView>(R.id.confirm_title).text = getString(R.string.dialog_title)
-        dialogView.findViewById<TextView>(R.id.confirm_message).text = getString(R.string.usage_instructions)
+        dialogView.findViewById<TextView>(R.id.confirm_title).text =
+            getString(R.string.dialog_title)
+        dialogView.findViewById<TextView>(R.id.confirm_message).text =
+            getString(R.string.usage_instructions)
 
         dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
             dialog.dismiss()
@@ -505,6 +508,7 @@ class ActivityAllApplications : UniversalActivityBase() {
          * 动画是否仅第一次执行
          */
         var isAnimationFirstOnly = true
+
         /**
          * Set custom animation.
          * 设置自定义动画
@@ -536,7 +540,8 @@ class ActivityAllApplications : UniversalActivityBase() {
             parent: ViewGroup,
             viewType: Int,
         ): AllApplicationViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_application_all, parent, false)
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_application_all, parent, false)
             return AllApplicationViewHolder(view, context)
         }
 
@@ -555,10 +560,16 @@ class ActivityAllApplications : UniversalActivityBase() {
             val iconDrawable = iconCache[appInfo.packageName]
             if (iconDrawable != null) {
                 holder.appIconImageView.setImageDrawable(iconDrawable)
-                Log.d("Adapter", "Using cached icon for position: $position, packageName: ${appInfo.packageName}")
+                Log.d(
+                    "Adapter",
+                    "Using cached icon for position: $position, packageName: ${appInfo.packageName}"
+                )
             } else {
                 holder.appIconImageView.setImageDrawable(null)
-                Log.d("Adapter", "Loading icon for position: $position, packageName: ${appInfo.packageName}")
+                Log.d(
+                    "Adapter",
+                    "Loading icon for position: $position, packageName: ${appInfo.packageName}"
+                )
 
                 if (!isScrolling) {
                     coroutineScope.launch {
@@ -586,20 +597,31 @@ class ActivityAllApplications : UniversalActivityBase() {
 //            setFadeAnimation(holder.itemView)
         }
 
-        inner class AllApplicationViewHolder(itemView: View, private val context: Context) : RecyclerView.ViewHolder(itemView) {
+        inner class AllApplicationViewHolder(itemView: View, private val context: Context) :
+            RecyclerView.ViewHolder(itemView) {
             private val appNameTextView: TextView = itemView.findViewById(R.id.app_name_text_view)
-            private val appPackageTextView: TextView = itemView.findViewById(R.id.app_package_text_view)
-            private val appVersionTextView: TextView = itemView.findViewById(R.id.app_version_text_view)
+            private val appPackageTextView: TextView =
+                itemView.findViewById(R.id.app_package_text_view)
+            private val appVersionTextView: TextView =
+                itemView.findViewById(R.id.app_version_text_view)
             private val appSizeTextView: TextView = itemView.findViewById(R.id.app_size_text_view)
             val appIconImageView: ImageView = itemView.findViewById(R.id.app_icon_image_view)
-            private val appMaterialCardView: MaterialCardView = itemView.findViewById(R.id.app_material_cardView)
+            private val appMaterialCardView: MaterialCardView =
+                itemView.findViewById(R.id.app_material_cardView)
             var packageName: String? = null
 
             init {
-                val materialCardView = itemView.findViewById<MaterialCardView>(R.id.app_material_cardView)
+                val materialCardView =
+                    itemView.findViewById<MaterialCardView>(R.id.app_material_cardView)
                 val baseColor = ContextCompat.getColor(context, R.color.background)
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-                materialCardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+                materialCardView.setCardBackgroundColor(
+                    ColorUtils.blendARGB(
+                        baseColor,
+                        primaryColor,
+                        0.15f
+                    )
+                )
                 appMaterialCardView.setOnClickListener {
                     val position = bindingAdapterPosition
                     if (position != RecyclerView.NO_POSITION) {
@@ -642,12 +664,14 @@ class ActivityAllApplications : UniversalActivityBase() {
         @SuppressLint("InflateParams")
         private fun showAppDetailsDialog(appInfo: AppInfo) {
             val packageManager = context.packageManager
-            val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_all_app_operation, null)
+            val dialogView =
+                LayoutInflater.from(context).inflate(R.layout.dialog_all_app_operation, null)
             val dialog = DialogHelper.customDialog(context, dialogView)
             dialogView.findViewById<TextView>(R.id.appName).text = appInfo.appName
             dialogView.findViewById<TextView>(R.id.appPackage).text = appInfo.packageName
             dialogView.findViewById<TextView>(R.id.appVersionName).text = appInfo.versionName
-            dialogView.findViewById<TextView>(R.id.appSize).text = getApkSize(context, appInfo.packageName)
+            dialogView.findViewById<TextView>(R.id.appSize).text =
+                getApkSize(context, appInfo.packageName)
 
             val appIcon = packageManager.getApplicationIcon(appInfo.packageName)
             dialogView.findViewById<ImageView>(R.id.appIcon).setImageDrawable(appIcon)
@@ -824,12 +848,16 @@ class ActivityAllApplications : UniversalActivityBase() {
                                 val holder =
                                     recyclerView.findViewHolderForAdapterPosition(position) as? AllApplicationViewHolder
                                 holder?.let {
-                                    Log.d("Adapter", "Loading icon for position: $position, packageName: ${appInfo.packageName}")
+                                    Log.d(
+                                        "Adapter",
+                                        "Loading icon for position: $position, packageName: ${appInfo.packageName}"
+                                    )
                                     val icon = getAppIconAsync(context, appInfo.packageName)
                                     iconCache[appInfo.packageName] = icon
                                     holder.appIconImageView.alpha = 0f
                                     holder.appIconImageView.setImageDrawable(icon)
-                                    holder.appIconImageView.animate().alpha(1f).setDuration(300).start()
+                                    holder.appIconImageView.animate().alpha(1f).setDuration(300)
+                                        .start()
                                 }
                             }
                         }
@@ -847,7 +875,10 @@ class ActivityAllApplications : UniversalActivityBase() {
                     icon
                 } catch (e: PackageManager.NameNotFoundException) {
                     e.printStackTrace()
-                    Log.e("Adapter", "Failed to retrieve icon for packageName: $packageName, error: ${e.message}")
+                    Log.e(
+                        "Adapter",
+                        "Failed to retrieve icon for packageName: $packageName, error: ${e.message}"
+                    )
                     null
                 }
             }

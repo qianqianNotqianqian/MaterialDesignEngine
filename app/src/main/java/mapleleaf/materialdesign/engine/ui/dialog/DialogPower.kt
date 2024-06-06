@@ -3,20 +3,9 @@ package mapleleaf.materialdesign.engine.ui.dialog
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.View
-import android.widget.Button
-import android.widget.CompoundButton
 import android.widget.TextView
-import com.kongzue.dialogx.dialogs.MessageDialog
-import com.kongzue.dialogx.interfaces.BottomDialogSlideEventLifecycleCallback
-import com.kongzue.dialogx.interfaces.OnBindView
-import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.R
-import mapleleaf.materialdesign.engine.popup.FloatMonitor
-import mapleleaf.materialdesign.engine.popup.FloatMonitorMini
-import mapleleaf.materialdesign.engine.popup.FloatTaskManager
 import mapleleaf.materialdesign.engine.shell.KeepShellPublic
-import mapleleaf.materialdesign.engine.utils.toast
-import org.w3c.dom.Text
 
 class DialogPower(var context: Activity) {
     @SuppressLint("InflateParams")
@@ -58,7 +47,8 @@ class DialogPower(var context: Activity) {
         val dialogView = context.layoutInflater.inflate(R.layout.dialog_power_operation_warn, null)
         val dialog = DialogHelper.customDialog(context, dialogView)
         dialogView.findViewById<TextView>(R.id.confirm_title).text = "重启到9008模式"
-        dialogView.findViewById<TextView>(R.id.confirm_message).text = "确认要重启到9008模式（DEL模式）？该功能可能极度危险，因为它可能造成设备无限重启，请谨慎使用"
+        dialogView.findViewById<TextView>(R.id.confirm_message).text =
+            "确认要重启到9008模式（DEL模式）？该功能可能极度危险，因为它可能造成设备无限重启，请谨慎使用"
         dialogView.findViewById<View>(R.id.power_emergency).setOnClickListener {
             dialog.dismiss()
             KeepShellPublic.doCmdSync(context.getString(R.string.power_emergency_cmd))

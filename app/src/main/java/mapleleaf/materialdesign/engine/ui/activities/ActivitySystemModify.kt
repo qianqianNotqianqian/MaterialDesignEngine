@@ -58,8 +58,15 @@ class ActivitySystemModify : UniversalActivityBase() {
 
         val materialCardView = findViewById<MaterialCardView>(R.id.materialCardView)
         val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background)
-        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-        materialCardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+        val primaryColor =
+            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+        materialCardView.setCardBackgroundColor(
+            ColorUtils.blendARGB(
+                baseColor,
+                primaryColor,
+                0.15f
+            )
+        )
         initItem(this.systemModifyListView)
     }
 

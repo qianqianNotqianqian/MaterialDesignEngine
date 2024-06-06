@@ -3,7 +3,6 @@ package mapleleaf.materialdesign.engine.ui.activities
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import android.util.Log
@@ -242,12 +241,15 @@ class ActivityApplicationDex : UniversalActivityBase() {
 
         class ApplicationDexViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             private val dexMethodsTextView: TextView = itemView.findViewById(R.id.dexMethods)
-            private val appDetailsMaterialCardView = itemView.findViewById<MaterialCardView>(R.id.appDetailsMaterialCardView)
+            private val appDetailsMaterialCardView =
+                itemView.findViewById<MaterialCardView>(R.id.appDetailsMaterialCardView)
 
             fun bind(methodName: String) {
                 dexMethodsTextView.text = methodName
-                val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
-                val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+                val baseColor =
+                    ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
+                val primaryColor =
+                    ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
                 val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
                 appDetailsMaterialCardView.setCardBackgroundColor(blendedColor)
             }

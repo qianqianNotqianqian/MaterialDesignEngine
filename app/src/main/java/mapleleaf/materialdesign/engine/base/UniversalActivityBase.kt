@@ -1,6 +1,5 @@
 package mapleleaf.materialdesign.engine.base
 
-import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -13,9 +12,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.drawable.DrawableCompat
-import com.kongzue.dialogx.DialogX
-import com.kongzue.dialogx.style.MIUIStyle
-import com.kongzue.dialogxmaterialyou.style.MaterialYouStyle
 import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.utils.StatusBarColorExtractor
@@ -61,8 +57,10 @@ abstract class UniversalActivityBase : AppCompatActivity() {
 
     private fun initToolbar() {
         toolbar = findViewById(R.id.toolbar)
-        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
-        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+        val baseColor =
+            ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
+        val primaryColor =
+            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
         toolbar!!.setBackgroundColor(blendedColor)
         setSupportActionBar(toolbar)

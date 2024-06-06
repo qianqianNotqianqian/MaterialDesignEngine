@@ -1,27 +1,30 @@
 package com.kongzue.dialogxdemo.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+import androidx.core.view.MenuProvider;
 import androidx.core.view.WindowCompat;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.kongzue.dialogx.dialogs.BottomDialog;
 import com.kongzue.dialogx.util.views.DialogXBaseRelativeLayout;
 
 import mapleleaf.materialdesign.engine.R;
+import mapleleaf.materialdesign.engine.base.UniversalActivityBase;
 
-public class TestMainActivity extends AppCompatActivity {
+public class ActivityTestMain extends UniversalActivityBase {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_test);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorAccent));
-        }
+    protected int getLayoutResourceId() {
+        return R.layout.activity_main_test;
+    }
+
+    @Override
+    protected void initializeComponents(@Nullable Bundle savedInstanceState) {
+//        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorAccent));
 
         DialogXBaseRelativeLayout.debugMode = true;
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
@@ -78,5 +81,10 @@ public class TestMainActivity extends AppCompatActivity {
 //                }
 //            });
         });
+    }
+
+    @Override
+    public void addMenuProvider(@NonNull MenuProvider provider, @NonNull LifecycleOwner owner, @NonNull Lifecycle.State state) {
+
     }
 }

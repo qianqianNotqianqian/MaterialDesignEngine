@@ -13,16 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-
-import mapleleaf.materialdesign.engine.view.SunfushengMarqueeView;
-import mapleleaf.materialdesign.engine.model.SunfushengMarqueeCustomModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import mapleleaf.materialdesign.engine.R;
+import mapleleaf.materialdesign.engine.model.SunfushengMarqueeCustomModel;
+import mapleleaf.materialdesign.engine.view.SunfushengMarqueeView;
 
 /**
  * @author by sunfusheng on 2017/8/8.

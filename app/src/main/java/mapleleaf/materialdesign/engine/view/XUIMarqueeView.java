@@ -61,6 +61,7 @@ public class XUIMarqueeView extends ViewFlipper {
 
     /**
      * 设置滚动数据的工厂
+     *
      * @param factory
      */
     public void setMarqueeFactory(XUIMarqueeFactory factory) {
@@ -76,6 +77,7 @@ public class XUIMarqueeView extends ViewFlipper {
 
     /**
      * 设置翻页时间间隔
+     *
      * @param interval
      */
     public void setInterval(int interval) {
@@ -85,6 +87,7 @@ public class XUIMarqueeView extends ViewFlipper {
 
     /**
      * 设置动画执行时间
+     *
      * @param animDuration
      */
     public void setAnimDuration(int animDuration) {

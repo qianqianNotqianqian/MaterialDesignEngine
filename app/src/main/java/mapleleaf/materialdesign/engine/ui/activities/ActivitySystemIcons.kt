@@ -4,12 +4,10 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.BatteryManager
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.lifecycleScope
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
@@ -72,8 +70,10 @@ class ActivitySystemIcons : UniversalActivityBase() {
             playAnimatedVectorDrawable(loop, R.drawable.avd_flip)
 
             // 切换手指动画
-            val drawableId = if (isAnimation1Playing) R.drawable.fingerprint_dialog_error_to_fp else R.drawable.fingerprint_dialog_fp_to_error
-            val animationDrawable = AnimatedVectorDrawableCompat.create(this@ActivitySystemIcons, drawableId)
+            val drawableId =
+                if (isAnimation1Playing) R.drawable.fingerprint_dialog_error_to_fp else R.drawable.fingerprint_dialog_fp_to_error
+            val animationDrawable =
+                AnimatedVectorDrawableCompat.create(this@ActivitySystemIcons, drawableId)
             finger.setImageDrawable(animationDrawable)
             animationDrawable?.start()
             isAnimation1Playing = !isAnimation1Playing
@@ -81,7 +81,8 @@ class ActivitySystemIcons : UniversalActivityBase() {
     }
 
     private fun playAnimatedVectorDrawable(imageView: ImageView, drawableResId: Int) {
-        val animatedVectorDrawable = AnimatedVectorDrawableCompat.create(this@ActivitySystemIcons, drawableResId)
+        val animatedVectorDrawable =
+            AnimatedVectorDrawableCompat.create(this@ActivitySystemIcons, drawableResId)
         imageView.setImageDrawable(animatedVectorDrawable)
         animatedVectorDrawable?.start()
     }

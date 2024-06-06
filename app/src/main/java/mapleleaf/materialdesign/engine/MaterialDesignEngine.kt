@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.kongzue.baseframework.BaseApp
 import com.kongzue.dialogx.DialogX
-import com.kongzue.dialogx.style.MIUIStyle
 import com.kongzue.dialogxmaterialyou.style.MaterialYouStyle
 import mapleleaf.materialdesign.engine.store.SpfConfig
 

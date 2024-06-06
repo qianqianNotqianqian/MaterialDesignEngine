@@ -59,8 +59,10 @@ class FragmentGetWelfare : UniversalFragmentBase() {
             }
 
             val toolbar = rootView.findViewById<Toolbar>(R.id.toolbar)
-            val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
-            val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+            val baseColor =
+                ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
+            val primaryColor =
+                ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
             val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
             toolbar.setBackgroundColor(blendedColor)
 

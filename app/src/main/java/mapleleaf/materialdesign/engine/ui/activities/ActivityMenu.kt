@@ -14,8 +14,6 @@ import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
@@ -151,7 +149,12 @@ class ActivityMenu : UniversalActivityBase() {
             R.drawable.ic_app_manager,
             R.string.application_manager
         ) {
-            this@ActivityMenu.startActivity(Intent(this@ActivityMenu, ActivityAllApplications::class.java))
+            this@ActivityMenu.startActivity(
+                Intent(
+                    this@ActivityMenu,
+                    ActivityAllApplications::class.java
+                )
+            )
         }
         setNavigationViewMenuItem(
             R.id.item_support,
@@ -339,7 +342,12 @@ class ActivityMenu : UniversalActivityBase() {
             R.drawable.ic_tab_system_app,
             R.string.dialog_style
         ) {
-            this@ActivityMenu.startActivity(Intent(this@ActivityMenu, ActivityDialogStyle::class.java))
+            this@ActivityMenu.startActivity(
+                Intent(
+                    this@ActivityMenu,
+                    ActivityDialogStyle::class.java
+                )
+            )
         }
 
         setNavigationViewMenuItem(R.id.item_exit, R.drawable.ic_exit, R.string.exit) {
@@ -923,7 +931,7 @@ class ActivityMenu : UniversalActivityBase() {
             }
 
             R.id.start_menu_change_icon -> {
-                val dialogView = layoutInflater.inflate(R.layout.layout_custom_recycleview, null)
+                val dialogView = layoutInflater.inflate(R.layout.layout_change_icons, null)
                 val dialog = DialogHelper.customDialog(this, dialogView)
                 dialogView.findViewById<TextView>(R.id.confirm_title).text =
                     getString(R.string.dialog_title)
@@ -951,6 +959,10 @@ class ActivityMenu : UniversalActivityBase() {
                     }
                     adapter.updateIcons(loadedIcons)
                     progressBar.isVisible = false
+                }
+
+                dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                    dialog.dismiss()
                 }
 
                 dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
@@ -1045,9 +1057,6 @@ class ActivityMenu : UniversalActivityBase() {
                             PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                             PackageManager.DONT_KILL_APP
                         )
-                    }
-                    dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
-                        dialog.dismiss()
                     }
                 }
                 return true

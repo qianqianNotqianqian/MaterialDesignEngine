@@ -1,6 +1,5 @@
 package mapleleaf.materialdesign.engine.utils
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.UiModeManager
 import android.app.WallpaperManager

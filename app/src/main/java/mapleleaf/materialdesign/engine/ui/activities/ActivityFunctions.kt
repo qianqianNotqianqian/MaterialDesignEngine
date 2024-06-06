@@ -76,8 +76,10 @@ class ActivityFunctions : UniversalActivityBase() {
             loading.isVisible = false
         }
 
-        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
-        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+        val baseColor =
+            ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
+        val primaryColor =
+            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
         appBarLayout.setBackgroundColor(blendedColor)
     }

@@ -13,9 +13,6 @@ import androidx.core.view.isVisible
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
-import mapleleaf.materialdesign.engine.ui.fragments.FragmentMarqueeCommon
-import mapleleaf.materialdesign.engine.ui.fragments.FragmentMarqueeRecycleView
-import mapleleaf.materialdesign.engine.ui.adapter.AdapterFragmentPagerItem
 import com.xuexiang.rxutil2.rxjava.RxJavaUtils
 import com.xuexiang.xui.widget.textview.MarqueeTextView
 import com.xuexiang.xui.widget.textview.marqueen.ComplexItemEntity
@@ -23,12 +20,15 @@ import com.xuexiang.xui.widget.textview.marqueen.DisplayEntity
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
+import mapleleaf.materialdesign.engine.ui.adapter.AdapterFragmentPagerItem
+import mapleleaf.materialdesign.engine.ui.fragments.FragmentMarqueeCommon
+import mapleleaf.materialdesign.engine.ui.fragments.FragmentMarqueeRecycleView
 import mapleleaf.materialdesign.engine.utils.ComplexViewMF
 import mapleleaf.materialdesign.engine.utils.toast
 import mapleleaf.materialdesign.engine.view.XUIMarqueeFactory
 import mapleleaf.materialdesign.engine.view.XUIMarqueeView
 
-class ActivityMarqueeView: UniversalActivityBase() {
+class ActivityMarqueeView : UniversalActivityBase() {
 
     private lateinit var marqueeViewXUI1: XUIMarqueeView
     private lateinit var marqueeViewXUI2: XUIMarqueeView
@@ -63,10 +63,12 @@ class ActivityMarqueeView: UniversalActivityBase() {
         initMarqueeView()
 
         val adapter = AdapterFragmentPagerItem.Builder(this, supportFragmentManager)
-            .add("Common",
+            .add(
+                "Common",
                 FragmentMarqueeCommon()
             )
-            .add("RecyclerView",
+            .add(
+                "RecyclerView",
                 FragmentMarqueeRecycleView()
             )
             .build()
@@ -87,28 +89,31 @@ class ActivityMarqueeView: UniversalActivityBase() {
             "远芳侵古道，晴翠接荒城。",
             "又送王孙去，萋萋满别情。"
         )
-        val marqueeFactoryXUI1: XUIMarqueeFactory<TextView, String> = object : XUIMarqueeFactory<TextView, String>(
-            context) {
-            override fun generateMarqueeItemView(data: String): TextView {
-                // 根据 data 生成一个 TextView
-                val textView = TextView(context)
-                textView.text = data
-                return textView
+        val marqueeFactoryXUI1: XUIMarqueeFactory<TextView, String> =
+            object : XUIMarqueeFactory<TextView, String>(
+                context
+            ) {
+                override fun generateMarqueeItemView(data: String): TextView {
+                    // 根据 data 生成一个 TextView
+                    val textView = TextView(context)
+                    textView.text = data
+                    return textView
+                }
             }
-        }
 
         marqueeViewXUI1.setMarqueeFactory(marqueeFactoryXUI1)
         marqueeViewXUI1.startFlipping()
         marqueeFactoryXUI1.setOnItemClickListener { _, holder -> toast(holder.data) }
         marqueeFactoryXUI1.setData(datas)
 
-        val marqueeFactoryXUI2: XUIMarqueeFactory<TextView, String> = object : XUIMarqueeFactory<TextView, String>(this) {
-            override fun generateMarqueeItemView(data: String?): TextView {
-                val textView = TextView(context)
-                textView.text = data
-                return textView
+        val marqueeFactoryXUI2: XUIMarqueeFactory<TextView, String> =
+            object : XUIMarqueeFactory<TextView, String>(this) {
+                override fun generateMarqueeItemView(data: String?): TextView {
+                    val textView = TextView(context)
+                    textView.text = data
+                    return textView
+                }
             }
-        }
         marqueeFactoryXUI2.setOnItemClickListener { _, holder -> toast(holder.data) }
         marqueeFactoryXUI2.setData(datas)
         marqueeViewXUI2.setMarqueeFactory(marqueeFactoryXUI2)

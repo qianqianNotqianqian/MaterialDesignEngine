@@ -51,7 +51,8 @@ object StatusBarUtil {
         var statusBarHeight = localRect.top
 
         if (statusBarHeight == 0) {
-            val resourceId = context.resources.getIdentifier("status_bar_height", "dimen", "android")
+            val resourceId =
+                context.resources.getIdentifier("status_bar_height", "dimen", "android")
             if (resourceId > 0) {
                 statusBarHeight = context.resources.getDimensionPixelSize(resourceId)
             }

@@ -67,7 +67,7 @@ import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.Random
 
-class ActivityKongzueDialog: UniversalActivityBase() {
+class ActivityKongzueDialog : UniversalActivityBase() {
 
     private val singleSelectMenuText = arrayOf("拒绝", "询问", "始终允许", "仅在使用中允许")
     private val multiSelectMenuText = arrayOf("上海", "北京", "广州", "深圳")
@@ -224,8 +224,11 @@ class ActivityKongzueDialog: UniversalActivityBase() {
             when (checkedId) {
                 R.id.rdo_mode_view -> DialogX.implIMPLMode = DialogX.IMPL_MODE.VIEW
                 R.id.rdo_mode_window -> DialogX.implIMPLMode = DialogX.IMPL_MODE.WINDOW
-                R.id.rdo_mode_dialogFragment -> DialogX.implIMPLMode = DialogX.IMPL_MODE.DIALOG_FRAGMENT
-                R.id.rdo_mode_floatingActivity -> DialogX.implIMPLMode = DialogX.IMPL_MODE.FLOATING_ACTIVITY
+                R.id.rdo_mode_dialogFragment -> DialogX.implIMPLMode =
+                    DialogX.IMPL_MODE.DIALOG_FRAGMENT
+
+                R.id.rdo_mode_floatingActivity -> DialogX.implIMPLMode =
+                    DialogX.IMPL_MODE.FLOATING_ACTIVITY
             }
         }
 
@@ -246,6 +249,7 @@ class ActivityKongzueDialog: UniversalActivityBase() {
                     DialogX.globalStyle = MaterialStyle.style()
                     DialogX.cancelButtonText = ""
                 }
+
                 R.id.rdo_kongzue -> DialogX.globalStyle = KongzueStyle.style()
                 R.id.rdo_ios -> DialogX.globalStyle = IOSStyle.style()
                 R.id.rdo_miui -> DialogX.globalStyle = MIUIStyle.style()
@@ -256,7 +260,12 @@ class ActivityKongzueDialog: UniversalActivityBase() {
         btnContextMenu.setOnClickListener {
             PopMenu.show("添加", "编辑", "删除", "分享")
                 .disableMenu("编辑", "删除")
-                .setIconResIds(R.mipmap.img_dialogx_demo_add, R.mipmap.img_dialogx_demo_edit, R.mipmap.img_dialogx_demo_delete, R.mipmap.img_dialogx_demo_share)
+                .setIconResIds(
+                    R.mipmap.img_dialogx_demo_add,
+                    R.mipmap.img_dialogx_demo_edit,
+                    R.mipmap.img_dialogx_demo_delete,
+                    R.mipmap.img_dialogx_demo_share
+                )
                 .setOnMenuItemClickListener { dialog, text, index ->
                     if (index == 0) {
                         dialog.setMenuList(arrayOf("产品A", "产品B", "产品C"))
@@ -296,10 +305,18 @@ class ActivityKongzueDialog: UniversalActivityBase() {
         }
 
         btnSelectDialog.setOnClickListener {
-            val messageDialog = MessageDialog("多选对话框", "移除App会将它从主屏幕移除并保留其所有数据。", "删除App", "取消", "移至App资源库")
+            val messageDialog = MessageDialog(
+                "多选对话框",
+                "移除App会将它从主屏幕移除并保留其所有数据。",
+                "删除App",
+                "取消",
+                "移至App资源库"
+            )
                 .setButtonOrientation(LinearLayout.VERTICAL)
             if (!rdoMiui.isChecked) {
-                messageDialog.setOkTextInfo(TextInfo().setFontColor(Color.parseColor("#EB5545")).setBold(true))
+                messageDialog.setOkTextInfo(
+                    TextInfo().setFontColor(Color.parseColor("#EB5545")).setBold(true)
+                )
             }
             messageDialog.show()
         }
@@ -320,7 +337,12 @@ class ActivityKongzueDialog: UniversalActivityBase() {
                 .setMessage("这里是权限确认的文本说明，这是一个演示菜单")
                 .setTitle("获得权限标题")
                 .setOnMenuItemClickListener(object : OnMenuItemSelectListener<MessageMenu>() {
-                    override fun onOneItemSelect(dialog: MessageMenu, text: CharSequence, index: Int, select: Boolean) {
+                    override fun onOneItemSelect(
+                        dialog: MessageMenu,
+                        text: CharSequence,
+                        index: Int,
+                        select: Boolean,
+                    ) {
                         selectMenuIndex = index
                     }
                 })
@@ -336,7 +358,11 @@ class ActivityKongzueDialog: UniversalActivityBase() {
                 .setMessage("这里是选择城市的模拟范例，这是一个演示菜单")
                 .setTitle("请选择城市")
                 .setOnMenuItemClickListener(object : OnMenuItemSelectListener<MessageMenu>() {
-                    override fun onMultiItemSelect(dialog: MessageMenu, text: Array<out CharSequence>, index: IntArray) {
+                    override fun onMultiItemSelect(
+                        dialog: MessageMenu,
+                        text: Array<out CharSequence>,
+                        index: IntArray,
+                    ) {
                         multiSelectMenuResultCache = ""
                         for (c in text) {
                             multiSelectMenuResultCache += " $c"
@@ -396,11 +422,12 @@ class ActivityKongzueDialog: UniversalActivityBase() {
         btnTipProgress.setOnClickListener {
             waitId = 0
             WaitDialog.show("假装连接...").setOnBackPressedListener { dialog ->
-                MessageDialog.show("正在进行", "是否取消？", "是", "否").setOkButton { baseDialog, v1 ->
-                    waitId = -1
-                    WaitDialog.dismiss()
-                    false
-                }
+                MessageDialog.show("正在进行", "是否取消？", "是", "否")
+                    .setOkButton { baseDialog, v1 ->
+                        waitId = -1
+                        WaitDialog.dismiss()
+                        false
+                    }
                 false
             }
             handler.postDelayed({
@@ -429,7 +456,8 @@ class ActivityKongzueDialog: UniversalActivityBase() {
         }
 
         btnBottomDialog.setOnClickListener {
-            val s = if (rdoMaterial.isChecked) "你可以向下滑动来关闭这个对话框" else "你可以点击空白区域或返回键来关闭这个对话框"
+            val s =
+                if (rdoMaterial.isChecked) "你可以向下滑动来关闭这个对话框" else "你可以点击空白区域或返回键来关闭这个对话框"
             BottomDialog("标题", "这里是对话框内容。\n$s。\n底部对话框也支持自定义布局扩展使用方式。",
                 object : OnBindView<BottomDialog>(R.layout.layout_custom_view) {
                     override fun onBind(dialog: BottomDialog, v: View) {
@@ -459,9 +487,42 @@ class ActivityKongzueDialog: UniversalActivityBase() {
                 // Material 可滑动展开 BottomMenu 演示
                 BottomMenu.build()
                     .setBottomDialogMaxHeight(0.6f)
-                    .setMenuList(arrayOf("添加", "查看", "编辑", "删除", "分享", "评论", "下载", "收藏", "赞！", "不喜欢", "所属专辑", "复制链接", "类似推荐", "添加", "查看", "编辑", "删除", "分享", "评论", "下载", "收藏", "赞！", "不喜欢", "所属专辑", "复制链接", "类似推荐"))
+                    .setMenuList(
+                        arrayOf(
+                            "添加",
+                            "查看",
+                            "编辑",
+                            "删除",
+                            "分享",
+                            "评论",
+                            "下载",
+                            "收藏",
+                            "赞！",
+                            "不喜欢",
+                            "所属专辑",
+                            "复制链接",
+                            "类似推荐",
+                            "添加",
+                            "查看",
+                            "编辑",
+                            "删除",
+                            "分享",
+                            "评论",
+                            "下载",
+                            "收藏",
+                            "赞！",
+                            "不喜欢",
+                            "所属专辑",
+                            "复制链接",
+                            "类似推荐"
+                        )
+                    )
                     .setOnIconChangeCallBack(object : OnIconChangeCallBack<BottomMenu>() {
-                        override fun getIcon(bottomMenu: BottomMenu, index: Int, menuText: String): Int {
+                        override fun getIcon(
+                            bottomMenu: BottomMenu,
+                            index: Int,
+                            menuText: String,
+                        ): Int {
                             return when (menuText) {
                                 "添加" -> R.mipmap.img_dialogx_demo_add
                                 "查看" -> R.mipmap.img_dialogx_demo_view
@@ -488,8 +549,13 @@ class ActivityKongzueDialog: UniversalActivityBase() {
             } else {
                 BottomMenu.show("新标签页中打开", "稍后阅读", "复制链接网址")
                     .setMessage("http://www.kongzue.com/DialogX")
-                    .setMenuItemTextInfoInterceptor(object : MenuItemTextInfoInterceptor<BottomMenu>() {
-                        override fun menuItemTextInfo(dialog: BottomMenu, index: Int, menuText: String): TextInfo? {
+                    .setMenuItemTextInfoInterceptor(object :
+                        MenuItemTextInfoInterceptor<BottomMenu>() {
+                        override fun menuItemTextInfo(
+                            dialog: BottomMenu,
+                            index: Int,
+                            menuText: String,
+                        ): TextInfo? {
                             return if (index == 2) {
                                 TextInfo().setFontColor(Color.RED).setBold(true)
                             } else null
@@ -503,7 +569,8 @@ class ActivityKongzueDialog: UniversalActivityBase() {
         }
 
         btnBottomReply.setOnClickListener {
-            BottomDialog.show(object : OnBindView<BottomDialog>(if (rdoDark.isChecked) R.layout.layout_custom_reply_dark else R.layout.layout_custom_reply) {
+            BottomDialog.show(object :
+                OnBindView<BottomDialog>(if (rdoDark.isChecked) R.layout.layout_custom_reply_dark else R.layout.layout_custom_reply) {
                 override fun onBind(dialog: BottomDialog, v: View) {
                     btnReplyCommit = v.findViewById(R.id.btn_reply_commit)
                     editReplyCommit = v.findViewById(R.id.edit_reply_commit)
@@ -518,8 +585,14 @@ class ActivityKongzueDialog: UniversalActivityBase() {
         }
 
         btnCustomMessageDialog.setOnClickListener {
-            MessageDialog.show("这里是标题", "此对话框演示的是自定义对话框内部布局的效果", "确定", "取消")
-                .setDialogLifecycleCallback(object : BottomDialogSlideEventLifecycleCallback<MessageDialog>() {
+            MessageDialog.show(
+                "这里是标题",
+                "此对话框演示的是自定义对话框内部布局的效果",
+                "确定",
+                "取消"
+            )
+                .setDialogLifecycleCallback(object :
+                    BottomDialogSlideEventLifecycleCallback<MessageDialog>() {
                     override fun onShow(dialog: MessageDialog) {
                         super.onShow(dialog)
                         dialog.dialogImpl.txtDialogTip.setPadding(0, dip2px(20f), 0, 0)
@@ -533,7 +606,12 @@ class ActivityKongzueDialog: UniversalActivityBase() {
         }
 
         btnCustomInputDialog.setOnClickListener {
-            InputDialog.show("这里是标题", "此对话框演示的是自定义对话框内部布局的效果", "确定", "取消")
+            InputDialog.show(
+                "这里是标题",
+                "此对话框演示的是自定义对话框内部布局的效果",
+                "确定",
+                "取消"
+            )
                 .setCustomView(object : OnBindView<MessageDialog>(R.layout.layout_custom_view) {
                     override fun onBind(dialog: MessageDialog, v: View) {
                         // Custom view binding logic here
@@ -566,9 +644,11 @@ class ActivityKongzueDialog: UniversalActivityBase() {
         }
 
         btnShowGuideBaseViewRectangle.setOnClickListener {
-            GuideDialog.show(btnCustomDialogAlign,
+            GuideDialog.show(
+                btnCustomDialogAlign,
                 GuideDialog.STAGE_LIGHT_TYPE.RECTANGLE,
-                R.mipmap.img_tip_login_clicktest)
+                R.mipmap.img_tip_login_clicktest
+            )
                 .setStageLightFilletRadius(dip2px(5f).toFloat())
                 .setBaseViewMarginTop(-dip2px(30f))
                 .setOnBackgroundMaskClickListener { dialog, v17 ->
@@ -595,12 +675,16 @@ class ActivityKongzueDialog: UniversalActivityBase() {
                     },
                 PopTip.build().setMessage("每个对话框会依次显示"),
                 PopNotification.build().setTitle("通知提示").setMessage("直到上一个对话框消失"),
-                InputDialog.build().setTitle("请注意").setMessage("你必须使用 .build() 方法构建，并保证不要自己执行 .show() 方法").setInputText("输入文字").setOkButton("知道了"),
-                TipDialog.build().setMessageContent("准备结束...").setTipType(WaitDialog.TYPE.SUCCESS),
+                InputDialog.build().setTitle("请注意")
+                    .setMessage("你必须使用 .build() 方法构建，并保证不要自己执行 .show() 方法")
+                    .setInputText("输入文字").setOkButton("知道了"),
+                TipDialog.build().setMessageContent("准备结束...")
+                    .setTipType(WaitDialog.TYPE.SUCCESS),
                 BottomDialog.build()
                     .setTitle("结束")
                     .setMessage("下滑以结束旅程，祝你编码愉快！")
-                    .setCustomView(object : OnBindView<BottomDialog>(R.layout.layout_custom_dialog) {
+                    .setCustomView(object :
+                        OnBindView<BottomDialog>(R.layout.layout_custom_dialog) {
                         override fun onBind(dialog: BottomDialog, v: View) {
                             val btnOk: ImageView = v.findViewById(R.id.btn_ok)
                             btnOk.setOnClickListener { v110 -> dialog.dismiss() }
@@ -614,26 +698,28 @@ class ActivityKongzueDialog: UniversalActivityBase() {
                 // 采用异步加载布局防止卡顿测试
                 var onBindView: OnBindView<FullScreenDialog>? = null
                 override fun onClick(v: View) {
-                    onBindView = object : OnBindView<FullScreenDialog>(R.layout.layout_full_login, true) {
-                        override fun onBind(dialog: FullScreenDialog, v: View) {
-                            btnCancel = v.findViewById(R.id.btn_cancel)
-                            btnSubmit = v.findViewById(R.id.btn_submit)
-                            boxUserName = v.findViewById(R.id.box_userName)
-                            editUserName = v.findViewById(R.id.edit_userName)
-                            boxPassword = v.findViewById(R.id.box_password)
-                            editPassword = v.findViewById(R.id.edit_password)
-                            btnLicense = v.findViewById(R.id.btn_license)
+                    onBindView =
+                        object : OnBindView<FullScreenDialog>(R.layout.layout_full_login, true) {
+                            override fun onBind(dialog: FullScreenDialog, v: View) {
+                                btnCancel = v.findViewById(R.id.btn_cancel)
+                                btnSubmit = v.findViewById(R.id.btn_submit)
+                                boxUserName = v.findViewById(R.id.box_userName)
+                                editUserName = v.findViewById(R.id.edit_userName)
+                                boxPassword = v.findViewById(R.id.box_password)
+                                editPassword = v.findViewById(R.id.edit_password)
+                                btnLicense = v.findViewById(R.id.btn_license)
 
 //                            initFullScreenLoginDemo(dialog)
+                            }
                         }
-                    }
                     FullScreenDialog.show(onBindView)
                 }
             }.onClick(btnFullScreenDialogLogin) // 触发点击事件
         }
 
         btnFullScreenDialogWebPage.setOnClickListener {
-            FullScreenDialog.show(object : OnBindView<FullScreenDialog>(R.layout.layout_full_webview) {
+            FullScreenDialog.show(object :
+                OnBindView<FullScreenDialog>(R.layout.layout_full_webview) {
                 @SuppressLint("SetJavaScriptEnabled")
                 override fun onBind(dialog: FullScreenDialog, v: View) {
                     btnClose = v.findViewById(R.id.btn_close)
@@ -686,7 +772,8 @@ class ActivityKongzueDialog: UniversalActivityBase() {
         }
 
         btnCustomDialogAlign.setOnClickListener {
-            CustomDialog.show(object : OnBindView<CustomDialog>(R.layout.layout_custom_dialog_align) {
+            CustomDialog.show(object :
+                OnBindView<CustomDialog>(R.layout.layout_custom_dialog_align) {
                 override fun onBind(dialog: CustomDialog, v: View) {
                     val btnSelectPositive = v.findViewById<TextView>(R.id.btn_selectPositive)
                     btnSelectPositive.setOnClickListener {
@@ -699,7 +786,10 @@ class ActivityKongzueDialog: UniversalActivityBase() {
                 .setMaskColor(ContextCompat.getColor(context, com.kongzue.dialogx.R.color.black30))
                 .setEnterAnimResId(R.anim.anim_custom_pop_enter)
                 .setExitAnimResId(R.anim.anim_custom_pop_exit)
-                .setAlignBaseViewGravity(btnCustomDialogAlign, Gravity.TOP or Gravity.CENTER_HORIZONTAL)
+                .setAlignBaseViewGravity(
+                    btnCustomDialogAlign,
+                    Gravity.TOP or Gravity.CENTER_HORIZONTAL
+                )
                 .setBaseViewMarginBottom(-dip2px(45f))
                 .show()
         }
@@ -800,7 +890,12 @@ class ActivityKongzueDialog: UniversalActivityBase() {
                 .setMessage("这里是权限确认的文本说明，这是一个演示菜单")
                 .setTitle("获得权限标题")
                 .setOnMenuItemClickListener(object : OnMenuItemSelectListener<BottomMenu>() {
-                    override fun onOneItemSelect(dialog: BottomMenu, text: CharSequence, index: Int, select: Boolean) {
+                    override fun onOneItemSelect(
+                        dialog: BottomMenu,
+                        text: CharSequence,
+                        index: Int,
+                        select: Boolean,
+                    ) {
                         selectMenuIndex = index
                     }
                 })
@@ -816,7 +911,11 @@ class ActivityKongzueDialog: UniversalActivityBase() {
                 .setMessage("这里是选择城市的模拟范例，这是一个演示菜单")
                 .setTitle("请选择城市")
                 .setOnMenuItemClickListener(object : OnMenuItemSelectListener<BottomMenu>() {
-                    override fun onMultiItemSelect(dialog: BottomMenu, text: Array<out CharSequence>, index: IntArray) {
+                    override fun onMultiItemSelect(
+                        dialog: BottomMenu,
+                        text: Array<out CharSequence>,
+                        index: IntArray,
+                    ) {
                         multiSelectMenuResultCache = ""
                         for (c in text) {
                             multiSelectMenuResultCache += " $c"
@@ -833,7 +932,9 @@ class ActivityKongzueDialog: UniversalActivityBase() {
         handler = Handler(Looper.getMainLooper())
         setToolbarTitle(getString(R.string.toolbar_title_activity_kongzue_dialog))
     }
+
     private var notificationIndex = 0
+
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         log("#MainActivity.onBackPressed")

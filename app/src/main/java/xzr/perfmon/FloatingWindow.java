@@ -1,5 +1,21 @@
 package xzr.perfmon;
 
+import static mapleleaf.materialdesign.engine.utils.TopLevelFuncationKt.toast;
+import static xzr.perfmon.RefreshingDateThread.adrenofreq;
+import static xzr.perfmon.RefreshingDateThread.adrenoload;
+import static xzr.perfmon.RefreshingDateThread.cpubw;
+import static xzr.perfmon.RefreshingDateThread.cpufreq;
+import static xzr.perfmon.RefreshingDateThread.cpuload;
+import static xzr.perfmon.RefreshingDateThread.cpuonline;
+import static xzr.perfmon.RefreshingDateThread.current;
+import static xzr.perfmon.RefreshingDateThread.fps;
+import static xzr.perfmon.RefreshingDateThread.gpubw;
+import static xzr.perfmon.RefreshingDateThread.llcbw;
+import static xzr.perfmon.RefreshingDateThread.m4m;
+import static xzr.perfmon.RefreshingDateThread.maxtemp;
+import static xzr.perfmon.RefreshingDateThread.memusage;
+import static xzr.perfmon.RefreshingDateThread.mincpubw;
+
 import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
@@ -18,36 +34,18 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import static mapleleaf.materialdesign.engine.utils.TopLevelFuncationKt.toast;
-import static xzr.perfmon.RefreshingDateThread.adrenofreq;
-import static xzr.perfmon.RefreshingDateThread.adrenoload;
-import static xzr.perfmon.RefreshingDateThread.cpubw;
-import static xzr.perfmon.RefreshingDateThread.cpufreq;
-import static xzr.perfmon.RefreshingDateThread.cpuload;
-import static xzr.perfmon.RefreshingDateThread.cpuonline;
-import static xzr.perfmon.RefreshingDateThread.current;
-import static xzr.perfmon.RefreshingDateThread.fps;
-import static xzr.perfmon.RefreshingDateThread.gpubw;
-import static xzr.perfmon.RefreshingDateThread.llcbw;
-import static xzr.perfmon.RefreshingDateThread.m4m;
-import static xzr.perfmon.RefreshingDateThread.maxtemp;
-import static xzr.perfmon.RefreshingDateThread.memusage;
-import static xzr.perfmon.RefreshingDateThread.mincpubw;
-
 import mapleleaf.materialdesign.engine.R;
 
 public class FloatingWindow extends Service {
-    static String TAG = "FloatingWindow";
     public static boolean doExit = true;
+    static String TAG = "FloatingWindow";
     static WindowManager.LayoutParams params;
     static WindowManager windowManager;
     static int statusBarHeight = -1;
-    LinearLayout main;
     static TextView line[];
     static int linen;
     static Handler uiRefresher;
     static float sizeMultipleNow;
-
     static boolean showCpufreqNow;
     static boolean showCpuloadNow;
     static boolean showGpufreqNow;
@@ -61,6 +59,7 @@ public class FloatingWindow extends Service {
     static boolean showGpubwNow;
     static boolean showLlcbwNow;
     static boolean showFpsNow;
+    LinearLayout main;
 
     @SuppressLint("ClickableViewAccessibility")
     void init() {

@@ -5,14 +5,10 @@ import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.graphics.drawable.AnimatedVectorDrawable
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,8 +16,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
@@ -34,11 +28,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.card.MaterialCardView
-import com.kongzue.dialogx.dialogs.MessageDialog
-import com.kongzue.dialogx.interfaces.BottomDialogSlideEventLifecycleCallback
-import com.kongzue.dialogx.interfaces.OnBindView
-import com.kongzue.dialogx.util.TextInfo
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -225,22 +214,28 @@ class ActivityApplicationDetails : UniversalActivityBase() {
                                 val signatureBytes = signature?.toByteArray()
                                 if (signatureBytes != null) {
                                     details.add(
-                                        "签名MD5：\n${getSignatureHash(
-                                            signatureBytes,
-                                            "MD5"
-                                        )?.chunked(2)?.joinToString(":")}\n用于验证文件的完整性"
+                                        "签名MD5：\n${
+                                            getSignatureHash(
+                                                signatureBytes,
+                                                "MD5"
+                                            )?.chunked(2)?.joinToString(":")
+                                        }\n用于验证文件的完整性"
                                     )
                                     details.add(
-                                        "签名SHA-1：\n${getSignatureHash(
-                                            signatureBytes,
-                                            "SHA-1"
-                                        )?.chunked(2)?.joinToString(":")}\n一种加密哈希函数，常用于生成数据的唯一标识符，通常也用于验证文件的完整性和安全性"
+                                        "签名SHA-1：\n${
+                                            getSignatureHash(
+                                                signatureBytes,
+                                                "SHA-1"
+                                            )?.chunked(2)?.joinToString(":")
+                                        }\n一种加密哈希函数，常用于生成数据的唯一标识符，通常也用于验证文件的完整性和安全性"
                                     )
                                     details.add(
-                                        "签名SHA-256：\n${getSignatureHash(
-                                            signatureBytes,
-                                            "SHA-256"
-                                        )?.chunked(2)?.joinToString(":")}\nSHA-2家族中的一种哈希算法，用于生成256位长度的哈希值"
+                                        "签名SHA-256：\n${
+                                            getSignatureHash(
+                                                signatureBytes,
+                                                "SHA-256"
+                                            )?.chunked(2)?.joinToString(":")
+                                        }\nSHA-2家族中的一种哈希算法，用于生成256位长度的哈希值"
                                     )
                                 }
                                 val cert = signatureBytes?.let { parseCertificate(it) }
@@ -249,7 +244,12 @@ class ActivityApplicationDetails : UniversalActivityBase() {
                                     details.add("签名算法OID：\n${cert.sigAlgOID}\n用于标识数字签名算法的一种标准化表示方式。OID是一个由数字和点号组成的标识符，用于在国际上唯一标识各种对象、属性和操作")
                                     details.add("证书序列号：\n${cert.serialNumber}\n数字证书中的一个唯一标识符，由颁发该证书的证书颁发机构（CA）分配。它用于区分不同的证书，并在证书的生命周期内保持唯一性")
                                     details.add(
-                                        "证书有效期：\n${sdf.format(cert.notBefore)} 到 ${sdf.format(cert.notAfter)}\n数字证书在发行后可被认为是有效的时间段")
+                                        "证书有效期：\n${sdf.format(cert.notBefore)} 到 ${
+                                            sdf.format(
+                                                cert.notAfter
+                                            )
+                                        }\n数字证书在发行后可被认为是有效的时间段"
+                                    )
                                     details.add("证书所有者：\n${cert.subjectDN.name}\n指持有数字证书的实体或组织。在SSL/TLS等安全通信协议中，数字证书用于验证通信方的身份，并确保通信的机密性和完整性")
                                     details.add("证书发行者：\n${cert.issuerDN.name}\n在SSL/TLS等安全通信协议中，证书发行者负责颁发数字证书的可信机构")
 
@@ -260,7 +260,8 @@ class ActivityApplicationDetails : UniversalActivityBase() {
                                         details.add("公钥指数：\n${publicKey.publicExponent}\nRSA加密算法中的一个参数，通常表示为 e。它是用于加密的公钥的一部分。在RSA加密过程中，明文数据会被使用公钥的指数进行加密，然后只能使用相应的私钥才能解密")
                                         details.add("模数大小：\n${publicKey.modulus.bitLength()}\n在RSA等公钥加密算法中，模数的大小决定了密钥的安全性")
                                         val modulusString =
-                                            "00:" + publicKey.modulus.toString(16).toLowerCase(Locale.ROOT)
+                                            "00:" + publicKey.modulus.toString(16)
+                                                .toLowerCase(Locale.ROOT)
                                                 .padStart(64, '0').chunked(2).joinToString(":")
                                         details.add("模数：\n$modulusString\n在数字签名过程中使用的一个重要参数。数字签名是一种用于验证数据完整性和真实性的技术，其中发送方使用其私钥对数据进行签名，而接收方使用发送方的公钥来验证签名")
                                     } else {
@@ -284,7 +285,11 @@ class ActivityApplicationDetails : UniversalActivityBase() {
                                         val permissionInfo =
                                             packageManager.getPermissionInfo(permission, 0)
                                         val permissionDetail =
-                                            "- ${permissionInfo.name}\n> ${permissionInfo.loadLabel(packageManager)}\n> ${permissionInfo.loadDescription(packageManager) ?: "无描述"}"
+                                            "- ${permissionInfo.name}\n> ${
+                                                permissionInfo.loadLabel(
+                                                    packageManager
+                                                )
+                                            }\n> ${permissionInfo.loadDescription(packageManager) ?: "无描述"}"
                                         details.add(permissionDetail)
                                     } catch (e: PackageManager.NameNotFoundException) {
                                         e.printStackTrace()
@@ -317,7 +322,11 @@ class ActivityApplicationDetails : UniversalActivityBase() {
                                 it.forEach { item ->
                                     val exportedText = if (item.exported) "是" else "否"
                                     details.add(
-                                        "- ${item.name}\n> 导出：$exportedText\n> ${item.loadLabel(packageManager)}"
+                                        "- ${item.name}\n> 导出：$exportedText\n> ${
+                                            item.loadLabel(
+                                                packageManager
+                                            )
+                                        }"
                                     )
                                 }
                             }
@@ -339,7 +348,14 @@ class ActivityApplicationDetails : UniversalActivityBase() {
 
                         if (sharedLibraries.isNotEmpty()) {
                             details.add(
-                                "共享库文件：\n${sharedLibraries.let { TextUtils.join("\n", it) }}\n通常是指应用程序使用的本地代码库，这些库文件可以由多个应用程序共享，并在运行时被动态加载到应用程序的进程中。在 Android 中，共享库文件通常以 .so 扩展名结尾，是用 C、C++ 等语言编写的本地代码库。"
+                                "共享库文件：\n${
+                                    sharedLibraries.let {
+                                        TextUtils.join(
+                                            "\n",
+                                            it
+                                        )
+                                    }
+                                }\n通常是指应用程序使用的本地代码库，这些库文件可以由多个应用程序共享，并在运行时被动态加载到应用程序的进程中。在 Android 中，共享库文件通常以 .so 扩展名结尾，是用 C、C++ 等语言编写的本地代码库。"
                             )
                         } else {
                             details.add("共享库文件：\n无法获取共享库文件列表或没有使用共享库文件\n通常是指应用程序使用的本地代码库，这些库文件可以由多个应用程序共享，并在运行时被动态加载到应用程序的进程中。在 Android 中，共享库文件通常以 .so 扩展名结尾，是用 C、C++ 等语言编写的本地代码库。")
@@ -588,7 +604,13 @@ class ActivityApplicationDetails : UniversalActivityBase() {
             init {
                 val baseColor = ContextCompat.getColor(context, R.color.background_color)
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-                appDetailsMaterialCardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+                appDetailsMaterialCardView.setCardBackgroundColor(
+                    ColorUtils.blendARGB(
+                        baseColor,
+                        primaryColor,
+                        0.15f
+                    )
+                )
             }
         }
 

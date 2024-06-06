@@ -21,11 +21,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
 import com.kongzue.baseframework.BaseFrameworkSettings.log
 import com.kongzue.dialogx.dialogs.BottomDialog
-import com.kongzue.dialogx.dialogs.PopTip
 import com.kongzue.dialogx.interfaces.BottomDialogSlideEventLifecycleCallback
 import com.kongzue.dialogx.interfaces.OnBindView
 import kotlinx.coroutines.Dispatchers
@@ -217,10 +215,13 @@ class FragmentColorsZH : UniversalFragmentBase() {
                         val rgb = colorItem.rgb
                         val colorHexTextView = view.findViewById<TextView>(R.id.color_hex_text_view)
                         val colorRGBTextView = view.findViewById<TextView>(R.id.color_rgb_text_view)
-                        val colorCYMKTextView = view.findViewById<TextView>(R.id.color_cymk_text_view)
+                        val colorCYMKTextView =
+                            view.findViewById<TextView>(R.id.color_cymk_text_view)
                         val colorHSVTextView = view.findViewById<TextView>(R.id.color_hsv_text_view)
-                        val colorNameTextView = view.findViewById<TextView>(R.id.color_name_text_view)
-                        val colorPinyinTextView = view.findViewById<TextView>(R.id.color_pinyin_text_view)
+                        val colorNameTextView =
+                            view.findViewById<TextView>(R.id.color_name_text_view)
+                        val colorPinyinTextView =
+                            view.findViewById<TextView>(R.id.color_pinyin_text_view)
                         view.findViewById<ConstraintLayout>(R.id.constraint_layout).apply {
                             setBackgroundColor(Color.rgb(rgb[0], rgb[1], rgb[2]))
                         }
@@ -254,13 +255,18 @@ class FragmentColorsZH : UniversalFragmentBase() {
                     }
                 }
             )
-                .setDialogLifecycleCallback(object : BottomDialogSlideEventLifecycleCallback<BottomDialog>() {
+                .setDialogLifecycleCallback(object :
+                    BottomDialogSlideEventLifecycleCallback<BottomDialog>() {
                     override fun onSlideClose(dialog: BottomDialog): Boolean {
                         log("#onSlideClose")
                         return super.onSlideClose(dialog)
                     }
 
-                    override fun onSlideTouchEvent(dialog: BottomDialog, v: View, event: MotionEvent): Boolean {
+                    override fun onSlideTouchEvent(
+                        dialog: BottomDialog,
+                        v: View,
+                        event: MotionEvent,
+                    ): Boolean {
                         log("#onSlideTouchEvent: action=${event.action} y=${event.y}")
                         return super.onSlideTouchEvent(dialog, v, event)
                     }

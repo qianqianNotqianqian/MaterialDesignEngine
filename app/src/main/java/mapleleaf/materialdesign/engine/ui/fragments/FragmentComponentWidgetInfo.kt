@@ -27,9 +27,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.materialswitch.MaterialSwitch
-import com.kongzue.dialogx.dialogs.MessageDialog
-import com.kongzue.dialogx.interfaces.BottomDialogSlideEventLifecycleCallback
-import com.kongzue.dialogx.interfaces.OnBindView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -68,10 +65,17 @@ class FragmentComponentWidgetInfo : UniversalFragmentBase() {
         val imageView = rootView.findViewById<ImageView>(R.id.null_list)
         appsSearchBox = rootView.findViewById(R.id.apps_search_box)
 
-        val materialCardViewEdit = rootView.findViewById<MaterialCardView>(R.id.materialCardViewEdit)
+        val materialCardViewEdit =
+            rootView.findViewById<MaterialCardView>(R.id.materialCardViewEdit)
         val baseColor = ContextCompat.getColor(requireContext(), R.color.background)
         val primaryColor = ContextCompat.getColor(requireContext(), R.color.colorPrimary)
-        materialCardViewEdit.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+        materialCardViewEdit.setCardBackgroundColor(
+            ColorUtils.blendARGB(
+                baseColor,
+                primaryColor,
+                0.15f
+            )
+        )
 
         lifecycleScope.launch(Dispatchers.Main) {
 
@@ -139,7 +143,8 @@ class FragmentComponentWidgetInfo : UniversalFragmentBase() {
 
     private fun clearEditFocus() {
         appsSearchBox.clearFocus()
-        val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         // 在失去焦点后隐藏输入法键盘
         appsSearchBox.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
@@ -255,13 +260,20 @@ class FragmentComponentWidgetInfo : UniversalFragmentBase() {
                 componentMaterialCardView.setOnClickListener(this)
                 val baseColor = ContextCompat.getColor(requireContext(), R.color.background)
                 val primaryColor = ContextCompat.getColor(requireContext(), R.color.colorPrimary)
-                componentMaterialCardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+                componentMaterialCardView.setCardBackgroundColor(
+                    ColorUtils.blendARGB(
+                        baseColor,
+                        primaryColor,
+                        0.15f
+                    )
+                )
             }
 
             @SuppressLint("InflateParams")
             override fun onClick(v: View?) {
                 val widgetInfo = widgetList[bindingAdapterPosition]
-                val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_components_detail, null)
+                val dialogView =
+                    LayoutInflater.from(context).inflate(R.layout.dialog_components_detail, null)
                 val dialog = DialogHelper.customDialog(context, dialogView)
 
                 fun setTextAndColor(textView: TextView, value: Boolean) {
@@ -298,7 +310,8 @@ class FragmentComponentWidgetInfo : UniversalFragmentBase() {
                     nameTextView.setTextColor(ContextCompat.getColor(context, R.color.green))
                 }
                 if (!widgetInfo.activityInfo.enabled) {
-                    labelTextView.paintFlags = labelTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    labelTextView.paintFlags =
+                        labelTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 }
 //                nameTextView.text = widgetInfo.provider.flattenToString().highlightText(searchText)
                 nameTextView.text = widgetInfo.activityInfo.name.highlightText(searchText)

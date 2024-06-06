@@ -434,7 +434,7 @@
         <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivitySystemOverview"
             android:exported="true"
-            android:launchMode="standard"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
@@ -474,9 +474,15 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.kongzue.dialogxdemo.activity.AppCompatActivityTest"
-            android:exported="false"
-            android:theme="@style/AppCompatTheme"
+            android:name="com.kongzue.dialogxdemo.activity.ActivityTestAppCompat"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="com.kongzue.dialogxdemo.activity.ActivityTestMain"
+            android:exported="true"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize" />
 
         <activity

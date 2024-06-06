@@ -11,7 +11,6 @@ import android.net.http.SslError
 import android.text.TextUtils
 import android.util.Log
 import android.view.KeyEvent
-import android.view.View
 import android.view.ViewGroup
 import android.webkit.JsResult
 import android.webkit.PermissionRequest

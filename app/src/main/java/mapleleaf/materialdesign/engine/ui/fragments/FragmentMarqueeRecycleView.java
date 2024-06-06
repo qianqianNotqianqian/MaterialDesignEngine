@@ -12,23 +12,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import mapleleaf.materialdesign.engine.view.SunfushengMarqueeView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import mapleleaf.materialdesign.engine.R;
+import mapleleaf.materialdesign.engine.view.SunfushengMarqueeView;
 
 /**
  * @author sunfusheng on 2018/2/6.
  */
 public class FragmentMarqueeRecycleView extends Fragment {
-
-    public static class Item {
-        public String title;
-        public List<String> list;
-        public boolean showList;
-    }
 
     @Nullable
     @Override
@@ -72,6 +65,12 @@ public class FragmentMarqueeRecycleView extends Fragment {
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+    }
+
+    public static class Item {
+        public String title;
+        public List<String> list;
+        public boolean showList;
     }
 
     static class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {

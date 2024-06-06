@@ -13,7 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.SeekBar
@@ -70,7 +69,13 @@ class ActivityMusic : UniversalActivityBase(), MusicScanner.MusicScanListener {
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(progressColors)
         val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
         val baseColor = ContextCompat.getColor(context, R.color.background)
-        materialCardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+        materialCardView.setCardBackgroundColor(
+            ColorUtils.blendARGB(
+                baseColor,
+                primaryColor,
+                0.15f
+            )
+        )
         musicScan()
 
         swipeRefreshLayout.setOnRefreshListener {
@@ -171,7 +176,13 @@ class ActivityMusic : UniversalActivityBase(), MusicScanner.MusicScanListener {
             init {
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 val baseColor = ContextCompat.getColor(context, R.color.background)
-                musicMaterialCardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+                musicMaterialCardView.setCardBackgroundColor(
+                    ColorUtils.blendARGB(
+                        baseColor,
+                        primaryColor,
+                        0.15f
+                    )
+                )
                 musicMaterialCardView.setOnClickListener {
                     val position = bindingAdapterPosition
                     if (position != RecyclerView.NO_POSITION) {

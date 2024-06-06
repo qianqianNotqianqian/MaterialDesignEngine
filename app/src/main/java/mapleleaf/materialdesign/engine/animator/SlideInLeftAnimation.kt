@@ -16,7 +16,8 @@ class SlideInLeftAnimation @JvmOverloads constructor(
     private val interpolator = DecelerateInterpolator(1.8f)
 
     override fun animator(view: View): Animator {
-        val animator = ObjectAnimator.ofFloat(view, "translationX", -view.rootView.width.toFloat(), 0f)
+        val animator =
+            ObjectAnimator.ofFloat(view, "translationX", -view.rootView.width.toFloat(), 0f)
         animator.duration = duration
         animator.interpolator = interpolator
         return animator

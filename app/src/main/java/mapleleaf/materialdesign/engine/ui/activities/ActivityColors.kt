@@ -18,8 +18,8 @@ import kotlinx.coroutines.launch
 import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
-import mapleleaf.materialdesign.engine.ui.fragments.FragmentColorsZH
 import mapleleaf.materialdesign.engine.ui.fragments.FragmentColorsJP
+import mapleleaf.materialdesign.engine.ui.fragments.FragmentColorsZH
 
 class ActivityColors : UniversalActivityBase() {
 
@@ -65,8 +65,10 @@ class ActivityColors : UniversalActivityBase() {
 
             progressBar.isVisible = false
         }
-        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
-        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+        val baseColor =
+            ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
+        val primaryColor =
+            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
         appBarLayout.setBackgroundColor(blendedColor)
 

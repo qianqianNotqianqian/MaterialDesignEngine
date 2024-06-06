@@ -115,8 +115,10 @@ class ActivitySystemInfo : UniversalActivityBase() {
 
         val materialCardView = findViewById<MaterialCardView>(R.id.materialCardView)
         val materialCardView2 = findViewById<MaterialCardView>(R.id.materialCardView2)
-        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
-        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+        val baseColor =
+            ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
+        val primaryColor =
+            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
         materialCardView.setCardBackgroundColor(blendedColor)
         materialCardView2.setCardBackgroundColor(blendedColor)

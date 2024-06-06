@@ -1,6 +1,7 @@
 package xzr.perfmon;
 
 class Support {
+    static final int UNSUPPORTED = -1;
     static boolean support_cpufreq;
     static boolean support_cpuload;
     static boolean support_adrenofreq;
@@ -13,8 +14,6 @@ class Support {
     static boolean support_gpubw;
     static boolean support_llcbw;
     static boolean support_fps;
-
-    static final int UNSUPPORTED = -1;
 
     static int CheckSupport() {
         int linen = 0;

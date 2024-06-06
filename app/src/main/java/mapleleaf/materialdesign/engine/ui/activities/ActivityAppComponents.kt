@@ -49,8 +49,10 @@ class ActivityAppComponents : UniversalActivityBase() {
         splitBody.isVisible = false
         getToolbar().setBackgroundColor(getColor(R.color.transparent))
 
-        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
-        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+        val baseColor =
+            ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
+        val primaryColor =
+            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
         appBarLayout.setBackgroundColor(blendedColor)
 
@@ -62,7 +64,7 @@ class ActivityAppComponents : UniversalActivityBase() {
         } else {
             viewPager.offscreenPageLimit = 4
             progressBar?.isIndeterminate = true
-            progressBar?.isVisible  = true
+            progressBar?.isVisible = true
 
             lifecycleScope.launch(Dispatchers.Main) {
                 val fragmentList = listOf(
@@ -141,7 +143,8 @@ class ActivityAppComponents : UniversalActivityBase() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        val selectedFragment = (viewPager.adapter as? ViewPagerAdapter)?.getItem(viewPager.currentItem)
+        val selectedFragment =
+            (viewPager.adapter as? ViewPagerAdapter)?.getItem(viewPager.currentItem)
         val shouldShowClearMenu = when (selectedFragment) {
             is FragmentComponentActivities -> selectedFragment.isSearchBoxNotEmpty()
             is FragmentComponentProviders -> selectedFragment.isSearchBoxNotEmpty()
@@ -157,7 +160,8 @@ class ActivityAppComponents : UniversalActivityBase() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_clear_search -> {
-                val selectedFragment = (viewPager.adapter as? ViewPagerAdapter)?.getItem(viewPager.currentItem)
+                val selectedFragment =
+                    (viewPager.adapter as? ViewPagerAdapter)?.getItem(viewPager.currentItem)
                 when (selectedFragment) {
                     is FragmentComponentActivities -> selectedFragment.clearSearchBox()
                     is FragmentComponentProviders -> selectedFragment.clearSearchBox()
@@ -167,6 +171,7 @@ class ActivityAppComponents : UniversalActivityBase() {
                 }
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -2,10 +2,7 @@ package mapleleaf.materialdesign.engine.ui.fragments
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
-import android.content.ActivityNotFoundException
-import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ProviderInfo
 import android.graphics.Paint
@@ -21,20 +18,15 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.materialswitch.MaterialSwitch
-import com.kongzue.dialogx.dialogs.MessageDialog
-import com.kongzue.dialogx.interfaces.BottomDialogSlideEventLifecycleCallback
-import com.kongzue.dialogx.interfaces.OnBindView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -42,7 +34,6 @@ import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalFragmentBase
 import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
-import mapleleaf.materialdesign.engine.utils.toast
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.regex.Pattern
 
@@ -73,10 +64,17 @@ class FragmentComponentProviders : UniversalFragmentBase() {
         val imageView = rootView.findViewById<ImageView>(R.id.null_list)
         appsSearchBox = rootView.findViewById(R.id.apps_search_box)
 
-        val materialCardViewEdit = rootView.findViewById<MaterialCardView>(R.id.materialCardViewEdit)
+        val materialCardViewEdit =
+            rootView.findViewById<MaterialCardView>(R.id.materialCardViewEdit)
         val baseColor = ContextCompat.getColor(requireContext(), R.color.background)
         val primaryColor = ContextCompat.getColor(requireContext(), R.color.colorPrimary)
-        materialCardViewEdit.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+        materialCardViewEdit.setCardBackgroundColor(
+            ColorUtils.blendARGB(
+                baseColor,
+                primaryColor,
+                0.15f
+            )
+        )
 
         lifecycleScope.launch(Dispatchers.Main) {
 
@@ -142,7 +140,8 @@ class FragmentComponentProviders : UniversalFragmentBase() {
 
     private fun clearEditFocus() {
         appsSearchBox.clearFocus()
-        val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         // 在失去焦点后隐藏输入法键盘
         appsSearchBox.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
@@ -264,14 +263,21 @@ class FragmentComponentProviders : UniversalFragmentBase() {
                 componentMaterialCardView.setOnClickListener(this)
                 val baseColor = ContextCompat.getColor(context, R.color.background)
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-                componentMaterialCardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+                componentMaterialCardView.setCardBackgroundColor(
+                    ColorUtils.blendARGB(
+                        baseColor,
+                        primaryColor,
+                        0.15f
+                    )
+                )
             }
 
             @SuppressLint("InflateParams")
             override fun onClick(v: View?) {
                 val providerInfo = providerList[bindingAdapterPosition]
 
-                val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_components_detail, null)
+                val dialogView =
+                    LayoutInflater.from(context).inflate(R.layout.dialog_components_detail, null)
                 val dialog = DialogHelper.customDialog(context, dialogView)
                 fun setTextAndColor(textView: TextView, value: Boolean) {
                     textView.text = value.toString()
@@ -313,7 +319,8 @@ class FragmentComponentProviders : UniversalFragmentBase() {
                     )
                 }
                 if (!providerInfo.enabled) {
-                    providerLabelTextView.paintFlags = providerLabelTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    providerLabelTextView.paintFlags =
+                        providerLabelTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 }
                 providerNameTextView.text = providerName.highlightText(searchText)
                 providerLabelTextView.text = providerLabel.highlightText(searchText)
