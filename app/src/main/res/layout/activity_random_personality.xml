@@ -29,8 +29,8 @@
                 android:id="@+id/random_personality_materialCardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_margin="6dp"
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/background"
                 app:cardCornerRadius="12dp">
 

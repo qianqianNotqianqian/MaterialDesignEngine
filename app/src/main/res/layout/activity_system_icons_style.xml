@@ -147,6 +147,7 @@
                             android:text="@string/todo" />
 
                     </RadioGroup>
+
                     <ProgressBar
                         android:id="@+id/circularProgressBar"
                         style="?android:attr/progressBarStyleHorizontal"
@@ -161,16 +162,16 @@
                     <GridLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:rowCount="2"
-                        android:columnCount="2"
-                        android:alignmentMode="alignMargins"
                         android:layout_margin="8dp"
-                        android:columnOrderPreserved="false">
+                        android:alignmentMode="alignMargins"
+                        android:columnCount="2"
+                        android:columnOrderPreserved="false"
+                        android:rowCount="2">
 
                         <com.google.android.material.materialswitch.MaterialSwitch
-                            android:layout_marginEnd="6dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp" />
 
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="wrap_content"
@@ -198,18 +199,18 @@
                     <GridLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:rowCount="2"
-                        android:columnCount="2"
                         android:layout_gravity="center"
-                        android:alignmentMode="alignMargins"
                         android:layout_marginTop="6dp"
-                        android:columnOrderPreserved="false" >
+                        android:alignmentMode="alignMargins"
+                        android:columnCount="2"
+                        android:columnOrderPreserved="false"
+                        android:rowCount="2">
 
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
                             android:layout_marginEnd="6dp"
                             app:cardBackgroundColor="@color/background">
 
@@ -233,8 +234,8 @@
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
                             app:cardBackgroundColor="@color/background">
 
                             <LinearLayout
@@ -257,8 +258,8 @@
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
                             android:layout_marginTop="6dp"
                             android:layout_marginEnd="6dp"
                             app:cardBackgroundColor="@color/background">
@@ -283,8 +284,8 @@
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
                             android:layout_marginTop="6dp"
                             app:cardBackgroundColor="@color/background">
 

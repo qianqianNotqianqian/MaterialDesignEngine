@@ -9,7 +9,7 @@
     <include
         android:id="@+id/include"
         layout="@layout/this_application_toolbar"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
@@ -21,14 +21,14 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/view_pager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="72dp"
         android:layout_marginEnd="72dp"
         android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="12dp"
-        app:cardBackgroundColor="@color/background">
+        app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
@@ -61,8 +61,8 @@
         android:id="@+id/null_list"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:visibility="gone"
         android:src="@drawable/ic_empty_list"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

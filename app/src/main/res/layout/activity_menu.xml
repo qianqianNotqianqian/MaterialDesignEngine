@@ -27,7 +27,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
-            android:id="@+id/nestedScrollView2"
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="3dp">
+                android:padding="3dp" >
 
                 <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
 
@@ -64,7 +64,7 @@
                     <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
 
                         <include
-                            android:id="@+id/MDDialog"
+                            android:id="@+id/Functions"
                             layout="@layout/this_app_card_view" />
 
                     </LinearLayout>
@@ -72,7 +72,7 @@
                     <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
 
                         <include
-                            android:id="@+id/Functions"
+                            android:id="@+id/MarqueeView"
                             layout="@layout/this_app_card_view" />
 
                     </LinearLayout>
@@ -298,17 +298,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
-
-                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
-
-                        <include
-                            android:id="@+id/MarqueeView"
-                            layout="@layout/this_app_card_view" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
 
             </LinearLayout>
         </me.zhanghai.android.fastscroll.FastScrollNestedScrollView>
@@ -333,11 +322,11 @@
                 android:id="@+id/relative_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="-12.0dp"
                 app:cardBackgroundColor="@color/spinner_color2"
                 app:cardCornerRadius="12dp"
-                app:strokeWidth="0dp"
                 app:strokeColor="@color/transparent"
-                android:layout_marginTop="-12.0dp" >
+                app:strokeWidth="0dp">
 
                 <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
                     android:id="@+id/scrollView"
@@ -447,12 +436,13 @@
                                 android:layout_height="45dp" />
 
                             <include
-                                android:id="@+id/item_exit"
+                                android:id="@+id/item_dialog_style"
                                 layout="@layout/view_me_function"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp" />
 
                             <include
+                                android:id="@+id/item_exit"
                                 layout="@layout/view_me_function"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp" />

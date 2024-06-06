@@ -116,12 +116,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="12.0dip"
-            app:thumbRadius="64dp"
-            app:thumbElevation="4dp"
             android:stepSize="1.0"
             android:value="1"
             android:valueFrom="1"
-            android:valueTo="8" />
+            android:valueTo="8"
+            app:thumbElevation="4dp"
+            app:thumbRadius="64dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
