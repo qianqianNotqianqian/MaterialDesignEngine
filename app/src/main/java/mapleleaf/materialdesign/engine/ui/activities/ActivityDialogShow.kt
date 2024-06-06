@@ -219,7 +219,7 @@ class ActivityDialogShow: UniversalActivityBase() {
         val nestedScrollView = findViewById<NestedScrollView>(R.id.nestedScrollView)
         FastScrollerBuilder(nestedScrollView).build()
 
-        grpMode.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        grpMode.addOnButtonCheckedListener { _, checkedId, _ ->
             BaseDialog.cleanAll()
             when (checkedId) {
                 R.id.rdo_mode_view -> DialogX.implIMPLMode = DialogX.IMPL_MODE.VIEW
