@@ -61,9 +61,7 @@ class ActivityAbout : AbsAboutActivity() {
                 Category(getString(R.string.menu_about))
             )
             add(
-                Card(
-                    getString(R.string.card_content)
-                )
+                Card("MDEngine 是一款提供给Android玩机爱好者的实用工具应用。\n\n搞机千万条，安全第一条。\n搞机不规范，亲人两行泪。")
             )
             add(
                 Category(getString(R.string.feedback))
