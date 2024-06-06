@@ -35,7 +35,6 @@
     <string name="confirm">确认</string>
     <string name="support_developers">支持开发者</string>
     <string name="feedback">问题反馈</string>
-    <string name="dialog_title">提示信息</string>
     <string name="toast">Toast</string>
 
     <string name="please_close_app_first">请先关闭悬浮窗 再打开软件</string>
@@ -177,8 +176,6 @@
     <string name="btn_exit">退出</string>
     <string name="please_wait">请稍等</string>
 
-    <string name="card_content">MDEngine 是一款提供给Android玩机爱好者的实用工具应用。\n\n搞机千万条，安全第一条。\n搞机不规范，亲人两行泪。</string>
-    <string name="title_activity_about_page">关于</string>
     <string name="btn_continue">继续</string>
     <string name="app_selected_none">一个应用也没有选中！</string>
     <string name="transparent_ui">界面透明</string>
@@ -223,15 +220,11 @@
     <string name="system_modify_bpc">Performance Boost Config精简</string>
     <string name="system_modify_bpc_desc">关闭Performance Boost Config中的一些选项，避免CPU频繁被拉高频率造成耗电，但保留应用启动升频，会略微降低体验。需要重启！</string>
     <string name="system_modify_continue">继续</string>
-    <string name="dialog_system_modify_device_desc">修改后可点击“还原”->“确认”恢复修改前的机型，卸载MDEngine会导致备份的机型信息丢失，请务必还原后再卸载！\n\n或者，你也可以通过重新刷入完整ROM来恢复机型信息！\n\n 使用DualBootPatcher多系统软件切勿使用本功能修改机型！！！</string>
-    <string name="dialog_system_modify_device_warn">机型信息请不要输入特殊符号！\n已兼容【应用变量】模块的机型代码，复制后重新打开此窗口即可使用！</string>
-    <string name="dialog_system_modify_warn">警告：修改机型可能导致无法开机，或部分功能不能使用！</string>
     <string name="ro_product_model">ro.product.model=</string>
     <string name="ro_product_brand">ro.product.brand=</string>
     <string name="ro_product_name">ro.product.name=</string>
     <string name="ro_product_device">ro.product.device=</string>
     <string name="ro_product_manufacturer">ro.product.manufacturer=</string>
-    <string name="dialog_system_modify_device_inner">预设模板</string>
     <string name="auto_start">开机自启(要允许MDEngine自启动)</string>
     <string name="boot_after_auto_modify">开机后自动修改</string>
     <string name="engine_speed_compile">mapleleaf.materialdesign.engine.SpeedCompile</string>
@@ -317,11 +310,6 @@
     <string name="system_modify_mac_mac">MAC</string>
     <string name="system_modify_mac_min_example">min:96</string>
     <string name="system_modify_device_restore">还原</string>
-
-    <string name="dialog_message_title">You\'re dead</string>
-    <string name="dialog_message_content">核弹命中目标，整个山地已被夷为平地…</string>
-    <string name="dialog_prompt_content">提示内容</string>
-    <string name="dialog_prompt_title">提示信息</string>
 
     <string name="fw_monitor_cpu">CPU</string>
     <string name="fw_monitor_frequency">0Mhz</string>
@@ -427,12 +415,6 @@
     <string name="is_wake_up_sensor">唤醒型传感器:</string>
     <string name="sensor_reporting_mode">报告方式:</string>
     <string name="wallpaper_px_text">%1$d x %2$d</string>
-    <string name="menu_input_answer">请输入答案！</string>
-    <string name="menu_input_number">请输入有效的数字！</string>
-    <string name="menu_input_incorrect_answer">回答错误！</string>
-    <string name="menu_input_success">回答正确，答案是：</string>
-    <string name="menu_get_app_information_failed">无法获取应用信息</string>
-    <string name="menu_agree">同意并继续</string>
     <string name="license">开放源代码许可</string>
     <string name="reporting_mode1">连续报告</string>
     <string name="reporting_mode2">事件触发</string>
@@ -441,15 +423,6 @@
     <string name="about_this">关于这个应用</string>
     <string name="application_manager">应用管理</string>
     <string name="about_developers">开发者</string>
-    <string name="dialog_float_monitors">监视器</string>
-    <string name="dialog_float_choose_monitors">选择要显示的监视器悬浮窗</string>
-    <string name="dialog_float_Instructions">说明：负载监视器窗口可单击[展开/折叠]详情，双击关闭</string>
-    <string name="dialog_float_monitor_load">负载监视器</string>
-    <string name="dialog_float_monitor_cpu_gpu_ram_status">显示CPU、GPU、RAM和电池状态</string>
-    <string name="dialog_float_monitor_process">进程监视器</string>
-    <string name="dialog_float_monitor_sort">显示运行中的进程，按CPU占用排序</string>
-    <string name="dialog_float_monitor_mini">迷你监视器</string>
-    <string name="dialog_float_monitor_cpu_gpu_bat_temp">显示CPU、GPU负载和电池温度</string>
     <string name="download">保存</string>
     <string name="hex">HEX</string>
     <string name="rgb">RGB</string>
@@ -470,15 +443,39 @@
     <string name="buShou">部首</string>
     <string name="biHua">笔画</string>
     <string name="dictionary_detail">详情</string>
-    <string name="toolbar_subtitle_activity_hot_search">全国资讯，一表必应</string>
     <string name="action_dislike">不喜欢</string>
     <string name="title_toolbox_engine">TOOLBOX·ENGINE</string>
     <string name="check_permission_settings">现在，先校验一些权限设置…</string>
     <string name="material_dialogs">Material Dialogs</string>
     <string name="android_dialogs">Android Dialogs</string>
-    <string name="color_pinyin">Sakura</string>
-    <string name="color_name">樱</string>
-    <string name="color_hex" tools:ignore="Typos">FEDFE1</string>
+    <string name="activity_color_pinyin">Sakura</string>
+    <string name="activity_color_name">樱</string>
+    <string name="activity_color_hex" tools:ignore="Typos">FEDFE1</string>
+
+    <string name="dialog_float_monitors">监视器</string>
+    <string name="dialog_float_choose_monitors">选择要显示的监视器悬浮窗</string>
+    <string name="dialog_float_Instructions">说明：负载监视器窗口可单击[展开/折叠]详情，双击关闭</string>
+    <string name="dialog_float_monitor_load">负载监视器</string>
+    <string name="dialog_float_monitor_cpu_gpu_ram_status">显示CPU、GPU、RAM和电池状态</string>
+    <string name="dialog_float_monitor_process">进程监视器</string>
+    <string name="dialog_float_monitor_sort">显示运行中的进程，按CPU占用排序</string>
+    <string name="dialog_float_monitor_mini">迷你监视器</string>
+    <string name="dialog_float_monitor_cpu_gpu_bat_temp">显示CPU、GPU负载和电池温度</string>
+    <string name="dialog_float_show_system_apps">显示系统应用</string>
+    <string name="dialog_float_show_user_apps">显示用户应用</string>
+    <string name="dialog_float_filter_apps">选中应用类型并筛选</string>
+    <string name="dialog_choose_icon">请选择图标</string>
+    <string name="dialog_message_title">You\'re dead</string>
+    <string name="dialog_message_content">核弹命中目标，整个山地已被夷为平地…</string>
+    <string name="dialog_prompt_content">提示内容</string>
+    <string name="dialog_prompt_title">提示信息</string>
+    <string name="dialog_title">提示信息</string>
+    <string name="dialog_system_modify_device_desc">修改后可点击“还原”->“确认”恢复修改前的机型，卸载MDEngine会导致备份的机型信息丢失，请务必还原后再卸载！\n\n或者，你也可以通过重新刷入完整ROM来恢复机型信息！\n\n 使用DualBootPatcher多系统软件切勿使用本功能修改机型！！！</string>
+    <string name="dialog_system_modify_device_warn">机型信息请不要输入特殊符号！\n已兼容【应用变量】模块的机型代码，复制后重新打开此窗口即可使用！</string>
+    <string name="dialog_system_modify_warn">警告：修改机型可能导致无法开机，或部分功能不能使用！</string>
+    <string name="dialog_system_modify_device_inner">预设模板</string>
+    <string name="dialog_show_system_apps_only">仅显示系统应用</string>
+    <string name="dialog_show_user_apps_only">仅显示用户应用</string>
 
     <string name="menu_other">其他</string>
     <string name="menu_power">电源</string>
@@ -489,7 +486,6 @@
     <string name="menu_about">关于</string>
     <string name="menu_official_account">官方账号</string>
     <string name="menu_recommended_services">推荐服务</string>
-
     <string name="menu_start_browser">访问Bing</string>
     <string name="menu_start_accelerometer">加速度计</string>
     <string name="menu_start_md_dialog">对话框</string>
@@ -516,6 +512,15 @@
     <string name="menu_start_infinite_list">无限列表</string>
     <string name="menu_start_bilibili_parse">哔哩哔哩解析</string>
     <string name="menu_start_dictionary">字典</string>
+    <string name="menu_input_answer">请输入答案！</string>
+    <string name="menu_input_number">请输入有效的数字！</string>
+    <string name="menu_input_incorrect_answer">回答错误！</string>
+    <string name="menu_input_success">回答正确，答案是：</string>
+    <string name="menu_get_app_information_failed">无法获取应用信息</string>
+    <string name="menu_agree">同意并继续</string>
+    <string name="menu_change_icon">更改图标</string>
+    <string name="menu_restore_default_icon">恢复默认图标</string>
+    <string name="menu_start_marquee_view">跑马灯</string>
 
     <string name="toolbar_title_activity_accelerometer">加速度计</string>
     <string name="toolbar_title_activity_md_dialog">对话框</string>
@@ -541,6 +546,7 @@
     <string name="toolbar_title_activity_anime_quotes">动漫语录</string>
     <string name="toolbar_title_activity_dictionary">字典</string>
     <string name="toolbar_title_activity_hot_search">实时热搜</string>
+    <string name="toolbar_subtitle_activity_hot_search">全国资讯，一表必应</string>
     <string name="toolbar_title_activity_infinite_view">无限列表</string>
     <string name="toolbar_title_activity_bilibili_parse">哔哩哔哩解析</string>
     <string name="toolbar_subtitle_activity_application_dex">%1$d 项</string>
@@ -554,11 +560,10 @@
     <string name="toolbar_subtitle_fragment_look_girl">多看有益身心健康</string>
     <string name="toolbar_title_fragment_get_wallpaper">壁纸</string>
     <string name="toolbar_subtitle_fragment_get_wallpaper">好看的壁纸就是灵魂</string>
-    <string name="dialog_float_filter_apps">选中应用类型并筛选</string>
+    <string name="toolbar_title_activity_marquee_view">跑马灯</string>
+
     <string name="system_apps">系统应用</string>
     <string name="user_apps">用户应用</string>
-    <string name="dialog_float_show_system_apps">显示系统应用</string>
-    <string name="dialog_float_show_user_apps">显示用户应用</string>
     <string name="example_item_name">条目名称</string>
     <string name="am_provider">内容提供器</string>
     <string name="am_receiver">广播接收器</string>
@@ -566,15 +571,7 @@
     <string name="qr_code_content">二维码内容</string>
     <string name="qr_code_edit_content">mapleleaf.materialdesign.engine</string>
     <string name="start_play">开始播放</string>
-    <string name="menu_change_icon">更改图标</string>
-    <string name="dialog_choose_icon">请选择图标</string>
-    <string name="menu_restore_default_icon">恢复默认图标</string>
-    <string name="toolbar_title_activity_marquee_view">跑马灯</string>
-    <string name="menu_start_marquee_view">跑马灯</string>
-
     <string name="marquee_text">心中有阳光，脚底有力量。</string>
     <string name="marquee_texts">心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。</string>
-    <string name="show_system_apps_only">仅显示系统应用</string>
-    <string name="show_user_apps_only">仅显示用户应用</string>
     <string name="launch">启动</string>
 </resources>

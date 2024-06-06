@@ -64,7 +64,7 @@
                             style="@style/textSecondary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/show_system_apps_only" />
+                            android:text="@string/dialog_show_system_apps_only" />
                     </LinearLayout>
 
                     <com.google.android.material.materialswitch.MaterialSwitch
@@ -110,7 +110,7 @@
                             style="@style/textSecondary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/show_user_apps_only" />
+                            android:text="@string/dialog_show_user_apps_only" />
                     </LinearLayout>
 
                     <com.google.android.material.materialswitch.MaterialSwitch
