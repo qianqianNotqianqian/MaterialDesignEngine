@@ -470,6 +470,7 @@
     <string name="dialog_prompt_content">提示内容</string>
     <string name="dialog_prompt_title">提示信息</string>
     <string name="dialog_title">提示信息</string>
+    <string name="dialog_style">对话框样式</string>
     <string name="dialog_system_modify_device_desc">修改后可点击“还原”->“确认”恢复修改前的机型，卸载MDEngine会导致备份的机型信息丢失，请务必还原后再卸载！\n\n或者，你也可以通过重新刷入完整ROM来恢复机型信息！\n\n 使用DualBootPatcher多系统软件切勿使用本功能修改机型！！！</string>
     <string name="dialog_system_modify_device_warn">机型信息请不要输入特殊符号！\n已兼容【应用变量】模块的机型代码，复制后重新打开此窗口即可使用！</string>
     <string name="dialog_system_modify_warn">警告：修改机型可能导致无法开机，或部分功能不能使用！</string>
@@ -488,7 +489,7 @@
     <string name="menu_recommended_services">推荐服务</string>
     <string name="menu_start_browser">访问Bing</string>
     <string name="menu_start_accelerometer">加速度计</string>
-    <string name="menu_start_md_dialog">对话框</string>
+    <string name="menu_start_kongzue_dialog">Kongzue对话框</string>
     <string name="menu_start_system_vibration">振动控制</string>
     <string name="menu_start_system_information">系统信息</string>
     <string name="menu_start_application_manager">应用管理</string>
@@ -521,9 +522,10 @@
     <string name="menu_change_icon">更改图标</string>
     <string name="menu_restore_default_icon">恢复默认图标</string>
     <string name="menu_start_marquee_view">跑马灯</string>
+    <string name="menu_start_calcDialog">Calc对话框</string>
 
     <string name="toolbar_title_activity_accelerometer">加速度计</string>
-    <string name="toolbar_title_activity_md_dialog">对话框</string>
+    <string name="toolbar_title_activity_kongzue_dialog">Kongzue对话框</string>
     <string name="toolbar_title_activity_vibration_control">震动控制</string>
     <string name="toolbar_title_activity_device_info">系统信息</string>
     <string name="toolbar_title_activity_start">开始菜单</string>
@@ -561,6 +563,7 @@
     <string name="toolbar_title_fragment_get_wallpaper">壁纸</string>
     <string name="toolbar_subtitle_fragment_get_wallpaper">好看的壁纸就是灵魂</string>
     <string name="toolbar_title_activity_marquee_view">跑马灯</string>
+    <string name="toolbar_title_activity_dialog_show">对话框样式展示</string>
 
     <string name="system_apps">系统应用</string>
     <string name="user_apps">用户应用</string>
@@ -574,4 +577,32 @@
     <string name="marquee_text">心中有阳光，脚底有力量。</string>
     <string name="marquee_texts">心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。</string>
     <string name="launch">启动</string>
+
+    <string name="open_dialog">打开对话框</string>
+
+    <string name="header_selection">选定的值</string>
+    <string name="selection_value_none">空</string>
+
+    <string name="header_options_calc">计算器选项</string>
+    <string name="calc_dark_theme">暗色主题</string>
+    <string name="calc_show_expr">显示表达式</string>
+    <string name="calc_expr_editable">表达式可编辑</string>
+    <string name="calc_show_sign_btn">显示符号按钮</string>
+    <string name="calc_show_ans_btn">显示答案按钮</string>
+    <string name="calc_order_operation">应用运算顺序</string>
+    <string name="calc_eval_operation">在运算时计算表达式</string>
+    <string name="calc_show_zero">当没有值时显示零</string>
+    <string name="calc_min_value">最小值：</string>
+    <string name="calc_max_value">最大值：</string>
+    <string name="calc_numpad">数字键盘布局：</string>
+    <string name="calc_numpad_calc">计算器（789在顶部）</string>
+    <string name="calc_numpad_phone">电话（123在顶部）</string>
+
+    <string name="header_options_nbfmt">数字格式选项</string>
+    <string name="nbfmt_label">数字格式：</string>
+    <string name="nbfmt_default">默认</string>
+    <string name="nbfmt_currency">货币</string>
+    <string name="nbfmt_max_int">最大整数位数：</string>
+    <string name="nbfmt_max_frac">最大小数位数：</string>
+    <string name="toolbar_title_activity_calc_dialog">Calc对话框</string>
 </resources>

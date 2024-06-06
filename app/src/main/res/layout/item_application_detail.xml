@@ -22,9 +22,9 @@
 
         <HorizontalScrollView
             android:id="@+id/appDetailsHorizontalScrollView"
-            android:clickable="true"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:clickable="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -35,9 +35,9 @@
                     android:id="@+id/appDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:maxLines="3"
                     android:padding="12dp"
                     android:text="@string/refresh"
-                    android:maxLines="3"
                     android:textColor="@color/text_color"
                     android:textStyle="bold" />
 

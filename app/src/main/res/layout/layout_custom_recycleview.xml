@@ -37,12 +37,12 @@
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@null"
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginBottom="12dp"
+                    android:background="@null"
+                    android:elevation="0dp"
                     app:ms_background_color="@color/spinner_color"
                     app:ms_hide_arrow="false"
-                    android:elevation="0dp"
                     app:ms_text_color="@color/text_color" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,9 +57,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="240dp"
                         android:layout_gravity="center"
+                        android:adjustViewBounds="true"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:adjustViewBounds="true" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ProgressBar
                         android:id="@+id/progressBar"

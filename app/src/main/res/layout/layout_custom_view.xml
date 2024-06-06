@@ -8,8 +8,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp">
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
 
         <ImageView
             android:id="@+id/img_ico"
