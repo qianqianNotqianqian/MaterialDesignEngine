@@ -2,6 +2,7 @@
 <resources>
 
     <public name="CalcDialogStyle" type="style"/>
+
     <style name="CalcDialogStyle">
         <item name="calcDialogMaxWidth">400dp</item>
         <item name="calcDialogMaxHeight">500dp</item>
