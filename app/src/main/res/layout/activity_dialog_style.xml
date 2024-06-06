@@ -7,13 +7,6 @@
     android:background="@color/background"
     tools:context=".ui.activities.ActivityDialogShow">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/split_body"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#a6a8a9"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
-
     <include
         android:id="@+id/include"
         layout="@layout/this_application_toolbar" />
@@ -28,7 +21,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.core.widget.NestedScrollView
+    <me.zhanghai.android.fastscroll.FastScrollNestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
@@ -931,8 +925,8 @@
                     android:background="@drawable/rect_dialogx_material_poptip_bkg"
                     android:drawableRight="@mipmap/img_drawable_down"
                     android:gravity="center_vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="5dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="5dp"
                     android:singleLine="true"
                     android:text="选项菜单"
                     android:textColor="@color/black"
@@ -1050,6 +1044,6 @@
             </com.kongzue.stacklabelview.StackLayout>
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </me.zhanghai.android.fastscroll.FastScrollNestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package mapleleaf.materialdesign.engine.ui.activities
 
 import android.os.Bundle
 import android.widget.ProgressBar
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.core.view.isVisible
@@ -26,6 +27,7 @@ class ActivityColors : UniversalActivityBase() {
     private lateinit var tabLayout: TabLayout
     private lateinit var progressBar: ProgressBar
     private lateinit var appBarLayout: AppBarLayout
+    private lateinit var splitBody: AppCompatImageView
 
     override fun getLayoutResourceId() = R.layout.activity_colors
 
@@ -35,11 +37,13 @@ class ActivityColors : UniversalActivityBase() {
         tabLayout = findViewById(R.id.tab_layout)
         viewPager = findViewById(R.id.view_pager)
         appBarLayout = findViewById(R.id.appBarLayout)
-
+        splitBody = findViewById(R.id.split_body)
+        splitBody.isVisible = false
         progressBar.isIndeterminate = true
         progressBar.isVisible = true
 
         getToolbar().setBackgroundColor(getColor(R.color.transparent))
+
         CoroutineScope(Dispatchers.Main).launch {
             val fragmentList = listOf(
                 FragmentColorsZH(),

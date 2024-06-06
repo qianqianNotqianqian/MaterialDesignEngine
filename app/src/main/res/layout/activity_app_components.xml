@@ -23,6 +23,13 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/split_body"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignBottom="@+id/appBarLayout"
+        android:background="@color/split_body" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"

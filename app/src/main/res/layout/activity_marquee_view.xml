@@ -20,7 +20,15 @@
             android:id="@+id/tab_layout"
             style="@style/MDEngineTabLayout" />
 
+
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/split_body"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/split_body"
+        app:layout_constraintBottom_toBottomOf="@+id/appBarLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

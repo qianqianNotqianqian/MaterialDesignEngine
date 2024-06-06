@@ -6,8 +6,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.isVisible
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
@@ -34,6 +36,7 @@ class ActivityMarqueeView: UniversalActivityBase() {
     private lateinit var marqueeViewXUI4: XUIMarqueeView
     private lateinit var marqueeViewXUI5: XUIMarqueeView
     private lateinit var tvMarquee: MarqueeTextView
+    private lateinit var splitBody: AppCompatImageView
 
     override fun getLayoutResourceId() = R.layout.activity_marquee_view
 
@@ -48,6 +51,8 @@ class ActivityMarqueeView: UniversalActivityBase() {
         marqueeViewXUI4 = findViewById(R.id.marqueeViewXUI4)
         marqueeViewXUI5 = findViewById(R.id.marqueeViewXUI5)
         tvMarquee = findViewById(R.id.tv_marquee)
+        splitBody = findViewById(R.id.split_body)
+        splitBody.isVisible = false
 
         val appBarLayout = findViewById<AppBarLayout>(R.id.appBarLayout)
         val baseColor = ContextCompat.getColor(context, R.color.background_color)

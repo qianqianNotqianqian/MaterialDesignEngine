@@ -795,4 +795,5 @@
     <color name="emptyNavBar">#01FFFFFF</color>
     <color name="spinner_color">#F2F6FC</color>
     <color name="spinner_color2">#DFF2FF</color>
+    <color name="split_body">#a6a8a9</color>
 </resources>

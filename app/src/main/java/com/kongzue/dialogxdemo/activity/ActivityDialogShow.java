@@ -12,10 +12,15 @@ import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -31,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -706,6 +712,70 @@ public class ActivityDialogShow extends UniversalActivityBase {
 
         btnPopTipError.setOnClickListener(v -> PopTip.show("无法连接网络").iconError());
 
+        btnPopnotification.setOnClickListener(v -> {
+            notificationIndex++;
+            PopNotification.build()
+                    .setMessage("这是一条消息 " + notificationIndex)
+                    .setOnPopNotificationClickListener((dialog, v118) -> {
+                        tip("点击了通知" + dialog.dialogKey());
+                        return true;
+                    })
+                    .show();
+        });
+
+        btnPopnotificationBigMessage.setOnClickListener(v -> {
+            Bitmap icon = BitmapFactory.decodeResource(getResources(), R.mipmap.img_demo_avatar);
+            notificationIndex++;
+            PopNotification.show("这是一条消息 " + notificationIndex, "吃了没？\uD83E\uDD6A")
+                    .setIcon(icon)
+                    .setButton("回复", (baseDialog, v119) -> {
+                        toast("点击回复按钮");
+                        return false;
+                    })
+                    .showLong();
+        });
+
+        btnPopnotificationOverlay.setOnClickListener(v -> {
+            DialogX.globalHoverWindow = true;
+            //悬浮窗权限检查
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!Settings.canDrawOverlays(this)) {
+                    Toast.makeText(this, "使用 DialogX.globalHoverWindow 必须开启悬浮窗权限", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                    startActivity(intent);
+                    return;
+                }
+            }
+
+            Bitmap icon = BitmapFactory.decodeResource(getResources(), R.mipmap.img_demo_avatar);
+            notificationIndex++;
+            Toast.makeText(this, "会在1秒后显示悬浮窗！", Toast.LENGTH_LONG).show();
+
+            //跳转到桌面
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+            //等待一秒后显示
+            new Handler(Looper.getMainLooper()).postDelayed(() -> PopNotification.build()
+                    .setDialogImplMode(DialogX.IMPL_MODE.WINDOW)
+                    .setTitle("这是一条消息 " + notificationIndex)
+                    .setIcon(icon)
+                    .setButton("回复", new OnDialogButtonClickListener<PopNotification>() {
+                        @Override
+                        public boolean onClick(PopNotification baseDialog, View v120) {
+                            Intent intent1 = new Intent(context, ActivityDialogShow.class);
+                            intent1.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            startActivity(intent1);
+
+                            return false;
+                        }
+                    })
+                    .showLong(), 1000);
+        });
+
         btnBottomSelectMenu.setOnClickListener(v -> BottomMenu.show(singleSelectMenuText)
                 .setShowSelectedBackgroundTips(rdoMiui.isChecked())
                 .setMessage("这里是权限确认的文本说明，这是一个演示菜单")
@@ -795,6 +865,8 @@ public class ActivityDialogShow extends UniversalActivityBase {
             });
         });
     }
+
+    int notificationIndex;
 
     public void hideIME(View view) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

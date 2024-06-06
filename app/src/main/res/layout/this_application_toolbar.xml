@@ -27,6 +27,13 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/split_body"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/split_body"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/progressBar"
         style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"

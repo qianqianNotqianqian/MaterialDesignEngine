@@ -4,11 +4,14 @@ import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.Settings
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -23,6 +26,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.kongzue.baseframework.BaseApp.dip2px
@@ -39,6 +43,7 @@ import com.kongzue.dialogx.dialogs.MessageMenu
 import com.kongzue.dialogx.dialogs.PopMenu
 import com.kongzue.dialogx.dialogs.PopNotification
 import com.kongzue.dialogx.dialogs.PopTip
+import com.kongzue.dialogx.dialogs.PopTip.tip
 import com.kongzue.dialogx.dialogs.TipDialog
 import com.kongzue.dialogx.dialogs.WaitDialog
 import com.kongzue.dialogx.interfaces.BaseDialog
@@ -59,6 +64,7 @@ import com.xuexiang.xui.utils.XToastUtils.toast
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
+import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.Random
 
 class ActivityDialogShow: UniversalActivityBase() {
@@ -209,6 +215,9 @@ class ActivityDialogShow: UniversalActivityBase() {
         btnShowGuideBaseView = findViewById(R.id.btn_showGuideBaseView)
         btnShowGuideBaseViewRectangle = findViewById(R.id.btn_showGuideBaseViewRectangle)
         btnListDialog = findViewById(R.id.btn_listDialog)
+
+        val nestedScrollView = findViewById<NestedScrollView>(R.id.nestedScrollView)
+        FastScrollerBuilder(nestedScrollView).build()
 
         grpMode.addOnButtonCheckedListener { group, checkedId, isChecked ->
             BaseDialog.cleanAll()
@@ -486,7 +495,7 @@ class ActivityDialogShow: UniversalActivityBase() {
                             } else null
                         }
                     })
-                    .setOnMenuItemClickListener { dialog, text, index ->
+                    .setOnMenuItemClickListener { _, text, _ ->
                         PopTip.show(text)
                         false
                     }
@@ -498,9 +507,9 @@ class ActivityDialogShow: UniversalActivityBase() {
                 override fun onBind(dialog: BottomDialog, v: View) {
                     btnReplyCommit = v.findViewById(R.id.btn_reply_commit)
                     editReplyCommit = v.findViewById(R.id.edit_reply_commit)
-                    btnReplyCommit.setOnClickListener { v16 ->
+                    btnReplyCommit.setOnClickListener {
                         dialog.dismiss()
-                        PopTip.show("提交内容：\n${editReplyCommit.text.toString()}")
+                        PopTip.show("提交内容：\n${editReplyCommit.text}")
                     }
                     editReplyCommit.postDelayed({ showIME(editReplyCommit) }, 300)
                 }
@@ -725,6 +734,65 @@ class ActivityDialogShow: UniversalActivityBase() {
         }
 
         btnPopTipError.setOnClickListener { PopTip.show("无法连接网络").iconError() }
+        btnPopnotification.setOnClickListener {
+            notificationIndex++
+            PopNotification.build()
+                .setMessage("这是一条消息 $notificationIndex")
+                .setOnPopNotificationClickListener { dialog, v118 ->
+                    tip("点击了通知" + dialog.dialogKey())
+                    true
+                }
+                .show()
+        }
+        btnPopnotificationOverlay.setOnClickListener {
+            DialogX.globalHoverWindow = true
+            // 悬浮窗权限检查
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!Settings.canDrawOverlays(this)) {
+                    toast("使用 DialogX.globalHoverWindow 必须开启悬浮窗权限")
+                    val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+                    startActivity(intent)
+                    return@setOnClickListener
+                }
+            }
+
+            val icon = BitmapFactory.decodeResource(resources, R.mipmap.img_demo_avatar)
+            notificationIndex++
+            toast("会在1秒后显示悬浮窗！")
+
+            // 跳转到桌面
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+
+            // 等待一秒后显示
+            Handler(Looper.getMainLooper()).postDelayed({
+                PopNotification.build()
+                    .setDialogImplMode(DialogX.IMPL_MODE.WINDOW)
+                    .setTitle("这是一条消息 $notificationIndex")
+                    .setIcon(icon)
+                    .setButton("回复") { baseDialog, v120 ->
+                        val intent1 = Intent(context, ActivityDialogShow::class.java)
+                        intent1.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+                        startActivity(intent1)
+                        false
+                    }
+                    .showLong()
+            }, 1000)
+        }
+
+        btnPopnotificationBigMessage.setOnClickListener {
+            val icon = BitmapFactory.decodeResource(resources, R.mipmap.img_demo_avatar)
+            notificationIndex++
+            PopNotification.show("这是一条消息 $notificationIndex", "吃了没？\uD83E\uDD6A")
+                .setIcon(icon)
+                .setButton("回复") { baseDialog, v119 ->
+                    toast("点击回复按钮")
+                    false
+                }
+                .showLong()
+        }
 
         btnBottomSelectMenu.setOnClickListener {
             BottomMenu.show(singleSelectMenuText)
@@ -765,7 +833,7 @@ class ActivityDialogShow: UniversalActivityBase() {
         handler = Handler(Looper.getMainLooper())
         setToolbarTitle(getString(R.string.toolbar_title_activity_md_dialog))
     }
-
+    private var notificationIndex = 0
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         log("#MainActivity.onBackPressed")
