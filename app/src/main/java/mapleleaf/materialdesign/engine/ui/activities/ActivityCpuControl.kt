@@ -35,7 +35,7 @@ import java.util.Timer
 import java.util.TimerTask
 import java.util.concurrent.locks.ReentrantLock
 
-class ActivityCpuControl : UniversalActivityBase() {
+class ActivityCpuControl : UniversalActivityBase(R.layout.activity_cpu_control) {
     // 应用到指定的配置模式
     private var cpuModeName: String? = null
     private lateinit var themeMode: ThemeMode
@@ -62,7 +62,7 @@ class ActivityCpuControl : UniversalActivityBase() {
     private lateinit var binding: ActivityCpuControlBinding
     private var toolbar: Toolbar? = null
 
-    override fun getLayoutResourceId() = R.layout.activity_cpu_control
+//    override fun getLayoutResourceId() = R.layout.activity_cpu_control
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         binding = ActivityCpuControlBinding.inflate(layoutInflater)

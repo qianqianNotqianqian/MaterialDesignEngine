@@ -27,7 +27,7 @@ import mapleleaf.materialdesign.engine.ui.fragments.FragmentComponentServices
 import mapleleaf.materialdesign.engine.ui.fragments.FragmentComponentWidgetInfo
 import mapleleaf.materialdesign.engine.utils.toast
 
-class ActivityAppComponents : UniversalActivityBase() {
+class ActivityAppComponents : UniversalActivityBase(R.layout.activity_app_components) {
 
     private lateinit var viewPager: ViewPager
     private lateinit var tabLayout: TabLayout
@@ -36,7 +36,7 @@ class ActivityAppComponents : UniversalActivityBase() {
     private var progressBar: ProgressBar? = null
     private lateinit var splitBody: AppCompatImageView
 
-    override fun getLayoutResourceId() = R.layout.activity_app_components
+//    override fun getLayoutResourceId() = R.layout.activity_app_components
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

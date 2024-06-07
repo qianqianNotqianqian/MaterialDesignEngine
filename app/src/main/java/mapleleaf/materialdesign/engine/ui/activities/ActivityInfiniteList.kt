@@ -27,7 +27,7 @@ import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
 import mapleleaf.materialdesign.engine.utils.toast
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
-class ActivityInfiniteList : UniversalActivityBase() {
+class ActivityInfiniteList : UniversalActivityBase(R.layout.activity_infinite_recycler_view) {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var appsSearchBox: EditText
@@ -35,9 +35,7 @@ class ActivityInfiniteList : UniversalActivityBase() {
     private lateinit var loading: AppCompatImageView
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
 
-    override fun getLayoutResourceId(): Int {
-        return R.layout.activity_infinite_recycler_view
-    }
+//    override fun getLayoutResourceId() = R.layout.activity_infinite_recycler_view
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

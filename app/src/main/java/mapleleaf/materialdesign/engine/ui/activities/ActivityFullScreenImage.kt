@@ -44,14 +44,14 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
-class ActivityFullScreenImage : UniversalActivityBase() {
+class ActivityFullScreenImage : UniversalActivityBase(R.layout.activity_fullscreen_image) {
 
     private lateinit var viewPager: ViewPager
     private var progressBar: ProgressBar? = null
     private lateinit var imagePosition: TextView
     private lateinit var imageSize: TextView
 
-    override fun getLayoutResourceId() = R.layout.activity_fullscreen_image
+//    override fun getLayoutResourceId() = R.layout.activity_fullscreen_image
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

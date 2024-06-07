@@ -67,7 +67,7 @@ import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.Random
 
-class ActivityKongzueDialog : UniversalActivityBase() {
+class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_dialog_show) {
 
     private val singleSelectMenuText = arrayOf("拒绝", "询问", "始终允许", "仅在使用中允许")
     private val multiSelectMenuText = arrayOf("上海", "北京", "广州", "深圳")
@@ -158,7 +158,7 @@ class ActivityKongzueDialog : UniversalActivityBase() {
     private var selectMenuIndexArray: IntArray? = null
     private lateinit var multiSelectMenuResultCache: String
 
-    override fun getLayoutResourceId() = R.layout.activity_dialog_show
+//    override fun getLayoutResourceId() = R.layout.activity_dialog_show
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

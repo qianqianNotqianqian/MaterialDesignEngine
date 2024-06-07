@@ -21,7 +21,7 @@ import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.ui.fragments.FragmentColorsJP
 import mapleleaf.materialdesign.engine.ui.fragments.FragmentColorsZH
 
-class ActivityColors : UniversalActivityBase() {
+class ActivityColors : UniversalActivityBase(R.layout.activity_colors) {
 
     private lateinit var viewPager: ViewPager
     private lateinit var tabLayout: TabLayout
@@ -29,7 +29,7 @@ class ActivityColors : UniversalActivityBase() {
     private lateinit var appBarLayout: AppBarLayout
     private lateinit var splitBody: AppCompatImageView
 
-    override fun getLayoutResourceId() = R.layout.activity_colors
+//    override fun getLayoutResourceId() = R.layout.activity_colors
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

@@ -33,7 +33,8 @@ import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-class ActivitySystemInfo : UniversalActivityBase() {
+class ActivitySystemInfo : UniversalActivityBase(R.layout.activity_device_info) {
+
     private lateinit var deviceNameTextView: TextView
     private lateinit var deviceModelTextView: TextView
     private lateinit var deviceManufacturerTextView: TextView
@@ -55,7 +56,7 @@ class ActivitySystemInfo : UniversalActivityBase() {
     private val PERMISSION_REQUEST_CODE = 1
     private var loadDeviceInfoJob: Job? = null
 
-    override fun getLayoutResourceId() = R.layout.activity_device_info
+//    override fun getLayoutResourceId() = R.layout.activity_device_info
 
     private fun showPermissionDeniedMessage() {
         val dialog = MaterialAlertDialogBuilder(this)

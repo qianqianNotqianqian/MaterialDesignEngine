@@ -82,7 +82,7 @@ import java.util.regex.Pattern
 import kotlin.math.log10
 import kotlin.math.pow
 
-class ActivityAllApplications : UniversalActivityBase() {
+class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_applications) {
 
     private var includeSystemApps: Boolean = true
     private var includeUserApps: Boolean = true
@@ -96,7 +96,7 @@ class ActivityAllApplications : UniversalActivityBase() {
     private lateinit var spinner: MaterialSpinner
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
 
-    override fun getLayoutResourceId() = R.layout.activity_all_applications
+//    override fun getLayoutResourceId() = R.layout.activity_all_applications
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         recyclerView = findViewById(R.id.recyclerView)

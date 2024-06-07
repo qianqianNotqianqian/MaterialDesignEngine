@@ -23,7 +23,7 @@ import mapleleaf.materialdesign.engine.ui.fragments.FragmentGetWelfare
 import mapleleaf.materialdesign.engine.utils.TabIcon
 import mapleleaf.materialdesign.engine.utils.toast
 
-class ActivityWallpaper : UniversalActivityBase() {
+class ActivityWallpaper : UniversalActivityBase(R.layout.activity_wallpaper) {
 
     private lateinit var loading: AppCompatImageView
     private lateinit var nullList: AppCompatImageView
@@ -31,7 +31,7 @@ class ActivityWallpaper : UniversalActivityBase() {
     private lateinit var tabLayout: TabLayout
     private lateinit var include: View
 
-    override fun getLayoutResourceId() = R.layout.activity_wallpaper
+//    override fun getLayoutResourceId() = R.layout.activity_wallpaper
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

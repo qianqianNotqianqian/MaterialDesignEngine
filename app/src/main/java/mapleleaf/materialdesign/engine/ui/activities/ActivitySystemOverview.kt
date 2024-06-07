@@ -15,9 +15,9 @@ import mapleleaf.materialdesign.engine.ui.fragments.FragmentOverViewSystem
 import mapleleaf.materialdesign.engine.utils.TabIcon
 import mapleleaf.materialdesign.engine.utils.getStatusBarHeight
 
-class ActivitySystemOverview : UniversalActivityBase() {
+class ActivitySystemOverview : UniversalActivityBase(R.layout.activity_system_overview) {
 
-    override fun getLayoutResourceId() = R.layout.activity_system_overview
+//    override fun getLayoutResourceId() = R.layout.activity_system_overview
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun initializeComponents(savedInstanceState: Bundle?) {

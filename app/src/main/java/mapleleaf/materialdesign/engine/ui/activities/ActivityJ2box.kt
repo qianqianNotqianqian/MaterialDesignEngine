@@ -13,7 +13,7 @@ import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.view.CollisionView
 
-class ActivityJ2box : UniversalActivityBase(), SensorEventListener {
+class ActivityJ2box : UniversalActivityBase(R.layout.activity_j2box), SensorEventListener {
     private val imgs = intArrayOf(
         R.mipmap.share_fb,
         R.mipmap.share_kongjian,
@@ -27,9 +27,7 @@ class ActivityJ2box : UniversalActivityBase(), SensorEventListener {
     private lateinit var defaultSensor: Sensor
     private lateinit var collisionView: CollisionView
 
-    override fun getLayoutResourceId(): Int {
-        return R.layout.activity_j2box
-    }
+//    override fun getLayoutResourceId() = R.layout.activity_j2box
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         collisionView = findViewById(R.id.collisionView)

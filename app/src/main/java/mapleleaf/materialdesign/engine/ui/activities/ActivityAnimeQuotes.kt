@@ -15,7 +15,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
 
-class ActivityAnimeQuotes : UniversalActivityBase() {
+class ActivityAnimeQuotes : UniversalActivityBase(R.layout.activity_anime_quotes) {
 
     private lateinit var textView: TextView
     private lateinit var editText: EditText
@@ -23,9 +23,9 @@ class ActivityAnimeQuotes : UniversalActivityBase() {
     private lateinit var msgMaterialCardView: MaterialCardView
     private var searchTextWatcher: SearchTextWatcher? = null
 
-    override fun getLayoutResourceId(): Int {
-        return R.layout.activity_anime_quotes
-    }
+//    override fun getLayoutResourceId(): Int {
+//        return R.layout.activity_anime_quotes
+//    }
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         textView = findViewById(R.id.text_view)

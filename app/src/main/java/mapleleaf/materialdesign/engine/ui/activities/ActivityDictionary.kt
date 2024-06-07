@@ -28,7 +28,7 @@ import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
-class ActivityDictionary : UniversalActivityBase() {
+class ActivityDictionary : UniversalActivityBase(R.layout.activity_dictionary) {
 
     private lateinit var editTextHanzi: EditText
     private lateinit var textViewPinyin: TextView
@@ -44,7 +44,7 @@ class ActivityDictionary : UniversalActivityBase() {
     private var isLoading = false
     val regex = Regex("[^\u4e00-\u9fa5]")
 
-    override fun getLayoutResourceId() = R.layout.activity_dictionary
+//    override fun getLayoutResourceId() = R.layout.activity_dictionary
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

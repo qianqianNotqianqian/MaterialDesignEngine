@@ -35,7 +35,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 
-class ActivityHotSearch : UniversalActivityBase() {
+class ActivityHotSearch : UniversalActivityBase(R.layout.activity_hot_search) {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AdapterHotSearch
@@ -45,7 +45,7 @@ class ActivityHotSearch : UniversalActivityBase() {
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
     private var currentUrl: String? = "https://api.vvhan.com/api/hotlist/wbHot"
 
-    override fun getLayoutResourceId() = R.layout.activity_hot_search
+//    override fun getLayoutResourceId() = R.layout.activity_hot_search
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         recyclerView = findViewById(R.id.recyclerView)

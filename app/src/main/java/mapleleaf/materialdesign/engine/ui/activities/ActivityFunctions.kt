@@ -22,7 +22,7 @@ import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.ui.fragments.FragmentUniversalFunctions
 
-class ActivityFunctions : UniversalActivityBase() {
+class ActivityFunctions : UniversalActivityBase(R.layout.activity_functions) {
 
     private lateinit var viewPager: ViewPager
     private lateinit var tabLayout: TabLayout
@@ -30,7 +30,7 @@ class ActivityFunctions : UniversalActivityBase() {
     private lateinit var loading: AppCompatImageView
     private lateinit var splitBody: AppCompatImageView
 
-    override fun getLayoutResourceId() = R.layout.activity_functions
+//    override fun getLayoutResourceId() = R.layout.activity_functions
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

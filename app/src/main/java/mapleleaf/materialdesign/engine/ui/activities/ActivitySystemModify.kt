@@ -20,7 +20,7 @@ import mapleleaf.materialdesign.engine.ui.dialog.DialogSettingModifyDevice
 import mapleleaf.materialdesign.engine.ui.dialog.DialogSettingWIFI
 
 
-class ActivitySystemModify : UniversalActivityBase() {
+class ActivitySystemModify : UniversalActivityBase(R.layout.activity_system_modify) {
     private fun createItem(
         title: String,
         desc: String,
@@ -38,7 +38,7 @@ class ActivitySystemModify : UniversalActivityBase() {
 
     private lateinit var systemModifyListView: ListView
 
-    override fun getLayoutResourceId() = R.layout.activity_system_modify
+//    override fun getLayoutResourceId() = R.layout.activity_system_modify
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

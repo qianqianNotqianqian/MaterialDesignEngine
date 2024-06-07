@@ -36,7 +36,7 @@ import mapleleaf.materialdesign.engine.interfaces.MusicScanner
 import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
-class ActivityMusic : UniversalActivityBase(), MusicScanner.MusicScanListener {
+class ActivityMusic : UniversalActivityBase(R.layout.activity_music), MusicScanner.MusicScanListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var musicAdapter: AdapterMusic
@@ -44,7 +44,7 @@ class ActivityMusic : UniversalActivityBase(), MusicScanner.MusicScanListener {
     private lateinit var materialCardView: MaterialCardView
     private var progressBar: ProgressBar? = null
 
-    override fun getLayoutResourceId() = R.layout.activity_music
+//    override fun getLayoutResourceId() = R.layout.activity_music
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

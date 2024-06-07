@@ -25,7 +25,7 @@ import org.json.JSONObject
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-class ActivityBilibiliParse : UniversalActivityBase() {
+class ActivityBilibiliParse : UniversalActivityBase(R.layout.activity_bilibili_parse) {
 
     private lateinit var titleTextView: TextView
     private lateinit var statViewTextView: TextView
@@ -41,9 +41,7 @@ class ActivityBilibiliParse : UniversalActivityBase() {
     private lateinit var progressBar: DialogProgressBar
     private lateinit var button: FloatingActionButton
 
-    override fun getLayoutResourceId(): Int {
-        return R.layout.activity_bilibili_parse
-    }
+//    override fun getLayoutResourceId() = return R.layout.activity_bilibili_parse
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

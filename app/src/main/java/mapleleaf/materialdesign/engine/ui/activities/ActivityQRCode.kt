@@ -19,7 +19,7 @@ import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
 import java.io.FileOutputStream
 import java.util.EnumMap
 
-class ActivityQRCode : UniversalActivityBase() {
+class ActivityQRCode : UniversalActivityBase(R.layout.activity_qrcode) {
 
     private lateinit var editTextContent: EditText
     private lateinit var imageViewQRCode: ImageView
@@ -28,7 +28,7 @@ class ActivityQRCode : UniversalActivityBase() {
     private var searchTextWatcher: SearchTextWatcher? = null
     private var qrCodeMargin: Int = 0
 
-    override fun getLayoutResourceId() = R.layout.activity_qrcode
+//    override fun getLayoutResourceId() = R.layout.activity_qrcode
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         editTextContent = findViewById(R.id.edit_text_content)

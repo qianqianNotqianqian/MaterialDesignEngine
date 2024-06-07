@@ -8,11 +8,9 @@ import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.utils.toast
 import java.security.MessageDigest
 
-class ActivityText2MD5 : UniversalActivityBase() {
+class ActivityText2MD5 : UniversalActivityBase(R.layout.activity_text_md5) {
 
-    override fun getLayoutResourceId(): Int {
-        return R.layout.activity_text_md5
-    }
+//    override fun getLayoutResourceId() = R.layout.activity_text_md5
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         val inputEditText = findViewById<EditText>(R.id.inputText_text)

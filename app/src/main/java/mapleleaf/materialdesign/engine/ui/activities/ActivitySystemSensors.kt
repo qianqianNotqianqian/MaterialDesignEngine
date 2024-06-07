@@ -30,7 +30,7 @@ import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
-class ActivitySystemSensors : UniversalActivityBase() {
+class ActivitySystemSensors : UniversalActivityBase(R.layout.activity_sensor_info) {
 
     private lateinit var sensorManager: SensorManager
     lateinit var adapterSensor: AdapterSensor
@@ -38,7 +38,7 @@ class ActivitySystemSensors : UniversalActivityBase() {
     private lateinit var loading: AppCompatImageView
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
 
-    override fun getLayoutResourceId() = R.layout.activity_sensor_info
+//    override fun getLayoutResourceId() = R.layout.activity_sensor_info
 
     @SuppressLint("SetTextI18n")
     override fun initializeComponents(savedInstanceState: Bundle?) {

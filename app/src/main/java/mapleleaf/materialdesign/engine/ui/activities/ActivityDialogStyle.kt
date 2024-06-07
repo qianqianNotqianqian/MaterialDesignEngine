@@ -16,9 +16,9 @@ import mapleleaf.materialdesign.engine.ui.activities.dialogs.ActivityKongzueDial
 import me.zhanghai.android.fastscroll.FastScrollNestedScrollView
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
-class ActivityDialogStyle : UniversalActivityBase() {
+class ActivityDialogStyle : UniversalActivityBase(R.layout.activity_dialog_style) {
 
-    override fun getLayoutResourceId() = R.layout.activity_dialog_style
+//    override fun getLayoutResourceId() = R.layout.activity_dialog_style
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

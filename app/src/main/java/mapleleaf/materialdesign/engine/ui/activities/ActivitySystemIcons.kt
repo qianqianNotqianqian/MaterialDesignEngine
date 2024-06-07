@@ -21,7 +21,7 @@ import me.zhanghai.android.fastscroll.FastScrollNestedScrollView
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.Calendar
 
-class ActivitySystemIcons : UniversalActivityBase() {
+class ActivitySystemIcons : UniversalActivityBase(R.layout.activity_system_icons_style) {
     private lateinit var batteryIcon: ImageView
     private lateinit var loading: AppCompatImageView
     private lateinit var speed: AppCompatImageView
@@ -29,7 +29,7 @@ class ActivitySystemIcons : UniversalActivityBase() {
     private lateinit var finger: AppCompatImageView
     private var isAnimation1Playing = true
 
-    override fun getLayoutResourceId() = R.layout.activity_system_icons_style
+//    override fun getLayoutResourceId() = R.layout.activity_system_icons_style
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         setToolbarTitle(getString(R.string.toolbar_title_activity_system_icons))

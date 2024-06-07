@@ -55,7 +55,7 @@ import java.util.zip.ZipFile
 import kotlin.math.log10
 import kotlin.math.pow
 
-class ActivityApplicationDetails : UniversalActivityBase() {
+class ActivityApplicationDetails : UniversalActivityBase(R.layout.activity_application_details) {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var nullList: AppCompatImageView
@@ -65,7 +65,7 @@ class ActivityApplicationDetails : UniversalActivityBase() {
     private lateinit var loading: AppCompatImageView
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
 
-    override fun getLayoutResourceId() = R.layout.activity_application_details
+//    override fun getLayoutResourceId() = R.layout.activity_application_details
 
     @SuppressLint("ClickableViewAccessibility")
     override fun initializeComponents(savedInstanceState: Bundle?) {

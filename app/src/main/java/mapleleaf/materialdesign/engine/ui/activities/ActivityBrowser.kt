@@ -45,7 +45,7 @@ import java.lang.reflect.Method
 import java.net.URISyntaxException
 import java.util.Arrays
 
-class ActivityBrowser : UniversalActivityBase() {
+class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
 
     private val keyMyView = "key_my_view"
     private val PERMISSION_REQUEST_CODE = 102
@@ -56,7 +56,7 @@ class ActivityBrowser : UniversalActivityBase() {
     private lateinit var progressBar: ProgressBar
     private lateinit var titleTextView: TextView
 
-    override fun getLayoutResourceId() = R.layout.activity_browser
+//    override fun getLayoutResourceId() = R.layout.activity_browser
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initializeComponents(savedInstanceState: Bundle?) {

@@ -28,7 +28,7 @@ import mapleleaf.materialdesign.engine.utils.toast
 import mapleleaf.materialdesign.engine.view.XUIMarqueeFactory
 import mapleleaf.materialdesign.engine.view.XUIMarqueeView
 
-class ActivityMarqueeView : UniversalActivityBase() {
+class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view) {
 
     private lateinit var marqueeViewXUI1: XUIMarqueeView
     private lateinit var marqueeViewXUI2: XUIMarqueeView
@@ -38,7 +38,7 @@ class ActivityMarqueeView : UniversalActivityBase() {
     private lateinit var tvMarquee: MarqueeTextView
     private lateinit var splitBody: AppCompatImageView
 
-    override fun getLayoutResourceId() = R.layout.activity_marquee_view
+//    override fun getLayoutResourceId() = R.layout.activity_marquee_view
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

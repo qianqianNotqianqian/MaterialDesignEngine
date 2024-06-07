@@ -19,9 +19,9 @@ import android.os.Bundle
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 
-class ActivityCalcDialog : UniversalActivityBase() {
+class ActivityCalcDialog : UniversalActivityBase(R.layout.activity_calc_dialog) {
 
-    override fun getLayoutResourceId() = R.layout.activity_calc_dialog
+//    override fun getLayoutResourceId() = R.layout.activity_calc_dialog
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         setToolbarTitle(getString(R.string.toolbar_title_activity_calc_dialog))

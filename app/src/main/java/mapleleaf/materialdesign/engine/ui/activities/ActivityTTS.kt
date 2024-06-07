@@ -30,7 +30,7 @@ import mapleleaf.materialdesign.engine.utils.toast
 import java.io.IOException
 import java.net.URL
 
-class ActivityTTS : UniversalActivityBase() {
+class ActivityTTS : UniversalActivityBase(R.layout.activity_speech_synthesis) {
 
     private lateinit var editText: EditText
     private lateinit var textView: TextView
@@ -39,9 +39,7 @@ class ActivityTTS : UniversalActivityBase() {
     private lateinit var progressBar: ProgressBar
     private lateinit var msgMaterialCardView: MaterialCardView
 
-    override fun getLayoutResourceId(): Int {
-        return R.layout.activity_speech_synthesis
-    }
+//    override fun getLayoutResourceId() = R.layout.activity_speech_synthesis
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

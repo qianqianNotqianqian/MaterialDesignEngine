@@ -14,7 +14,7 @@ import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.permissions.CheckRootStatus
 import mapleleaf.materialdesign.engine.store.SpfConfig
 
-class ActivityCheckPermission : UniversalActivityBase() {
+class ActivityCheckPermission : UniversalActivityBase(R.layout.activity_check_permission) {
     companion object {
         var finished = false
     }
@@ -22,7 +22,7 @@ class ActivityCheckPermission : UniversalActivityBase() {
     private lateinit var startStateText: TextView
     private lateinit var globalSPF: SharedPreferences
 
-    override fun getLayoutResourceId() = R.layout.activity_check_permission
+//    override fun getLayoutResourceId() = R.layout.activity_check_permission
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         globalSPF = getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE)

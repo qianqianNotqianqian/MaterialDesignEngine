@@ -48,7 +48,7 @@ import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
 import mapleleaf.materialdesign.engine.utils.TabIcon
 import mapleleaf.materialdesign.engine.utils.toast
 
-class ActivityApplications : UniversalActivityBase() {
+class ActivityApplications : UniversalActivityBase(R.layout.activity_applications) {
 
     private var myHandler: Handler = UpdateHandler {
         reloadList()
@@ -62,8 +62,7 @@ class ActivityApplications : UniversalActivityBase() {
     private val maxOpenCount = 20
     private lateinit var buttonClear: AppCompatImageButton
 
-    @LayoutRes
-    override fun getLayoutResourceId() = R.layout.activity_applications
+//    override fun getLayoutResourceId() = R.layout.activity_applications
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         val tabLayout = findViewById<TabLayout>(R.id.tab_layout)

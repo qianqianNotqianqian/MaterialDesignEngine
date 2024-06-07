@@ -36,13 +36,13 @@ import mapleleaf.materialdesign.engine.utils.toast
 import java.util.Timer
 import java.util.TimerTask
 
-class ActivityProcess : UniversalActivityBase() {
+class ActivityProcess : UniversalActivityBase(R.layout.activity_process) {
 
     private val processUtils = ProcessUtils()
     private var supported: Boolean = false
     private val handle = Handler(Looper.getMainLooper())
 
-    override fun getLayoutResourceId() = R.layout.activity_process
+//    override fun getLayoutResourceId() = R.layout.activity_process
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         supported = processUtils.supported(this)

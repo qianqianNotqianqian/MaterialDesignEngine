@@ -18,7 +18,7 @@ import mapleleaf.materialdesign.engine.utils.StatusBarColorExtractor
 import mapleleaf.materialdesign.engine.utils.ThemeModeState
 import mapleleaf.materialdesign.engine.utils.getStatusBarHeight
 
-abstract class UniversalActivityBase : AppCompatActivity() {
+abstract class UniversalActivityBase(@LayoutRes layoutRes: Int) : AppCompatActivity(layoutRes) {
 
     private var toolbar: Toolbar? = null
 
@@ -33,11 +33,9 @@ abstract class UniversalActivityBase : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutResourceId())
+//        setContentView(getLayoutResourceId())
         initToolbar()
         setToolbarTopMargin()
-//        DialogX.globalTheme = DialogX.THEME.AUTO
-//        DialogX.globalStyle = MIUIStyle.style()
         initializeComponents(savedInstanceState)
         setOverflowIconColor(R.color.text_color)
     }
@@ -72,8 +70,8 @@ abstract class UniversalActivityBase : AppCompatActivity() {
         }
     }
 
-    @LayoutRes
-    protected abstract fun getLayoutResourceId(): Int
+//    @LayoutRes
+//    protected abstract fun getLayoutResourceId(): Int
 
     protected abstract fun initializeComponents(savedInstanceState: Bundle?)
 

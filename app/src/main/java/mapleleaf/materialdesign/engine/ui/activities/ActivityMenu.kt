@@ -107,11 +107,11 @@ import javax.net.ssl.SSLHandshakeException
 import kotlin.math.abs
 import kotlin.random.Random
 
-class ActivityMenu : UniversalActivityBase() {
+class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
 
     private lateinit var drawerLayout: DrawerLayout
 
-    override fun getLayoutResourceId() = R.layout.activity_menu
+//    override fun getLayoutResourceId() = R.layout.activity_menu
 
     @SuppressLint("InflateParams", "SetTextI18n", "CutPasteId")
     override fun initializeComponents(savedInstanceState: Bundle?) {

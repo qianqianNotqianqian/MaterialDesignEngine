@@ -29,7 +29,7 @@ import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
-class ActivityApplicationDex : UniversalActivityBase() {
+class ActivityApplicationDex : UniversalActivityBase(R.layout.activity_application_dex) {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AdapterDexMethodInfo
@@ -37,7 +37,7 @@ class ActivityApplicationDex : UniversalActivityBase() {
     private lateinit var loading: AppCompatImageView
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
 
-    override fun getLayoutResourceId() = R.layout.activity_application_dex
+//    override fun getLayoutResourceId() = R.layout.activity_application_dex
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         recyclerView = findViewById(R.id.recyclerView)

@@ -16,7 +16,7 @@ import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.utils.toast
 
-class ActivitySystemVibration : UniversalActivityBase() {
+class ActivitySystemVibration : UniversalActivityBase(R.layout.activity_vibration_control) {
     private lateinit var vibrator: Vibrator
     private lateinit var startVibrationButton: Button
     private lateinit var stopVibrationButton: Button
@@ -26,7 +26,7 @@ class ActivitySystemVibration : UniversalActivityBase() {
     private lateinit var btnRhythm: Button
     private lateinit var durationEditText: EditText
 
-    override fun getLayoutResourceId() = R.layout.activity_vibration_control
+//    override fun getLayoutResourceId() = R.layout.activity_vibration_control
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         setToolbarTitle(getString(R.string.toolbar_title_activity_vibration_control))

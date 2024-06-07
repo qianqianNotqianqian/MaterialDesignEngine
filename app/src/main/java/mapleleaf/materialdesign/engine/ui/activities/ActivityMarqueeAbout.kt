@@ -14,7 +14,7 @@ import android.webkit.WebViewClient
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 
-class ActivityMarqueeAbout : UniversalActivityBase() {
+class ActivityMarqueeAbout : UniversalActivityBase(R.layout.marquee_activity_about) {
 
     private lateinit var webView: WebView
     private lateinit var settings: WebSettings
@@ -32,9 +32,7 @@ class ActivityMarqueeAbout : UniversalActivityBase() {
         }
     }
 
-    override fun getLayoutResourceId(): Int {
-        return R.layout.marquee_activity_about
-    }
+//    override fun getLayoutResourceId() = R.layout.marquee_activity_about
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         initView()

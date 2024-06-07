@@ -22,13 +22,11 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 
-class ActivityRandomPersonality : UniversalActivityBase() {
+class ActivityRandomPersonality : UniversalActivityBase(R.layout.activity_random_personality) {
 
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-    override fun getLayoutResourceId(): Int {
-        return R.layout.activity_random_personality
-    }
+//    override fun getLayoutResourceId() = R.layout.activity_random_personality
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         randomPersonality()
