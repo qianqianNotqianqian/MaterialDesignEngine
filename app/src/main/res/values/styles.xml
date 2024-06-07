@@ -302,17 +302,17 @@
         <item name="cornerSizeTopRight">2.0dip</item>
     </style>
 
-    <style name="AppAboutTheme" parent="Theme.AppCompat.Light">
+    <style name="AppAboutTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
-        <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowAnimationStyle">@style/activityAnim2</item>
+        <item name="toolbarStyle">@style/Material3.Toolbar</item>
     </style>
 
     <style name="ListCardItem">

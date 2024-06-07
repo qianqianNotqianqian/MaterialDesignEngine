@@ -1,12 +1,16 @@
 package com.drakeet.about;
 
+import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,11 +20,11 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
@@ -31,6 +35,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.drakeet.multitype.MultiTypeAdapter;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.shape.MaterialShapeDrawable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +52,7 @@ public abstract class AbsAboutActivity extends AppCompatActivity {
 
   private List<Object> items;
   private MultiTypeAdapter adapter;
+  private Context context;
   private TextView slogan, version;
   private RecyclerView recyclerView;
   private @Nullable ImageLoader imageLoader;
@@ -86,23 +93,71 @@ public abstract class AbsAboutActivity extends AppCompatActivity {
     headerContentLayout = findViewById(R.id.header_content_layout);
     onTitleViewCreated(collapsingToolbar);
     onCreateHeader(icon, slogan, version);
-
     setSupportActionBar(toolbar);
+    extractToolbarColor(this, toolbar);
+    context = this;
+
     ActionBar actionBar = getSupportActionBar();
     if (actionBar != null) {
+      actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
       actionBar.setDisplayHomeAsUpEnabled(true);
       actionBar.setDisplayShowHomeEnabled(true);
     }
     onApplyPresetAttrs();
     recyclerView = findViewById(R.id.list);
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       applyEdgeToEdge();
+  }
+  public static void extractToolbarColor(@NonNull AppCompatActivity activity, @NonNull Toolbar toolbar) {
+    int toolbarColor = extractToolbarColorFromDrawable(toolbar);
+    if (toolbarColor == Color.TRANSPARENT) {
+      toolbarColor = extractToolbarColorFromMaterialShapeDrawable(toolbar);
+    }
+    applyStatusBarColor(activity, toolbarColor);
+  }
+
+  private static int extractToolbarColorFromDrawable(@NonNull Toolbar toolbar) {
+    int toolbarColor = Color.TRANSPARENT;
+    if (toolbar.getBackground() instanceof ColorDrawable) {
+      toolbarColor = ((ColorDrawable) toolbar.getBackground()).getColor();
+    }
+    return toolbarColor;
+  }
+
+  private static int extractToolbarColorFromMaterialShapeDrawable(@NonNull Toolbar toolbar) {
+    int toolbarColor = Color.TRANSPARENT;
+    if (toolbar instanceof MaterialToolbar) {
+      MaterialShapeDrawable materialShapeDrawable = (MaterialShapeDrawable) toolbar.getBackground();
+      if (materialShapeDrawable != null) {
+        toolbarColor = materialShapeDrawable.getFillColor().getDefaultColor();
+      }
+    }
+    return toolbarColor;
+  }
+
+  private static void applyStatusBarColor(@NonNull AppCompatActivity activity, int color) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      Window window = activity.getWindow();
+      window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+      window.setStatusBarColor(color);
+
+      // 根据状态栏背景颜色选择文字颜色
+      int textColor = isColorDark(color) ? Color.BLACK : Color.WHITE;
+      View decorView = window.getDecorView();
+      int flags = decorView.getSystemUiVisibility();
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; // 清除浅色状态栏标志位
+      }
+      flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; // 设置深色状态栏标志位
+      decorView.setSystemUiVisibility(flags);
     }
   }
 
+  private static boolean isColorDark(int color) {
+    double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
+    return darkness >= 0.5;
+  }
   private boolean givenInsetsToDecorView = false;
 
-  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   private void applyEdgeToEdge() {
     Window window = getWindow();
     int navigationBarColor = ContextCompat.getColor(this, R.color.about_page_navigationBarColor);
@@ -115,8 +170,9 @@ public abstract class AbsAboutActivity extends AppCompatActivity {
     givenInsetsToDecorView = false;
     WindowCompat.setDecorFitsSystemWindows(window, false);
     ViewCompat.setOnApplyWindowInsetsListener(decorView, new OnApplyWindowInsetsListener() {
+      @NonNull
       @Override
-      public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat windowInsets) {
+      public WindowInsetsCompat onApplyWindowInsets(@NonNull View v, @NonNull WindowInsetsCompat windowInsets) {
         Insets navigationBarsInsets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars());
         boolean isGestureNavigation = navigationBarsInsets.bottom <= 24 * getResources().getDisplayMetrics().density;
 

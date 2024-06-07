@@ -18,9 +18,6 @@
     <color name="text_color">#FFFFFFFF</color>
     <color name="swipe_refresh_layout_progress">#FF000000</color>
     <color name="statusbar_color">#000000</color>
-    <color name="text_gray2">#FFADADAD</color>
-    <color name="orchid">#92289B</color><!--淡紫色 -->
-    <color name="text_view_color">#67ffffff</color>
     <color name="battery_third_color">#ffffff</color>
     <color name="battery_first_color">#ffffff</color>
 

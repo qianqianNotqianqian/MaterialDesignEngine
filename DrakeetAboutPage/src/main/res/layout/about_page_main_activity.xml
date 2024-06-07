@@ -31,8 +31,7 @@
                 <ImageView
                     style="@style/AboutPage.Header.Icon"
                     android:id="@+id/icon"
-                    tools:ignore="ContentDescription"
-                    tools:src="#000000"/>
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     style="@style/AboutPage.Header.Slogan"

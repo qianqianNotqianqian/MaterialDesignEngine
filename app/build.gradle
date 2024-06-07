@@ -65,7 +65,7 @@ android {
             signingConfig signingConfigs.release
         }
         debug {
-            minifyEnabled true
+            minifyEnabled false
             debuggable true
             shrinkResources false
             multiDexEnabled true
@@ -119,7 +119,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.drakeet.about:about:2.5.2'
+//    implementation 'com.drakeet.about:about:2.5.2'
     implementation 'androidx.palette:palette-ktx:1.0.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.preference:preference-ktx:1.2.1'
@@ -144,6 +144,7 @@ dependencies {
     implementation project(path: ':DialogXKongzueStyle')
     implementation project(path: ':DialogXMIUIStyle')
     implementation project(path: ':DialogXMaterialYou')
+    implementation project(path: ':DrakeetAboutPage')
 
     implementation "com.kongzue.baseframework:BaseFramework:6.8.8"
     implementation 'com.kongzue.stacklabel:StackLabel:1.2.0'
