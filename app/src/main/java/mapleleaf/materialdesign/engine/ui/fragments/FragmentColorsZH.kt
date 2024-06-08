@@ -21,6 +21,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
 import com.kongzue.baseframework.BaseFrameworkSettings.log
 import com.kongzue.dialogx.dialogs.BottomDialog
@@ -31,6 +32,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalFragmentBase
+import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.utils.toast
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import org.json.JSONArray
@@ -204,73 +206,48 @@ class FragmentColorsZH : UniversalFragmentBase() {
             return (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2])
         }
 
-        @SuppressLint("InflateParams", "SetTextI18n")
+        @SuppressLint("SetTextI18n", "InflateParams")
         private fun showColorDetailsDialog(context: Context, colorItem: ColorItem) {
 
-            BottomDialog(
-                null,
-                null,
-                object : OnBindView<BottomDialog>(R.layout.color_details_dialog) {
-                    override fun onBind(dialog: BottomDialog, view: View) {
-                        val rgb = colorItem.rgb
-                        val colorHexTextView = view.findViewById<TextView>(R.id.color_hex_text_view)
-                        val colorRGBTextView = view.findViewById<TextView>(R.id.color_rgb_text_view)
-                        val colorCYMKTextView =
-                            view.findViewById<TextView>(R.id.color_cymk_text_view)
-                        val colorHSVTextView = view.findViewById<TextView>(R.id.color_hsv_text_view)
-                        val colorNameTextView =
-                            view.findViewById<TextView>(R.id.color_name_text_view)
-                        val colorPinyinTextView =
-                            view.findViewById<TextView>(R.id.color_pinyin_text_view)
-                        view.findViewById<ConstraintLayout>(R.id.constraint_layout).apply {
-                            setBackgroundColor(Color.rgb(rgb[0], rgb[1], rgb[2]))
-                        }
-                        view.findViewById<View>(R.id.btn_copy_item).setOnClickListener {
-                            dialog.dismiss()
-                            copyColorDetailsToClipboard(colorItem)
-                        }
-                        view.findViewById<View>(R.id.close_button).setOnClickListener {
-                            dialog.dismiss()
-                        }
-                        colorNameTextView.text = colorItem.name
-                        colorPinyinTextView.text = colorItem.pinyin
-                        colorHexTextView.text = colorItem.hex.uppercase()
-                        colorRGBTextView.text = colorItem.rgb.joinToString(",")
-                        colorCYMKTextView.text = colorItem.cmyk.joinToString(",")
+            val dialogView =
+                LayoutInflater.from(context).inflate(R.layout.color_details_dialog, null)
+            val dialog = BottomSheetDialog(context)
 
-                        val hsv = FloatArray(3)
-                        Color.RGBToHSV(colorItem.rgb[0], colorItem.rgb[1], colorItem.rgb[2], hsv)
-                        val hue = String.format("%.6f", hsv[0].toDouble())
-                        val saturation = String.format("%.2f", (hsv[1] * 100)) + "%"
-                        val value = String.format("%.2f", (hsv[2] * 100)) + "%"
-                        colorHSVTextView.text = "$hue,$saturation,$value"
+            val rgb = colorItem.rgb
+            val colorHexTextView = dialogView.findViewById<TextView>(R.id.color_hex_text_view)
+            val colorRGBTextView = dialogView.findViewById<TextView>(R.id.color_rgb_text_view)
+            val colorCYMKTextView =
+                dialogView.findViewById<TextView>(R.id.color_cymk_text_view)
+            val colorHSVTextView = dialogView.findViewById<TextView>(R.id.color_hsv_text_view)
+            val colorNameTextView =
+                dialogView.findViewById<TextView>(R.id.color_name_text_view)
+            val colorPinyinTextView =
+                dialogView.findViewById<TextView>(R.id.color_pinyin_text_view)
 
-//                        dialog.dialogImpl.imgTab?.let {
-//                            (it.parent as? ViewGroup)?.removeView(it)
-//                        }
-//                        view.setOnClickListener {
-//                            dialog.dismiss()
-//                            PopTip.show("Click Custom View")
-//                        }
-                    }
-                }
-            )
-                .setDialogLifecycleCallback(object :
-                    BottomDialogSlideEventLifecycleCallback<BottomDialog>() {
-                    override fun onSlideClose(dialog: BottomDialog): Boolean {
-                        log("#onSlideClose")
-                        return super.onSlideClose(dialog)
-                    }
+            dialogView.findViewById<ConstraintLayout>(R.id.constraint_layout).apply {
+                setBackgroundColor(Color.rgb(rgb[0], rgb[1], rgb[2]))
+            }
 
-                    override fun onSlideTouchEvent(
-                        dialog: BottomDialog,
-                        v: View,
-                        event: MotionEvent,
-                    ): Boolean {
-                        log("#onSlideTouchEvent: action=${event.action} y=${event.y}")
-                        return super.onSlideTouchEvent(dialog, v, event)
-                    }
-                }).show()
+            colorNameTextView.text = colorItem.name
+            colorPinyinTextView.text = colorItem.pinyin
+            colorHexTextView.text = colorItem.hex.uppercase()
+            colorRGBTextView.text = colorItem.rgb.joinToString(",")
+            colorCYMKTextView.text = colorItem.cmyk.joinToString(",")
+
+            val hsv = FloatArray(3)
+            Color.RGBToHSV(colorItem.rgb[0], colorItem.rgb[1], colorItem.rgb[2], hsv)
+            val hue = String.format("%.6f", hsv[0].toDouble())
+            val saturation = String.format("%.2f", (hsv[1] * 100)) + "%"
+            val value = String.format("%.2f", (hsv[2] * 100)) + "%"
+            colorHSVTextView.text = "$hue,$saturation,$value"
+
+            dialogView.findViewById<View>(R.id.btn_copy_item).setOnClickListener {
+                dialog.dismiss()
+                copyColorDetailsToClipboard(colorItem)
+            }
+            dialogView.findViewById<View>(R.id.close_button).setOnClickListener {
+                dialog.dismiss()
+            }
         }
 
         private fun copyColorDetailsToClipboard(colorItem: ColorItem) {

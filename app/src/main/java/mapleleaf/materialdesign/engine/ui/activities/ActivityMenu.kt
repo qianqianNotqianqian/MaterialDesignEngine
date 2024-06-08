@@ -111,6 +111,9 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
 
     private lateinit var drawerLayout: DrawerLayout
 
+    private lateinit var spinner: MaterialSpinner
+    private lateinit var adapter: IconAdapter
+
 //    override fun getLayoutResourceId() = R.layout.activity_menu
 
     @SuppressLint("InflateParams", "SetTextI18n", "CutPasteId")
@@ -870,9 +873,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private lateinit var spinner: MaterialSpinner
-    private lateinit var adapter: IconAdapter
-
     @SuppressLint("InflateParams")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -1263,55 +1263,30 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
 
     @SuppressLint("InflateParams")
     private fun checkPermissions() {
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
-            XXPermissions.with(this)
-                .permission(Permission.READ_MEDIA_IMAGES)
-                .permission(Permission.SYSTEM_ALERT_WINDOW)
-                .permission(Permission.WRITE_SETTINGS)
-                .request { _, all ->
-                    if (!all) {
-                        toast(getString(R.string.permission_granted_complete))
-                    } else {
-                        val dialogView =
-                            layoutInflater.inflate(R.layout.dialog_check_permission, null)
-                        val dialog = DialogHelper.customDialog(this, dialogView)
-                        dialogView.findViewById<TextView>(R.id.confirm_title).text =
-                            getString(R.string.dialog_title)
-                        dialogView.findViewById<TextView>(R.id.confirm_message).text =
-                            getString(R.string.permission_granted_complete)
+        XXPermissions.with(this)
+            .permission(Permission.READ_MEDIA_IMAGES)
+            .permission(Permission.READ_MEDIA_VIDEO)
+            .permission(Permission.READ_MEDIA_AUDIO)
+            .permission(Permission.POST_NOTIFICATIONS)
+            .permission(Permission.SYSTEM_ALERT_WINDOW)
+            .permission(Permission.WRITE_SETTINGS)
+            .request { _, all ->
+                if (!all) {
+                    toast(getString(R.string.permission_granted_complete))
+                } else {
+                    val dialogView =
+                        layoutInflater.inflate(R.layout.dialog_check_permission, null)
+                    val dialog = DialogHelper.customDialog(this, dialogView)
+                    dialogView.findViewById<TextView>(R.id.confirm_title).text =
+                        getString(R.string.dialog_title)
+                    dialogView.findViewById<TextView>(R.id.confirm_message).text =
+                        getString(R.string.permission_granted_complete)
 
-                        dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
-                            dialog.dismiss()
-                        }
+                    dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                        dialog.dismiss()
                     }
                 }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            XXPermissions.with(this)
-                .permission(Permission.READ_MEDIA_IMAGES)
-                .permission(Permission.READ_MEDIA_VIDEO)
-                .permission(Permission.READ_MEDIA_AUDIO)
-                .permission(Permission.POST_NOTIFICATIONS)
-                .permission(Permission.SYSTEM_ALERT_WINDOW)
-//                .permission(Permission.MANAGE_EXTERNAL_STORAGE)
-                .permission(Permission.WRITE_SETTINGS)
-                .request { _, all ->
-                    if (!all) {
-                        toast(getString(R.string.permission_granted_complete))
-                    } else {
-                        val dialogView =
-                            layoutInflater.inflate(R.layout.dialog_check_permission, null)
-                        val dialog = DialogHelper.customDialog(this, dialogView)
-                        dialogView.findViewById<TextView>(R.id.confirm_title).text =
-                            getString(R.string.dialog_title)
-                        dialogView.findViewById<TextView>(R.id.confirm_message).text =
-                            getString(R.string.permission_granted_complete)
-
-                        dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
-                            dialog.dismiss()
-                        }
-                    }
-                }
-        }
+            }
     }
 
     private fun calculateAnswer(num1: Int, num2: Int, operationSymbol: String): Double {
