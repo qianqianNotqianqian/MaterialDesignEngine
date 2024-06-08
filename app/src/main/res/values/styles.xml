@@ -312,7 +312,6 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowAnimationStyle">@style/activityAnim2</item>
-        <item name="toolbarStyle">@style/Material3.Toolbar</item>
     </style>
 
     <style name="ListCardItem">

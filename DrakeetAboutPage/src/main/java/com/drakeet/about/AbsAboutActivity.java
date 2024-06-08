@@ -1,5 +1,6 @@
 package com.drakeet.about;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -24,7 +25,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
@@ -65,6 +65,7 @@ public abstract class AbsAboutActivity extends AppCompatActivity {
 
   protected void onTitleViewCreated(@NonNull CollapsingToolbarLayout collapsingToolbar) {}
 
+  @SuppressLint("NotifyDataSetChanged")
   public void setImageLoader(@NonNull ImageLoader imageLoader) {
     this.imageLoader = imageLoader;
     if (initialized) {

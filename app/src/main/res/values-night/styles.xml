@@ -33,7 +33,6 @@
 
     <style name="AppAboutTheme" parent="Theme.AppTheme.DayNight" />
 
-<!--    <style name="Theme.AppTheme.DayNight" parent="Theme.AppCompat.DayNight">-->
     <style name="Theme.AppTheme.DayNight" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -44,7 +43,6 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowAnimationStyle">@style/activityAnim2</item>
-        <item name="toolbarStyle">@style/Material3.Toolbar</item>
     </style>
 
 </resources>

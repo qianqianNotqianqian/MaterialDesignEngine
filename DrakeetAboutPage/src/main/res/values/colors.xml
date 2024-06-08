@@ -15,4 +15,5 @@
     <color name="about_page_navigationBarColor">#5C000000</color>
     <color name="background_color">#88FFFFFF</color>
     <color name="colorPrimary">#0099ff</color>
+    <color name="text_color">#000000</color>
 </resources>

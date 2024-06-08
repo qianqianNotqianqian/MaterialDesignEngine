@@ -18,16 +18,14 @@ public class ClickableViewHolder extends RecyclerView.ViewHolder {
 
   public ClickableViewHolder(View itemView) {
     super(itemView);
-    itemView.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
-        if (url != null) {
-          Intent intent = new Intent(Intent.ACTION_VIEW);
-          intent.setData(parse(url));
-          try {
-            v.getContext().startActivity(intent);
-          } catch (ActivityNotFoundException e) {
-            e.printStackTrace();
-          }
+    itemView.setOnClickListener(v -> {
+      if (url != null) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(parse(url));
+        try {
+          v.getContext().startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+          e.printStackTrace();
         }
       }
     });
