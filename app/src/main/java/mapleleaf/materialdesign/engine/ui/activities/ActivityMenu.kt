@@ -110,11 +110,7 @@ import kotlin.random.Random
 class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
 
     private lateinit var drawerLayout: DrawerLayout
-
-    private lateinit var spinner: MaterialSpinner
     private lateinit var adapter: IconAdapter
-
-//    override fun getLayoutResourceId() = R.layout.activity_menu
 
     @SuppressLint("InflateParams", "SetTextI18n", "CutPasteId")
     override fun initializeComponents(savedInstanceState: Bundle?) {
@@ -934,24 +930,18 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
                 val dialogView = layoutInflater.inflate(R.layout.layout_change_icons, null)
                 val dialog = DialogHelper.customDialog(this, dialogView)
                 dialogView.findViewById<TextView>(R.id.confirm_title).text =
-                    getString(R.string.dialog_title)
+                    getString(R.string.dialog_choose_icon)
                 dialogView.findViewById<TextView>(R.id.confirm_message).text = "选择图标样式并切换"
                 val recyclerView = dialogView.findViewById<RecyclerView>(R.id.iconRecyclerView)
                 val progressBar = dialogView.findViewById<ProgressBar>(R.id.progressBar)
-                spinner = dialogView.findViewById(R.id.spinner)
 
-                initMenu()
                 progressBar.isVisible = true
 
-                // 使用协程加载图标并更新适配器
                 lifecycleScope.launch(Dispatchers.Main) {
                     delay(300)
                     recyclerView.layoutManager =
                         LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                    adapter = IconAdapter(emptyList()).apply {
-                        animationEnable = true
-                        isAnimationFirstOnly = false
-                    }
+                    adapter = IconAdapter(emptyList())
                     recyclerView.adapter = adapter
 
                     val loadedIcons = withContext(Dispatchers.Main) {
@@ -969,14 +959,11 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
                     dialog.dismiss()
                     val selectedIcon = adapter.getSelectedIcon()
                     selectedIcon?.let {
-                        // 在这里处理选中的图标
-                        // 显示选中的图标名称
+
                         toast("选中了 $selectedIcon")
 
-                        // 获取包管理器
                         val packageManager = applicationContext.packageManager
 
-                        // 获取用户选择的图标别名
                         val selectedIconAlias = when (selectedIcon) {
                             "NoxIcon" -> "mapleleaf.materialdesign.engine.NoxIcon"
                             "PremiumIcon" -> "mapleleaf.materialdesign.engine.PremiumIcon"
@@ -992,7 +979,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
                             else -> ""
                         }
 
-                        // 获取所有活动别名列表
                         val activityAliases = listOf(
                             "mapleleaf.materialdesign.engine.NoxIcon",
                             "mapleleaf.materialdesign.engine.PremiumIcon",
@@ -1007,7 +993,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
                             "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
                         )
 
-                        // 隐藏主 activity 的图标
                         val mainActivityAlias =
                             "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
                         val mainActivityComponentName =
@@ -1018,7 +1003,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
                             PackageManager.DONT_KILL_APP
                         )
 
-                        // 如果已经启用了某个别名，则在下一次选中图标时禁用其他别名
                         var alreadyEnabled = false
                         for (alias in activityAliases) {
                             val componentName = ComponentName(packageName, alias)
@@ -1047,7 +1031,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
                             )
                         }
                     } ?: run {
-                        // 恢复主 activity 的图标
                         val mainActivityAlias =
                             "mapleleaf.materialdesign.engine.ui.activities.ActivityMenu"
                         val mainActivityComponentName =
@@ -1119,58 +1102,9 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         )
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun initMenu() {
-        spinner.setItems(
-            "AlphaIn",
-            "ScaleIn",
-            "SlideInBottom",
-            "SlideInLeft",
-            "SlideInRight",
-            "Custom1",
-            "Custom2",
-            "Custom3",
-            "Custom4",
-            "Custom5",
-            "Custom6"
-        )
-
-        spinner.setOnItemSelectedListener { _, position, _, _ ->
-            when (position) {
-                0 -> adapter.setItemAnimation(IconAdapter.AnimationType.AlphaIn)
-                1 -> adapter.setItemAnimation(IconAdapter.AnimationType.ScaleIn)
-                2 -> adapter.setItemAnimation(IconAdapter.AnimationType.SlideInBottom)
-                3 -> adapter.setItemAnimation(IconAdapter.AnimationType.SlideInLeft)
-                4 -> adapter.setItemAnimation(IconAdapter.AnimationType.SlideInRight)
-                5 -> adapter.itemAnimation = CustomAnimation()
-                6 -> adapter.itemAnimation = CustomAnimation2()
-                7 -> adapter.itemAnimation = CustomAnimation3()
-                8 -> adapter.itemAnimation = CustomAnimation4()
-                9 -> adapter.itemAnimation = CustomAnimation5()
-                10 -> adapter.itemAnimation = CustomAnimation6()
-                else -> {}
-            }
-            adapter.notifyDataSetChanged()
-
-        }
-    }
-
     open class IconAdapter(private var icons: List<Pair<Int, String>>) :
         RecyclerView.Adapter<IconAdapter.IconViewHolder>() {
         private var selectedItem = RecyclerView.NO_POSITION
-        private var mLastPosition = -1
-        var animationEnable: Boolean = false
-        var isAnimationFirstOnly = true
-        var itemAnimation: ItemAnimator? = null
-            set(value) {
-                animationEnable = true
-                field = value
-            }
-
-        override fun onViewAttachedToWindow(holder: IconViewHolder) {
-            super.onViewAttachedToWindow(holder)
-            runAnimator(holder)
-        }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IconViewHolder {
             val view =
@@ -1189,13 +1123,17 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         inner class IconViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             private val iconImageView: ImageView = itemView.findViewById(R.id.iconPreview)
             private val titleTextView: TextView = itemView.findViewById(R.id.iconTitle)
+            private val materialCardView: MaterialCardView = itemView.findViewById(R.id.materialCardView)
 
             @SuppressLint("NotifyDataSetChanged")
             fun bind(icon: Pair<Int, String>, isSelected: Boolean) {
                 iconImageView.setImageResource(icon.first)
                 titleTextView.text = icon.second
 
-                itemView.setBackgroundColor(if (isSelected) Color.BLUE else Color.TRANSPARENT)
+                val selectedColor = ContextCompat.getColor(context, R.color.green)
+                val selectCancel = ContextCompat.getColor(context, R.color.transparent)
+
+                materialCardView.setCardBackgroundColor(if (isSelected) selectedColor else selectCancel)
 
                 itemView.setOnClickListener {
                     if (bindingAdapterPosition == selectedItem) {
@@ -1230,35 +1168,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             }
         }
 
-        private fun runAnimator(holder: RecyclerView.ViewHolder) {
-            if (animationEnable) {
-                if (!isAnimationFirstOnly || holder.layoutPosition > mLastPosition) {
-                    val animation: ItemAnimator = itemAnimation ?: AlphaInAnimation()
-                    animation.animator(holder.itemView).apply {
-                        startItemAnimator(this, holder)
-                    }
-                    mLastPosition = holder.layoutPosition
-                }
-            }
-        }
-
-        protected open fun startItemAnimator(anim: Animator, holder: RecyclerView.ViewHolder) {
-            anim.start()
-        }
-
-        enum class AnimationType {
-            AlphaIn, ScaleIn, SlideInBottom, SlideInLeft, SlideInRight
-        }
-
-        fun setItemAnimation(animationType: AnimationType) {
-            itemAnimation = when (animationType) {
-                AnimationType.AlphaIn -> AlphaInAnimation()
-                AnimationType.ScaleIn -> ScaleInAnimation()
-                AnimationType.SlideInBottom -> SlideInBottomAnimation()
-                AnimationType.SlideInLeft -> SlideInLeftAnimation()
-                AnimationType.SlideInRight -> SlideInRightAnimation()
-            }
-        }
     }
 
     @SuppressLint("InflateParams")

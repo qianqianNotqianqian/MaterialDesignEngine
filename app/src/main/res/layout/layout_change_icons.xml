@@ -32,19 +32,6 @@
                     style="@style/dialogDesc"
                     android:text="@string/dialog_prompt_content" />
 
-
-                <com.jaredrummler.materialspinner.MaterialSpinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@null"
-                    android:elevation="0dp"
-                    app:ms_background_color="@color/spinner_color"
-                    app:ms_hide_arrow="false"
-                    app:ms_text_color="@color/text_color" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
