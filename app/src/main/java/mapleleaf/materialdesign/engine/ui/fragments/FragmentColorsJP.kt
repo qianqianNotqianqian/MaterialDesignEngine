@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalFragmentBase
+import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.utils.toast
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import org.json.JSONArray
@@ -189,7 +190,8 @@ class FragmentColorsJP : UniversalFragmentBase() {
 
             val dialogView =
                 LayoutInflater.from(context).inflate(R.layout.color_details_dialog, null)
-            val dialog = BottomSheetDialog(context)
+            val dialog = DialogHelper.customDialog(context, dialogView)
+
             val r = Color.red(colorItem.color)
             val g = Color.green(colorItem.color)
             val b = Color.blue(colorItem.color)
@@ -236,13 +238,12 @@ class FragmentColorsJP : UniversalFragmentBase() {
                 )
             }%,${String.format("%.2f", hsv[2] * 100)}%"
 
+            dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                dialog.dismiss()
+            }
             dialogView.findViewById<View>(R.id.btn_copy_item).setOnClickListener {
                 dialog.dismiss()
                 copyColorDetailsToClipboard(colorItem)
-            }
-
-            dialogView.findViewById<View>(R.id.close_button).setOnClickListener {
-                dialog.dismiss()
             }
         }
 

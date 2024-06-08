@@ -201,11 +201,8 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
                 adapter.setScrolling(false)
                 adapter.loadVisibleIcons()
             }
-            // 在列表显示后，再进行搜索匹配
-            lifecycleScope.launch(Dispatchers.Main) {
-                delay(50)
-                searchApp(appsSearchBox.text)
-            }
+            searchApp(appsSearchBox.text)
+
             adapter.setAppsList(apps)
             animatedVectorDrawable!!.stop()
             swipeRefreshLayout.isEnabled = true

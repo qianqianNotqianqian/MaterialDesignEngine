@@ -211,7 +211,7 @@ class FragmentColorsZH : UniversalFragmentBase() {
 
             val dialogView =
                 LayoutInflater.from(context).inflate(R.layout.color_details_dialog, null)
-            val dialog = BottomSheetDialog(context)
+            val dialog = DialogHelper.customDialog(context, dialogView)
 
             val rgb = colorItem.rgb
             val colorHexTextView = dialogView.findViewById<TextView>(R.id.color_hex_text_view)
@@ -241,12 +241,12 @@ class FragmentColorsZH : UniversalFragmentBase() {
             val value = String.format("%.2f", (hsv[2] * 100)) + "%"
             colorHSVTextView.text = "$hue,$saturation,$value"
 
+            dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                dialog.dismiss()
+            }
             dialogView.findViewById<View>(R.id.btn_copy_item).setOnClickListener {
                 dialog.dismiss()
                 copyColorDetailsToClipboard(colorItem)
-            }
-            dialogView.findViewById<View>(R.id.close_button).setOnClickListener {
-                dialog.dismiss()
             }
         }
 
