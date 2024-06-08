@@ -1130,7 +1130,7 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
                 iconImageView.setImageResource(icon.first)
                 titleTextView.text = icon.second
 
-                val selectedColor = ContextCompat.getColor(context, R.color.green)
+                val selectedColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
                 val selectCancel = ContextCompat.getColor(context, R.color.transparent)
 
                 materialCardView.setCardBackgroundColor(if (isSelected) selectedColor else selectCancel)
