@@ -37,7 +37,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:layout_marginEnd="12dp"
-                        android:text="@string/header_selection"
+                        android:text="@string/calc_selection_value"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
-                        android:text="@string/header_options_calc"
+                        android:text="@string/calc_options"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -274,7 +274,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:labelFor="@id/numpad_layout_dropdown"
-                        android:text="@string/calc_numpad"
+                        android:text="@string/calc_num_pad"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                         app:layout_constraintBottom_toBottomOf="@id/numpad_layout_dropdown_layout"
                         app:layout_constraintStart_toStartOf="parent"
@@ -298,7 +298,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:dropDownWidth="250dp"
-                            android:text="@string/calc_numpad_calc"
+                            android:text="@string/calc_num_pad_calc"
                             tools:ignore="LabelFor" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -329,7 +329,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
-                        android:text="@string/header_options_nbfmt"
+                        android:text="@string/num_format_options"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -340,7 +340,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:labelFor="@id/nbfmt_dropdown"
-                        android:text="@string/nbfmt_label"
+                        android:text="@string/num_format_label"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                         app:layout_constraintBottom_toBottomOf="@id/nbfmt_dropdown_layout"
                         app:layout_constraintStart_toStartOf="parent"
@@ -365,7 +365,7 @@
                             android:layout_height="match_parent"
                             android:dropDownWidth="150dp"
                             android:minWidth="150dp"
-                            android:text="@string/nbfmt_default"
+                            android:text="@string/num_format_default"
                             tools:ignore="LabelFor" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -385,7 +385,7 @@
                         android:layout_marginBottom="8dp"
                         android:checked="true"
                         android:labelFor="@id/min_value_input"
-                        android:text="@string/nbfmt_max_int"
+                        android:text="@string/num_format_max_int"
                         app:layout_constraintBottom_toBottomOf="@id/max_int_digits_input_layout"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@id/max_int_digits_input_layout" />
@@ -420,7 +420,7 @@
                         android:layout_marginBottom="8dp"
                         android:checked="true"
                         android:labelFor="@id/max_value_input"
-                        android:text="@string/nbfmt_max_frac"
+                        android:text="@string/num_format_max_frac"
                         app:layout_constraintBottom_toBottomOf="@id/max_frac_digits_input_layout"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@id/max_frac_digits_input_layout" />

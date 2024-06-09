@@ -75,7 +75,7 @@
                                 <com.google.android.material.textview.MaterialTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/pinyin_chinese"
+                                    android:text="@string/dictionary_pinyin_chinese"
                                     android:textSize="15.0sp" />
 
                                 <com.google.android.material.textview.MaterialTextView
@@ -95,7 +95,7 @@
                                 <com.google.android.material.textview.MaterialTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/buShou"
+                                    android:text="@string/dictionary_buShou"
                                     android:textSize="15.0sp" />
 
                                 <com.google.android.material.textview.MaterialTextView
@@ -115,7 +115,7 @@
                                 <com.google.android.material.textview.MaterialTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/biHua"
+                                    android:text="@string/dictionary_biHua"
                                     android:textSize="15.0sp" />
 
                                 <com.google.android.material.textview.MaterialTextView

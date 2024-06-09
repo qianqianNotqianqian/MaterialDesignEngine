@@ -55,7 +55,7 @@
                 android:id="@+id/btn_confirm"
                 style="@style/dialogCancelBtn"
                 android:background="@drawable/btn_bg_large_warning"
-                android:text="@string/confirm" />
+                android:text="@string/action_confirm" />
         </LinearLayout>
 
     </LinearLayout>

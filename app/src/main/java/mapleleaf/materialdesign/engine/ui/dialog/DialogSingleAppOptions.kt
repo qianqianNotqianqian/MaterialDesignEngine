@@ -73,13 +73,13 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
         val dialogView = context.layoutInflater.inflate(R.layout.dialog_app_options_user, null)
         val dialog = DialogHelper.customDialog(context, dialogView)
         dialogView.findViewById<TextView>(R.id.app_target_sdk).text =
-            context.getString(R.string.app_target_sdk, app.targetSdkVersion.toString())
+            context.getString(R.string.applications_app_target_sdk, app.targetSdkVersion.toString())
         dialogView.findViewById<TextView>(R.id.app_min_sdk).text =
-            context.getString(R.string.app_min_sdk, app.minSdkVersion.toString())
+            context.getString(R.string.applications_app_min_sdk, app.minSdkVersion.toString())
         dialogView.findViewById<TextView>(R.id.app_version_name).text =
-            context.getString(R.string.app_version_name, app.versionName)
+            context.getString(R.string.applications_app_version_name, app.versionName)
         dialogView.findViewById<TextView>(R.id.app_version_code).text =
-            context.getString(R.string.app_version_code, app.versionCode.toString())
+            context.getString(R.string.applications_app_version_code, app.versionCode.toString())
         dialogView.findViewById<ImageView>(R.id.app_logo).setImageDrawable(loadAppIcon(app))
 
         dialogView.findViewById<View>(R.id.app_options_single_only).visibility = View.VISIBLE
@@ -165,13 +165,13 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
 
         val dialog = DialogHelper.customDialog(context, dialogView)
         dialogView.findViewById<TextView>(R.id.app_target_sdk).text =
-            context.getString(R.string.app_target_sdk, app.targetSdkVersion.toString())
+            context.getString(R.string.applications_app_target_sdk, app.targetSdkVersion.toString())
         dialogView.findViewById<TextView>(R.id.app_min_sdk).text =
-            context.getString(R.string.app_min_sdk, app.minSdkVersion.toString())
+            context.getString(R.string.applications_app_min_sdk, app.minSdkVersion.toString())
         dialogView.findViewById<TextView>(R.id.app_version_name).text =
-            context.getString(R.string.app_version_name, app.versionName)
+            context.getString(R.string.applications_app_version_name, app.versionName)
         dialogView.findViewById<TextView>(R.id.app_version_code).text =
-            context.getString(R.string.app_version_code, app.versionCode.toString())
+            context.getString(R.string.applications_app_version_code, app.versionCode.toString())
         dialogView.findViewById<ImageView>(R.id.app_logo).setImageDrawable(loadAppIcon(app))
 
         dialogView.findViewById<View>(R.id.app_options_single_only).visibility = View.VISIBLE

@@ -1,6 +1,5 @@
 package mapleleaf.materialdesign.engine.ui.activities
 
-import android.animation.Animator
 import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Context
@@ -12,7 +11,6 @@ import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -53,7 +51,6 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
-import com.jaredrummler.materialspinner.MaterialSpinner
 import com.kongzue.dialogx.dialogs.MessageDialog
 import com.kongzue.dialogx.util.TextInfo
 import kotlinx.coroutines.CoroutineScope
@@ -64,18 +61,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
-import mapleleaf.materialdesign.engine.animator.AlphaInAnimation
-import mapleleaf.materialdesign.engine.animator.CustomAnimation
-import mapleleaf.materialdesign.engine.animator.CustomAnimation2
-import mapleleaf.materialdesign.engine.animator.CustomAnimation3
-import mapleleaf.materialdesign.engine.animator.CustomAnimation4
-import mapleleaf.materialdesign.engine.animator.CustomAnimation5
-import mapleleaf.materialdesign.engine.animator.CustomAnimation6
-import mapleleaf.materialdesign.engine.animator.ItemAnimator
-import mapleleaf.materialdesign.engine.animator.ScaleInAnimation
-import mapleleaf.materialdesign.engine.animator.SlideInBottomAnimation
-import mapleleaf.materialdesign.engine.animator.SlideInLeftAnimation
-import mapleleaf.materialdesign.engine.animator.SlideInRightAnimation
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.store.SpfConfig
 import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
@@ -158,7 +143,7 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         setNavigationViewMenuItem(
             R.id.item_support,
             R.drawable.ic_support_developer,
-            R.string.support_developers
+            R.string.menu_action_support_developers
         ) {
             openUrlByBrowser(
                 this@ActivityMenu,
@@ -168,7 +153,7 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         setNavigationViewMenuItem(
             R.id.item_feedback,
             R.drawable.ic_support_feedback,
-            R.string.feedback
+            R.string.menu_action_feedback
         ) {
             openUrlByBrowser(
                 this@ActivityMenu,
@@ -349,14 +334,14 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             )
         }
 
-        setNavigationViewMenuItem(R.id.item_exit, R.drawable.ic_exit, R.string.exit) {
+        setNavigationViewMenuItem(R.id.item_exit, R.drawable.ic_exit, R.string.menu_action_exit) {
 
             val dialogView = layoutInflater.inflate(R.layout.dialog_exit, null)
             val dialog = DialogHelper.customDialog(this, dialogView)
             dialogView.findViewById<TextView>(R.id.confirm_title).text =
                 getString(R.string.dialog_title)
             val messageTextView = dialogView.findViewById<TextView>(R.id.confirm_message)
-            messageTextView.text = getString(R.string.confirm_exit)
+            messageTextView.text = getString(R.string.menu_action_confirm_exit)
 
             dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
                 dialog.dismiss()

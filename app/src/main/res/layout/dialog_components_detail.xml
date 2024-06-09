@@ -263,7 +263,7 @@
                 style="@style/dialogCancelBtn"
                 android:layout_marginStart="12dp"
                 android:background="@drawable/btn_bg_large_warning"
-                android:text="@string/launch"
+                android:text="@string/component_action_launch"
                 android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>

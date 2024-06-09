@@ -2,40 +2,19 @@
 
     <string name="app_name">质感引擎</string>
 
-    <string name="app_target_sdk">SDK %1$s</string>
-    <string name="app_min_sdk">SDK %1$s</string>
-    <string name="app_version_name">版本名称: %1$s</string>
-    <string name="app_version_code">版本代码: %1$s</string>
-    <string name="app_package">package</string>
-    <string name="app_size">size</string>
-    <string name="app_version">version</string>
+    <string name="applications_app_target_sdk">SDK %1$s</string>
+    <string name="applications_app_min_sdk">SDK %1$s</string>
+    <string name="applications_app_version_name">版本名称: %1$s</string>
+    <string name="applications_app_version_code">版本代码: %1$s</string>
+    <string name="applications_app_package">package</string>
+    <string name="applications_app_size">size</string>
+    <string name="applications_app_version">version</string>
+    <string name="applications_app_name">name</string>
 
     <string name="start_vibration">开始振动</string>
-    <string name="WeChat">微信</string>
-    <string name="Help">帮助</string>
 
-    <string name="about_dialog_body">
-        <![CDATA[为了更好的了解Android知识以及提升自己的动手能力<strong>MaterialDesign引擎</strong>
-        </b>是一款功能多样的开源小工具箱（确信）😙<br />
-      <br />
-      由<b>Mr.Chen</b>设计和开发😙。<br />
-      您也可以查看我的<a href="https://gitee.com/qiancxy/Functions">Gitee</a>和<a href="https://space.bilibili.com/159360013?spm_id_from=333.1007.0.0">哔哩哔哩</a>😎<br />
-      <br />目前正在完善程序的其他有趣内容😁，欢迎（不欢迎bushi）各位对
-      <a href="https://gitee.com/qiancxy/Functions">此App</a>
-      进行评价和提出意见~~~（咕噜咕噜作者不知道会咕咕多久）<br />
-      ~~~ヾ(≧▽≦*)o ]]>
-    </string>
-    <string name="menu_confirm_perfmon_plus">使用Perfmon+ 来监控系统CPU、GPU、Mem等占用情况，需要root权限才能完整查看负载，无root只能查看频率。请确保授予root权限再使用。\n支持的功能有：\n1.cpu频率监控\n2.cpu负载监控\n3.cpubw频率监控\n4.电流监控\n5.gpu频率监控\n6.gpubw频率监控\n7.gpu负载监控\n8.m4m频率监控\n9.温度监控\n10.内存监控\n11.mincpubw监控\n12.sc bus频率监控\n13.fps监控</string>
-    <string name="refresh">刷新</string>
-    <string name="tag">tag</string>
-    <string name="exit">退出</string>
-
-    <string name="confirm_exit">确认退出吗啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哼哼啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</string>
-
-    <string name="confirm">确认</string>
-    <string name="support_developers">支持开发者</string>
-    <string name="feedback">问题反馈</string>
-    <string name="toast">Toast</string>
+    <string name="action_refresh">刷新</string>
+    <string name="action_confirm">确认</string>
 
     <string name="please_close_app_first">请先关闭悬浮窗 再打开软件</string>
     <string name="support_cpufreq_mo">支持cpu频率监控：</string>
@@ -110,9 +89,6 @@
     <string name="Enter_Duration">输入持续时间（以秒为单位，不超过10秒）</string>
     <string name="Stop_Vibration">停止振动</string>
     <string name="activity_main_menu_devote">支持我们，反馈建议</string>
-
-    <string name="version">Version: %1$s (%2$d)</string>
-    <string name="size">Size: %1$s</string>
 
     <string name="usage_instructions">轻松查看管理手机已安装应用，点击搜索框可搜索应用名称或包名，点击右上角三点图标可刷新显示应用。\n\n点击任意应用弹出操作选项。\n应用信息：查看应用签名，应用权限，四大组件以及大量基础信息，如应用名称、包名、版本、版本序号、大小、sdk版本、安装来源、签名信息等。\n打开应用：直接启动或在应用商店搜索该应用。\n清除数据：清除当前应用的数据，包括是否在当前用户上的应用。\n卸载应用：卸载当前用户的应用或者所有用户的应用，保留数据卸载等。\n冻结/解冻：更改应用的可见性，限制使用、停用应用、完全隐藏。\ndex2oat：dex2oat编译可提升(低端机)运行应用时的响应速度，但会显著增加存储空间占用。\n分享应用：分享该应用的安装包。\n提取安装包：提取应用安装包至本地</string>
 
@@ -438,19 +414,18 @@
     <string name="play">播放</string>
     <string name="clear_all">清除所有</string>
     <string name="local_music">本地音乐</string>
-    <string name="chinese">汉字</string>
-    <string name="pinyin_chinese">拼音</string>
-    <string name="buShou">部首</string>
-    <string name="biHua">笔画</string>
+    <string name="dictionary_pinyin_chinese">拼音</string>
+    <string name="dictionary_buShou">部首</string>
+    <string name="dictionary_biHua">笔画</string>
     <string name="dictionary_detail">详情</string>
     <string name="action_dislike">不喜欢</string>
     <string name="title_toolbox_engine">TOOLBOX·ENGINE</string>
     <string name="check_permission_settings">现在，先校验一些权限设置…</string>
     <string name="material_dialogs">Material Dialogs</string>
     <string name="android_dialogs">Android Dialogs</string>
-    <string name="activity_color_pinyin">Sakura</string>
-    <string name="activity_color_name">樱</string>
-    <string name="activity_color_hex" tools:ignore="Typos">FEDFE1</string>
+    <string name="activity_color_pinyin">rubai</string>
+    <string name="activity_color_name">乳白</string>
+    <string name="activity_color_hex" tools:ignore="Typos">#F9F4DC</string>
 
     <string name="dialog_float_monitors">监视器</string>
     <string name="dialog_float_choose_monitors">选择要显示的监视器悬浮窗</string>
@@ -465,8 +440,6 @@
     <string name="dialog_float_show_user_apps">显示用户应用</string>
     <string name="dialog_float_filter_apps">选中应用类型并筛选</string>
     <string name="dialog_choose_icon">请选择图标</string>
-    <string name="dialog_message_title">You\'re dead</string>
-    <string name="dialog_message_content">核弹命中目标，整个山地已被夷为平地…</string>
     <string name="dialog_prompt_content">提示内容</string>
     <string name="dialog_prompt_title">提示信息</string>
     <string name="dialog_title">提示信息</string>
@@ -478,6 +451,18 @@
     <string name="dialog_show_system_apps_only">仅显示系统应用</string>
     <string name="dialog_show_user_apps_only">仅显示用户应用</string>
 
+    <string name="menu_action_support_developers">支持开发者</string>
+    <string name="menu_action_feedback">问题反馈</string>
+    <string name="menu_about_context">
+        <![CDATA[为了更好的了解Android知识以及提升自己的动手能力<strong>MaterialDesign引擎</strong>
+        </b>是一款功能多样的开源小工具箱（确信）😙<br /><br />
+        由<b>Mr.Chen</b>设计和开发😙。<br />
+        您也可以查看我的<a href="https://gitee.com/qiancxy/Functions">Gitee</a>和<a href="https://space.bilibili.com/159360013?spm_id_from=333.1007.0.0">哔哩哔哩</a>😎<br /><br />
+        目前正在完善程序的其他有趣内容😁，欢迎（不欢迎bushi）各位对<a href="https://gitee.com/qiancxy/Functions">此App</a>进行评价和提出意见~~~（咕噜咕噜作者不知道会咕咕多久）<br />~~~ヾ(≧▽≦*)o ]]>
+    </string>
+    <string name="menu_confirm_perfmon_plus">使用Perfmon+ 来监控系统CPU、GPU、Mem等占用情况，需要root权限才能完整查看负载，无root只能查看频率。请确保授予root权限再使用。\n支持的功能有：\n1.cpu频率监控\n2.cpu负载监控\n3.cpubw频率监控\n4.电流监控\n5.gpu频率监控\n6.gpubw频率监控\n7.gpu负载监控\n8.m4m频率监控\n9.温度监控\n10.内存监控\n11.mincpubw监控\n12.sc bus频率监控\n13.fps监控</string>
+    <string name="menu_action_exit">退出</string>
+    <string name="menu_action_confirm_exit">确认退出吗?</string>
     <string name="menu_other">其他</string>
     <string name="menu_power">电源</string>
     <string name="menu_control">控制台</string>
@@ -564,26 +549,20 @@
     <string name="toolbar_subtitle_fragment_get_wallpaper">好看的壁纸就是灵魂</string>
     <string name="toolbar_title_activity_marquee_view">跑马灯</string>
     <string name="toolbar_title_activity_dialog_show">对话框样式展示</string>
+    <string name="toolbar_title_activity_calc_dialog">Calc对话框</string>
 
     <string name="system_apps">系统应用</string>
     <string name="user_apps">用户应用</string>
     <string name="example_item_name">条目名称</string>
-    <string name="am_provider">内容提供器</string>
-    <string name="am_receiver">广播接收器</string>
-    <string name="am_service">服务</string>
+    <string name="component_action_launch">启动</string>
     <string name="qr_code_content">二维码内容</string>
     <string name="qr_code_edit_content">mapleleaf.materialdesign.engine</string>
-    <string name="start_play">开始播放</string>
     <string name="marquee_text">心中有阳光，脚底有力量。</string>
     <string name="marquee_texts">心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。心中有阳光，脚底有力量。</string>
-    <string name="launch">启动</string>
 
-    <string name="open_dialog">打开对话框</string>
-
-    <string name="header_selection">选定的值</string>
-    <string name="selection_value_none">空</string>
-
-    <string name="header_options_calc">计算器选项</string>
+    <string name="calc_selection_value">选定的值</string>
+    <string name="calc_selection_value_none">空</string>
+    <string name="calc_options">计算器选项</string>
     <string name="calc_dark_theme">暗色主题</string>
     <string name="calc_show_expr">显示表达式</string>
     <string name="calc_expr_editable">表达式可编辑</string>
@@ -594,15 +573,14 @@
     <string name="calc_show_zero">当没有值时显示零</string>
     <string name="calc_min_value">最小值：</string>
     <string name="calc_max_value">最大值：</string>
-    <string name="calc_numpad">数字键盘布局：</string>
-    <string name="calc_numpad_calc">计算器（789在顶部）</string>
-    <string name="calc_numpad_phone">电话（123在顶部）</string>
+    <string name="calc_num_pad">数字键盘布局：</string>
+    <string name="calc_num_pad_calc">计算器（789在顶部）</string>
+    <string name="calc_num_pad_phone">电话（123在顶部）</string>
+    <string name="num_format_options">数字格式选项</string>
+    <string name="num_format_label">数字格式：</string>
+    <string name="num_format_default">默认</string>
+    <string name="num_format_currency">货币</string>
+    <string name="num_format_max_int">最大整数位数：</string>
+    <string name="num_format_max_frac">最大小数位数：</string>
 
-    <string name="header_options_nbfmt">数字格式选项</string>
-    <string name="nbfmt_label">数字格式：</string>
-    <string name="nbfmt_default">默认</string>
-    <string name="nbfmt_currency">货币</string>
-    <string name="nbfmt_max_int">最大整数位数：</string>
-    <string name="nbfmt_max_frac">最大小数位数：</string>
-    <string name="toolbar_title_activity_calc_dialog">Calc对话框</string>
 </resources>

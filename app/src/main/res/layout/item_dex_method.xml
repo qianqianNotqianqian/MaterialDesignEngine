@@ -28,7 +28,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:padding="12dp"
             android:singleLine="true"
-            android:text="@string/refresh"
+            android:text="@string/action_refresh"
             android:textColor="@color/text_color"
             android:textStyle="bold" />
 

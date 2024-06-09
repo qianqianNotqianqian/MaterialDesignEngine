@@ -233,7 +233,7 @@ class FragmentCalcDialog : Fragment(), CalcDialogCallback {
     private fun updateSelectedValueText() {
         val valueTxv = binding.selectedValueTxv
         if (value == null) {
-            valueTxv.setText(R.string.selection_value_none)
+            valueTxv.setText(R.string.calc_selection_value_none)
             valueTxv.alpha = 0.5f
         } else {
             valueTxv.text = nbFmt.format(value)

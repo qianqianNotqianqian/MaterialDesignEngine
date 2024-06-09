@@ -65,7 +65,7 @@ object MDEngineHelpers {
             val messageTextView: TextView = dialogView.findViewById(R.id.confirm_message)
             val titleTextView: TextView = dialogView.findViewById(R.id.confirm_title)
 
-            val htmlText: String = getString(R.string.about_dialog_body)
+            val htmlText: String = getString(R.string.menu_about_context)
             messageTextView.text = HtmlCompat.fromHtml(htmlText, HtmlCompat.FROM_HTML_MODE_LEGACY)
             messageTextView.movementMethod = LinkMovementMethod.getInstance()
             titleTextView.text = appName

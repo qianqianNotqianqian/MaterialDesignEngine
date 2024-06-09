@@ -64,7 +64,7 @@ class ActivityAbout : AbsAboutActivity() {
                 Card("MDEngine 是一款提供给Android玩机爱好者的实用工具应用。\n\n搞机千万条，安全第一条。\n搞机不规范，亲人两行泪。")
             )
             add(
-                Category(getString(R.string.feedback))
+                Category(getString(R.string.menu_action_feedback))
             )
             add(
                 Card("Website (官网):\nhttps://gjzsr.com")

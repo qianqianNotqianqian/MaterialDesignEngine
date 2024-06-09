@@ -54,7 +54,7 @@
                     android:marqueeRepeatLimit="marquee_forever"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="@string/refresh"
+                    android:text="@string/action_refresh"
                     android:textColor="@color/text_color" />
 
             </LinearLayout>
