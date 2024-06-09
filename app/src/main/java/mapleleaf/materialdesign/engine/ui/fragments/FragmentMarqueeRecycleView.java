@@ -74,7 +74,7 @@ public class FragmentMarqueeRecycleView extends Fragment {
     }
 
     static class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-        private List<Item> list;
+        private final List<Item> list;
 
         RecyclerViewAdapter(List<Item> list) {
             this.list = list;

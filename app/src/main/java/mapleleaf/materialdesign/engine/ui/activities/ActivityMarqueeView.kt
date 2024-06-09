@@ -6,10 +6,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
-import androidx.core.view.isVisible
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
@@ -79,7 +77,7 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
     }
 
     private fun initMarqueeView() {
-        val datas: List<String> = mutableListOf(
+        val strings: List<String> = mutableListOf(
             "《赋得古原草送别》",
             "离离原上草，一岁一枯荣。",
             "野火烧不尽，春风吹又生。",
@@ -101,7 +99,7 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
         marqueeViewXUI1.setMarqueeFactory(marqueeFactoryXUI1)
         marqueeViewXUI1.startFlipping()
         marqueeFactoryXUI1.setOnItemClickListener { _, holder -> toast(holder.data) }
-        marqueeFactoryXUI1.setData(datas)
+        marqueeFactoryXUI1.setData(strings)
 
         val marqueeFactoryXUI2: XUIMarqueeFactory<TextView, String> =
             object : XUIMarqueeFactory<TextView, String>(this) {
@@ -112,7 +110,7 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
                 }
             }
         marqueeFactoryXUI2.setOnItemClickListener { _, holder -> toast(holder.data) }
-        marqueeFactoryXUI2.setData(datas)
+        marqueeFactoryXUI2.setData(strings)
         marqueeViewXUI2.setMarqueeFactory(marqueeFactoryXUI2)
         marqueeViewXUI2.setAnimDuration(15000)
         marqueeViewXUI2.setInterval(16000)
@@ -126,7 +124,7 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
             }
         }
         marqueeFactoryXUI3.setOnItemClickListener { view, holder -> toast(holder.data) }
-        marqueeFactoryXUI3.setData(datas)
+        marqueeFactoryXUI3.setData(strings)
         marqueeViewXUI3.setMarqueeFactory(marqueeFactoryXUI3)
         marqueeViewXUI3.setAnimInAndOut(R.anim.marquee_left_in, R.anim.marquee_right_out)
         marqueeViewXUI3.setAnimDuration(8000)
@@ -141,7 +139,7 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
             }
         }
         marqueeFactoryXUI4.setOnItemClickListener { view, holder -> toast(holder.data) }
-        marqueeFactoryXUI4.setData(datas)
+        marqueeFactoryXUI4.setData(strings)
         marqueeViewXUI4.setAnimInAndOut(R.anim.marquee_top_in, R.anim.marquee_bottom_out)
         marqueeViewXUI4.setMarqueeFactory(marqueeFactoryXUI4)
         marqueeViewXUI4.startFlipping()
@@ -173,9 +171,9 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
                 return displayDatas
             }
         })
-        tvMarquee.startSimpleRoll(datas)
+        tvMarquee.startSimpleRoll(strings)
 
-        RxJavaUtils.delay(5) { tvMarquee.removeDisplayString(datas[3]) }
+        RxJavaUtils.delay(5) { tvMarquee.removeDisplayString(strings[3]) }
 
     }
 
