@@ -808,7 +808,7 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
                             btnConfirm.text = timeout.toString()
                         } else {
                             timer.cancel()
-                            btnConfirm.setText(R.string.menu_agree)
+                            btnConfirm.setText(R.string.menu_agree_agreement)
                         }
                     }
                 }

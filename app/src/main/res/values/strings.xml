@@ -497,16 +497,16 @@
     <string name="menu_start_infinite_list">无限列表</string>
     <string name="menu_start_bilibili_parse">哔哩哔哩解析</string>
     <string name="menu_start_dictionary">字典</string>
+    <string name="menu_start_marquee_view">跑马灯</string>
+    <string name="menu_start_calcDialog">Calc对话框</string>
     <string name="menu_input_answer">请输入答案！</string>
     <string name="menu_input_number">请输入有效的数字！</string>
     <string name="menu_input_incorrect_answer">回答错误！</string>
     <string name="menu_input_success">回答正确，答案是：</string>
     <string name="menu_get_app_information_failed">无法获取应用信息</string>
-    <string name="menu_agree">同意并继续</string>
+    <string name="menu_agree_agreement">同意并继续</string>
     <string name="menu_change_icon">更改图标</string>
     <string name="menu_restore_default_icon">恢复默认图标</string>
-    <string name="menu_start_marquee_view">跑马灯</string>
-    <string name="menu_start_calcDialog">Calc对话框</string>
 
     <string name="toolbar_title_activity_full_view">预览</string>
     <string name="toolbar_title_activity_accelerometer">加速度计</string>
