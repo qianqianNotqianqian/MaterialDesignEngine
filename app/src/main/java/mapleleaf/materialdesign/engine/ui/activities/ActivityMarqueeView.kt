@@ -36,7 +36,6 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
     private lateinit var marqueeViewXUI4: XUIMarqueeView
     private lateinit var marqueeViewXUI5: XUIMarqueeView
     private lateinit var tvMarquee: MarqueeTextView
-    private lateinit var splitBody: AppCompatImageView
 
 //    override fun getLayoutResourceId() = R.layout.activity_marquee_view
 
@@ -51,8 +50,6 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
         marqueeViewXUI4 = findViewById(R.id.marqueeViewXUI4)
         marqueeViewXUI5 = findViewById(R.id.marqueeViewXUI5)
         tvMarquee = findViewById(R.id.tv_marquee)
-        splitBody = findViewById(R.id.split_body)
-        splitBody.isVisible = false
 
         val appBarLayout = findViewById<AppBarLayout>(R.id.appBarLayout)
         val baseColor = ContextCompat.getColor(context, R.color.background_color)

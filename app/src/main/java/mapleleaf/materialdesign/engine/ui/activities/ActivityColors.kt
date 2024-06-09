@@ -27,7 +27,6 @@ class ActivityColors : UniversalActivityBase(R.layout.activity_colors) {
     private lateinit var tabLayout: TabLayout
     private lateinit var progressBar: ProgressBar
     private lateinit var appBarLayout: AppBarLayout
-    private lateinit var splitBody: AppCompatImageView
 
 //    override fun getLayoutResourceId() = R.layout.activity_colors
 
@@ -37,8 +36,6 @@ class ActivityColors : UniversalActivityBase(R.layout.activity_colors) {
         tabLayout = findViewById(R.id.tab_layout)
         viewPager = findViewById(R.id.view_pager)
         appBarLayout = findViewById(R.id.appBarLayout)
-        splitBody = findViewById(R.id.split_body)
-        splitBody.isVisible = false
         progressBar.isIndeterminate = true
         progressBar.isVisible = true
 

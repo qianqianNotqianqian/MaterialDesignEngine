@@ -506,7 +506,7 @@
     <string name="menu_start_text2md5">文本转MD5</string>
     <string name="menu_start_qr_code">二维码生成</string>
     <string name="menu_start_music">音乐播放器</string>
-    <string name="menu_start_tts">语音合成）🤣</string>
+    <string name="menu_start_tts">语音合成</string>
     <string name="menu_start_anime_quotes">动漫语录</string>
     <string name="menu_start_rpg">随机人格</string>
     <string name="menu_start_hot_search">实时热搜</string>
@@ -529,7 +529,7 @@
     <string name="toolbar_title_activity_vibration_control">震动控制</string>
     <string name="toolbar_title_activity_device_info">系统信息</string>
     <string name="toolbar_title_activity_start">开始菜单</string>
-    <string name="toolbar_title_activity_dream_beginning">梦开始的地方❤💕</string>
+    <string name="toolbar_title_activity_dream_beginning">梦开始的地方💕💕💕</string>
     <string name="toolbar_title_activity_processes">进程管理</string>
     <string name="toolbar_title_activity_system_icons">图标展示</string>
     <string name="toolbar_title_activity_clock">桌面时钟</string>

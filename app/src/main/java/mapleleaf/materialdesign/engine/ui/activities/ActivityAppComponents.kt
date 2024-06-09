@@ -34,7 +34,6 @@ class ActivityAppComponents : UniversalActivityBase(R.layout.activity_app_compon
     private lateinit var nullList: AppCompatImageView
     private lateinit var appBarLayout: AppBarLayout
     private var progressBar: ProgressBar? = null
-    private lateinit var splitBody: AppCompatImageView
 
 //    override fun getLayoutResourceId() = R.layout.activity_app_components
 
@@ -45,8 +44,6 @@ class ActivityAppComponents : UniversalActivityBase(R.layout.activity_app_compon
         viewPager = findViewById(R.id.view_pager)
         nullList = findViewById(R.id.null_list)
         appBarLayout = findViewById(R.id.appBarLayout)
-        splitBody = findViewById(R.id.split_body)
-        splitBody.isVisible = false
         getToolbar().setBackgroundColor(getColor(R.color.transparent))
 
         val baseColor =
