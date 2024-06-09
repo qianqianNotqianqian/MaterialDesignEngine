@@ -67,10 +67,10 @@ public class XUIMarqueeView extends ViewFlipper {
     public void setMarqueeFactory(XUIMarqueeFactory factory) {
         factory.setAttachedToMarqueeView(this);
         removeAllViews();
-        List<View> mViews = factory.getMarqueeViews();
+        List mViews = factory.getMarqueeViews();
         if (mViews != null) {
             for (int i = 0; i < mViews.size(); i++) {
-                addView(mViews.get(i));
+                addView((View) mViews.get(i));
             }
         }
     }
