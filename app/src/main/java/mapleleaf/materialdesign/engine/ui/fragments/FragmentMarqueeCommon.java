@@ -1,5 +1,6 @@
 package mapleleaf.materialdesign.engine.ui.fragments;
 
+import static mapleleaf.materialdesign.engine.MaterialDesignEngine.context;
 import static mapleleaf.materialdesign.engine.utils.TopLevelFuncationKt.toast;
 
 import android.os.Bundle;
@@ -10,9 +11,9 @@ import android.text.style.URLSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -45,30 +46,28 @@ public class FragmentMarqueeCommon extends Fragment {
 
         List<CharSequence> list = new ArrayList<>();
         SpannableString ss1 = new SpannableString("1、MarqueeView开源项目");
-        ss1.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.red)), 2, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss1.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context,R.color.red)), 2, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         list.add(ss1);
         SpannableString ss2 = new SpannableString("2、GitHub：sunfusheng");
-        ss2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.blue)), 9, 19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss2.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, R.color.blue)), 9, 19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         list.add(ss2);
         SpannableString ss3 = new SpannableString("3、个人博客：sunfusheng.com");
         ss3.setSpan(new URLSpan("http://sunfusheng.com/"), 7, 21, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         list.add(ss3);
         list.add("4、新浪微博：@孙福生微博");
-        //set Custom font
-//        sunfushengMarqueeView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.huawenxinwei));
 
         sunfushengMarqueeView.startWithList(list);
-        sunfushengMarqueeView.setOnItemClickListener((position, textView) -> Toast.makeText(getContext(), textView.getText() + "", Toast.LENGTH_SHORT).show());
+        sunfushengMarqueeView.setOnItemClickListener((position, textView) -> toast(textView.getText() + ""));
 
         sunfushengMarqueeView1.startWithText(getString(R.string.marquee_texts), R.anim.anim_top_in, R.anim.anim_bottom_out);
-        sunfushengMarqueeView1.setOnItemClickListener((position, textView) -> Toast.makeText(getContext(), String.valueOf(position) + ". " + textView.getText(), Toast.LENGTH_SHORT).show());
+        sunfushengMarqueeView1.setOnItemClickListener((position, textView) -> toast(position + ". " + textView.getText()));
 
         sunfushengMarqueeView2.startWithText(getString(R.string.marquee_text));
 
         sunfushengMarqueeView3.startWithText(getString(R.string.marquee_texts));
         sunfushengMarqueeView3.setOnItemClickListener((position, textView) -> {
             CharSequence model = (CharSequence) sunfushengMarqueeView3.getMessages().get(position);
-            Toast.makeText(getContext(), model, Toast.LENGTH_SHORT).show();
+            toast(model.toString());
         });
 
         List<SunfushengMarqueeCustomModel> models = new ArrayList<>();

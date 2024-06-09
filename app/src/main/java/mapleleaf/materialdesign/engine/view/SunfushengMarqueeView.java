@@ -1,5 +1,7 @@
 package mapleleaf.materialdesign.engine.view;
 
+import static mapleleaf.materialdesign.engine.MaterialDesignEngine.context;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
@@ -16,6 +18,7 @@ import android.widget.ViewFlipper;
 
 import androidx.annotation.AnimRes;
 import androidx.annotation.FontRes;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
@@ -41,9 +44,9 @@ public class SunfushengMarqueeView<T> extends ViewFlipper {
     private boolean hasSetAnimDuration = false;
     private int animDuration = 1000;
     private int textSize = 14;
-    //    private int textColor = getResources().getColor(R.color.text_color);
+    private int textColor = ContextCompat.getColor(context, R.color.text_color);
     private boolean singleLine = false;
-    private int gravity = Gravity.LEFT | Gravity.CENTER_VERTICAL;
+    private int gravity = Gravity.START | Gravity.CENTER_VERTICAL;
     private int direction = DIRECTION_BOTTOM_TO_TOP;
     private Typeface typeface;
 
@@ -63,12 +66,12 @@ public class SunfushengMarqueeView<T> extends ViewFlipper {
 
     public SunfushengMarqueeView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs, 0);
+        init(context, attrs);
     }
 
-    private void init(Context context, AttributeSet attrs, int defStyleAttr) {
+    private void init(Context context, AttributeSet attrs) {
         TypedArray typedArray =
-                context.obtainStyledAttributes(attrs, R.styleable.MarqueeViewStyle, defStyleAttr, 0);
+                context.obtainStyledAttributes(attrs, R.styleable.MarqueeViewStyle, 0, 0);
 
         interval = typedArray.getInteger(R.styleable.MarqueeViewStyle_mvInterval, interval);
         hasSetAnimDuration = typedArray.hasValue(R.styleable.MarqueeViewStyle_mvAnimDuration);
@@ -78,7 +81,7 @@ public class SunfushengMarqueeView<T> extends ViewFlipper {
             textSize = (int) typedArray.getDimension(R.styleable.MarqueeViewStyle_mvTextSize, textSize);
             textSize = SunfushengUtils.px2sp(context, textSize);
         }
-//        textColor = typedArray.getColor(R.styleable.MarqueeViewStyle_mvTextColor, textColor);
+        textColor = typedArray.getColor(R.styleable.MarqueeViewStyle_mvTextColor, textColor);
         @FontRes int fontRes = typedArray.getResourceId(R.styleable.MarqueeViewStyle_mvFont, 0);
         if (fontRes != 0) {
             typeface = ResourcesCompat.getFont(context, fontRes);
@@ -86,13 +89,13 @@ public class SunfushengMarqueeView<T> extends ViewFlipper {
         int gravityType = typedArray.getInt(R.styleable.MarqueeViewStyle_mvGravity, GRAVITY_LEFT);
         switch (gravityType) {
             case GRAVITY_LEFT:
-                gravity = Gravity.LEFT | Gravity.CENTER_VERTICAL;
+                gravity = Gravity.START | Gravity.CENTER_VERTICAL;
                 break;
             case GRAVITY_CENTER:
                 gravity = Gravity.CENTER;
                 break;
             case GRAVITY_RIGHT:
-                gravity = Gravity.RIGHT | Gravity.CENTER_VERTICAL;
+                gravity = Gravity.END | Gravity.CENTER_VERTICAL;
                 break;
         }
 
@@ -178,7 +181,7 @@ public class SunfushengMarqueeView<T> extends ViewFlipper {
             int size = messageLength / limit + (messageLength % limit != 0 ? 1 : 0);
             for (int i = 0; i < size; i++) {
                 int startIndex = i * limit;
-                int endIndex = ((i + 1) * limit >= messageLength ? messageLength : (i + 1) * limit);
+                int endIndex = (Math.min((i + 1) * limit, messageLength));
                 list.add(message.substring(startIndex, endIndex));
             }
         }
@@ -272,7 +275,7 @@ public class SunfushengMarqueeView<T> extends ViewFlipper {
         if (textView == null) {
             textView = new TextView(getContext());
             textView.setGravity(gravity | Gravity.CENTER_VERTICAL);
-//            textView.setTextColor(textColor);
+            textView.setTextColor(textColor);
             textView.setTextSize(textSize);
             textView.setIncludeFontPadding(true);
             textView.setSingleLine(singleLine);

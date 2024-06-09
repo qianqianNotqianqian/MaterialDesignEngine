@@ -35,8 +35,6 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
     private lateinit var marqueeViewXUI5: XUIMarqueeView
     private lateinit var tvMarquee: MarqueeTextView
 
-//    override fun getLayoutResourceId() = R.layout.activity_marquee_view
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         val tabLayout: TabLayout = findViewById(R.id.tab_layout)
@@ -123,7 +121,7 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
                 return textView
             }
         }
-        marqueeFactoryXUI3.setOnItemClickListener { view, holder -> toast(holder.data) }
+        marqueeFactoryXUI3.setOnItemClickListener { _, holder -> toast(holder.data) }
         marqueeFactoryXUI3.setData(strings)
         marqueeViewXUI3.setMarqueeFactory(marqueeFactoryXUI3)
         marqueeViewXUI3.setAnimInAndOut(R.anim.marquee_left_in, R.anim.marquee_right_out)
@@ -161,13 +159,13 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
                 return if ("离离原上草，一岁一枯荣。" == displayMsg.toString()) {
                     null
                 } else {
-                    toast("开始滚动：$displayMsg")
+//                    toast("开始滚动：$displayMsg")
                     displayMsg
                 }
             }
 
             override fun onMarqueeFinished(displayDatas: List<DisplayEntity>): List<DisplayEntity> {
-                toast("一轮滚动完毕！")
+//                toast("一轮滚动完毕！")
                 return displayDatas
             }
         })
