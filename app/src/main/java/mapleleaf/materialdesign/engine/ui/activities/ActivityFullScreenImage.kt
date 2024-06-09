@@ -65,7 +65,7 @@ class ActivityFullScreenImage : UniversalActivityBase(R.layout.activity_fullscre
 
         progressBar?.isVisible = true
         progressBar?.isIndeterminate = true
-        setToolbarTitle(getString(R.string.toolbar_full_screen_image))
+        setToolbarTitle(getString(R.string.toolbar_title_activity_full_view))
 
         val totalImages = imageUrls.size
         updateImagePosition(position + 1, totalImages)

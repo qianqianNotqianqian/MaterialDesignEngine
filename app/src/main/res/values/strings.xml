@@ -380,7 +380,6 @@
     <string name="nav_header_title">御剑于心，且听风吟。</string>
     <string name="nav_header_week">Friday</string>
     <string name="nav_header_day">04</string>
-    <string name="toolbar_full_screen_image">预览</string>
     <string name="sensor_name">传感器名称:</string>
     <string name="sensor_manufacturer">厂商:</string>
     <string name="sensor_version">版本:</string>
@@ -509,6 +508,7 @@
     <string name="menu_start_marquee_view">跑马灯</string>
     <string name="menu_start_calcDialog">Calc对话框</string>
 
+    <string name="toolbar_title_activity_full_view">预览</string>
     <string name="toolbar_title_activity_accelerometer">加速度计</string>
     <string name="toolbar_title_activity_kongzue_dialog">Kongzue对话框</string>
     <string name="toolbar_title_activity_vibration_control">震动控制</string>
