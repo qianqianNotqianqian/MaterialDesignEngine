@@ -11,17 +11,17 @@ import android.view.animation.Interpolator;
 
 import org.jetbrains.annotations.NotNull;
 
-public class CustomAnimation4 implements ItemAnimator {
+public class TopToBottomBounce implements ItemAnimator {
     @NotNull
     @Override
     public Animator animator(@NotNull View view) {
-        Animator translationX =
-                ObjectAnimator.ofFloat(view, "translationX", view.getRootView().getWidth(), 0f);
+        Animator translationY =
+                ObjectAnimator.ofFloat(view, "translationY", -view.getRootView().getHeight(), 0f);
 
-        translationX.setDuration(800);
-        translationX.setInterpolator(new MyInterpolator4());
+        translationY.setDuration(800);
+        translationY.setInterpolator(new TopToBottomBounce.MyInterpolator4());
 
-        return translationX;
+        return translationY;
     }
 
     private static class MyInterpolator4 implements Interpolator {

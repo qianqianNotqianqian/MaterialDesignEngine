@@ -8,7 +8,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import org.jetbrains.annotations.NotNull;
 
-public class CustomAnimation5 implements ItemAnimator {
+public class BottomToTopAlpha implements ItemAnimator {
 
     @NotNull
     @Override

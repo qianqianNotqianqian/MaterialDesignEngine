@@ -11,14 +11,14 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 自定义动画1
  */
-public class CustomAnimation implements ItemAnimator {
+public class BigToNormalAlpha implements ItemAnimator {
     @NotNull
     @Override
     public Animator animator(@NotNull View view) {
         Animator alpha = ObjectAnimator.ofFloat(view, "alpha", 0, 1f);
 
-        Animator scaleY = ObjectAnimator.ofFloat(view, "scaleY", 0.7f, 1);
-        Animator scaleX = ObjectAnimator.ofFloat(view, "scaleX", 0.7f, 1);
+        Animator scaleY = ObjectAnimator.ofFloat(view, "scaleY", 1.3f, 1);
+        Animator scaleX = ObjectAnimator.ofFloat(view, "scaleX", 1.3f, 1);
 
         scaleY.setInterpolator(new DecelerateInterpolator());
         scaleX.setInterpolator(new DecelerateInterpolator());
@@ -26,7 +26,6 @@ public class CustomAnimation implements ItemAnimator {
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(350);
         animatorSet.play(alpha).with(scaleX).with(scaleY);
-
 
         return animatorSet;
     }

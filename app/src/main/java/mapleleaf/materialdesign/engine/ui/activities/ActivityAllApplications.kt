@@ -58,17 +58,18 @@ import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.animator.AlphaInAnimation
 import mapleleaf.materialdesign.engine.animator.BottomToTopBounce
-import mapleleaf.materialdesign.engine.animator.CustomAnimation
-import mapleleaf.materialdesign.engine.animator.CustomAnimation2
-import mapleleaf.materialdesign.engine.animator.CustomAnimation3
-import mapleleaf.materialdesign.engine.animator.CustomAnimation4
-import mapleleaf.materialdesign.engine.animator.CustomAnimation5
-import mapleleaf.materialdesign.engine.animator.CustomAnimation6
+import mapleleaf.materialdesign.engine.animator.SmallToNormalAlpha
+import mapleleaf.materialdesign.engine.animator.BigToNormalAlpha
+import mapleleaf.materialdesign.engine.animator.StartToEndBounce
+import mapleleaf.materialdesign.engine.animator.EndToStartBounce
+import mapleleaf.materialdesign.engine.animator.BottomToTopAlpha
+import mapleleaf.materialdesign.engine.animator.TopToBottomAlpha
 import mapleleaf.materialdesign.engine.animator.ItemAnimator
 import mapleleaf.materialdesign.engine.animator.ScaleInAnimation
 import mapleleaf.materialdesign.engine.animator.SlideInBottomAnimation
 import mapleleaf.materialdesign.engine.animator.SlideInLeftAnimation
 import mapleleaf.materialdesign.engine.animator.SlideInRightAnimation
+import mapleleaf.materialdesign.engine.animator.TopToBottomBounce
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
@@ -447,18 +448,19 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
     @SuppressLint("NotifyDataSetChanged")
     private fun initMenu() {
         spinner.setItems(
-            "AlphaIn",
-            "ScaleIn",
-            "SlideInBottom",
-            "SlideInLeft",
-            "SlideInRight",
-            "NormalToBigAlpha",
-            "BigToNormalAlpha",
-            "StartToEndBounce",
-            "EndToStartBounce",
-            "BottomToTopAlpha",
-            "TopToBottomAlpha",
-            "BottomToTopBounce"
+            "渐变进入",
+            "从小到正常平移",
+            "从底部平移",
+            "从左边平移",
+            "从右边平移",
+            "从小到正常渐入",
+            "从大到正常渐入",
+            "从左到右弹跳",
+            "从右到左弹跳",
+            "从下到上渐入",
+            "从上到下渐入",
+            "从下到上弹跳",
+            "从上到下弹跳"
         )
 
         spinner.setOnItemSelectedListener { _, position, _, _ ->
@@ -468,13 +470,14 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
                 2 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.SlideInBottom)
                 3 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.SlideInLeft)
                 4 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.SlideInRight)
-                5 -> adapter.itemAnimation = CustomAnimation()
-                6 -> adapter.itemAnimation = CustomAnimation2()
-                7 -> adapter.itemAnimation = CustomAnimation3()
-                8 -> adapter.itemAnimation = CustomAnimation4()
-                9 -> adapter.itemAnimation = CustomAnimation5()
-                10 -> adapter.itemAnimation = CustomAnimation6()
-                11 -> adapter.itemAnimation = BottomToTopBounce()
+                5 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.SmallToNormalAlpha)
+                6 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.BigToNormalAlpha)
+                7 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.StartToEndBounce)
+                8 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.EndToStartBounce)
+                9 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.BottomToTopAlpha)
+                10 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.TopToBottomAlpha)
+                11 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.BottomToTopBounce)
+                12 -> adapter.itemAnimation= TopToBottomBounce()
                 else -> {}
             }
             adapter.notifyDataSetChanged()
@@ -938,9 +941,8 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
          * 内置默认动画类型
          */
         enum class AnimationType {
-            AlphaIn, ScaleIn, SlideInBottom, SlideInLeft, SlideInRight
+            AlphaIn, ScaleIn, SlideInBottom, SlideInLeft, SlideInRight, SmallToNormalAlpha, BigToNormalAlpha, StartToEndBounce, EndToStartBounce, BottomToTopAlpha, TopToBottomAlpha, BottomToTopBounce
         }
-
 
         /**
          * use preset animations
@@ -954,6 +956,13 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
                 AnimationType.SlideInBottom -> SlideInBottomAnimation()
                 AnimationType.SlideInLeft -> SlideInLeftAnimation()
                 AnimationType.SlideInRight -> SlideInRightAnimation()
+                AnimationType.SmallToNormalAlpha -> SmallToNormalAlpha()
+                AnimationType.BigToNormalAlpha -> BigToNormalAlpha()
+                AnimationType.StartToEndBounce -> StartToEndBounce()
+                AnimationType.EndToStartBounce -> EndToStartBounce()
+                AnimationType.BottomToTopAlpha -> BottomToTopAlpha()
+                AnimationType.TopToBottomAlpha -> TopToBottomAlpha()
+                AnimationType.BottomToTopBounce -> BottomToTopBounce()
             }
         }
     }

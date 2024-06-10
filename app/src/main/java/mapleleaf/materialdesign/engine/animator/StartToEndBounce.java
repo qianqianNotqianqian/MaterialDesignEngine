@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 自定义动画2
  */
-public class CustomAnimation3 implements ItemAnimator {
+public class StartToEndBounce implements ItemAnimator {
     @NotNull
     @Override
     public Animator animator(@NotNull View view) {
