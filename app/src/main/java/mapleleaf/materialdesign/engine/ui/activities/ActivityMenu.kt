@@ -165,7 +165,29 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             R.drawable.ic_support_development,
             R.string.about_this
         ) {
-            this@ActivityMenu.startActivity(Intent(this@ActivityMenu, ActivityAbout::class.java))
+            MDEngineHelpers.showAbout(this)
+        }
+        setNavigationViewMenuItem(
+            R.id.item_share,
+            R.drawable.ic_share_this_app,
+            R.string.menu_share
+        ) {
+            try {
+                val appInfo: ApplicationInfo = packageManager.getApplicationInfo(packageName, 0)
+                val apkFilePath: String = appInfo.sourceDir
+                val apkUri: Uri =
+                    FileProvider.getUriForFile(this, "$packageName.shareAPK", File(apkFilePath))
+                val sendIntent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_STREAM, apkUri)
+                    type = "*/*"
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+                startActivity(Intent.createChooser(sendIntent, "分享应用"))
+            } catch (e: PackageManager.NameNotFoundException) {
+                Log.e("包管理", "PackageManager.NameNotFoundException occurred", e)
+                toast(getString(R.string.menu_get_app_information_failed))
+            }
         }
         setNavigationViewMenuItem(
             R.id.item_perfmon_plus,
@@ -853,31 +875,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         when (item.itemId) {
             android.R.id.home -> {
                 finish()
-                return true
-            }
-
-            R.id.start_menu_about -> {
-                MDEngineHelpers.showAbout(this)
-                return true
-            }
-
-            R.id.start_menu_share -> {
-                try {
-                    val appInfo: ApplicationInfo = packageManager.getApplicationInfo(packageName, 0)
-                    val apkFilePath: String = appInfo.sourceDir
-                    val apkUri: Uri =
-                        FileProvider.getUriForFile(this, "$packageName.shareAPK", File(apkFilePath))
-                    val sendIntent = Intent().apply {
-                        action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_STREAM, apkUri)
-                        type = "*/*"
-                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    }
-                    startActivity(Intent.createChooser(sendIntent, "分享应用"))
-                } catch (e: PackageManager.NameNotFoundException) {
-                    Log.e("包管理", "PackageManager.NameNotFoundException occurred", e)
-                    toast(getString(R.string.menu_get_app_information_failed))
-                }
                 return true
             }
 

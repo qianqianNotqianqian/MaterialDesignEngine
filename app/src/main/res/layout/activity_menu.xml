@@ -392,6 +392,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp" />
 
+                            <include
+                                android:id="@+id/item_share"
+                                layout="@layout/view_me_function"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp" />
+
                         </LinearLayout>
 
                         <LinearLayout

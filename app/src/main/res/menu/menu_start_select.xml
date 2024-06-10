@@ -17,16 +17,6 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/start_menu_about"
-        android:title="@string/menu_about"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/start_menu_share"
-        android:title="@string/menu_share"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/start_menu_check_permission"
         android:title="@string/menu_check_permission"
         app:showAsAction="never" />
