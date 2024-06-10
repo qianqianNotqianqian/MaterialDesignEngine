@@ -172,30 +172,24 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             R.drawable.ic_perfmon,
             R.string.perfmon_plus
         ) {
-            MessageDialog(
-                getString(R.string.dialog_title),
-                getString(R.string.menu_confirm_perfmon_plus),
-                "确定",
-                "取消"
-            )
-                .setOkTextInfo(TextInfo().setFontColor(Color.parseColor("#EB5545")).setBold(true))
-                .setCancelButton { _, _ ->
-                    false
-                }
-                .setOkButton { _, _ ->
-                    lifecycleScope.launch {
-                        delay(300)
-                        val intent = Intent(this@ActivityMenu, ActivityPerfmonPlus::class.java)
-                        val options = ActivityOptionsCompat.makeCustomAnimation(
-                            this@ActivityMenu,
-                            android.R.anim.fade_in,
-                            android.R.anim.fade_out
-                        )
-                        ActivityCompat.startActivity(this@ActivityMenu, intent, options.toBundle())
-                    }
+            val dialogView = layoutInflater.inflate(R.layout.dialog_info, null)
+            val dialog = DialogHelper.customDialog(this, dialogView)
 
-                    false
-                }.show()
+            dialogView.findViewById<TextView>(R.id.confirm_message).text = getString(R.string.menu_confirm_perfmon_plus)
+
+            dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                dialog.dismiss()
+                val intent = Intent(this@ActivityMenu, ActivityPerfmonPlus::class.java)
+                val options = ActivityOptionsCompat.makeCustomAnimation(
+                    this@ActivityMenu,
+                    android.R.anim.fade_in,
+                    android.R.anim.fade_out
+                )
+                ActivityCompat.startActivity(this@ActivityMenu, intent, options.toBundle())
+            }
+            dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                dialog.dismiss()
+            }
         }
 
         setNavigationViewMenuItem(R.id.item_sex, R.drawable.ic_image, R.string.sex_picture) {
