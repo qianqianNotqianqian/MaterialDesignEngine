@@ -94,6 +94,7 @@ public abstract class AbsAboutActivity extends AppCompatActivity {
     headerContentLayout = findViewById(R.id.header_content_layout);
     onTitleViewCreated(collapsingToolbar);
     onCreateHeader(icon, slogan, version);
+    setHeaderTitleTextColor(collapsingToolbar);
     setSupportActionBar(toolbar);
     extractToolbarColor(this, toolbar);
     context = this;
@@ -108,6 +109,8 @@ public abstract class AbsAboutActivity extends AppCompatActivity {
     recyclerView = findViewById(R.id.list);
       applyEdgeToEdge();
   }
+  protected abstract void setHeaderTitleTextColor(@NonNull CollapsingToolbarLayout collapsingToolbar);
+
   public static void extractToolbarColor(@NonNull AppCompatActivity activity, @NonNull Toolbar toolbar) {
     int toolbarColor = extractToolbarColorFromDrawable(toolbar);
     if (toolbarColor == Color.TRANSPARENT) {

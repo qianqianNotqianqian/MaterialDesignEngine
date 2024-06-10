@@ -2,14 +2,10 @@
 
     <style name="CustomMaterial3Theme" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowBackground">#FFFFFFFF</item>
-<!--        <item name="android:colorPrimary">?colorPrimary</item>-->
-<!--        <item name="android:colorPrimaryDark">?colorPrimaryDark</item>-->
-<!--        <item name="android:colorAccent">?colorPrimary</item>-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -18,8 +14,6 @@
     </style>
 
     <style name="CustomMaterial3Theme_Dark" parent="CustomMaterial3Theme" />
-
-    <style name="CustomMaterial3ThemeSplash" parent="CustomMaterial3Theme" />
 
     <style name="AppTheme.PopupOverlay" parent="@style/Widget.Material3.PopupMenu">
         <item name="popupMenuBackground">@color/spinner_color2</item>
@@ -303,9 +297,9 @@
     </style>
 
     <style name="AppAboutTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/spinner_color2</item>
+        <item name="colorPrimaryDark">@color/spinner_color2</item>
+        <item name="colorAccent">@color/spinner_color2</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>

@@ -16,12 +16,17 @@ import com.drakeet.about.Card
 import com.drakeet.about.Category
 import com.drakeet.about.Contributor
 import com.drakeet.about.License
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.utils.ThemeConfig
 import mapleleaf.materialdesign.engine.utils.toast
 
 class ActivityAbout : AbsAboutActivity() {
+
+    override fun setHeaderTitleTextColor(collapsingToolbar: CollapsingToolbarLayout) {
+        collapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.text_color))
+    }
 
     override fun onCreateHeader(icon: ImageView, slogan: TextView, version: TextView) {
         icon.setImageResource(R.mipmap.ic_launcher_sa)

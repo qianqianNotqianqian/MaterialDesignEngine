@@ -477,7 +477,7 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
                 9 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.BottomToTopAlpha)
                 10 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.TopToBottomAlpha)
                 11 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.BottomToTopBounce)
-                12 -> adapter.itemAnimation= TopToBottomBounce()
+                12 -> adapter.setItemAnimation(AdapterAllAppList.AnimationType.TopToBottomBounce)
                 else -> {}
             }
             adapter.notifyDataSetChanged()
@@ -941,7 +941,7 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
          * 内置默认动画类型
          */
         enum class AnimationType {
-            AlphaIn, ScaleIn, SlideInBottom, SlideInLeft, SlideInRight, SmallToNormalAlpha, BigToNormalAlpha, StartToEndBounce, EndToStartBounce, BottomToTopAlpha, TopToBottomAlpha, BottomToTopBounce
+            AlphaIn, ScaleIn, SlideInBottom, SlideInLeft, SlideInRight, SmallToNormalAlpha, BigToNormalAlpha, StartToEndBounce, EndToStartBounce, BottomToTopAlpha, TopToBottomAlpha, BottomToTopBounce, TopToBottomBounce
         }
 
         /**
@@ -963,6 +963,7 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
                 AnimationType.BottomToTopAlpha -> BottomToTopAlpha()
                 AnimationType.TopToBottomAlpha -> TopToBottomAlpha()
                 AnimationType.BottomToTopBounce -> BottomToTopBounce()
+                AnimationType.TopToBottomBounce -> TopToBottomBounce()
             }
         }
     }
