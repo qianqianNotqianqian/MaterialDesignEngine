@@ -41,9 +41,6 @@ import com.google.android.material.shape.MaterialShapeDrawable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author drakeet
- */
 public abstract class AbsAboutActivity extends AppCompatActivity {
 
   private Toolbar toolbar;
@@ -60,10 +57,8 @@ public abstract class AbsAboutActivity extends AppCompatActivity {
   private @Nullable OnRecommendationClickedListener onRecommendationClickedListener;
   private @Nullable OnContributorClickedListener onContributorClickedListener;
 
-  protected abstract void onCreateHeader(@NonNull ImageView icon, @NonNull TextView slogan, @NonNull TextView version);
+  protected abstract void onCreateHeader(@NonNull ImageView icon, @NonNull TextView slogan, @NonNull TextView version, @NonNull CollapsingToolbarLayout collapsingToolbar );
   protected abstract void onItemsCreated(@NonNull List<Object> items);
-
-  protected void onTitleViewCreated(@NonNull CollapsingToolbarLayout collapsingToolbar) {}
 
   @SuppressLint("NotifyDataSetChanged")
   public void setImageLoader(@NonNull ImageLoader imageLoader) {
@@ -92,9 +87,7 @@ public abstract class AbsAboutActivity extends AppCompatActivity {
     version = findViewById(R.id.version);
     collapsingToolbar = findViewById(R.id.collapsing_toolbar);
     headerContentLayout = findViewById(R.id.header_content_layout);
-    onTitleViewCreated(collapsingToolbar);
-    onCreateHeader(icon, slogan, version);
-    setHeaderTitleTextColor(collapsingToolbar);
+    onCreateHeader(icon, slogan, version, collapsingToolbar);
     setSupportActionBar(toolbar);
     extractToolbarColor(this, toolbar);
     context = this;
@@ -106,10 +99,9 @@ public abstract class AbsAboutActivity extends AppCompatActivity {
       actionBar.setDisplayShowHomeEnabled(true);
     }
     onApplyPresetAttrs();
-    recyclerView = findViewById(R.id.list);
+    recyclerView = findViewById(R.id.recycleView);
       applyEdgeToEdge();
   }
-  protected abstract void setHeaderTitleTextColor(@NonNull CollapsingToolbarLayout collapsingToolbar);
 
   public static void extractToolbarColor(@NonNull AppCompatActivity activity, @NonNull Toolbar toolbar) {
     int toolbarColor = extractToolbarColorFromDrawable(toolbar);

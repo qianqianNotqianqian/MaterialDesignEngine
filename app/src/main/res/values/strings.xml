@@ -248,7 +248,7 @@
     <string name="donate_link">https://sdex.dev/donate/</string>
     <string name="donate_message">如果您喜欢这个应用，捐赠我们吧</string>
     <string name="donate_negative_action_text">不再询问</string>
-    <string name="version_text">Version: %s\nVersionCode: %s</string>
+    <string name="version_text">%s(%s)</string>
 
     <string name="accelerometer_sensor_resolution">%s m/s²</string>
     <string name="accelerometer_sensor_power">%s mA</string>

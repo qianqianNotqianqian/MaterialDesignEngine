@@ -24,20 +24,24 @@ import mapleleaf.materialdesign.engine.utils.toast
 
 class ActivityAbout : AbsAboutActivity() {
 
-    override fun setHeaderTitleTextColor(collapsingToolbar: CollapsingToolbarLayout) {
-        collapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.text_color))
-    }
-
-    override fun onCreateHeader(icon: ImageView, slogan: TextView, version: TextView) {
+    override fun onCreateHeader(icon: ImageView, slogan: TextView, version: TextView, collapsingToolbar: CollapsingToolbarLayout) {
         icon.setImageResource(R.mipmap.ic_launcher_sa)
-        slogan.setText(R.string.app_name)
-        slogan.setTextColor(ContextCompat.getColor(context, R.color.text_color))
+        slogan.apply {
+            setText(R.string.app_name)
+            setTextColor(ContextCompat.getColor(context, R.color.text_color))
+        }
+
         toolbar.setTitleTextColor(ContextCompat.getColor(context, R.color.text_color))
         val versionName = getVersionName()
         val versionCode = getVersionCode()
-        version.text = getString(R.string.version_text, versionName, versionCode.toString())
-        version.setTextColor(ContextCompat.getColor(context, R.color.text_color))
-        version.gravity = Gravity.CENTER
+
+        version.apply {
+            setTextColor(ContextCompat.getColor(context, R.color.text_color))
+            text = getString(R.string.version_text, versionName, versionCode.toString())
+            gravity = Gravity.CENTER
+        }
+
+        collapsingToolbar.setCollapsedTitleTextColor(ContextCompat.getColor(context, R.color.text_color))
     }
 
     private fun getVersionName(): String {
@@ -56,7 +60,7 @@ class ActivityAbout : AbsAboutActivity() {
             PackageInfoCompat.getLongVersionCode(packageInfo)
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
-            -1 // 返回一个明显的错误值，因为版本代码不能是负数
+            -1
         }
     }
 

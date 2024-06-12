@@ -27,6 +27,7 @@
     <style name="AboutPage.Header.Slogan">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@android:color/white</item>
@@ -65,9 +66,7 @@
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
         <item name="android:background">@drawable/about_page_card</item>
-        <item name="android:elevation"
-            tools:ignore="NewApi">1dp
-        </item>
+        <item name="android:elevation">1dp</item>
     </style>
 
     <style name="AboutPage.CardContent">
