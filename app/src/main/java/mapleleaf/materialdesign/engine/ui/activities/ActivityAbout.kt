@@ -16,6 +16,8 @@ import com.drakeet.about.Card
 import com.drakeet.about.Category
 import com.drakeet.about.Contributor
 import com.drakeet.about.License
+import com.drakeet.about.Recommendation
+import com.drakeet.about.provided.PicassoImageLoader
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
@@ -42,6 +44,7 @@ class ActivityAbout : AbsAboutActivity() {
         }
 
         collapsingToolbar.setCollapsedTitleTextColor(ContextCompat.getColor(context, R.color.text_color))
+        setImageLoader(PicassoImageLoader())
     }
 
     private fun getVersionName(): String {
@@ -76,25 +79,25 @@ class ActivityAbout : AbsAboutActivity() {
                 Category(getString(R.string.menu_action_feedback))
             )
             add(
-                Card("Website (官网):\nhttps://gjzsr.com")
+                Card("Website (官网):\nhttps://github.com/qianqianNotqianqian/MaterialDesignEngine")
             )
             add(
-                Card("Download (下载地址):\nhttps://gjzs.app")
+                Card("Download (下载地址):\nhttps://github.com/qianqianNotqianqian/MaterialDesignEngine")
             )
             add(
-                Card("GitHub (开源仓库):\nhttps://github.com/liuran001/GJZS")
+                Card("GitHub (开源仓库):\nhttps://github.com/qianqianNotqianqian/MaterialDesignEngine")
             )
             add(
-                Card("Telegram Channel (TG频道):\nhttps://t.me/s/gjzsr_channel")
+                Card("Telegram Channel (TG频道):\nhttps://t.me/qianqiancxy_channel")
             )
             add(
-                Card("Telegram Group (TG群组):\nhttps://t.me/s/gjzsr")
+                Card("Telegram Group (TG群组):\nhttps://t.me/qianqiancxy")
             )
             add(
-                Card("QQ Channel (QQ频道):\nhttps://obdo.cc/gjzsqc")
+                Card("QQ Channel (QQ频道):\nhttps://pd.qq.com/s/ggj9svlrl")
             )
             add(
-                Card("QQ Group (QQ群):\n471041284")
+                Card("QQ Group (QQ群):\n790587283")
             )
             add(
                 Card("Mail:\n2220401791@gjzsr.com")
@@ -142,6 +145,31 @@ class ActivityAbout : AbsAboutActivity() {
                     "https://obdo.cc/RhtXwJ"
                 )
             )
+
+            items.add(Category("我独立开发的应用"))
+            items.add(
+                Recommendation(
+                    0, getString(R.string.pure_writer),
+                    "https://raw.githubusercontent.com/PureWriter/about-page/master/images/app_writer.png",
+                    "com.drakeet.purewriter",
+                    "快速的纯文本编辑器，我们希望写作能够回到原本的样子：纯粹、有安全感、随时、绝对不丢失内容、具备良好的写作体验。",
+                    "https://play.google.com/store/apps/details?id=com.drakeet.purewriter",
+                    "2017-10-09 16:46:57",
+                    "2017-10-09 16:46:57", 2.93, true
+                )
+            )
+            items.add(
+                Recommendation(
+                    1, getString(R.string.pure_mosaic),
+                    "https://raw.githubusercontent.com/PureWriter/about-page/master/images/app_mosaic.png",
+                    "me.drakeet.puremosaic",
+                    "专注打码的轻应用，包含功能：传统马赛克、毛玻璃效果、选区和手指模式打码，更有创新型高亮打码和 LowPoly 风格马赛克。只为满足一个纯纯的打码需求，让打码也能成为一种赏心悦目。",
+                    "https://play.google.com/store/apps/details?id=me.drakeet.puremosaic",
+                    "2017-10-09 16:46:57",
+                    "2017-10-09 16:46:57", 2.64, true
+                )
+            )
+
             add(Category(getString(R.string.license)))
             add(
                 License(

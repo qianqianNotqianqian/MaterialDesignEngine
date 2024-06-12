@@ -60,7 +60,6 @@ public abstract class AbsAboutActivity extends AppCompatActivity {
   protected abstract void onCreateHeader(@NonNull ImageView icon, @NonNull TextView slogan, @NonNull TextView version, @NonNull CollapsingToolbarLayout collapsingToolbar );
   protected abstract void onItemsCreated(@NonNull List<Object> items);
 
-  @SuppressLint("NotifyDataSetChanged")
   public void setImageLoader(@NonNull ImageLoader imageLoader) {
     this.imageLoader = imageLoader;
     if (initialized) {

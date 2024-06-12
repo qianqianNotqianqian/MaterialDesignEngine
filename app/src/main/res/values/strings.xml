@@ -582,5 +582,7 @@
     <string name="num_format_currency">货币</string>
     <string name="num_format_max_int">最大整数位数：</string>
     <string name="num_format_max_frac">最大小数位数：</string>
+    <string name="pure_writer">纯纯写作</string>
+    <string name="pure_mosaic">纯纯打码</string>
 
 </resources>
