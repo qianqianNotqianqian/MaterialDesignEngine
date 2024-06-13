@@ -16,11 +16,11 @@ dependencyResolutionManagement {
 
 rootProject.name = "MaterialDesignEngine"
 include ':app'
+include ':CalcDialog'
 include ':DialogX'
 include ':DialogXInterface'
 include ':DialogXIOSStyle'
 include ':DialogXKongzueStyle'
 include ':DialogXMaterialYou'
 include ':DialogXMIUIStyle'
-include ':CalcDialog'
 include ':DrakeetAboutPage'
