@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/AboutPage.Item.Card">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="@style/AboutPage.LicenseTitle"
         android:id="@+id/content"
         tools:text="MultiType - drakeet"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="@style/AboutPage.LicenseHint"
         android:id="@+id/hint"
         android:layout_below="@id/content"

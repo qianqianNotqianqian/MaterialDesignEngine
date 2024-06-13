@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/AboutPage.Item.Card">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         style="@style/AboutPage.ContributorAvatar"
         android:id="@+id/avatar"
         tools:ignore="ContentDescription"
         tools:src="#000000"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="@style/AboutPage.ContributorName"
         android:id="@+id/name"
         android:layout_toRightOf="@id/avatar"
@@ -18,7 +18,7 @@
         android:layout_alignTop="@id/avatar"
         tools:text="drakeet"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="@style/AboutPage.ContributorDesc"
         android:id="@+id/desc"
         android:layout_below="@id/name"

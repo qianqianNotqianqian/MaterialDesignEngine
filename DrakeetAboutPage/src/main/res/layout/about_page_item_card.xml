@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/AboutPage.Item.Card">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="@style/AboutPage.CardContent"
         android:id="@+id/content"
         tools:text="content"/>

@@ -7,21 +7,21 @@
     android:background="@color/about_page_card_normal"
     android:orientation="vertical">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="@style/AboutPage.BottomSheetItem"
         android:layout_width="match_parent"
         android:layout_height="@dimen/about_page_bottom_sheet_item_height"
         android:textStyle="bold"
         android:text="@string/about_page_open_with"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="@style/AboutPage.BottomSheetItem"
         android:id="@+id/web"
         android:layout_width="match_parent"
         android:layout_height="@dimen/about_page_bottom_sheet_item_height"
         android:text="@string/about_page_browser"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="@style/AboutPage.BottomSheetItem"
         android:id="@+id/google_play"
         android:layout_width="match_parent"
