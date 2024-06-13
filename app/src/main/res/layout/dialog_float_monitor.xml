@@ -54,7 +54,7 @@
                         android:gravity="center_vertical"
                         android:minHeight="70dp"
                         android:orientation="horizontal"
-                        android:padding="6dp">
+                        android:padding="@dimen/content_padding_6dp">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="35dp"
@@ -89,8 +89,7 @@
                             android:id="@+id/monitor_perf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
+                            android:layout_marginHorizontal="12dp"
                             android:checked="false"
                             android:enabled="true" />
                     </LinearLayout>
@@ -103,7 +102,7 @@
                         android:gravity="center_vertical"
                         android:minHeight="70dp"
                         android:orientation="horizontal"
-                        android:padding="6dp">
+                        android:padding="@dimen/content_padding_6dp">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="35dp"
@@ -138,8 +137,7 @@
                             android:id="@+id/monitor_proc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
+                            android:layout_marginHorizontal="12dp"
                             android:checked="false"
                             android:enabled="true" />
                     </LinearLayout>
@@ -152,7 +150,7 @@
                         android:gravity="center_vertical"
                         android:minHeight="70dp"
                         android:orientation="horizontal"
-                        android:padding="6dp">
+                        android:padding="@dimen/content_padding_6dp">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="35dp"
@@ -187,8 +185,7 @@
                             android:id="@+id/monitor_game"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp"
+                            android:layout_marginHorizontal="12dp"
                             android:checked="false"
                             android:enabled="true" />
                     </LinearLayout>

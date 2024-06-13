@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|end"
-                android:layout_marginStart="6dp" />
+                android:layout_marginStart="@dimen/content_padding_6dp" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>

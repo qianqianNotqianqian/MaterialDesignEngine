@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sunfusheng.marqueeview.demo.SunfushengMarqueeMainActivity">
+    tools:context=".ui.activities.ActivityMarqueeView">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/toolbar_color"
         app:layout_constraintTop_toTopOf="parent">
 
         <include

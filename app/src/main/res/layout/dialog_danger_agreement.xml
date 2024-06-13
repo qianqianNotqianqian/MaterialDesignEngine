@@ -57,7 +57,7 @@
                         android:gravity="center_vertical"
                         android:minHeight="70dp"
                         android:orientation="horizontal"
-                        android:padding="6dp">
+                        android:padding="@dimen/content_padding_6dp">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="35dp"
@@ -94,8 +94,8 @@
                             android:id="@+id/agreement"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="8dp" />
+                            android:layout_marginStart="12dp"
+                            android:layout_marginEnd="12dp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -113,7 +113,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_cancel"
                 style="@style/dialogCancelBtn"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 android:text="还是算了" />
 
             <com.google.android.material.button.MaterialButton

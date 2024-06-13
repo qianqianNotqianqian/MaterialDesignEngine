@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="105dp"
-    android:padding="4dp">
+    android:padding="@dimen/content_padding_6dp">
 
     <LinearLayout
         android:layout_width="match_parent"

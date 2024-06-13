@@ -84,7 +84,7 @@
                             android:layout_height="match_parent"
                             android:background="@drawable/in_card_item"
                             android:orientation="vertical"
-                            android:padding="6dp">
+                            android:padding="@dimen/content_padding_6dp">
 
                             <com.google.android.material.textview.MaterialTextView
                                 style="@style/textSecondary"
@@ -122,7 +122,7 @@
                             android:layout_marginTop="12dp"
                             android:background="@drawable/in_card_item"
                             android:orientation="vertical"
-                            android:padding="6dp">
+                            android:padding="@dimen/content_padding_6dp">
 
                             <com.google.android.material.textview.MaterialTextView
                                 style="@style/textSecondary"
@@ -170,13 +170,13 @@
                             android:background="@drawable/in_card_item"
                             android:gravity="center_vertical"
                             android:orientation="vertical"
-                            android:padding="6dp">
+                            android:padding="@dimen/content_padding_6dp">
 
                             <com.google.android.material.textview.MaterialTextView
                                 style="@style/textSecondary"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="6dp"
+                                android:layout_marginBottom="@dimen/content_padding_6dp"
                                 android:text="目标SDK" />
 
                             <com.google.android.material.textview.MaterialTextView
@@ -190,17 +190,17 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="6dp"
+                            android:layout_marginStart="@dimen/content_padding_6dp"
                             android:layout_weight="1"
                             android:background="@drawable/in_card_item"
                             android:orientation="vertical"
-                            android:padding="6dp">
+                            android:padding="@dimen/content_padding_6dp">
 
                             <com.google.android.material.textview.MaterialTextView
                                 style="@style/textSecondary"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="6dp"
+                                android:layout_marginBottom="@dimen/content_padding_6dp"
                                 android:text="最小SDK" />
 
                             <com.google.android.material.textview.MaterialTextView
@@ -215,11 +215,11 @@
                             android:id="@+id/app_options_component_management"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="6dp"
+                            android:layout_marginStart="@dimen/content_padding_6dp"
                             android:background="@drawable/in_card_item"
                             android:gravity="center"
                             android:orientation="horizontal"
-                            android:padding="6dp">
+                            android:padding="@dimen/content_padding_6dp">
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="35dp"
@@ -234,11 +234,11 @@
                             android:id="@+id/app_options_open_detail"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="6dp"
+                            android:layout_marginStart="@dimen/content_padding_6dp"
                             android:background="@drawable/in_card_item"
                             android:gravity="center"
                             android:orientation="horizontal"
-                            android:padding="6dp">
+                            android:padding="@dimen/content_padding_6dp">
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="35dp"
@@ -253,16 +253,16 @@
                             android:id="@+id/app_options_app_store"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="6dp"
+                            android:layout_marginStart="@dimen/content_padding_6dp"
                             android:background="@drawable/in_card_item"
                             android:gravity="center"
                             android:orientation="horizontal"
-                            android:padding="6dp">
+                            android:padding="@dimen/content_padding_6dp">
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
-                                android:padding="6dp"
+                                android:padding="@dimen/content_padding_6dp"
                                 android:src="@drawable/app_options_appstore"
                                 app:tint="?android:colorAccent" />
 
@@ -279,7 +279,7 @@
                     android:gravity="center_vertical"
                     android:minHeight="70dp"
                     android:orientation="horizontal"
-                    android:padding="6dp">
+                    android:padding="@dimen/content_padding_6dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"
@@ -323,7 +323,7 @@
                     android:gravity="center_vertical"
                     android:minHeight="70dp"
                     android:orientation="horizontal"
-                    android:padding="6dp">
+                    android:padding="@dimen/content_padding_6dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"
@@ -366,7 +366,7 @@
                     android:gravity="center_vertical"
                     android:minHeight="70dp"
                     android:orientation="horizontal"
-                    android:padding="6dp">
+                    android:padding="@dimen/content_padding_6dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"
@@ -410,7 +410,7 @@
                     android:gravity="center_vertical"
                     android:minHeight="70dp"
                     android:orientation="horizontal"
-                    android:padding="6dp">
+                    android:padding="@dimen/content_padding_6dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"
@@ -455,7 +455,7 @@
                     android:gravity="center_vertical"
                     android:minHeight="70dp"
                     android:orientation="horizontal"
-                    android:padding="6dp">
+                    android:padding="@dimen/content_padding_6dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"
@@ -499,7 +499,7 @@
                     android:gravity="center_vertical"
                     android:minHeight="70dp"
                     android:orientation="horizontal"
-                    android:padding="6dp">
+                    android:padding="@dimen/content_padding_6dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"

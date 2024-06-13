@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:paddingStart="12dp"
-                android:paddingTop="8dp"
+                android:paddingTop="12dp"
                 android:paddingEnd="12dp"
                 android:text="@string/electricity_unit_adj_desc" />
 
@@ -49,7 +49,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@android:color/transparent"
-                    android:padding="10dp"
+                    android:padding="12dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_minus"
                     app:tint="?android:colorAccent" />
@@ -67,7 +67,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@android:color/transparent"
-                    android:padding="10dp"
+                    android:padding="12dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_plus"
                     app:tint="?android:colorAccent" />
@@ -76,7 +76,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -97,13 +97,13 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="6dp"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginHorizontal="@dimen/content_padding_6dp"
+                android:layout_marginBottom="12dp"
                 android:paddingTop="12dp"
                 android:text="@string/electricity_unit_adj_desc2"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_red_dark"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -112,13 +112,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_confirm"
             style="@style/dialogConfirmBtn"
-            android:layout_marginStart="0dp"
             android:text="确定" />
     </LinearLayout>
 

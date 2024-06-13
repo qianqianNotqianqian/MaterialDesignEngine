@@ -281,10 +281,10 @@
     <style name="CardItemContainer">
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:paddingStart">6dp</item>
-        <item name="android:paddingEnd">6dp</item>
-        <item name="android:paddingTop">6dp</item>
-        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingStart">@dimen/content_padding_6dp</item>
+        <item name="android:paddingEnd">@dimen/content_padding_6dp</item>
+        <item name="android:paddingTop">@dimen/content_padding_6dp</item>
+        <item name="android:paddingBottom">@dimen/content_padding_6dp</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -309,15 +309,12 @@
     </style>
 
     <style name="ListCardItem">
-        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginTop">12dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/linearlayout_background</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="android:paddingLeft">12dp</item>
-        <item name="android:paddingRight">12dp</item>
+        <item name="android:padding">12dp</item>
     </style>
 
     <style name="ListCardItemSmall" parent="ListCardItem">

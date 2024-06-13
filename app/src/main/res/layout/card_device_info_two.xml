@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
     android:orientation="vertical"
-    android:padding="6dp">
+    android:padding="@dimen/content_padding_6dp">
 
     <LinearLayout style="@style/CardItemContainer">
 

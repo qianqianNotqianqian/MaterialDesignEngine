@@ -34,7 +34,7 @@
                     android:id="@+id/colors"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="@dimen/content_padding_6dp"
                     app:cardCornerRadius="1000dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">

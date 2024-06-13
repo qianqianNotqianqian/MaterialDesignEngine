@@ -12,9 +12,9 @@
     <dimen name="app_width">60dp</dimen>
     <dimen name="app_height">120dp</dimen>
 
-    <dimen name="common_card_elevation">0.0dip</dimen><!-- -->
-    <dimen name="content_padding_6dp">6.0dip</dimen><!-- -->
-    <dimen name="content_padding_half">6.0dip</dimen><!-- -->
+    <dimen name="common_card_elevation">0.0dip</dimen>
+    <dimen name="content_padding_6dp">6.0dip</dimen>
+    <dimen name="content_padding_half">6.0dip</dimen>
     <dimen name="gxzw_new_fingerprint_indicate_margin">50.0dp</dimen>
     <dimen name="gxzw_new_fingerprint_step_height">184.72998dp</dimen>
     <dimen name="gxzw_new_fingerprint_step_width">184.65dp</dimen>

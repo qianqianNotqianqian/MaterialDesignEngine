@@ -44,7 +44,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_exit"
                 style="@style/dialogCancelBtn"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 android:text="@string/btn_exit" />
 
             <com.google.android.material.button.MaterialButton

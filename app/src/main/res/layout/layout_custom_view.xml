@@ -11,19 +11,19 @@
         android:paddingTop="15dp"
         android:paddingBottom="15dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_ico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/img_logo" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="这里是自定义Layout测试"
             android:textColor="#878787"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 

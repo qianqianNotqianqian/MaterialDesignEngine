@@ -37,8 +37,7 @@
                     android:id="@+id/answer_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginHorizontal="12dp"
                     android:hint="@string/answer"
                     app:hintAnimationEnabled="true">
 
@@ -61,7 +60,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_cancel"
                 style="@style/dialogCancelBtn"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="12dp"
                 android:text="@string/cancel" />
 
             <com.google.android.material.button.MaterialButton
