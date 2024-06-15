@@ -17,7 +17,7 @@ public class ThermalControlUtils {
     }
 
     public String getCoreControlState() {
-        return KernelProrp.INSTANCE.getProp(thermal_core_control).trim();
+        return KernelProp.INSTANCE.getProp(thermal_core_control).trim();
     }
 
     public void setCoreControlState(Boolean online) {
@@ -29,7 +29,7 @@ public class ThermalControlUtils {
     }
 
     public String getVDDRestrictionState() {
-        return KernelProrp.INSTANCE.getProp(thermal_vdd_restriction).trim();
+        return KernelProp.INSTANCE.getProp(thermal_vdd_restriction).trim();
     }
 
     public void setVDDRestrictionState(Boolean online) {
@@ -41,7 +41,7 @@ public class ThermalControlUtils {
     }
 
     public String getTheramlState() {
-        return KernelProrp.INSTANCE.getProp(thermal_parameters).trim();
+        return KernelProp.INSTANCE.getProp(thermal_parameters).trim();
     }
 
     public void setTheramlState(Boolean online) {

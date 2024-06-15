@@ -7,7 +7,7 @@ import mapleleaf.materialdesign.engine.model.ZramWriteBackStat
 import mapleleaf.materialdesign.engine.shared.FileWrite
 import mapleleaf.materialdesign.engine.shell.KeepShell
 import mapleleaf.materialdesign.engine.shell.KeepShellPublic
-import mapleleaf.materialdesign.engine.shell.KernelProrp
+import mapleleaf.materialdesign.engine.shell.KernelProp
 import mapleleaf.materialdesign.engine.shell.RootFile
 import java.io.File
 
@@ -38,7 +38,7 @@ class SwapUtils(private val context: Context) {
     private val sceneSwaps: String
         get() {
             if (swapExists) {
-                val ret = KernelProrp.getProp("/proc/swaps")
+                val ret = KernelProp.getProp("/proc/swaps")
                 val txt = ret.replace("\t\t", "\t").replace("\t", " ")
                 if (txt.contains("/data/swapfile") || txt.contains("/swapfile")) {
                     return "/data/swapfile"
@@ -230,9 +230,9 @@ class SwapUtils(private val context: Context) {
     val writeBackStat: ZramWriteBackStat
         get() {
             return ZramWriteBackStat().apply {
-                backingDev = KernelProrp.getProp("/sys/block/zram0/backing_dev")
+                backingDev = KernelProp.getProp("/sys/block/zram0/backing_dev")
                 val bdStats =
-                    KernelProrp.getProp("/sys/block/zram0/bd_stat").trim().split(Regex("[ ]+"))
+                    KernelProp.getProp("/sys/block/zram0/bd_stat").trim().split(Regex("[ ]+"))
                 if (bdStats.size == 3) {
                     backed = bdStats[0].toInt() * 4
                     backReads = bdStats[1].toInt() * 4
@@ -255,7 +255,7 @@ class SwapUtils(private val context: Context) {
     val compAlgorithmOptions: Array<String>
         get() {
             val compAlgorithmItems =
-                KernelProrp.getProp("/sys/block/zram0/comp_algorithm").split(" ")
+                KernelProp.getProp("/sys/block/zram0/comp_algorithm").split(" ")
             return compAlgorithmItems.map {
                 it.replace("[", "").replace("]", "")
             }.toTypedArray()
@@ -265,7 +265,7 @@ class SwapUtils(private val context: Context) {
     var compAlgorithm: String
         get() {
             val compAlgorithmItems =
-                KernelProrp.getProp("/sys/block/zram0/comp_algorithm").split(" ")
+                KernelProp.getProp("/sys/block/zram0/comp_algorithm").split(" ")
             val result = compAlgorithmItems.find {
                 it.startsWith("[") && it.endsWith("]")
             }
@@ -276,7 +276,7 @@ class SwapUtils(private val context: Context) {
         }
         set(value) {
             KeepShellPublic.doCmdSync("echo 1 > /sys/block/zram0/reset")
-            KernelProrp.setProp("/sys/block/zram0/comp_algorithm", value)
+            KernelProp.setProp("/sys/block/zram0/comp_algorithm", value)
         }
 
     // 强制触发内存回收
@@ -300,7 +300,7 @@ class SwapUtils(private val context: Context) {
 
     val procSwaps: MutableList<String>
         get() {
-            val ret = KernelProrp.getProp("/proc/swaps")
+            val ret = KernelProp.getProp("/proc/swaps")
             var txt = ret.replace("\t\t", "\t").replace("\t", " ")
             while (txt.contains("  ")) {
                 txt = txt.replace("  ", " ")

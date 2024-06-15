@@ -14,7 +14,7 @@ public class CpuLoadUtils {
     private static Long lastCpuStateTime;
 
     public CpuLoadUtils() {
-        lastCpuState = KernelProrp.INSTANCE.getProp("/proc/stat", "^cpu");
+        lastCpuState = KernelProp.INSTANCE.getProp("/proc/stat", "^cpu");
         lastCpuStateSum = lastCpuState;
     }
 
@@ -46,7 +46,7 @@ public class CpuLoadUtils {
         }
 
         @SuppressLint("UseSparseArrays") HashMap<Integer, Double> loads = new HashMap<>();
-        String times = KernelProrp.INSTANCE.getProp("/proc/stat", "^cpu");
+        String times = KernelProp.INSTANCE.getProp("/proc/stat", "^cpu");
         if (!times.equals("error") && times.startsWith("cpu")) {
             try {
                 if (lastCpuState.isEmpty()) {
@@ -109,7 +109,7 @@ public class CpuLoadUtils {
             return lastCpuStateMap.get(-1);
         }
 
-        String times = KernelProrp.INSTANCE.getProp("/proc/stat", "^cpu ");
+        String times = KernelProp.INSTANCE.getProp("/proc/stat", "^cpu ");
         if (!times.equals("error") && times.startsWith("cpu")) {
             try {
                 if (lastCpuStateSum.isEmpty()) {

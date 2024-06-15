@@ -1,6 +1,6 @@
 package mapleleaf.materialdesign.engine.library.shell;
 
-import mapleleaf.materialdesign.engine.shell.KernelProrp;
+import mapleleaf.materialdesign.engine.shell.KernelProp;
 
 public class MemoryUtils {
     // 提取 /proc/meminfo 里某一行的数值，
@@ -15,7 +15,7 @@ public class MemoryUtils {
     }
 
     public MemoryInfo getMemoryInfo() {
-        String[] memInfos = KernelProrp.INSTANCE.getProp("/proc/meminfo").split("\n");
+        String[] memInfos = KernelProp.INSTANCE.getProp("/proc/meminfo").split("\n");
         final MemoryInfo memInfo = new MemoryInfo();
         for (String row : memInfos) {
             if (row.startsWith("MemTotal")) {

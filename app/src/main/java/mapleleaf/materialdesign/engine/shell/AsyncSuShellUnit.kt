@@ -7,10 +7,10 @@ import java.nio.charset.Charset
  * Created by helloklf on 2017/12/01.
  */
 
-class AsynSuShellUnit(var handler: Handler) {
+class AsyncSuShellUnit(var handler: Handler) {
     var process: Process? = null
 
-    private fun start(): AsynSuShellUnit {
+    private fun start(): AsyncSuShellUnit {
         try {
             if (process == null)
                 process = ShellExecutor.getSuperUserRuntime()
@@ -65,7 +65,7 @@ class AsynSuShellUnit(var handler: Handler) {
         }
     }
 
-    fun exec(cmd: String): AsynSuShellUnit {
+    fun exec(cmd: String): AsyncSuShellUnit {
         if (process == null) {
             start()
         }

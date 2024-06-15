@@ -8,7 +8,7 @@ import android.os.Message
 import android.view.LayoutInflater
 import android.widget.TextView
 import mapleleaf.materialdesign.engine.R
-import mapleleaf.materialdesign.engine.shell.AsynSuShellUnit
+import mapleleaf.materialdesign.engine.shell.AsyncSuShellUnit
 import mapleleaf.materialdesign.engine.utils.toast
 
 open class DialogProgressBar(private var context: Activity, private var uniqueId: String? = null) {
@@ -63,9 +63,9 @@ open class DialogProgressBar(private var context: Activity, private var uniqueId
         alert = DialogHelper.customDialog(context, dialogView)
         // AlertDialog.Builder(context).setView(dialog).setCancelable(false).create()
         if (handler == null) {
-            AsynSuShellUnit(DefaultHandler(alert)).exec(cmd).waitFor()
+            AsyncSuShellUnit(DefaultHandler(alert)).exec(cmd).waitFor()
         } else {
-            AsynSuShellUnit(handler).exec(cmd).waitFor()
+            AsyncSuShellUnit(handler).exec(cmd).waitFor()
         }
     }
 

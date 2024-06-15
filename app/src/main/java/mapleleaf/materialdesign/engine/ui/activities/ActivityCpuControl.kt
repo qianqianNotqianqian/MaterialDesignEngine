@@ -24,7 +24,7 @@ import mapleleaf.materialdesign.engine.model.CpuClusterStatus
 import mapleleaf.materialdesign.engine.model.CpuStatus
 import mapleleaf.materialdesign.engine.model.SelectItem
 import mapleleaf.materialdesign.engine.shell.CpuFrequencyUtils
-import mapleleaf.materialdesign.engine.shell.KernelProrp
+import mapleleaf.materialdesign.engine.shell.KernelProp
 import mapleleaf.materialdesign.engine.shell.ThermalControlUtils
 import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.ui.dialog.DialogItemChooser
@@ -414,7 +414,7 @@ class ActivityCpuControl : UniversalActivityBase(R.layout.activity_cpu_control) 
             bindCpuSetConfig(status.cpusetBackground, object : PickerCallback2 {
                 override fun onSelected(result: BooleanArray) {
                     status.cpusetBackground = parsetCpuset(result)
-                    KernelProrp.setProp("/dev/cpuset/background/cpus", status.cpusetBackground)
+                    KernelProp.setProp("/dev/cpuset/background/cpus", status.cpusetBackground)
                 }
             })
         }
@@ -422,7 +422,7 @@ class ActivityCpuControl : UniversalActivityBase(R.layout.activity_cpu_control) 
             bindCpuSetConfig(status.cpusetSysBackground, object : PickerCallback2 {
                 override fun onSelected(result: BooleanArray) {
                     status.cpusetSysBackground = parsetCpuset(result)
-                    KernelProrp.setProp(
+                    KernelProp.setProp(
                         "/dev/cpuset/system-background/cpus",
                         status.cpusetSysBackground
                     )
@@ -433,7 +433,7 @@ class ActivityCpuControl : UniversalActivityBase(R.layout.activity_cpu_control) 
             bindCpuSetConfig(status.cpusetForeground, object : PickerCallback2 {
                 override fun onSelected(result: BooleanArray) {
                     status.cpusetForeground = parsetCpuset(result)
-                    KernelProrp.setProp("/dev/cpuset/foreground/cpus", status.cpusetForeground)
+                    KernelProp.setProp("/dev/cpuset/foreground/cpus", status.cpusetForeground)
                 }
             })
         }
@@ -441,7 +441,7 @@ class ActivityCpuControl : UniversalActivityBase(R.layout.activity_cpu_control) 
             bindCpuSetConfig(status.cpusetTopApp, object : PickerCallback2 {
                 override fun onSelected(result: BooleanArray) {
                     status.cpusetTopApp = parsetCpuset(result)
-                    KernelProrp.setProp("/dev/cpuset/top-app/cpus", status.cpusetTopApp)
+                    KernelProp.setProp("/dev/cpuset/top-app/cpus", status.cpusetTopApp)
                 }
             })
         }
@@ -693,11 +693,11 @@ class ActivityCpuControl : UniversalActivityBase(R.layout.activity_cpu_control) 
             } finally {
                 mLock.unlock()
             }
-            status.cpusetBackground = KernelProrp.getProp("/dev/cpuset/background/cpus")
-            status.cpusetSysBackground = KernelProrp.getProp("/dev/cpuset/system-background/cpus")
-            status.cpusetForeground = KernelProrp.getProp("/dev/cpuset/foreground/cpus")
-            status.cpusetRestricted = KernelProrp.getProp("/dev/cpuset/restricted/cpus")
-            status.cpusetTopApp = KernelProrp.getProp("/dev/cpuset/top-app/cpus")
+            status.cpusetBackground = KernelProp.getProp("/dev/cpuset/background/cpus")
+            status.cpusetSysBackground = KernelProp.getProp("/dev/cpuset/system-background/cpus")
+            status.cpusetForeground = KernelProp.getProp("/dev/cpuset/foreground/cpus")
+            status.cpusetRestricted = KernelProp.getProp("/dev/cpuset/restricted/cpus")
+            status.cpusetTopApp = KernelProp.getProp("/dev/cpuset/top-app/cpus")
 
             handler.post {
                 updateUI()

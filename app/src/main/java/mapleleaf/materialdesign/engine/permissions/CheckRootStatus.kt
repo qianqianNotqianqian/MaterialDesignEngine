@@ -32,7 +32,7 @@ class CheckRootStatus(
     private val skip: Runnable? = null,
 ) {
 
-    var myHandler: Handler = Handler(Looper.getMainLooper())
+    private var myHandler: Handler = Handler(Looper.getMainLooper())
     var thread: Thread? = null
 
     @SuppressLint("InflateParams")

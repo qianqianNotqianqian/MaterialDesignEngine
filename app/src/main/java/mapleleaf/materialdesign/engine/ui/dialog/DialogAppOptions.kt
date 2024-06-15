@@ -26,7 +26,7 @@ import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.model.AppInfo
 import mapleleaf.materialdesign.engine.shared.MagiskExtend
-import mapleleaf.materialdesign.engine.shell.AsynSuShellUnit
+import mapleleaf.materialdesign.engine.shell.AsyncSuShellUnit
 import mapleleaf.materialdesign.engine.shell.KeepShell
 import mapleleaf.materialdesign.engine.utils.CommonCommands
 import mapleleaf.materialdesign.engine.utils.RootChecker
@@ -262,7 +262,7 @@ open class DialogAppOptions(
             sb.append("echo '[operation completed]'\n")
 
             // Execute shell commands
-            AsynSuShellUnit(ProgressHandlerExtra(dialogView, alert, handler)).exec(sb.toString())
+            AsyncSuShellUnit(ProgressHandlerExtra(dialogView, alert, handler)).exec(sb.toString())
                 .waitFor()
         }.start()
     }
@@ -343,7 +343,7 @@ open class DialogAppOptions(
         val textView: TextView = (dialogView.findViewById(R.id.dialog_text))
         textView.text = "正在获取权限"
         val alert = DialogHelper.customDialog(context, dialogView)
-        AsynSuShellUnit(ProgressHandler(dialogView, alert, handler)).exec(sb.toString()).waitFor()
+        AsyncSuShellUnit(ProgressHandler(dialogView, alert, handler)).exec(sb.toString()).waitFor()
     }
 
     open class ProgressHandler(

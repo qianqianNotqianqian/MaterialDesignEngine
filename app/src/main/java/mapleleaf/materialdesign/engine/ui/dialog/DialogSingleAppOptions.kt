@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.model.AppInfo
-import mapleleaf.materialdesign.engine.shell.AsynSuShellUnit
+import mapleleaf.materialdesign.engine.shell.AsyncSuShellUnit
 import mapleleaf.materialdesign.engine.ui.activities.ActivityAppComponents
 import mapleleaf.materialdesign.engine.ui.activities.ActivityApplicationDetails
 import mapleleaf.materialdesign.engine.utils.toast
@@ -305,7 +305,7 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
                 sb.append("echo '[operation completed]'\n")
 
                 // Execute shell commands
-                AsynSuShellUnit(
+                AsyncSuShellUnit(
                     ProgressHandlerExtra(
                         dialogView,
                         alert,

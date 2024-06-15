@@ -49,10 +49,10 @@ public class CpuFrequencyUtils {
         String[] frequencies;
         String scaling_available_freq = cpufreq_sys_dir + "scaling_available_frequencies";
         if (new File(scaling_available_freq.replace("cpu0", cpu)).exists()) {
-            frequencies = KernelProrp.INSTANCE.getProp(scaling_available_freq.replace("cpu0", cpu)).split("[ ]+");
+            frequencies = KernelProp.INSTANCE.getProp(scaling_available_freq.replace("cpu0", cpu)).split("[ ]+");
             return frequencies;
         } else if (new File("/sys/devices/system/cpu/cpufreq/mp-cpufreq/cluster" + cluster + "_freq_table").exists()) {
-            frequencies = KernelProrp.INSTANCE.getProp("/sys/devices/system/cpu/cpufreq/mp-cpufreq/cluster" + cluster + "_freq_table")
+            frequencies = KernelProp.INSTANCE.getProp("/sys/devices/system/cpu/cpufreq/mp-cpufreq/cluster" + cluster + "_freq_table")
                     .split("[ ]+");
             return frequencies;
         } else {
@@ -65,11 +65,11 @@ public class CpuFrequencyUtils {
             return "";
         }
         String cpu = "cpu" + getClusterInfo().get(cluster)[0];
-        return KernelProrp.INSTANCE.getProp(scaling_max_freq.replace("cpu0", cpu));
+        return KernelProp.INSTANCE.getProp(scaling_max_freq.replace("cpu0", cpu));
     }
 
     public String getCurrentMaxFrequency(String core) {
-        return KernelProrp.INSTANCE.getProp(scaling_max_freq.replace("cpu0", core));
+        return KernelProp.INSTANCE.getProp(scaling_max_freq.replace("cpu0", core));
     }
 
     public String getCurrentFrequency(Integer cluster) {
@@ -90,11 +90,11 @@ public class CpuFrequencyUtils {
             return "";
         }
         String cpu = "cpu" + getClusterInfo().get(cluster)[0];
-        return KernelProrp.INSTANCE.getProp(scaling_min_freq.replace("cpu0", cpu));
+        return KernelProp.INSTANCE.getProp(scaling_min_freq.replace("cpu0", cpu));
     }
 
     public String getCurrentMinFrequency(String core) {
-        return KernelProrp.INSTANCE.getProp(scaling_min_freq.replace("cpu0", core));
+        return KernelProp.INSTANCE.getProp(scaling_min_freq.replace("cpu0", core));
     }
 
     public String[] getAvailableGovernors(Integer cluster) {
@@ -103,7 +103,7 @@ public class CpuFrequencyUtils {
         }
         String cpu = "cpu" + getClusterInfo().get(cluster)[0];
         String scaling_available_governors = cpufreq_sys_dir + "scaling_available_governors";
-        return KernelProrp.INSTANCE.getProp(scaling_available_governors.replace("cpu0", cpu)).split("[ ]+");
+        return KernelProp.INSTANCE.getProp(scaling_available_governors.replace("cpu0", cpu)).split("[ ]+");
     }
 
     public String getCurrentScalingGovernor(Integer cluster) {
@@ -111,11 +111,11 @@ public class CpuFrequencyUtils {
             return "";
         }
         String cpu = "cpu" + getClusterInfo().get(cluster)[0];
-        return KernelProrp.INSTANCE.getProp(scaling_governor.replace("cpu0", cpu));
+        return KernelProp.INSTANCE.getProp(scaling_governor.replace("cpu0", cpu));
     }
 
     private String getCurrentScalingGovernor(String core) {
-        return KernelProrp.INSTANCE.getProp(scaling_governor.replace("cpu0", core));
+        return KernelProp.INSTANCE.getProp(scaling_governor.replace("cpu0", core));
     }
 
     public HashMap<String, String> getCurrentScalingGovernorParams(Integer cluster) {
@@ -238,7 +238,7 @@ public class CpuFrequencyUtils {
     */
 
     public boolean getCoreOnlineState(int coreIndex) {
-        return KernelProrp.INSTANCE.getProp("/sys/devices/system/cpu/cpu0/online".replace("cpu0", "cpu" + coreIndex)).equals("1");
+        return KernelProp.INSTANCE.getProp("/sys/devices/system/cpu/cpu0/online".replace("cpu0", "cpu" + coreIndex)).equals("1");
     }
 
     public void setCoreOnlineState(int coreIndex, boolean online) {
@@ -252,7 +252,7 @@ public class CpuFrequencyUtils {
     }
 
     public int getExynosHmpUP() {
-        String up = KernelProrp.INSTANCE.getProp("/sys/kernel/hmp/up_threshold").trim();
+        String up = KernelProp.INSTANCE.getProp("/sys/kernel/hmp/up_threshold").trim();
         if (Objects.equals(up, "")) {
             return 0;
         }
@@ -271,7 +271,7 @@ public class CpuFrequencyUtils {
     }
 
     public int getExynosHmpDown() {
-        String value = KernelProrp.INSTANCE.getProp("/sys/kernel/hmp/down_threshold").trim();
+        String value = KernelProp.INSTANCE.getProp("/sys/kernel/hmp/down_threshold").trim();
         if (Objects.equals(value, "")) {
             return 0;
         }
@@ -290,7 +290,7 @@ public class CpuFrequencyUtils {
     }
 
     public boolean getExynosBooster() {
-        String value = KernelProrp.INSTANCE.getProp("/sys/kernel/hmp/boost").trim().toLowerCase();
+        String value = KernelProp.INSTANCE.getProp("/sys/kernel/hmp/boost").trim().toLowerCase();
         return Objects.equals(value, "1") || Objects.equals(value, "true") || Objects.equals(value, "enabled");
     }
 
@@ -302,7 +302,7 @@ public class CpuFrequencyUtils {
     }
 
     public boolean getExynosHotplug() {
-        String value = KernelProrp.INSTANCE.getProp("/sys/devices/system/cpu/cpuhotplug/enabled").trim().toLowerCase();
+        String value = KernelProp.INSTANCE.getProp("/sys/devices/system/cpu/cpuhotplug/enabled").trim().toLowerCase();
         return Objects.equals(value, "1") || Objects.equals(value, "true") || Objects.equals(value, "enabled");
     }
 
@@ -341,7 +341,7 @@ public class CpuFrequencyUtils {
             while (true) {
                 File file = new File("/sys/devices/system/cpu/cpu0/cpufreq/related_cpus".replace("cpu0", "cpu" + cores));
                 if (file.exists()) {
-                    String relatedCpus = KernelProrp.INSTANCE.getProp("/sys/devices/system/cpu/cpu0/cpufreq/related_cpus".replace("cpu0", "cpu" + cores)).trim();
+                    String relatedCpus = KernelProp.INSTANCE.getProp("/sys/devices/system/cpu/cpu0/cpufreq/related_cpus".replace("cpu0", "cpu" + cores)).trim();
                     if (!clusters.contains(relatedCpus) && !relatedCpus.isEmpty()) {
                         clusters.add(relatedCpus);
                     }

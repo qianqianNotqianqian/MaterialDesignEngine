@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import mapleleaf.materialdesign.engine.model.ProcessInfo;
 import mapleleaf.materialdesign.engine.shell.KeepShellPublic;
-import mapleleaf.materialdesign.engine.shell.KernelProrp;
+import mapleleaf.materialdesign.engine.shell.KernelProp;
 import mapleleaf.materialdesign.engine.shell_utils.ToolboxInstaller;
 
 /**
@@ -150,11 +150,11 @@ public class ProcessUtils {
             if (rows.length > 1) {
                 ProcessInfo row = readRow(rows[1].trim());
                 if (row != null) {
-                    row.cpuSet = KernelProrp.INSTANCE.getProp("/proc/" + pid + "/cpuset");
-                    row.cGroup = KernelProrp.INSTANCE.getProp("/proc/" + pid + "/cgroup");
-                    row.oomAdj = KernelProrp.INSTANCE.getProp("/proc/" + pid + "/oom_adj");
-                    row.oomScore = KernelProrp.INSTANCE.getProp("/proc/" + pid + "/oom_score");
-                    row.oomScoreAdj = KernelProrp.INSTANCE.getProp("/proc/" + pid + "/oom_score_adj");
+                    row.cpuSet = KernelProp.INSTANCE.getProp("/proc/" + pid + "/cpuset");
+                    row.cGroup = KernelProp.INSTANCE.getProp("/proc/" + pid + "/cgroup");
+                    row.oomAdj = KernelProp.INSTANCE.getProp("/proc/" + pid + "/oom_adj");
+                    row.oomScore = KernelProp.INSTANCE.getProp("/proc/" + pid + "/oom_score");
+                    row.oomScoreAdj = KernelProp.INSTANCE.getProp("/proc/" + pid + "/oom_score_adj");
                 }
                 return row;
             }

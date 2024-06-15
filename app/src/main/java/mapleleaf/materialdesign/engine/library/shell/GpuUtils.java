@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import mapleleaf.materialdesign.engine.model.CpuStatus;
 import mapleleaf.materialdesign.engine.shell.KeepShellPublic;
-import mapleleaf.materialdesign.engine.shell.KernelProrp;
+import mapleleaf.materialdesign.engine.shell.KernelProp;
 import mapleleaf.materialdesign.engine.shell.RootFile;
 
 public class GpuUtils {
@@ -113,7 +113,7 @@ public class GpuUtils {
             return -1;
         } else {
             KeepShellPublic.INSTANCE.doCmdSync("su"); // 这里是获取 root 权限的示例代码
-            String load = KernelProrp.INSTANCE.getProp(GPU_LOAD_PATH);
+            String load = KernelProp.INSTANCE.getProp(GPU_LOAD_PATH);
             try {
                 return Integer.parseInt(load.replace("%", "").trim().split(" ")[0]);
             } catch (Exception ex) {
@@ -123,14 +123,14 @@ public class GpuUtils {
     }
 
     public static String[] getAvailableFreqs() {
-        String freqs = KernelProrp.INSTANCE.getProp(getGpuParamsDir() + "/available_frequencies");
+        String freqs = KernelProp.INSTANCE.getProp(getGpuParamsDir() + "/available_frequencies");
         return freqs.isEmpty() ? (new String[]{}) : freqs.split("[ ]+");
     }
 
     // Adreno /sys/class/kgsl/kgsl-3d0/freq_table_mhz
     public static String[] getFreqTableMhz() {
         if (isAdrenoGPU()) {
-            String freqs = KernelProrp.INSTANCE.getProp(gpuParamsDirAdreno + "/freq_table_mhz");
+            String freqs = KernelProp.INSTANCE.getProp(gpuParamsDirAdreno + "/freq_table_mhz");
             if (!freqs.isEmpty()) {
                 return freqs.split("[ ]+");
             }
@@ -170,12 +170,12 @@ public class GpuUtils {
     }
 
     public static String[] getGovernors() {
-        String g = KernelProrp.INSTANCE.getProp(getGpuParamsDir() + "/available_governors");
+        String g = KernelProp.INSTANCE.getProp(getGpuParamsDir() + "/available_governors");
         return g.isEmpty() ? (new String[]{}) : g.split("[ ]+");
     }
 
     public static String getMinFreq() {
-        return KernelProrp.INSTANCE.getProp(getGpuParamsDir() + "/min_freq");
+        return KernelProp.INSTANCE.getProp(getGpuParamsDir() + "/min_freq");
     }
 
     public static void setMinFreq(String value) {
@@ -186,7 +186,7 @@ public class GpuUtils {
     }
 
     public static String getMaxFreq() {
-        return KernelProrp.INSTANCE.getProp(getGpuParamsDir() + "/max_freq");
+        return KernelProp.INSTANCE.getProp(getGpuParamsDir() + "/max_freq");
     }
 
     public static void setMaxFreq(String value) {
@@ -197,7 +197,7 @@ public class GpuUtils {
     }
 
     public static String getGovernor() {
-        return KernelProrp.INSTANCE.getProp(getGpuParamsDir() + "/governor");
+        return KernelProp.INSTANCE.getProp(getGpuParamsDir() + "/governor");
     }
 
     public static void setGovernor(String value) {
@@ -209,7 +209,7 @@ public class GpuUtils {
 
     // #region Adreno GPU Power Level
     public static String getAdrenoGPUMinPowerLevel() {
-        return KernelProrp.INSTANCE.getProp("/sys/class/kgsl/kgsl-3d0/min_pwrlevel");
+        return KernelProp.INSTANCE.getProp("/sys/class/kgsl/kgsl-3d0/min_pwrlevel");
     }
 
     public static void setAdrenoGPUMinPowerLevel(String value) {
@@ -220,7 +220,7 @@ public class GpuUtils {
     }
 
     public static String getAdrenoGPUMaxPowerLevel() {
-        return KernelProrp.INSTANCE.getProp("/sys/class/kgsl/kgsl-3d0/max_pwrlevel");
+        return KernelProp.INSTANCE.getProp("/sys/class/kgsl/kgsl-3d0/max_pwrlevel");
     }
 
     public static void setAdrenoGPUMaxPowerLevel(String value) {
@@ -231,7 +231,7 @@ public class GpuUtils {
     }
 
     public static String getAdrenoGPUDefaultPowerLevel() {
-        return KernelProrp.INSTANCE.getProp("/sys/class/kgsl/kgsl-3d0/default_pwrlevel");
+        return KernelProp.INSTANCE.getProp("/sys/class/kgsl/kgsl-3d0/default_pwrlevel");
     }
 
     public static void setAdrenoGPUDefaultPowerLevel(String value) {
@@ -242,7 +242,7 @@ public class GpuUtils {
     }
 
     public static String[] getAdrenoGPUPowerLevels() {
-        String leves = KernelProrp.INSTANCE.getProp("/sys/class/kgsl/kgsl-3d0/num_pwrlevels");
+        String leves = KernelProp.INSTANCE.getProp("/sys/class/kgsl/kgsl-3d0/num_pwrlevels");
         try {
             int max = Integer.parseInt(leves);
             ArrayList<String> arr = new ArrayList<>();

@@ -9,7 +9,7 @@ import java.io.File
 import java.util.Locale
 
 class ToolboxInstaller(private val context: Context) {
-    public fun install(): String {
+    fun install(): String {
 
         val installPath: String = context.getString(R.string.toolkit_install_path)
         val abi = Build.SUPPORTED_ABIS.joinToString(" ").toLowerCase(Locale.getDefault())
@@ -18,7 +18,7 @@ class ToolboxInstaller(private val context: Context) {
         val outsideToybox = getPrivateFilePath(context, toyboxInstallPath)
 
         if (!File(outsideToybox).exists()) {
-            writePrivateFile(context.getAssets(), toyboxInstallPath, toyboxInstallPath, context)
+            writePrivateFile(context.assets, toyboxInstallPath, toyboxInstallPath, context)
         }
 
         return outsideToybox
