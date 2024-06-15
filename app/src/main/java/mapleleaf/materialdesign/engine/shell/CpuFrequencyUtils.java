@@ -7,8 +7,6 @@ import java.util.Locale;
 import java.util.Objects;
 
 import mapleleaf.materialdesign.engine.initJNI.EngineJNI;
-import mapleleaf.materialdesign.engine.library.shell.GpuUtils;
-import mapleleaf.materialdesign.engine.library.shell.PlatformUtils;
 import mapleleaf.materialdesign.engine.model.CpuClusterStatus;
 import mapleleaf.materialdesign.engine.model.CpuStatus;
 

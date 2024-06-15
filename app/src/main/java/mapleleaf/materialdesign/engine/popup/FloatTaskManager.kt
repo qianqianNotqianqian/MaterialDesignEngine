@@ -17,7 +17,7 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import mapleleaf.materialdesign.engine.R
-import mapleleaf.materialdesign.engine.library.shell.ProcessUtils2
+import mapleleaf.materialdesign.engine.shell.ProcessUtils2
 import mapleleaf.materialdesign.engine.ui.adapter.AdapterFloatProcess
 import mapleleaf.materialdesign.engine.utils.toast
 import java.util.Timer
@@ -149,7 +149,8 @@ class FloatTaskManager(private val context: Context) {
     }
 
     private val handle = Handler(Looper.getMainLooper())
-    private val processUtils = ProcessUtils2()
+    private val processUtils =
+        ProcessUtils2()
 
     // 更新任务列表
     private fun updateData() {

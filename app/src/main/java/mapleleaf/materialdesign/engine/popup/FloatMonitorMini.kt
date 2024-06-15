@@ -21,9 +21,11 @@ import android.view.WindowManager
 import android.view.WindowManager.LayoutParams
 import android.widget.TextView
 import mapleleaf.materialdesign.engine.R
-import mapleleaf.materialdesign.engine.library.shell.*
+import mapleleaf.materialdesign.engine.shell.*
 import mapleleaf.materialdesign.engine.shell.CpuFrequencyUtils
 import mapleleaf.materialdesign.engine.shell.CpuLoadUtils
+import mapleleaf.materialdesign.engine.shell.FpsUtils
+import mapleleaf.materialdesign.engine.shell.GpuUtils
 import mapleleaf.materialdesign.engine.store.SpfConfig
 import mapleleaf.materialdesign.engine.utils.toast
 import java.util.*

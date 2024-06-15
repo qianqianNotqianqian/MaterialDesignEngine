@@ -1,14 +1,9 @@
-package com.omarea.library.shell
+package mapleleaf.materialdesign.engine.shell
 
 import android.content.Context
 import android.util.Log
-import mapleleaf.materialdesign.engine.library.shell.PropsUtils
 import mapleleaf.materialdesign.engine.model.ZramWriteBackStat
 import mapleleaf.materialdesign.engine.shared.FileWrite
-import mapleleaf.materialdesign.engine.shell.KeepShell
-import mapleleaf.materialdesign.engine.shell.KeepShellPublic
-import mapleleaf.materialdesign.engine.shell.KernelProp
-import mapleleaf.materialdesign.engine.shell.RootFile
 import java.io.File
 
 /**

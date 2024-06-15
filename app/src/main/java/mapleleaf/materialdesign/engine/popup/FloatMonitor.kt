@@ -26,9 +26,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import mapleleaf.materialdesign.engine.R
-import mapleleaf.materialdesign.engine.library.shell.FpsUtils
-import mapleleaf.materialdesign.engine.library.shell.GpuUtils
-import mapleleaf.materialdesign.engine.library.shell.PlatformUtils
+import mapleleaf.materialdesign.engine.shell.FpsUtils
+import mapleleaf.materialdesign.engine.shell.GpuUtils
+import mapleleaf.materialdesign.engine.shell.PlatformUtils
 import mapleleaf.materialdesign.engine.shell.CpuFrequencyUtils
 import mapleleaf.materialdesign.engine.shell.CpuLoadUtils
 import mapleleaf.materialdesign.engine.store.SpfConfig

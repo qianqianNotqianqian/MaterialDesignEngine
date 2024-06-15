@@ -19,7 +19,7 @@ import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.databinding.ActivityCpuControlBinding
-import mapleleaf.materialdesign.engine.library.shell.GpuUtils
+import mapleleaf.materialdesign.engine.shell.GpuUtils
 import mapleleaf.materialdesign.engine.model.CpuClusterStatus
 import mapleleaf.materialdesign.engine.model.CpuStatus
 import mapleleaf.materialdesign.engine.model.SelectItem

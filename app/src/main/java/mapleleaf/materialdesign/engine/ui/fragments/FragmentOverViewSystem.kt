@@ -18,14 +18,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.omarea.library.shell.SwapUtils
+import mapleleaf.materialdesign.engine.shell.SwapUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.databinding.FragmentSystemOverviewBinding
-import mapleleaf.materialdesign.engine.library.shell.GpuUtils
-import mapleleaf.materialdesign.engine.library.shell.MemoryUtils
+import mapleleaf.materialdesign.engine.shell.GpuUtils
+import mapleleaf.materialdesign.engine.shell.MemoryUtils
 import mapleleaf.materialdesign.engine.model.CpuCoreInfo
 import mapleleaf.materialdesign.engine.shell.CpuFrequencyUtils
 import mapleleaf.materialdesign.engine.shell.CpuLoadUtils

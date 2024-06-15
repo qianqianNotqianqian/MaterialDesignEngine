@@ -1,12 +1,9 @@
-package mapleleaf.materialdesign.engine.library.shell;
+package mapleleaf.materialdesign.engine.shell;
 
 import java.io.File;
 import java.util.ArrayList;
 
 import mapleleaf.materialdesign.engine.model.CpuStatus;
-import mapleleaf.materialdesign.engine.shell.KeepShellPublic;
-import mapleleaf.materialdesign.engine.shell.KernelProp;
-import mapleleaf.materialdesign.engine.shell.RootFile;
 
 public class GpuUtils {
     private static String GPU_LOAD_PATH = null;

@@ -1,7 +1,5 @@
-package mapleleaf.materialdesign.engine.library.shell
+package mapleleaf.materialdesign.engine.shell
 
-import mapleleaf.materialdesign.engine.shell.KeepShell
-import mapleleaf.materialdesign.engine.shell.KeepShellPublic
 import mapleleaf.materialdesign.engine.shell.RootFile.fileExists
 
 /**

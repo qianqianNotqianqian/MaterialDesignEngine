@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
-import mapleleaf.materialdesign.engine.library.shell.PropsUtils
+import mapleleaf.materialdesign.engine.shell.PropsUtils
 import mapleleaf.materialdesign.engine.shared.MagiskExtend
 import mapleleaf.materialdesign.engine.shell.KeepShellPublic
 import mapleleaf.materialdesign.engine.shell.RootFile

@@ -1,4 +1,4 @@
-package mapleleaf.materialdesign.engine.library.basic
+package mapleleaf.materialdesign.engine.utils
 
 import android.content.Context
 import android.content.pm.PackageManager

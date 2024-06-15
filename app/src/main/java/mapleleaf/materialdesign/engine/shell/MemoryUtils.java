@@ -1,4 +1,4 @@
-package mapleleaf.materialdesign.engine.library.shell;
+package mapleleaf.materialdesign.engine.shell;
 
 import mapleleaf.materialdesign.engine.shell.KernelProp;
 
