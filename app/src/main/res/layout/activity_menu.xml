@@ -204,26 +204,6 @@
                     <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
 
                         <include
-                            android:id="@+id/QRCode"
-                            layout="@layout/this_app_card_view" />
-
-                    </LinearLayout>
-
-                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
-
-                        <include
-                            android:id="@+id/Text2MD5"
-                            layout="@layout/this_app_card_view" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
-
-                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
-
-                        <include
                             android:id="@+id/TTS"
                             layout="@layout/this_app_card_view" />
 
@@ -293,6 +273,18 @@
 
                         <include
                             android:id="@+id/Dictionary"
+                            layout="@layout/this_app_card_view" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
+
+                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
+
+                        <include
+                            android:id="@+id/Text2MD5"
                             layout="@layout/this_app_card_view" />
 
                     </LinearLayout>

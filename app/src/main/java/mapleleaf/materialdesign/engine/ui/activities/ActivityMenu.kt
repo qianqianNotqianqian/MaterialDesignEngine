@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -51,8 +50,6 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
-import com.kongzue.dialogx.dialogs.MessageDialog
-import com.kongzue.dialogx.util.TextInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -482,12 +479,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
                 R.drawable.ic_bilibili,
                 R.string.menu_start_text2md5,
                 ActivityText2MD5::class.java
-            ),
-            MenuItemInfo(
-                R.id.QRCode,
-                R.drawable.ic_bilibili,
-                R.string.menu_start_qr_code,
-                ActivityQRCode::class.java
             ),
             MenuItemInfo(
                 R.id.TTS,

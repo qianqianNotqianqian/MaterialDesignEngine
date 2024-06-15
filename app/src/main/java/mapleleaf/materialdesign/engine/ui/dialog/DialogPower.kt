@@ -6,12 +6,16 @@ import android.view.View
 import android.widget.TextView
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.shell.KeepShellPublic
+import org.w3c.dom.Text
 
 class DialogPower(var context: Activity) {
     @SuppressLint("InflateParams")
     fun showPowerMenu() {
         val dialogView = context.layoutInflater.inflate(R.layout.dialog_power_operation, null)
         val dialog = DialogHelper.customDialog(context, dialogView)
+        dialogView.findViewById<TextView>(R.id.confirm_title).text = "电源菜单"
+        dialogView.findViewById<TextView>(R.id.confirm_message).text = "选择电源控制方式"
+
         dialogView.findViewById<View>(R.id.power_shutdown).setOnClickListener {
             dialog.dismiss()
             KeepShellPublic.doCmdSync(context.getString(R.string.power_shutdown_cmd))

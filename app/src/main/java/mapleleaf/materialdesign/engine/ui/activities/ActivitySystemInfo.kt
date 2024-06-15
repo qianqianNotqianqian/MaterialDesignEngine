@@ -13,6 +13,7 @@ import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
 import android.telephony.TelephonyManager
+import android.view.View
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
@@ -28,6 +29,7 @@ import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.map.DeviceNameMapper
+import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import me.zhanghai.android.fastscroll.FastScrollNestedScrollView
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.io.BufferedReader
@@ -59,17 +61,19 @@ class ActivitySystemInfo : UniversalActivityBase(R.layout.activity_device_info) 
 //    override fun getLayoutResourceId() = R.layout.activity_device_info
 
     private fun showPermissionDeniedMessage() {
-        val dialog = MaterialAlertDialogBuilder(this)
-            .setTitle("需要权限")
-            .setMessage("请授予权限以访问设备信息")
-            .setPositiveButton("授予") { _, _ ->
-                openAppSettings()
-            }
-            .setNegativeButton("取消") { _, _ ->
-                // Handle cancellation
-            }
-            .create()
-        dialog.show()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_get_permission, null)
+        val dialog = DialogHelper.customDialog(this, dialogView)
+        dialogView.findViewById<TextView>(R.id.confirm_title).text = "需要权限"
+        val messageTextView = dialogView.findViewById<TextView>(R.id.confirm_message)
+        messageTextView.text = "请授予权限以访问设备信息"
+
+        dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+            dialog.dismiss()
+        }
+        dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+            dialog.dismiss()
+            openAppSettings()
+        }
     }
 
     private fun openAppSettings() {

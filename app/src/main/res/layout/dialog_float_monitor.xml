@@ -39,7 +39,7 @@
                     android:background="@drawable/in_card_item"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="12dp"
-                    android:text="@string/dialog_float_Instructions" />
+                    android:text="@string/dialog_float_instructions_monitor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -19,14 +19,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="12dp">
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_title"
+                    style="@style/dialogTitle"
+                    android:text="提示信息" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_message"
+                    style="@style/dialogDesc"
+                    android:text="提示内容" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/textSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:background="@drawable/in_card_item"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="12dp"
+                    android:text="@string/dialog_float_instructions_power" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="12dp" >
 
                     <LinearLayout
                         android:id="@+id/power_shutdown"
@@ -123,11 +144,12 @@
                     android:id="@+id/power_hot_reboot"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/in_card_item"
                     android:orientation="horizontal"
-                    android:padding="@dimen/content_padding_6dp">
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="12dp"
+                    android:padding="@dimen/content_padding_6dp" >
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"
@@ -169,6 +191,7 @@
                     android:id="@+id/power_recovery"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
+                    android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/in_card_item"
@@ -215,6 +238,7 @@
                     android:id="@+id/power_fastboot"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
+                    android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/in_card_item"
@@ -261,7 +285,8 @@
                     android:id="@+id/power_emergency_detail"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginVertical="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/in_card_item"
                     android:orientation="horizontal"

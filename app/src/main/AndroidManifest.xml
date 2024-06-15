@@ -402,12 +402,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityQRCode"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityRandomPersonality"
             android:exported="true"
             android:launchMode="singleTask"

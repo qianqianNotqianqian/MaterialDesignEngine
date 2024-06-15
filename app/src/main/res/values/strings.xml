@@ -13,6 +13,8 @@
 
     <string name="start_vibration">开始振动</string>
 
+    <string name="action_later">以后</string>
+    <string name="action_grant">授予</string>
     <string name="action_refresh">刷新</string>
     <string name="action_confirm">确认</string>
 
@@ -428,7 +430,8 @@
 
     <string name="dialog_float_monitors">监视器</string>
     <string name="dialog_float_choose_monitors">选择要显示的监视器悬浮窗</string>
-    <string name="dialog_float_Instructions">说明：负载监视器窗口可单击[展开/折叠]详情，双击关闭</string>
+    <string name="dialog_float_instructions_monitor">说明：负载监视器窗口可单击[展开/折叠]详情，双击关闭</string>
+    <string name="dialog_float_instructions_power">说明：点击立即执行对应命令，9008模式请查看说明后再执行</string>
     <string name="dialog_float_monitor_load">负载监视器</string>
     <string name="dialog_float_monitor_cpu_gpu_ram_status">显示CPU、GPU、RAM和电池状态</string>
     <string name="dialog_float_monitor_process">进程监视器</string>
@@ -488,7 +491,6 @@
     <string name="menu_start_j2box">重力球</string>
     <string name="menu_start_colors">传统色</string>
     <string name="menu_start_text2md5">文本转MD5</string>
-    <string name="menu_start_qr_code">二维码生成</string>
     <string name="menu_start_music">音乐播放器</string>
     <string name="menu_start_tts">语音合成</string>
     <string name="menu_start_anime_quotes">动漫语录</string>
