@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.graphics.Paint
@@ -21,15 +22,14 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.materialswitch.MaterialSwitch
 import kotlinx.coroutines.Dispatchers
@@ -266,15 +266,22 @@ class FragmentComponentActivities : UniversalFragmentBase() {
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
             View.OnClickListener {
             private val activityIcon: ImageView = itemView.findViewById(R.id.componentIcon)
+            private val activityLaunch: MaterialButton = itemView.findViewById(R.id.componentLaunch)
             private val activityLabelTextView: TextView = itemView.findViewById(R.id.componentLabel)
             private val activityNameTextView: TextView = itemView.findViewById(R.id.componentName)
             private val componentMaterialCardView: MaterialCardView =
                 itemView.findViewById(R.id.componentCardView)
             private val componentStatus: MaterialSwitch =
                 itemView.findViewById(R.id.componentStatus)
+            private val softInputTextView: TextView = itemView.findViewById(R.id.softInput)
+            private val launchModeTextView: TextView = itemView.findViewById(R.id.launchMode)
+            private val taskAffinityTextView: TextView = itemView.findViewById(R.id.taskAffinity)
+            private val editShortcutBtn: MaterialButton = itemView.findViewById(R.id.editShortcutBtn)
+            private val additionalAttributesTextView: TextView = itemView.findViewById(R.id.orientationTextView)
 
             init {
-                componentMaterialCardView.setOnClickListener(this)
+                activityLaunch.setOnClickListener(this)
+                editShortcutBtn.setOnClickListener(this)
                 val baseColor = ContextCompat.getColor(context, R.color.background)
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 componentMaterialCardView.setCardBackgroundColor(
@@ -289,14 +296,8 @@ class FragmentComponentActivities : UniversalFragmentBase() {
             @SuppressLint("InflateParams")
             override fun onClick(v: View?) {
                 val activitiesInfo = activityList[bindingAdapterPosition]
-
-                val dialogView =
-                    LayoutInflater.from(context).inflate(R.layout.dialog_components_detail, null)
-                val dialog = DialogHelper.customDialog(context, dialogView)
-
-                dialogView.findViewById<View>(R.id.btn_launch).apply {
-                    isVisible = true
-                    setOnClickListener {
+                when (v?.id) {
+                    R.id.componentLaunch -> {
                         if (activitiesInfo.activityInfo.exported) {
                             val intent = Intent().apply {
                                 component = ComponentName(
@@ -314,66 +315,26 @@ class FragmentComponentActivities : UniversalFragmentBase() {
                             }
                         } else {
                             try {
-                                // 构建 shell 命令
-                                val command =
-                                    "am start -n ${activitiesInfo.activityInfo.packageName}/${activitiesInfo.activityInfo.name}"
-                                // 获取 root 权限并执行命令
+                                val command = "am start -n ${activitiesInfo.activityInfo.packageName}/${activitiesInfo.activityInfo.name}"
                                 Runtime.getRuntime().exec(arrayOf("su", "-c", command))
                             } catch (e: SecurityException) {
                                 toast("您没有权限运行此 Activity")
                             } catch (e: Exception) {
-                                // 处理其他异常情况
                                 toast("启动 Activity 失败")
                             }
                         }
                     }
-                }
-                dialogView.apply {
-                    findViewById<LinearLayout>(R.id.activity_full_name).isVisible = true
-                    findViewById<LinearLayout>(R.id.package_full_name).isVisible = true
-                    findViewById<LinearLayout>(R.id.component_full_name).isVisible = false
-                }
+                    R.id.editShortcutBtn -> {
 
-                fun setTextAndColor(textView: TextView, value: Boolean) {
-                    textView.text = value.toString()
-                    textView.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            if (value) R.color.green else R.color.red
-                        )
-                    )
-                }
+                        val dialogView =
+                            LayoutInflater.from(context).inflate(R.layout.dialog_create_shortcut, null)
+                        val dialog = DialogHelper.customDialog(context, dialogView)
 
-
-                val enabledTextView = dialogView.findViewById<TextView>(R.id.state_enable)
-                setTextAndColor(enabledTextView, activitiesInfo.activityInfo.enabled)
-
-                val exportedTextView = dialogView.findViewById<TextView>(R.id.state_exported)
-                setTextAndColor(exportedTextView, activitiesInfo.activityInfo.exported)
-
-                dialogView.findViewById<ImageView>(R.id.imageView_icon)
-                    .setImageDrawable(activitiesInfo.activityInfo.loadIcon(context.packageManager))
-
-                fun setTextToEditText(editText: EditText, text: String) {
-                    editText.setText(text)
-                }
-                setTextToEditText(
-                    dialogView.findViewById(R.id.edit_title),
-                    activitiesInfo.activityInfo.loadLabel(context.packageManager).toString()
-                )
-                setTextToEditText(
-                    dialogView.findViewById(R.id.edit_pkg),
-                    activitiesInfo.activityInfo.packageName
-                )
-                setTextToEditText(
-                    dialogView.findViewById(R.id.edit_activity),
-                    activitiesInfo.activityInfo.name
-                )
-                dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
-                    dialog.dismiss()
+                    }
                 }
             }
 
+            @SuppressLint("SetTextI18n")
             fun bind(resolveInfo: ResolveInfo) {
                 val activityLabel = resolveInfo.loadLabel(context.packageManager).toString()
                 val activityName = resolveInfo.activityInfo.name
@@ -395,6 +356,69 @@ class FragmentComponentActivities : UniversalFragmentBase() {
                 activityLabelTextView.text = activityLabel.highlightText(searchText)
                 componentStatus.isChecked = resolveInfo.activityInfo.isEnabled
                 activityIcon.setImageDrawable(resolveInfo.activityInfo.loadIcon(context.packageManager))
+
+                val softInputMode = resolveInfo.activityInfo.softInputMode
+                val permissions = resolveInfo.activityInfo.permission
+
+                if (softInputMode != 0) {
+                    softInputTextView.text = "软键盘输入模式：$softInputMode | $permissions"
+                }
+                if (!permissions.isNullOrEmpty()) {
+                    softInputTextView.text = "软键盘输入模式：$softInputMode | $permissions"
+                } else {
+                    softInputTextView.text = "软键盘输入模式：$softInputMode | 无需权限"
+                }
+
+                additionalAttributesTextView.text
+
+                val launchMode = resolveInfo.activityInfo.launchMode
+                val screenOrientation = resolveInfo.activityInfo.screenOrientation
+                val taskAffinity = resolveInfo.activityInfo.taskAffinity
+                val attributes = mutableListOf<String>()
+
+                if (resolveInfo.activityInfo.flags and ActivityInfo.FLAG_ALWAYS_RETAIN_TASK_STATE != 0) {
+                    attributes.add("AlwaysRetain")
+                }
+
+                if (resolveInfo.activityInfo.flags and ActivityInfo.FLAG_HARDWARE_ACCELERATED != 0) {
+                    attributes.add("HardwareAccel")
+                }
+
+                if (resolveInfo.activityInfo.flags and ActivityInfo.FLAG_NO_HISTORY != 0) {
+                    attributes.add("NoHistory")
+                }
+
+                if (resolveInfo.activityInfo.flags and ActivityInfo.FLAG_EXCLUDE_FROM_RECENTS != 0) {
+                    attributes.add("ExcludeRecent")
+                }
+
+                if (attributes.isNotEmpty()) {
+                    additionalAttributesTextView.text = attributes.joinToString(", ")
+                } else {
+                    additionalAttributesTextView.text = ""
+                }
+
+                launchModeTextView.text = "启动模式：${getLaunchModeString(launchMode)} | 屏幕旋转：${getScreenOrientationString(screenOrientation)}"
+                taskAffinityTextView.text = "任务关联：$taskAffinity"
+            }
+
+            private fun getLaunchModeString(launchMode: Int): String {
+                return when (launchMode) {
+                    ActivityInfo.LAUNCH_SINGLE_TOP -> "栈顶部模式"
+                    ActivityInfo.LAUNCH_SINGLE_TASK -> "单任务模式"
+                    ActivityInfo.LAUNCH_SINGLE_INSTANCE -> "单实例模式"
+                    else -> "标准模式"
+                }
+            }
+
+            private fun getScreenOrientationString(screenOrientation: Int): String {
+                return when (screenOrientation) {
+                    ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> "竖屏"
+                    ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> "横屏"
+                    ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT -> "反向竖屏"
+                    ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE -> "反向横屏"
+                    else -> "未指定"
+                }
             }
 
             private fun String.highlightText(searchText: String): SpannableString {

@@ -19,8 +19,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -246,18 +248,24 @@ class FragmentComponentWidgetInfo : UniversalFragmentBase() {
             return widgetList.size
         }
 
-        inner class WidgetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-            View.OnClickListener {
+        inner class WidgetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             private val widgetIcon: ImageView = itemView.findViewById(R.id.componentIcon)
             private val nameTextView: TextView = itemView.findViewById(R.id.componentName)
             private val labelTextView: TextView = itemView.findViewById(R.id.componentLabel)
+            private val actionLaunchAndShortcut: LinearLayoutCompat = itemView.findViewById(R.id.action_launch_and_shortcut)
             private val componentMaterialCardView: MaterialCardView =
                 itemView.findViewById(R.id.componentCardView)
             private val componentStatus: MaterialSwitch =
                 itemView.findViewById(R.id.componentStatus)
+            private val taskAffinity: TextView = itemView.findViewById(R.id.taskAffinity)
+            private val launchMode: TextView = itemView.findViewById(R.id.launchMode)
+            private val softInput: TextView = itemView.findViewById(R.id.softInput)
 
             init {
-                componentMaterialCardView.setOnClickListener(this)
+                actionLaunchAndShortcut.isVisible = false
+                taskAffinity.isVisible = false
+                launchMode.isVisible = false
+                softInput.isVisible = false
                 val baseColor = ContextCompat.getColor(requireContext(), R.color.background)
                 val primaryColor = ContextCompat.getColor(requireContext(), R.color.colorPrimary)
                 componentMaterialCardView.setCardBackgroundColor(
@@ -267,40 +275,6 @@ class FragmentComponentWidgetInfo : UniversalFragmentBase() {
                         0.15f
                     )
                 )
-            }
-
-            @SuppressLint("InflateParams")
-            override fun onClick(v: View?) {
-                val widgetInfo = widgetList[bindingAdapterPosition]
-                val dialogView =
-                    LayoutInflater.from(context).inflate(R.layout.dialog_components_detail, null)
-                val dialog = DialogHelper.customDialog(context, dialogView)
-
-                fun setTextAndColor(textView: TextView, value: Boolean) {
-                    textView.text = value.toString()
-                    textView.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            if (value) R.color.green else R.color.red
-                        )
-                    )
-                }
-
-                val enabledTextView = dialogView.findViewById<TextView>(R.id.state_enable)
-                setTextAndColor(enabledTextView, widgetInfo.activityInfo.enabled)
-
-                val exportedTextView = dialogView.findViewById<TextView>(R.id.state_exported)
-                setTextAndColor(exportedTextView, widgetInfo.activityInfo.exported)
-
-                dialogView.findViewById<ImageView>(R.id.imageView_icon)
-                    .setImageDrawable(widgetInfo.activityInfo.loadIcon(context.packageManager))
-                dialogView.findViewById<EditText>(R.id.edit_title)
-                    .setText(widgetInfo.loadLabel(context.packageManager))
-                dialogView.findViewById<EditText>(R.id.edit_label)
-                    .setText(widgetInfo.activityInfo.name)
-                dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
-                    dialog.dismiss()
-                }
             }
 
             fun bind(widgetInfo: AppWidgetProviderInfo) {

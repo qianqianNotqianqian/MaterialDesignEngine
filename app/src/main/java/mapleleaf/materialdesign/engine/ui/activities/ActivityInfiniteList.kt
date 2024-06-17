@@ -21,6 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mapleleaf.materialdesign.engine.MaterialDesignEngine
+import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
@@ -76,8 +77,12 @@ class ActivityInfiniteList : UniversalActivityBase(R.layout.activity_infinite_re
         }
         appsSearchBox.addTextChangedListener(searchTextWatcher)
 
-
         loadMoreItems()
+        val materialCardView = findViewById<MaterialCardView>(R.id.materialCardView)
+        val baseColor = ContextCompat.getColor(context, R.color.background)
+        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
+        val fusionColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.15f)
+        materialCardView.setCardBackgroundColor(fusionColor)
     }
 
     // 适配器中的回调接口
@@ -134,20 +139,12 @@ class ActivityInfiniteList : UniversalActivityBase(R.layout.activity_infinite_re
             private val textView: TextView = itemView.findViewById(R.id.textView)
             private val colorMaterialCardView: MaterialCardView =
                 itemView.findViewById(R.id.colorMaterialCardView)
+            val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
 
             init {
                 colorMaterialCardView.setOnClickListener(this)
-                val baseColor =
-                    ContextCompat.getColor(MaterialDesignEngine.context, R.color.background)
-                val primaryColor =
-                    ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-                colorMaterialCardView.setCardBackgroundColor(
-                    ColorUtils.blendARGB(
-                        baseColor,
-                        primaryColor,
-                        0.15f
-                    )
-                )
+                val baseColor = ContextCompat.getColor(context, R.color.background)
+                colorMaterialCardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
             }
 
             fun bind(data: Long) {

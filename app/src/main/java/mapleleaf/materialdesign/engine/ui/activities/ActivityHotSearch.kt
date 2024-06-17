@@ -22,9 +22,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.textview.MaterialTextView
+import com.xuexiang.xui.widget.textview.MarqueeTextView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.utils.toast
@@ -317,16 +320,21 @@ class ActivityHotSearch : UniversalActivityBase(R.layout.activity_hot_search) {
         override fun getItemCount(): Int {
             return hotSearchList.size
         }
-
+        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
+        val baseColor = ContextCompat.getColor(context, R.color.text_color)
+        val fusionColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
         inner class HotSearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
             View.OnClickListener {
-            val indexTextView: TextView = itemView.findViewById(R.id.indexTextView)
-            val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
-            val hotTextView: TextView = itemView.findViewById(R.id.hotTextView)
+            val indexTextView: TextView = itemView.findViewById<MaterialTextView>(R.id.indexTextView)
+            val titleTextView: TextView = itemView.findViewById<MarqueeTextView>(R.id.titleTextView)
+            val hotTextView: TextView = itemView.findViewById<MaterialTextView>(R.id.hotTextView)
             private val hotMaterialCardView: MaterialCardView =
                 itemView.findViewById(R.id.hotMaterialCardView)
 
             init {
+                indexTextView.setTextColor(fusionColor)
+                titleTextView.setTextColor(fusionColor)
+                hotTextView.setTextColor(fusionColor)
                 hotMaterialCardView.setOnClickListener(this)
                 val baseColor = ContextCompat.getColor(context, R.color.background)
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)

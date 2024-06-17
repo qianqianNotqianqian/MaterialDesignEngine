@@ -3,6 +3,7 @@ package mapleleaf.materialdesign.engine.ui.fragments
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.content.pm.ProviderInfo
 import android.graphics.Paint
@@ -19,8 +20,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -249,18 +252,22 @@ class FragmentComponentProviders : UniversalFragmentBase() {
         }
 
 
-        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-            View.OnClickListener {
+        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             private val providerIcon: ImageView = itemView.findViewById(R.id.componentIcon)
             private val providerLabelTextView: TextView = itemView.findViewById(R.id.componentLabel)
             private val providerNameTextView: TextView = itemView.findViewById(R.id.componentName)
+            private val actionLaunchAndShortcut: LinearLayoutCompat = itemView.findViewById(R.id.action_launch_and_shortcut)
+            private val softInputTextView: TextView = itemView.findViewById(R.id.softInput)
+            private val launchModeTextView: TextView = itemView.findViewById(R.id.launchMode)
+            private val taskAffinityTextView: TextView = itemView.findViewById(R.id.taskAffinity)
             private val componentMaterialCardView: MaterialCardView =
                 itemView.findViewById(R.id.componentCardView)
             private val componentStatus: MaterialSwitch =
                 itemView.findViewById(R.id.componentStatus)
 
             init {
-                componentMaterialCardView.setOnClickListener(this)
+                actionLaunchAndShortcut.isVisible = false
+                softInputTextView.isVisible = false
                 val baseColor = ContextCompat.getColor(context, R.color.background)
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 componentMaterialCardView.setCardBackgroundColor(
@@ -272,42 +279,12 @@ class FragmentComponentProviders : UniversalFragmentBase() {
                 )
             }
 
-            @SuppressLint("InflateParams")
-            override fun onClick(v: View?) {
-                val providerInfo = providerList[bindingAdapterPosition]
-
-                val dialogView =
-                    LayoutInflater.from(context).inflate(R.layout.dialog_components_detail, null)
-                val dialog = DialogHelper.customDialog(context, dialogView)
-                fun setTextAndColor(textView: TextView, value: Boolean) {
-                    textView.text = value.toString()
-                    textView.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            if (value) R.color.green else R.color.red
-                        )
-                    )
-                }
-
-                val enabledTextView = dialogView.findViewById<TextView>(R.id.state_enable)
-                setTextAndColor(enabledTextView, providerInfo.enabled)
-
-                val exportedTextView = dialogView.findViewById<TextView>(R.id.state_exported)
-                setTextAndColor(exportedTextView, providerInfo.exported)
-
-                dialogView.findViewById<ImageView>(R.id.imageView_icon)
-                    .setImageDrawable(providerInfo.loadIcon(context.packageManager))
-                dialogView.findViewById<EditText>(R.id.edit_title)
-                    .setText(providerInfo.loadLabel(context.packageManager))
-                dialogView.findViewById<EditText>(R.id.edit_label).setText(providerInfo.name)
-                dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
-                    dialog.dismiss()
-                }
-            }
-
+            @SuppressLint("SetTextI18n")
             fun bind(providerInfo: ProviderInfo) {
                 val providerLabel = providerInfo.loadLabel(context.packageManager).toString()
                 val providerName = providerInfo.name
+                val authorityName = providerInfo.authority
+
                 if (!providerInfo.exported) {
                     providerNameTextView.setTextColor(ContextCompat.getColor(context, R.color.red))
                 } else {
@@ -322,11 +299,19 @@ class FragmentComponentProviders : UniversalFragmentBase() {
                     providerLabelTextView.paintFlags =
                         providerLabelTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 }
+
+                if (!providerInfo.grantUriPermissions) {
+                    launchModeTextView.text = "授权Uri权限：true"
+                } else {
+                    launchModeTextView.text = "授权Uri权限：false"
+                }
+                taskAffinityTextView.text = "授权：$authorityName"
                 providerNameTextView.text = providerName.highlightText(searchText)
                 providerLabelTextView.text = providerLabel.highlightText(searchText)
 
                 componentStatus.isChecked = providerInfo.isEnabled
                 providerIcon.setImageDrawable(providerInfo.loadIcon(context.packageManager))
+
             }
 
             private fun String.highlightText(searchText: String): SpannableString {

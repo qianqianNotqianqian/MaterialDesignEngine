@@ -19,8 +19,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +34,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalFragmentBase
-import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.regex.Pattern
@@ -248,18 +249,23 @@ class FragmentComponentReceivers : UniversalFragmentBase() {
             return receiverList.size
         }
 
-        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-            View.OnClickListener {
+        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             private val receiverIcon: ImageView = itemView.findViewById(R.id.componentIcon)
             private val receiverLabelTextView: TextView = itemView.findViewById(R.id.componentLabel)
             private val receiverNameTextView: TextView = itemView.findViewById(R.id.componentName)
+            private val orientationTextView: TextView = itemView.findViewById(R.id.orientationTextView)
+            private val actionLaunchAndShortcut: LinearLayoutCompat = itemView.findViewById(R.id.action_launch_and_shortcut)
+            private val taskAffinityTextView: TextView = itemView.findViewById(R.id.taskAffinity)
+            private val launchModeTextView: TextView = itemView.findViewById(R.id.launchMode)
+            private val softInput: TextView = itemView.findViewById(R.id.softInput)
             private val componentMaterialCardView: MaterialCardView =
                 itemView.findViewById(R.id.componentCardView)
             private val componentStatus: MaterialSwitch =
                 itemView.findViewById(R.id.componentStatus)
 
             init {
-                componentMaterialCardView.setOnClickListener(this)
+                actionLaunchAndShortcut.isVisible = false
+                softInput.isVisible = false
                 val baseColor = ContextCompat.getColor(context, R.color.background)
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 componentMaterialCardView.setCardBackgroundColor(
@@ -271,43 +277,32 @@ class FragmentComponentReceivers : UniversalFragmentBase() {
                 )
             }
 
-            @SuppressLint("InflateParams")
-            override fun onClick(v: View?) {
-                val receiverInfo = receiverList[bindingAdapterPosition]
-
-                val dialogView =
-                    LayoutInflater.from(context).inflate(R.layout.dialog_components_detail, null)
-                val dialog = DialogHelper.customDialog(context, dialogView)
-
-                fun setTextAndColor(textView: TextView, value: Boolean) {
-                    textView.text = value.toString()
-                    textView.setTextColor(
-                        ContextCompat.getColor(
-                            context,
-                            if (value) R.color.green else R.color.red
-                        )
-                    )
-                }
-
-                val enabledTextView = dialogView.findViewById<TextView>(R.id.state_enable)
-                setTextAndColor(enabledTextView, receiverInfo.enabled)
-
-                val exportedTextView = dialogView.findViewById<TextView>(R.id.state_exported)
-                setTextAndColor(exportedTextView, receiverInfo.exported)
-
-                dialogView.findViewById<ImageView>(R.id.imageView_icon)
-                    .setImageDrawable(receiverInfo.loadIcon(context.packageManager))
-                dialogView.findViewById<EditText>(R.id.edit_title)
-                    .setText(receiverInfo.loadLabel(context.packageManager))
-                dialogView.findViewById<EditText>(R.id.edit_label).setText(receiverInfo.name)
-                dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
-                    dialog.dismiss()
-                }
-            }
-
+            @SuppressLint("SetTextI18n")
             fun bind(receiverInfo: ActivityInfo) {
                 val receiverLabel = receiverInfo.loadLabel(context.packageManager).toString()
                 val receiverName = receiverInfo.name
+                val packageName = receiverInfo.packageName
+
+                // 获取服务声明的权限信息
+                val packageInfo = context.packageManager.getPackageInfo(packageName, PackageManager.GET_RECEIVERS or PackageManager.GET_PERMISSIONS)
+                val receivers = packageInfo.receivers ?: emptyArray()
+
+                val servicePermissions = mutableListOf<String>()
+                for (receiver in receivers) {
+                    if (receiver.name == receiverName) {
+                        val permissions = receiver.permission
+                        permissions?.let {
+                            servicePermissions.addAll(listOf(it))
+                        }
+                        break
+                    }
+                }
+                val permissionsText = if (servicePermissions.isEmpty()) {
+                    "无需权限"
+                } else {
+                    servicePermissions.joinToString(", ")
+                }
+                orientationTextView.text = permissionsText
                 if (!receiverInfo.exported) {
                     receiverNameTextView.setTextColor(ContextCompat.getColor(context, R.color.red))
                 } else {
@@ -318,6 +313,9 @@ class FragmentComponentReceivers : UniversalFragmentBase() {
                         )
                     )
                 }
+                val launchMode = receiverInfo.launchMode
+                val screenOrientation = receiverInfo.screenOrientation
+                val taskAffinity = receiverInfo.taskAffinity
 
                 if (!receiverInfo.enabled) {
                     receiverLabelTextView.paintFlags =
@@ -328,8 +326,30 @@ class FragmentComponentReceivers : UniversalFragmentBase() {
                 receiverLabelTextView.text = receiverLabel.highlightText(searchText)
 
                 componentStatus.isChecked = receiverInfo.isEnabled
-                componentStatus
+
                 receiverIcon.setImageDrawable(receiverInfo.loadIcon(context.packageManager))
+
+                launchModeTextView.text = "启动模式：${getLaunchModeString(launchMode)} | 屏幕旋转：${getScreenOrientationString(screenOrientation)}"
+                taskAffinityTextView.text = "任务关联：$taskAffinity"
+            }
+
+            private fun getLaunchModeString(launchMode: Int): String {
+                return when (launchMode) {
+                    ActivityInfo.LAUNCH_SINGLE_TOP -> "栈顶部模式"
+                    ActivityInfo.LAUNCH_SINGLE_TASK -> "单任务模式"
+                    ActivityInfo.LAUNCH_SINGLE_INSTANCE -> "单实例模式"
+                    else -> "标准模式"
+                }
+            }
+
+            private fun getScreenOrientationString(screenOrientation: Int): String {
+                return when (screenOrientation) {
+                    ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> "竖屏"
+                    ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> "横屏"
+                    ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT -> "反向竖屏"
+                    ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE -> "反向横屏"
+                    else -> "未指定"
+                }
             }
 
             private fun String.highlightText(searchText: String): SpannableString {
