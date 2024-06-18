@@ -73,7 +73,7 @@
                             android:layout_width="0.0dip"
                             android:layout_height="wrap_content"
                             android:layout_weight="1.0"
-                            android:paddingStart="@dimen/dp_24"
+                            android:paddingStart="12dp"
                             android:paddingEnd="0.0dip"
                             android:textColor="@color/text_color"
                             android:textDirection="locale"
@@ -93,7 +93,7 @@
                 android:id="@+id/materialCardView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/content_padding_6dp"
+                android:layout_marginTop="6dp"
                 app:cardBackgroundColor="@color/background"
                 app:cardCornerRadius="12dp">
 

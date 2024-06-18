@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="@dimen/content_padding_6dp"
-        android:layout_marginEnd="@dimen/content_padding_6dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         app:cardBackgroundColor="@color/background">
 
         <LinearLayout

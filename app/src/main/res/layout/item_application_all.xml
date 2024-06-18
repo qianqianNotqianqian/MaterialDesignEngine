@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingHorizontal="@dimen/content_padding_6dp"
-    android:paddingBottom="@dimen/content_padding_6dp">
+    android:paddingHorizontal="6dp"
+    android:paddingBottom="6dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/app_material_cardView"

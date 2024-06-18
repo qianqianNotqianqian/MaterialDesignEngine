@@ -8,9 +8,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/content_padding_6dp"
+        android:layout_marginHorizontal="6dp"
         android:layout_marginTop="18dp"
-        app:cardCornerRadius="@dimen/content_padding_6dp"
+        app:cardCornerRadius="6dp"
         app:cardElevation="5dp">
 
         <mapleleaf.materialdesign.engine.view.SunfushengMarqueeView
@@ -29,7 +29,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/content_padding_6dp"
+        android:layout_marginHorizontal="6dp"
         android:layout_marginTop="18dp"
         app:cardCornerRadius="25dp"
         app:cardElevation="5dp">

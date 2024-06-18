@@ -281,10 +281,10 @@
     <style name="CardItemContainer">
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:paddingStart">@dimen/content_padding_6dp</item>
-        <item name="android:paddingEnd">@dimen/content_padding_6dp</item>
-        <item name="android:paddingTop">@dimen/content_padding_6dp</item>
-        <item name="android:paddingBottom">@dimen/content_padding_6dp</item>
+        <item name="android:paddingStart">6dp</item>
+        <item name="android:paddingEnd">6dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -409,5 +409,7 @@
     <style name="ShapeAppearance.AppTheme.CircleComponent" parent="">
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="Widget.AppTheme.LinearProgressIndicator" parent="Widget.Material3.LinearProgressIndicator" />
 
 </resources>

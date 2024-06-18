@@ -314,7 +314,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/item_app_bg"
-                        android:paddingHorizontal="@dimen/content_padding_6dp"
+                        android:paddingHorizontal="6dp"
                         android:text="@string/process_kill_app"
                         android:visibility="gone" />
 

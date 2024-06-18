@@ -15,7 +15,7 @@
         android:id="@+id/msgTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/content_padding_6dp"
+        android:layout_margin="6dp"
         app:layout_constraintTop_toBottomOf="@+id/include" >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -32,7 +32,7 @@
         android:id="@+id/msgMaterialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/content_padding_6dp"
+        android:layout_margin="6dp"
         android:visibility="gone"
         app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="12dp"
@@ -52,7 +52,7 @@
         android:id="@+id/speakerSpinnerMaterialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/content_padding_6dp"
+        android:layout_margin="6dp"
         app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="12dp"
         app:layout_constraintTop_toBottomOf="@+id/msgTextView">
@@ -84,7 +84,7 @@
         android:id="@+id/lengthSpinnerMaterialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/content_padding_6dp"
+        android:layout_margin="6dp"
         app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="12dp"
         app:layout_constraintTop_toBottomOf="@+id/speakerSpinnerMaterialCardView">
@@ -117,7 +117,7 @@
         android:id="@+id/noisewSpinnerMaterialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/content_padding_6dp"
+        android:layout_margin="6dp"
         app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="12dp"
         app:layout_constraintTop_toBottomOf="@+id/lengthSpinnerMaterialCardView">
@@ -149,7 +149,7 @@
         android:id="@+id/sdpSpinnerMaterialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/content_padding_6dp"
+        android:layout_margin="6dp"
         app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="12dp"
         app:layout_constraintTop_toBottomOf="@+id/noisewSpinnerMaterialCardView">
@@ -182,7 +182,7 @@
         android:id="@+id/noiseSpinnerMaterialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/content_padding_6dp"
+        android:layout_margin="6dp"
         app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="12dp"
         app:layout_constraintTop_toBottomOf="@+id/sdpSpinnerMaterialCardView">

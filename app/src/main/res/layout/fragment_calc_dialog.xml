@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingVertical="@dimen/content_padding_6dp" >
+            android:paddingVertical="6dp" >
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
@@ -80,7 +80,7 @@
                 style="@style/OptionsCardViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/content_padding_6dp">
+                android:layout_marginTop="6dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -304,7 +304,7 @@
                 style="@style/OptionsCardViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/content_padding_6dp">
+                android:layout_marginTop="6dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

@@ -6,8 +6,10 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
 }
+
 apply plugin: 'kotlin-android'
 //apply plugin: 'kotlin-kapt'
+
 android {
     signingConfigs {
         release {
@@ -23,8 +25,8 @@ android {
             enableV3Signing true
             storeFile file('C:\\Users\\Administrator.DESKTOP-Q5T4401\\AndroidStudioProjects\\MaterialDesignEngine\\key\\芊芊.jks')
             storePassword 'chen0408'
-            keyAlias 'qianqian'
             keyPassword 'chen0408'
+            keyAlias 'qianqian'
         }
     }
     buildFeatures {
@@ -140,6 +142,9 @@ dependencies {
 
     implementation "com.kongzue.baseframework:BaseFramework:6.8.8"
     implementation 'com.kongzue.stacklabel:StackLabel:1.2.0'
+
+//    implementation "io.github.Rosemoe.sora-editor:editor:0.22.1"
+//    implementation "io.github.Rosemoe.sora-editor:language-textmate:0.22.1"
 
 //    implementation 'com.drakeet.about:about:2.5.2'
 //    implementation 'com.airbnb.android:lottie:6.4.0'

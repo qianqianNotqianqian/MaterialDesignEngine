@@ -11,8 +11,8 @@
         android:id="@+id/deviceSensorMaterialCardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/content_padding_6dp"
-        android:layout_marginBottom="@dimen/content_padding_6dp"
+        android:layout_marginHorizontal="6dp"
+        android:layout_marginBottom="6dp"
         android:clickable="true"
         app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="12dp">
@@ -56,14 +56,14 @@
                 android:id="@+id/textViewName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/content_padding_6dp"
+                android:paddingHorizontal="6dp"
                 android:textSize="14sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textViewVendor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/content_padding_6dp"
+                android:paddingHorizontal="6dp"
                 android:textSize="14sp" />
 
             <com.google.android.material.textview.MaterialTextView

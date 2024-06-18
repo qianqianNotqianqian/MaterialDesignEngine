@@ -57,7 +57,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/in_card_item"
                         android:orientation="horizontal"
-                        android:padding="@dimen/content_padding_6dp">
+                        android:padding="6dp">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="35dp"
@@ -100,7 +100,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/in_card_item"
                         android:orientation="horizontal"
-                        android:padding="@dimen/content_padding_6dp">
+                        android:padding="6dp">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="35dp"
@@ -149,7 +149,7 @@
                     android:orientation="horizontal"
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="12dp"
-                    android:padding="@dimen/content_padding_6dp" >
+                    android:padding="6dp" >
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"
@@ -196,7 +196,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/in_card_item"
                     android:orientation="horizontal"
-                    android:padding="@dimen/content_padding_6dp">
+                    android:padding="6dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"
@@ -243,7 +243,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/in_card_item"
                     android:orientation="horizontal"
-                    android:padding="@dimen/content_padding_6dp">
+                    android:padding="6dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"
@@ -290,7 +290,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/in_card_item"
                     android:orientation="horizontal"
-                    android:padding="@dimen/content_padding_6dp">
+                    android:padding="6dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"

@@ -894,7 +894,7 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             }
 
             R.id.start_menu_change_icon -> {
-                val dialogView = layoutInflater.inflate(R.layout.layout_change_icons, null)
+                val dialogView = layoutInflater.inflate(R.layout.dialog_change_icons, null)
                 val dialog = DialogHelper.customDialog(this, dialogView)
                 dialogView.findViewById<TextView>(R.id.confirm_title).text =
                     getString(R.string.dialog_choose_icon)

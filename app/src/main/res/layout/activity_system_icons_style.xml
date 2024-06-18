@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="@dimen/content_padding_6dp">
+                android:padding="6dp">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="@dimen/content_padding_6dp">
+                        android:padding="6dp">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/battery_icon"
@@ -49,7 +49,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/content_padding_6dp"
+                            android:layout_marginTop="6dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -89,39 +89,39 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/content_padding_6dp"
+                    android:layout_marginTop="6dp"
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatCheckBox
                         android:id="@+id/appCompatCheckBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/content_padding_6dp"
+                        android:layout_marginTop="6dp"
                         android:text="@string/todo" />
 
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/content_padding_6dp"
+                        android:layout_marginTop="6dp"
                         android:text="@string/todo" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/content_padding_6dp"
+                        android:layout_marginTop="6dp"
                         android:text="@string/todo" />
 
                     <androidx.appcompat.widget.AppCompatSeekBar
                         style="@style/MDEngineSeekBar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/content_padding_6dp"
+                        android:layout_marginTop="6dp"
                         android:max="100" />
 
                     <RadioGroup
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/content_padding_6dp"
+                        android:layout_marginTop="6dp"
                         android:orientation="horizontal">
 
                         <RadioButton
@@ -171,7 +171,7 @@
                         <com.google.android.material.materialswitch.MaterialSwitch
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/content_padding_6dp" />
+                            android:layout_marginEnd="6dp" />
 
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="wrap_content"
@@ -200,7 +200,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/content_padding_6dp"
+                        android:layout_marginTop="6dp"
                         android:alignmentMode="alignMargins"
                         android:columnCount="2"
                         android:columnOrderPreserved="false"
@@ -211,7 +211,7 @@
                             android:layout_height="wrap_content"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
-                            android:layout_marginEnd="@dimen/content_padding_6dp"
+                            android:layout_marginEnd="6dp"
                             app:cardBackgroundColor="@color/background">
 
                             <LinearLayout
@@ -260,8 +260,8 @@
                             android:layout_height="wrap_content"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
-                            android:layout_marginTop="@dimen/content_padding_6dp"
-                            android:layout_marginEnd="@dimen/content_padding_6dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="6dp"
                             app:cardBackgroundColor="@color/background">
 
                             <LinearLayout
@@ -286,7 +286,7 @@
                             android:layout_height="wrap_content"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
-                            android:layout_marginTop="@dimen/content_padding_6dp"
+                            android:layout_marginTop="6dp"
                             app:cardBackgroundColor="@color/background">
 
                             <LinearLayout
@@ -312,7 +312,7 @@
                         android:id="@+id/playButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/content_padding_6dp"
+                        android:layout_marginTop="6dp"
                         android:text="@string/play" />
 
                 </LinearLayout>

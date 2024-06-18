@@ -32,8 +32,6 @@ class ActivityMarqueeAbout : UniversalActivityBase(R.layout.marquee_activity_abo
         }
     }
 
-//    override fun getLayoutResourceId() = R.layout.marquee_activity_about
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         initView()
     }
@@ -50,13 +48,8 @@ class ActivityMarqueeAbout : UniversalActivityBase(R.layout.marquee_activity_abo
         settings.builtInZoomControls = true
         settings.displayZoomControls = false
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-            settings.loadsImagesAutomatically = true
-        } else {
-            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
-            settings.loadsImagesAutomatically = false
-        }
+        webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+        settings.loadsImagesAutomatically = true
 
         settings.useWideViewPort = true
         settings.loadWithOverviewMode = true
