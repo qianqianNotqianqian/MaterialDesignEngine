@@ -245,10 +245,9 @@ class ActivityAbout : AbsAboutActivity() {
                 val themeConfig = ThemeConfig(this)
                 if (menuItem.isChecked) {
                     themeConfig.setAllowTransparentUI(false)
-                    val intent = Intent()
-                    intent.setClass(this, ActivityMenu::class.java).flags =
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
+                    startActivity(Intent(this, ActivityMenu::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    })
                     finish()
                 } else {
                     fun checkPermission(permission: String): Boolean =
@@ -261,10 +260,9 @@ class ActivityAbout : AbsAboutActivity() {
                         toast(getString(R.string.kr_write_external_storage))
                     } else {
                         themeConfig.setAllowTransparentUI(true)
-                        val intent = Intent()
-                        intent.setClass(this, ActivityMenu::class.java).flags =
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
+                        startActivity(Intent(this, ActivityMenu::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        })
                         finish()
                     }
                 }

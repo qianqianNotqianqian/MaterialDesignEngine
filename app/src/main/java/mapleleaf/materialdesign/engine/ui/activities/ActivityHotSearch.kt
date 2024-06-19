@@ -350,11 +350,14 @@ class ActivityHotSearch : UniversalActivityBase(R.layout.activity_hot_search) {
             override fun onClick(view: View) {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val hotSearchItem = hotSearchList[position]
-                    val intent = Intent(view.context, ActivityBrowser::class.java)
-                    intent.putExtra("url", hotSearchItem.url)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    view.context?.startActivity(intent)
+                    hotSearchList[position].let { hotSearchItem ->
+                        Intent(view.context, ActivityBrowser::class.java).apply {
+                            putExtra("url", hotSearchItem.url)
+                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        }.also { intent ->
+                            view.context.startActivity(intent)
+                        }
+                    }
 //                    val message = "Clicked: ${hotSearchItem.title}, Link: ${hotSearchItem.url}"
 //                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                 }

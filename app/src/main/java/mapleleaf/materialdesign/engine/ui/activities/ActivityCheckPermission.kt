@@ -70,13 +70,15 @@ class ActivityCheckPermission : UniversalActivityBase(R.layout.activity_check_pe
         startStateText.text = "启动完成！"
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
-            val intent = Intent(this@ActivityCheckPermission, ActivitySystemOverview::class.java)
-            val options = ActivityOptionsCompat.makeCustomAnimation(
+            ActivityCompat.startActivity(
                 this,
-                R.anim.activity_fade_in_up,
-                R.anim.activity_fade_out_up
+                Intent(this@ActivityCheckPermission, ActivitySystemOverview::class.java),
+                ActivityOptionsCompat.makeCustomAnimation(
+                    this,
+                    R.anim.activity_fade_in_up,
+                    R.anim.activity_fade_out_up
+                ).toBundle()
             )
-            ActivityCompat.startActivity(this, intent, options.toBundle())
             finished = true
             finish()
         }, 600)

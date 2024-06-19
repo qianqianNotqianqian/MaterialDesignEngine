@@ -118,6 +118,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_confirm"
             style="@style/dialogConfirmBtn"
+            android:background="@drawable/btn_bg_large_warning"
             android:text="确定" />
     </LinearLayout>
 

@@ -208,18 +208,19 @@ class ActivityFullScreenImage : UniversalActivityBase(R.layout.activity_fullscre
                 }
 
                 if (result != null) {
-                    val intent = Intent(Intent.ACTION_SEND)
-                    intent.type = "image/*"
-                    intent.putExtra(
-                        Intent.EXTRA_STREAM,
-                        FileProvider.getUriForFile(
-                            context,
-                            context.packageName + ".shareImage",
-                            result
+                    Intent(Intent.ACTION_SEND).apply {
+                        type = "image/*"
+                        putExtra(
+                            Intent.EXTRA_STREAM,
+                            FileProvider.getUriForFile(
+                                context,
+                                "${context.packageName}.shareImage",
+                                result
+                            )
                         )
-                    )
-                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    context.startActivity(Intent.createChooser(intent, "分享图片"))
+                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                        context.startActivity(Intent.createChooser(this, "分享图片"))
+                    }
                 } else {
                     toast("分享失败")
                 }

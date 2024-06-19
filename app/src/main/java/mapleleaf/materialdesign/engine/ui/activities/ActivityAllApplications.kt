@@ -57,18 +57,18 @@ import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.animator.AlphaInAnimation
-import mapleleaf.materialdesign.engine.animator.BottomToTopBounce
-import mapleleaf.materialdesign.engine.animator.SmallToNormalAlpha
 import mapleleaf.materialdesign.engine.animator.BigToNormalAlpha
-import mapleleaf.materialdesign.engine.animator.StartToEndBounce
-import mapleleaf.materialdesign.engine.animator.EndToStartBounce
 import mapleleaf.materialdesign.engine.animator.BottomToTopAlpha
-import mapleleaf.materialdesign.engine.animator.TopToBottomAlpha
+import mapleleaf.materialdesign.engine.animator.BottomToTopBounce
+import mapleleaf.materialdesign.engine.animator.EndToStartBounce
 import mapleleaf.materialdesign.engine.animator.ItemAnimator
 import mapleleaf.materialdesign.engine.animator.ScaleInAnimation
 import mapleleaf.materialdesign.engine.animator.SlideInBottomAnimation
 import mapleleaf.materialdesign.engine.animator.SlideInLeftAnimation
 import mapleleaf.materialdesign.engine.animator.SlideInRightAnimation
+import mapleleaf.materialdesign.engine.animator.SmallToNormalAlpha
+import mapleleaf.materialdesign.engine.animator.StartToEndBounce
+import mapleleaf.materialdesign.engine.animator.TopToBottomAlpha
 import mapleleaf.materialdesign.engine.animator.TopToBottomBounce
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
@@ -677,20 +677,19 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
             dialogView.findViewById<ImageView>(R.id.appIcon).setImageDrawable(appIcon)
 
             dialogView.findViewById<View>(R.id.buttonOpen).setOnClickListener {
-                val packageName = appInfo.packageName
-                val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
-                if (launchIntent != null) {
-                    context.startActivity(launchIntent)
-                } else {
-                    toast("无法打开该应用程序")
-                }
                 dialog.dismiss()
+                val packageName = appInfo.packageName
+                packageManager.getLaunchIntentForPackage(packageName)?.also { intent ->
+                    context.startActivity(intent)
+                } ?: toast("无法打开该应用程序")
+
             }
             dialogView.findViewById<View>(R.id.buttonDetails).setOnClickListener {
                 dialog.dismiss()
-                val intent = Intent(context, ActivityApplicationDetails::class.java)
-                intent.putExtra("packageName", appInfo.packageName)
-                context.startActivity(intent)
+                Intent(context, ActivityApplicationDetails::class.java).apply {
+                    putExtra("packageName", appInfo.packageName)
+                }.also { context.startActivity(it) }
+
             }
             dialogView.findViewById<View>(R.id.buttonUninstall).setOnClickListener {
                 dialog.dismiss()
@@ -702,10 +701,14 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
             }
             dialogView.findViewById<View>(R.id.buttonSystemDetails).setOnClickListener {
                 dialog.dismiss()
-                val intent =
-                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                intent.data = Uri.parse("package:" + appInfo.packageName)
-                context.startActivity(intent)
+                Intent(
+                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.parse("package:" + appInfo.packageName)
+                ).also {
+                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    context.startActivity(it)
+                }
+
             }
             dialogView.findViewById<View>(R.id.buttonSaveApk).setOnClickListener {
                 dialog.dismiss()
@@ -715,15 +718,17 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
             }
             dialogView.findViewById<View>(R.id.buttonComponent).setOnClickListener {
                 dialog.dismiss()
-                val intent = Intent(context, ActivityAppComponents::class.java)
-                intent.putExtra("packageName", appInfo.packageName)
-                context.startActivity(intent)
+                Intent(context, ActivityAppComponents::class.java).apply {
+                    putExtra("packageName", appInfo.packageName)
+                }.also { context.startActivity(it) }
+
             }
             dialogView.findViewById<View>(R.id.buttonDex).setOnClickListener {
                 dialog.dismiss()
-                val intent = Intent(context, ActivityApplicationDex::class.java)
-                intent.putExtra("packageName", appInfo.packageName)
-                context.startActivity(intent)
+                Intent(context, ActivityApplicationDex::class.java).apply {
+                    putExtra("packageName", appInfo.packageName)
+                }.also { context.startActivity(it) }
+
             }
             dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
                 dialog.dismiss()
@@ -731,9 +736,10 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
         }
 
         private fun uninstallApp(packageName: String) {
-            val packageUri = Uri.parse("package:$packageName")
-            val uninstallIntent = Intent(Intent.ACTION_DELETE, packageUri)
-            context.startActivity(uninstallIntent)
+            Intent(Intent.ACTION_DELETE, Uri.parse("package:$packageName")).also { intent ->
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                context.startActivity(intent)
+            }
         }
 
         @OptIn(DelicateCoroutinesApi::class)
@@ -745,12 +751,14 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
                     val apkUri = FileProvider.getUriForFile(
                         context, context.packageName + ".shareAPK", File(apkFilePath)
                     )
-                    val sendIntent = Intent()
-                    sendIntent.action = Intent.ACTION_SEND
-                    sendIntent.putExtra(Intent.EXTRA_STREAM, apkUri)
-                    sendIntent.type = "*/*"
-                    sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    context.startActivity(Intent.createChooser(sendIntent, "分享应用"))
+                    Intent().apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_STREAM, apkUri)
+                        type = "*/*"
+                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                        context.startActivity(Intent.createChooser(this, "分享应用"))
+                    }
+
                 } catch (e: PackageManager.NameNotFoundException) {
                     e.printStackTrace()
                     withContext(Dispatchers.Main) {

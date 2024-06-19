@@ -77,10 +77,10 @@ class ActivitySystemInfo : UniversalActivityBase(R.layout.activity_device_info) 
     }
 
     private fun openAppSettings() {
-        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        val uri: Uri = Uri.fromParts("package", this.packageName, null)
-        intent.data = uri
-        startActivity(intent)
+        Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+            data = Uri.fromParts("package", this@ActivitySystemInfo.packageName, null)
+        }.also { startActivity(it) }
+
     }
 
     override fun initializeComponents(savedInstanceState: Bundle?) {

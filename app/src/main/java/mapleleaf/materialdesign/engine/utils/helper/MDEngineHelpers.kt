@@ -39,7 +39,7 @@ object MDEngineHelpers {
 
     class AboutDialog : DialogFragment() {
 
-        @SuppressLint("InflateParams")
+        @SuppressLint("InflateParams", "UseGetLayoutInflater")
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
             val activity: Activity? = activity
             var appName = "MDEngine"
@@ -60,7 +60,7 @@ object MDEngineHelpers {
             }
 
             val dialogView: View =
-                LayoutInflater.from(getActivity()).inflate(R.layout.dialog_about_info, null)
+                LayoutInflater.from(getActivity()).inflate(R.layout.dialog_confirm, null)
             val dialog = DialogHelper.customDialog(requireContext(), dialogView).dialog
             val messageTextView: TextView = dialogView.findViewById(R.id.confirm_message)
             val titleTextView: TextView = dialogView.findViewById(R.id.confirm_title)
@@ -74,9 +74,8 @@ object MDEngineHelpers {
                 dialog.dismiss() // 关闭对话框
             }
             dialog.findViewById<View>(R.id.btn_more).setOnClickListener { v: View? ->
-                val perfmonPlus = Intent(requireActivity(), ActivityAbout::class.java)
-                startActivity(perfmonPlus) // 启动ActivityAbout界面
-                dialog.dismiss() // 关闭对话框
+                startActivity(Intent(requireActivity(), ActivityAbout::class.java)) // 启动ActivityAbout界面
+                dialog.dismiss()
             }
             return dialog
         }

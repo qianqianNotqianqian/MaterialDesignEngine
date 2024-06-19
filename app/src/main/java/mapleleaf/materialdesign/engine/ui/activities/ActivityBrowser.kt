@@ -150,10 +150,11 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                 val isIDMInstalled = isPackageInstalled(packageName)
                 if (isIDMInstalled) {
                     // IDM 安装了，启动 IDM 下载
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    intent.setPackage("idm.internet.download.manager.plus")
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // 添加 FLAG_ACTIVITY_NEW_TASK
-                    context.startActivity(intent)
+                    Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+                        setPackage("idm.internet.download.manager.plus")
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }.also { context.startActivity(it) }
+
                 } else {
                     // IDM 未安装，检查是否有活动可以处理该 Intent
                     val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
@@ -164,8 +165,9 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                     )
                     if (resolveInfo != null) {
 
-                        browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // 添加 FLAG_ACTIVITY_NEW_TASK
-                        context.startActivity(browserIntent)
+                        browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            .also { context.startActivity(it) }
+                        // 添加 FLAG_ACTIVITY_NEW_TASK
                     } else {
                         // 没有活动可以处理该 Intent，显示错误消息
                         toast("没有找到可以处理此请求的活动。")
@@ -192,7 +194,7 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
     }
 
     // 辅助函数：检查特定包名的应用是否已安装
-    fun isPackageInstalled(packageName: String): Boolean {
+    private fun isPackageInstalled(packageName: String): Boolean {
         return try {
             context.packageManager.getPackageInfo(packageName, 0)
             true
@@ -311,11 +313,11 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
     }
 
     private fun openInExternalBrowser() {
-        webView.let {
+        webView.let { it ->
             val currentUrl = it.url
             if (!currentUrl.isNullOrEmpty()) {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl))
-                startActivity(browserIntent)
+                Intent(Intent.ACTION_VIEW, Uri.parse(currentUrl)).also { startActivity(it) }
+
             } else {
                 toast("无法获取当前链接")
             }
@@ -372,11 +374,10 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                                 try {
                                     // 获取短信号码
                                     val phoneNumber = intent.data?.schemeSpecificPart
-                                    val smsIntent = Intent(
+                                    Intent(
                                         Intent.ACTION_SENDTO,
                                         Uri.parse("smsto:$phoneNumber")
-                                    )
-                                    startActivity(smsIntent)
+                                    ).also { startActivity(it) }
                                 } catch (e: Exception) {
                                     Log.e(tag, "Error handling SMS URL: ${e.message}")
                                     // 处理异常情况
@@ -400,9 +401,12 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                                     // 获取电话号码
                                     val phoneNumber = intent.data?.schemeSpecificPart
                                     // 在这里执行拨打电话的逻辑
-                                    val telIntent =
-                                        Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
-                                    startActivity(telIntent)
+
+                                    Intent(
+                                        Intent.ACTION_DIAL,
+                                        Uri.parse("tel:$phoneNumber")
+                                    ).also { startActivity(it) }
+
                                 } catch (e: Exception) {
                                     Log.e(tag, "Error handling Tel URL: ${e.message}")
                                     // 处理异常情况

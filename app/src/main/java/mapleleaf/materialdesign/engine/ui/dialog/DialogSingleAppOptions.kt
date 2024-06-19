@@ -100,9 +100,9 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
             showInMarketAndLaunch()
         }
         dialogView.findViewById<View>(R.id.app_options_component_management).setOnClickListener {
-            val intent = Intent(context, ActivityAppComponents::class.java)
-            intent.putExtra("packageName", app.packageName)
-            context.startActivity(intent)
+            Intent(context, ActivityAppComponents::class.java).apply {
+                putExtra("packageName", app.packageName)
+            }.also { context.startActivity(it) }
         }
         dialogView.findViewById<View>(R.id.app_options_clear).setOnClickListener {
             if (rootChecker.isDeviceRooted()) {
@@ -115,9 +115,9 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
             if (rootChecker.isDeviceRooted()) {
                 uninstallAll()
             } else {
-                val packageUri = Uri.parse(app.packageName)
-                val uninstallIntent = Intent(Intent.ACTION_DELETE, packageUri)
-                context.startActivity(uninstallIntent)
+                Intent(Intent.ACTION_DELETE, Uri.parse("package:${app.packageName}")).also {
+                    context.startActivity(it)
+                }
                 toast("设备未获取Root权限")
             }
         }
@@ -256,9 +256,10 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
             }
         }
         dialogView.findViewById<View>(R.id.app_options_component_management).setOnClickListener {
-            val intent = Intent(context, ActivityAppComponents::class.java)
-            intent.putExtra("packageName", app.packageName)
-            context.startActivity(intent)
+            Intent(context, ActivityAppComponents::class.java).apply {
+                putExtra("packageName", app.packageName)
+            }.also { context.startActivity(it) }
+
         }
         dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
             dialog.dismiss()
@@ -403,17 +404,19 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
         val dialog = DialogHelper.customDialog(context, dialogView)
         dialogView.findViewById<View>(R.id.app_options_detail_on_system).setOnClickListener {
             dialog.dismiss()
-            val intent = Intent()
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
-            intent.data = Uri.fromParts("package", app.packageName, null)
-            context.startActivity(intent)
+            Intent().apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                action = "android.settings.APPLICATION_DETAILS_SETTINGS"
+                data = Uri.fromParts("package", app.packageName, null)
+            }.also { context.startActivity(it) }
+
         }
         dialogView.findViewById<View>(R.id.app_options_detail_on_custom).setOnClickListener {
             dialog.dismiss()
-            val intent = Intent(context, ActivityApplicationDetails::class.java)
-            intent.putExtra("packageName", app.packageName)
-            context.startActivity(intent)
+            Intent(context, ActivityApplicationDetails::class.java).apply {
+                putExtra("packageName", app.packageName)
+            }.also { context.startActivity(it) }
+
         }
         dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
             dialog.dismiss()
@@ -456,10 +459,11 @@ class DialogSingleAppOptions(context: Activity, var app: AppInfo, handler: Handl
                 context.startActivity(intent) // 尝试启动市场应用
             } catch (e: ActivityNotFoundException) {
                 // 市场应用没有找到，尝试使用其他方式
-                val playStoreQuery =
-                    "https://play.google.com/store/search?q=" + app.packageName // 使用网页链接搜索应用
-                val playStoreIntent = Intent(Intent.ACTION_VIEW, Uri.parse(playStoreQuery))
-                context.startActivity(playStoreIntent) // 启动网页搜索
+                val playStoreQuery = "https://play.google.com/store/search?q=${app.packageName}"
+                Intent(Intent.ACTION_VIEW, Uri.parse(playStoreQuery)).also {
+                    context.startActivity(it)
+                }
+
             }
         }
         dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {

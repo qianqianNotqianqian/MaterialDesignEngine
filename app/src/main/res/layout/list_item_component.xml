@@ -77,7 +77,6 @@
             android:layout_height="wrap_content"
             android:textIsSelectable="true"
             android:textAppearance="?attr/textAppearanceBodySmall"
-            android:textSize="9sp"
             tools:text="@tools:sample/lorem"
             tools:ignore="SmallSp" />
 
@@ -87,7 +86,6 @@
             android:layout_height="wrap_content"
             android:textIsSelectable="true"
             android:textAppearance="?attr/textAppearanceBodySmall"
-            android:textSize="11sp"
             tools:text="@tools:sample/lorem"
             tools:ignore="SmallSp" />
 
@@ -115,10 +113,11 @@
             android:id="@+id/componentName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="monospace"
             android:textIsSelectable="true"
             android:textAppearance="?attr/textAppearanceBodySmall"
             tools:text="@tools:sample/lorem" />
+
+<!--        android:fontFamily="monospace"-->
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/action_launch_and_shortcut"

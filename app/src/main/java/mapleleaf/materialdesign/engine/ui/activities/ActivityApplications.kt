@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -21,7 +20,6 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.TextView
-import androidx.annotation.LayoutRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -135,11 +133,10 @@ class ActivityApplications : UniversalActivityBase(R.layout.activity_application
         buttonClear.setOnClickListener {
             appsSearchBox.text.clear()
         }
-        if (Build.VERSION.SDK_INT >= 30 && !Environment.isExternalStorageManager()) {
+        if (!Environment.isExternalStorageManager()) {
             try {
-                val intent = Intent()
-                intent.action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
-                startActivity(intent)
+                Intent().apply { action = Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION }
+                    .also { startActivity(it) }
             } catch (ex: Exception) {
                 toast("无法申请存储管理权限~")
             }
@@ -217,8 +214,7 @@ class ActivityApplications : UniversalActivityBase(R.layout.activity_application
             }
 
             R.id.menu_all_app -> {
-                val intent = Intent(this, ActivityAllApplications::class.java)
-                startActivity(intent)
+                Intent(this, ActivityAllApplications::class.java).also { startActivity(it) }
                 return true
             }
         }

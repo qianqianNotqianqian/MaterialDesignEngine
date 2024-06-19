@@ -300,7 +300,7 @@ class FragmentGetWallpaper : UniversalFragmentBase() {
     private fun showSslHandshakeErrorDialog() {
         lifecycleScope.launch {
 
-            val dialogView = layoutInflater.inflate(R.layout.dialog_info, null)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_confirm, null)
             dialogView.findViewById<TextView>(R.id.confirm_title).text = "安全连接错误"
             dialogView.findViewById<TextView>(R.id.confirm_message).text =
                 "无法安全地连接到服务器。这可能是由于服务器的安全证书存在问题。请稍后再试或联系管理员。"

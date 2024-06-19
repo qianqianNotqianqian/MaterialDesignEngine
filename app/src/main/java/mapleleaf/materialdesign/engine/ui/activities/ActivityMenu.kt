@@ -191,7 +191,7 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             R.drawable.ic_perfmon,
             R.string.perfmon_plus
         ) {
-            val dialogView = layoutInflater.inflate(R.layout.dialog_info, null)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_confirm, null)
             val dialog = DialogHelper.customDialog(this, dialogView)
 
             dialogView.findViewById<TextView>(R.id.confirm_message).text = getString(R.string.menu_confirm_perfmon_plus)
@@ -349,10 +349,10 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
 
         setNavigationViewMenuItem(R.id.item_exit, R.drawable.ic_exit, R.string.menu_action_exit) {
 
-            val dialogView = layoutInflater.inflate(R.layout.dialog_exit, null)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_confirm, null)
             val dialog = DialogHelper.customDialog(this, dialogView)
             dialogView.findViewById<TextView>(R.id.confirm_title).text =
-                getString(R.string.dialog_title)
+                getString(R.string.dialog_title_exit)
             val messageTextView = dialogView.findViewById<TextView>(R.id.confirm_message)
             messageTextView.text = getString(R.string.menu_action_confirm_exit)
 
