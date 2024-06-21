@@ -28,21 +28,22 @@ class ActivityAbout : AbsAboutActivity() {
 
     override fun onCreateHeader(icon: ImageView, slogan: TextView, version: TextView, collapsingToolbar: CollapsingToolbarLayout) {
         icon.setImageResource(R.mipmap.ic_launcher_sa)
+
+        val textColor = ContextCompat.getColor(context, R.color.text_color)
         slogan.apply {
             setText(R.string.app_name)
-            setTextColor(ContextCompat.getColor(context, R.color.text_color))
+            setTextColor(textColor)
         }
 
-        toolbar.setTitleTextColor(ContextCompat.getColor(context, R.color.text_color))
-        val versionName = getVersionName()
-        val versionCode = getVersionCode()
-
         version.apply {
-            setTextColor(ContextCompat.getColor(context, R.color.text_color))
+            val versionName = getVersionName()
+            val versionCode = getVersionCode()
+            setTextColor(textColor)
             text = getString(R.string.version_text, versionName, versionCode.toString())
             gravity = Gravity.CENTER
         }
 
+        toolbar.setTitleTextColor(ContextCompat.getColor(context, R.color.text_color))
         collapsingToolbar.setCollapsedTitleTextColor(ContextCompat.getColor(context, R.color.text_color))
         setImageLoader(PicassoImageLoader())
     }

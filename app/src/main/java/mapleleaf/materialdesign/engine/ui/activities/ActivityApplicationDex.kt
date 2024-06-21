@@ -84,28 +84,44 @@ class ActivityApplicationDex : UniversalActivityBase(R.layout.activity_applicati
             }
         }
     }
-
     private fun loadDexMethods(packageName: String) {
         lifecycleScope.launch {
-            val dexMethods = getDexClasses(packageName)
+            val dexClasses = getDexClasses(packageName)
             withContext(Dispatchers.Main) {
-                adapter.setDexMethodsList(dexMethods)
+                adapter.setDexMethodsList(dexClasses)
                 animatedVectorDrawable?.stop()
                 loading.isVisible = false
                 swipeRefreshLayout.isRefreshing = false
                 setToolbarSubtitle(
                     getString(
                         R.string.toolbar_subtitle_activity_application_dex,
-                        dexMethods.size
+                        dexClasses.size
                     )
                 )
             }
         }
     }
 
+    private fun loadDexMethods() {
+        lifecycleScope.launch {
+            val dexClasses = getDexClasses()
+            withContext(Dispatchers.Main) {
+                adapter.setDexMethodsList(dexClasses)
+                animatedVectorDrawable?.stop()
+                loading.isVisible = false
+                swipeRefreshLayout.isRefreshing = false
+                setToolbarSubtitle(
+                    getString(
+                        R.string.toolbar_subtitle_activity_application_dex,
+                        dexClasses.size
+                    )
+                )
+            }
+        }
+    }
     private suspend fun getDexClasses(packageName: String): List<String> =
         withContext(Dispatchers.IO) {
-            val dexMethods = ArrayList<String>()
+            val dexClasses = ArrayList<String>()
             try {
                 val packageManager = packageManager
                 val applicationInfo: ApplicationInfo =
@@ -117,37 +133,21 @@ class ActivityApplicationDex : UniversalActivityBase(R.layout.activity_applicati
                     val entries = dexFile.entries()
                     while (entries.hasMoreElements()) {
                         val className = entries.nextElement()
-                        dexMethods.add(className)
+                        if (!className.contains("$")) {
+                            dexClasses.add(className)
+                        }
                     }
                 }
             } catch (e: Exception) {
-                Log.d("getDexMethods", "Error in getDexMethods: ${e.message}")
+                Log.d("getDexClasses", "Error in getDexClasses: ${e.message}")
                 e.printStackTrace()
             }
 
-            dexMethods
+            dexClasses
         }
-
-    private fun loadDexMethods() {
-        lifecycleScope.launch {
-            val dexMethods = getDexClasses()
-            withContext(Dispatchers.Main) {
-                adapter.setDexMethodsList(dexMethods)
-                animatedVectorDrawable?.stop()
-                loading.isVisible = false
-                swipeRefreshLayout.isRefreshing = false
-                setToolbarSubtitle(
-                    getString(
-                        R.string.toolbar_subtitle_activity_application_dex,
-                        dexMethods.size
-                    )
-                )
-            }
-        }
-    }
 
     private suspend fun getDexClasses(): List<String> = withContext(Dispatchers.IO) {
-        val dexMethods = ArrayList<String>()
+        val dexClasses = ArrayList<String>()
         val applicationInfo: ApplicationInfo = applicationInfo
         val apkPath: String = applicationInfo.sourceDir
         try {
@@ -157,15 +157,17 @@ class ActivityApplicationDex : UniversalActivityBase(R.layout.activity_applicati
                 val entries = dexFile.entries()
                 while (entries.hasMoreElements()) {
                     val className = entries.nextElement()
-                    dexMethods.add(className)
+                    if (!className.contains("$")) { // Only add top-level classes
+                        dexClasses.add(className)
+                    }
                 }
             }
         } catch (e: Exception) {
-            Log.d("getDexMethods", "Error in getDexMethods: ${e.message}")
+            Log.d("getDexClasses", "Error in getDexClasses: ${e.message}")
             e.printStackTrace()
         }
 
-        dexMethods
+        dexClasses
     }
 
     private fun getDexFiles(apkPath: String): List<String> {
@@ -206,7 +208,7 @@ class ActivityApplicationDex : UniversalActivityBase(R.layout.activity_applicati
     class AdapterDexMethodInfo :
         RecyclerView.Adapter<AdapterDexMethodInfo.ApplicationDexViewHolder>() {
 
-        private var dexMethods: List<String> = ArrayList()
+        private var dexClasses: List<String> = ArrayList()
 
         override fun onCreateViewHolder(
             parent: ViewGroup,
@@ -218,7 +220,7 @@ class ActivityApplicationDex : UniversalActivityBase(R.layout.activity_applicati
         }
 
         override fun onBindViewHolder(holder: ApplicationDexViewHolder, position: Int) {
-            holder.bind(dexMethods[position])
+            holder.bind(dexClasses[position])
             val layoutParams = holder.itemView.layoutParams as RecyclerView.LayoutParams
             layoutParams.topMargin = if (position == 0) 18 else 0
             holder.itemView.layoutParams = layoutParams
@@ -230,22 +232,23 @@ class ActivityApplicationDex : UniversalActivityBase(R.layout.activity_applicati
         }
 
         override fun getItemCount(): Int {
-            return dexMethods.size
+            return dexClasses.size
         }
 
         @SuppressLint("NotifyDataSetChanged")
-        fun setDexMethodsList(dexMethods: List<String>) {
-            this.dexMethods = dexMethods
+        fun setDexMethodsList(dexClasses: List<String>) {
+            this.dexClasses = dexClasses
             notifyDataSetChanged()
         }
 
         class ApplicationDexViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            private val dexMethodsTextView: TextView = itemView.findViewById(R.id.dexMethods)
+            private val dexClassNameTextView: TextView = itemView.findViewById(R.id.dexMethods)
             private val appDetailsMaterialCardView =
                 itemView.findViewById<MaterialCardView>(R.id.appDetailsMaterialCardView)
 
-            fun bind(methodName: String) {
-                dexMethodsTextView.text = methodName
+            fun bind(className: String) {
+                val simpleClassName = className.substringAfterLast('.')
+                dexClassNameTextView.text = simpleClassName
                 val baseColor =
                     ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
                 val primaryColor =

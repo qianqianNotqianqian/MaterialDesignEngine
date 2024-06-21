@@ -39,8 +39,6 @@ class ActivityTTS : UniversalActivityBase(R.layout.activity_speech_synthesis) {
     private lateinit var progressBar: ProgressBar
     private lateinit var msgMaterialCardView: MaterialCardView
 
-//    override fun getLayoutResourceId() = R.layout.activity_speech_synthesis
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_speech_synthesis))

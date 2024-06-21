@@ -28,8 +28,6 @@ class ActivityColors : UniversalActivityBase(R.layout.activity_colors) {
     private lateinit var progressBar: ProgressBar
     private lateinit var appBarLayout: AppBarLayout
 
-//    override fun getLayoutResourceId() = R.layout.activity_colors
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         progressBar = findViewById(R.id.progressBar)

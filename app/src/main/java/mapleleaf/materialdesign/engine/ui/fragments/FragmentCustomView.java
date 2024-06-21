@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.button.MaterialButton;
 
 import mapleleaf.materialdesign.engine.R;
+import mapleleaf.materialdesign.engine.base.UniversalFragmentBase;
 
 /**
  * @author: Kongzue
@@ -19,16 +20,15 @@ import mapleleaf.materialdesign.engine.R;
  * @mail: myzcxhh@live.cn
  * @createTime: 2021/8/17 13:50
  */
-public class FragmentCustomView extends Fragment {
+public class FragmentCustomView extends UniversalFragmentBase {
 
     private static int index = 0;
     private View.OnClickListener addButtonClickListener;
     private TextView txtInfo;
     private MaterialButton btnAddDialog;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public FragmentCustomView(int layoutRes) {
+        super(layoutRes);
     }
 
     @Override

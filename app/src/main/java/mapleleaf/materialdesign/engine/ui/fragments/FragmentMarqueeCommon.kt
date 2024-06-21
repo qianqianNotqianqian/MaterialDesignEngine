@@ -11,23 +11,20 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import mapleleaf.materialdesign.engine.R
+import mapleleaf.materialdesign.engine.base.UniversalFragmentBase
 import mapleleaf.materialdesign.engine.model.SunfushengMarqueeCustomModel
 import mapleleaf.materialdesign.engine.utils.toast
 import mapleleaf.materialdesign.engine.view.SunfushengMarqueeView
 
-class FragmentMarqueeCommon : Fragment() {
+class FragmentMarqueeCommon : UniversalFragmentBase(R.layout.marquee_fragment_tab) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.marquee_fragment_tab, container, false)
-        val sunfushengMarqueeView = view.findViewById<SunfushengMarqueeView<*>>(R.id.marqueeView)
-        val sunfushengMarqueeView1 = view.findViewById<SunfushengMarqueeView<*>>(R.id.marqueeView1)
-        val sunfushengMarqueeView2 = view.findViewById<SunfushengMarqueeView<*>>(R.id.marqueeView2)
-        val sunfushengMarqueeView3 = view.findViewById<SunfushengMarqueeView<*>>(R.id.marqueeView3)
-        val sunfushengMarqueeView4 = view.findViewById<SunfushengMarqueeView<*>>(R.id.marqueeView4)
+    override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(rootView, savedInstanceState)
+        val sunfushengMarqueeView = rootView.findViewById<SunfushengMarqueeView<*>>(R.id.marqueeView)
+        val sunfushengMarqueeView1 = rootView.findViewById<SunfushengMarqueeView<*>>(R.id.marqueeView1)
+        val sunfushengMarqueeView2 = rootView.findViewById<SunfushengMarqueeView<*>>(R.id.marqueeView2)
+        val sunfushengMarqueeView3 = rootView.findViewById<SunfushengMarqueeView<*>>(R.id.marqueeView3)
+        val sunfushengMarqueeView4 = rootView.findViewById<SunfushengMarqueeView<*>>(R.id.marqueeView4)
 
         val list = ArrayList<CharSequence>()
         val ss1 = SpannableString("1、MarqueeView开源项目")
@@ -65,6 +62,5 @@ class FragmentMarqueeCommon : Fragment() {
             toast("ID:" + model.id)
         }
 
-        return view
     }
 }

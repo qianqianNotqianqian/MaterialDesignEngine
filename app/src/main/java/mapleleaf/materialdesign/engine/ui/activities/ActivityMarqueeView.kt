@@ -36,7 +36,7 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
             )
             .add(
                 "RecyclerView",
-                FragmentMarqueeRecycleView()
+                FragmentMarqueeRecycleView(R.layout.marquee_layout_recyclerview)
             )
             .build()
         viewPager.adapter = adapter

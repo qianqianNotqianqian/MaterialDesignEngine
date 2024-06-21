@@ -44,8 +44,6 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music), MusicScann
     private lateinit var materialCardView: MaterialCardView
     private var progressBar: ProgressBar? = null
 
-//    override fun getLayoutResourceId() = R.layout.activity_music
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_music))

@@ -58,8 +58,6 @@ class ActivitySystemInfo : UniversalActivityBase(R.layout.activity_device_info) 
     private val PERMISSION_REQUEST_CODE = 1
     private var loadDeviceInfoJob: Job? = null
 
-//    override fun getLayoutResourceId() = R.layout.activity_device_info
-
     private fun showPermissionDeniedMessage() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_get_permission, null)
         val dialog = DialogHelper.customDialog(this, dialogView)

@@ -38,8 +38,6 @@ class ActivitySystemModify : UniversalActivityBase(R.layout.activity_system_modi
 
     private lateinit var systemModifyListView: ListView
 
-//    override fun getLayoutResourceId() = R.layout.activity_system_modify
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         systemModifyListView = findViewById(R.id.system_modify_listview)

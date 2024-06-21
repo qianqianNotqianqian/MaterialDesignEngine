@@ -35,8 +35,6 @@ class ActivityAppComponents : UniversalActivityBase(R.layout.activity_app_compon
     private lateinit var appBarLayout: AppBarLayout
     private var progressBar: ProgressBar? = null
 
-//    override fun getLayoutResourceId() = R.layout.activity_app_components
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         progressBar = findViewById(R.id.progressBar)

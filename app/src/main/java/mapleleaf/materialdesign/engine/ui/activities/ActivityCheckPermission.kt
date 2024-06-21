@@ -22,8 +22,6 @@ class ActivityCheckPermission : UniversalActivityBase(R.layout.activity_check_pe
     private lateinit var startStateText: TextView
     private lateinit var globalSPF: SharedPreferences
 
-//    override fun getLayoutResourceId() = R.layout.activity_check_permission
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         globalSPF = getSharedPreferences(SpfConfig.GLOBAL_SPF, Context.MODE_PRIVATE)
         checkRoot()

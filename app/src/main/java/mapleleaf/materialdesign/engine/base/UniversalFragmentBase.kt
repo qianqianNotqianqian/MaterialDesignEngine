@@ -11,19 +11,16 @@ import androidx.fragment.app.Fragment
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.utils.getStatusBarHeight
 
-abstract class UniversalFragmentBase : Fragment() {
+abstract class UniversalFragmentBase(@LayoutRes private val layoutRes: Int) : Fragment() {
 
     private var toolbar: Toolbar? = null
-
-    @get:LayoutRes
-    protected abstract val layoutResId: Int
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val view = inflater.inflate(layoutResId, container, false)
+        val view = inflater.inflate(layoutRes, container, false)
         initToolbar(view)
         return view
     }

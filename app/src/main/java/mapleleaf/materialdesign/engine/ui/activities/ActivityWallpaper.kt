@@ -31,8 +31,6 @@ class ActivityWallpaper : UniversalActivityBase(R.layout.activity_wallpaper) {
     private lateinit var tabLayout: TabLayout
     private lateinit var include: View
 
-//    override fun getLayoutResourceId() = R.layout.activity_wallpaper
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         nullList = findViewById(R.id.null_list)

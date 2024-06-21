@@ -37,7 +37,7 @@ import mapleleaf.materialdesign.engine.utils.toast
 import java.io.File
 import java.io.FileOutputStream
 
-class FragmentGetWallpaper : UniversalFragmentBase() {
+class FragmentGetWallpaper : UniversalFragmentBase(R.layout.fragment_get_image) {
 
     private var isWallpaperLoaded = false
     private var progressBar: ProgressBar? = null
@@ -47,9 +47,6 @@ class FragmentGetWallpaper : UniversalFragmentBase() {
     private lateinit var menuShare: FloatingActionButton
     private lateinit var menuMore: FloatingActionButton
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-
-    override val layoutResId: Int
-        get() = R.layout.fragment_get_image
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(rootView, savedInstanceState)

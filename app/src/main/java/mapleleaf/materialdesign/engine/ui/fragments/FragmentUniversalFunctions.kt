@@ -13,7 +13,7 @@ import mapleleaf.materialdesign.engine.base.UniversalFragmentBase
 import mapleleaf.materialdesign.engine.utils.helper.CustomWebView
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
-class FragmentUniversalFunctions : UniversalFragmentBase() {
+class FragmentUniversalFunctions : UniversalFragmentBase(R.layout.fragment_functions) {
     private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private var webView: WebView? = null
@@ -28,9 +28,6 @@ class FragmentUniversalFunctions : UniversalFragmentBase() {
             return fragment
         }
     }
-
-    override val layoutResId: Int
-        get() = R.layout.fragment_functions
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(rootView, savedInstanceState)

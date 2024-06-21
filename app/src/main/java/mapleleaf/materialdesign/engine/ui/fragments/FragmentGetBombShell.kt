@@ -66,7 +66,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import javax.net.ssl.SSLHandshakeException
 
-class FragmentGetBombShell : UniversalFragmentBase() {
+class FragmentGetBombShell : UniversalFragmentBase(R.layout.fragment_get_beautiful) {
 
     private var isLoading = false
     private var currentPage = 1
@@ -77,9 +77,6 @@ class FragmentGetBombShell : UniversalFragmentBase() {
     private lateinit var emptyList: LinearLayout
     private var imageUrls: MutableList<String> = mutableListOf()
     private var progressBar: ProgressBar? = null
-
-    override val layoutResId: Int
-        get() = R.layout.fragment_get_beautiful
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(rootView, savedInstanceState)

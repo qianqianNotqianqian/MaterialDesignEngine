@@ -26,8 +26,6 @@ class ActivitySystemVibration : UniversalActivityBase(R.layout.activity_vibratio
     private lateinit var btnRhythm: Button
     private lateinit var durationEditText: EditText
 
-//    override fun getLayoutResourceId() = R.layout.activity_vibration_control
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         setToolbarTitle(getString(R.string.toolbar_title_activity_vibration_control))
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator

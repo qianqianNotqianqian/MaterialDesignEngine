@@ -41,8 +41,6 @@ class ActivityBilibiliParse : UniversalActivityBase(R.layout.activity_bilibili_p
     private lateinit var progressBar: DialogProgressBar
     private lateinit var button: FloatingActionButton
 
-//    override fun getLayoutResourceId() = return R.layout.activity_bilibili_parse
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_bilibili_parse))

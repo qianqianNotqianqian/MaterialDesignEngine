@@ -43,15 +43,15 @@ import mapleleaf.materialdesign.engine.utils.toast
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.regex.Pattern
 
-class FragmentComponentActivities : UniversalFragmentBase() {
+class FragmentComponentActivities : UniversalFragmentBase(R.layout.fragment_components) {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AdapterComponents
     private lateinit var appsSearchBox: EditText
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-    override val layoutResId: Int
-        get() = R.layout.fragment_components
+//    override val layoutResId: Int
+//        get() = R.layout.fragment_components
 
     fun isSearchBoxNotEmpty(): Boolean {
         return appsSearchBox.text.toString().isNotEmpty()

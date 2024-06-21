@@ -60,8 +60,6 @@ class ActivityApplications : UniversalActivityBase(R.layout.activity_application
     private val maxOpenCount = 20
     private lateinit var buttonClear: AppCompatImageButton
 
-//    override fun getLayoutResourceId() = R.layout.activity_applications
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         val viewPager = findViewById<ViewPager>(R.id.view_pager)

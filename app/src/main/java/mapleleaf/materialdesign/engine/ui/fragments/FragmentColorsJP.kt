@@ -20,7 +20,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,14 +34,11 @@ import org.json.JSONException
 import java.io.IOException
 import java.nio.charset.StandardCharsets
 
-class FragmentColorsJP : UniversalFragmentBase() {
+class FragmentColorsJP : UniversalFragmentBase(R.layout.fragment_colors) {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AdapterColors
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-
-    override val layoutResId: Int
-        get() = R.layout.fragment_colors
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(rootView, savedInstanceState)

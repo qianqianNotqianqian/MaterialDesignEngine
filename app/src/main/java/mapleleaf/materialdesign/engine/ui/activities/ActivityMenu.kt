@@ -112,9 +112,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         toggle.syncState()
         toggle.drawerArrowDrawable.color = ContextCompat.getColor(this, R.color.text_color)
 
-//        DialogX.globalTheme = DialogX.THEME.AUTO
-//        DialogX.globalStyle = MaterialYouStyle.style()
-
         setNavigationViewMenuItem(
             R.id.item_download_project,
             R.drawable.ic_github,

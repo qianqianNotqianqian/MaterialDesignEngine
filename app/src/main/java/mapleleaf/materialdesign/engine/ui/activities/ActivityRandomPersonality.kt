@@ -26,8 +26,6 @@ class ActivityRandomPersonality : UniversalActivityBase(R.layout.activity_random
 
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-//    override fun getLayoutResourceId() = R.layout.activity_random_personality
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         randomPersonality()
         val scrollingView = findViewById<FastScrollNestedScrollView>(R.id.nestedScrollView2)

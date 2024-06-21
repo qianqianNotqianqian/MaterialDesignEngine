@@ -38,8 +38,6 @@ class ActivitySystemSensors : UniversalActivityBase(R.layout.activity_sensor_inf
     private lateinit var loading: AppCompatImageView
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
 
-//    override fun getLayoutResourceId() = R.layout.activity_sensor_info
-
     @SuppressLint("SetTextI18n")
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

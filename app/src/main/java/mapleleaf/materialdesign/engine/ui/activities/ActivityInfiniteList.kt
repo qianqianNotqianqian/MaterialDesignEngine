@@ -36,8 +36,6 @@ class ActivityInfiniteList : UniversalActivityBase(R.layout.activity_infinite_re
     private lateinit var loading: AppCompatImageView
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
 
-//    override fun getLayoutResourceId() = R.layout.activity_infinite_recycler_view
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_infinite_view))

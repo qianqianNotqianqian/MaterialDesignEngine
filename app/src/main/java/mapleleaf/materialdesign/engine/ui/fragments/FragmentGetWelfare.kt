@@ -18,7 +18,7 @@ import mapleleaf.materialdesign.engine.base.UniversalFragmentBase
 import mapleleaf.materialdesign.engine.utils.helper.CustomWebView
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
-class FragmentGetWelfare : UniversalFragmentBase() {
+class FragmentGetWelfare : UniversalFragmentBase(R.layout.fragment_get_web_image) {
 
     private var webView: WebView? = null
     private lateinit var progressBar: ProgressBar
@@ -45,8 +45,6 @@ class FragmentGetWelfare : UniversalFragmentBase() {
         "https://api.asxe.vip/whitesilk.php",
         "https://api.suyanw.cn/api/tbmjx.php"
     )
-    override val layoutResId: Int
-        get() = R.layout.fragment_get_web_image
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(rootView, savedInstanceState)

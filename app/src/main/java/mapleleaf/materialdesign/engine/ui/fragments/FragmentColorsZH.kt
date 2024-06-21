@@ -41,14 +41,11 @@ import org.json.JSONObject
 import java.io.IOException
 import java.nio.charset.StandardCharsets
 
-class FragmentColorsZH : UniversalFragmentBase() {
+class FragmentColorsZH : UniversalFragmentBase(R.layout.fragment_colors) {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AdapterColors
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-
-    override val layoutResId: Int
-        get() = R.layout.fragment_colors
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(rootView, savedInstanceState)

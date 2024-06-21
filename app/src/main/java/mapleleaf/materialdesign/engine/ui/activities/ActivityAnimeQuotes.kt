@@ -23,10 +23,6 @@ class ActivityAnimeQuotes : UniversalActivityBase(R.layout.activity_anime_quotes
     private lateinit var msgMaterialCardView: MaterialCardView
     private var searchTextWatcher: SearchTextWatcher? = null
 
-//    override fun getLayoutResourceId(): Int {
-//        return R.layout.activity_anime_quotes
-//    }
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         textView = findViewById(R.id.text_view)
         editText = findViewById(R.id.edit_text)

@@ -227,7 +227,7 @@
                             tools:text="-10000000000" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <CheckBox
+                    <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/max_value_chk"
                         style="@style/OptionsCheckboxStyle"
                         android:layout_width="wrap_content"

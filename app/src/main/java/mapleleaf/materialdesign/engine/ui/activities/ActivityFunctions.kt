@@ -29,8 +29,6 @@ class ActivityFunctions : UniversalActivityBase(R.layout.activity_functions) {
     private lateinit var appBarLayout: AppBarLayout
     private lateinit var loading: AppCompatImageView
 
-//    override fun getLayoutResourceId() = R.layout.activity_functions
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         tabLayout = findViewById(R.id.tab_layout)

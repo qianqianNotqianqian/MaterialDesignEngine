@@ -65,8 +65,6 @@ class ActivityApplicationDetails : UniversalActivityBase(R.layout.activity_appli
     private lateinit var loading: AppCompatImageView
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
 
-//    override fun getLayoutResourceId() = R.layout.activity_application_details
-
     @SuppressLint("ClickableViewAccessibility")
     override fun initializeComponents(savedInstanceState: Bundle?) {
 

@@ -10,8 +10,6 @@ import java.security.MessageDigest
 
 class ActivityText2MD5 : UniversalActivityBase(R.layout.activity_text_md5) {
 
-//    override fun getLayoutResourceId() = R.layout.activity_text_md5
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         val inputEditText = findViewById<EditText>(R.id.inputText_text)
         val outputEditText = findViewById<EditText>(R.id.inputText_md5)

@@ -44,8 +44,6 @@ class ActivityDictionary : UniversalActivityBase(R.layout.activity_dictionary) {
     private var isLoading = false
     val regex = Regex("[^\u4e00-\u9fa5]")
 
-//    override fun getLayoutResourceId() = R.layout.activity_dictionary
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_dictionary))

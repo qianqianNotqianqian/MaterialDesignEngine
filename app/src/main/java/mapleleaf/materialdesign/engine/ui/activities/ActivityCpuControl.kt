@@ -51,18 +51,13 @@ class ActivityCpuControl : UniversalActivityBase(R.layout.activity_cpu_control) 
     private var adrenoPLevels = arrayOf("")
     private var inited = false
     private var statusOnBoot: CpuStatus? = null
-
     private val clusterFreqs: HashMap<Int, Array<String>> = HashMap()
     private val clusterGovernors: HashMap<Int, Array<String>> = HashMap()
-
     private val thermalControlUtils = ThermalControlUtils()
     private val cpuFrequencyUtil = CpuFrequencyUtils()
     private var qualcommThermalSupported: Boolean = false
-
     private lateinit var binding: ActivityCpuControlBinding
     private var toolbar: Toolbar? = null
-
-//    override fun getLayoutResourceId() = R.layout.activity_cpu_control
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         binding = ActivityCpuControlBinding.inflate(layoutInflater)

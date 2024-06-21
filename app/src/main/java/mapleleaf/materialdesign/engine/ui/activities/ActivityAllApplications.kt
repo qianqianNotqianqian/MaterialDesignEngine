@@ -97,8 +97,6 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
     private lateinit var spinner: MaterialSpinner
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
 
-//    override fun getLayoutResourceId() = R.layout.activity_all_applications
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         recyclerView = findViewById(R.id.recyclerView)
         appsSearchBox = findViewById(R.id.apps_search_box)

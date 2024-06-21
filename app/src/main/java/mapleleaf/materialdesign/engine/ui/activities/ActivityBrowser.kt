@@ -56,8 +56,6 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
     private lateinit var progressBar: ProgressBar
     private lateinit var titleTextView: TextView
 
-//    override fun getLayoutResourceId() = R.layout.activity_browser
-
     @SuppressLint("SetJavaScriptEnabled")
     override fun initializeComponents(savedInstanceState: Bundle?) {
         setToolbarTitle("")

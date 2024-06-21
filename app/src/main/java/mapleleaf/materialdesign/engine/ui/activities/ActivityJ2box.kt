@@ -27,8 +27,6 @@ class ActivityJ2box : UniversalActivityBase(R.layout.activity_j2box), SensorEven
     private lateinit var defaultSensor: Sensor
     private lateinit var collisionView: CollisionView
 
-//    override fun getLayoutResourceId() = R.layout.activity_j2box
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         collisionView = findViewById(R.id.collisionView)
         initView()

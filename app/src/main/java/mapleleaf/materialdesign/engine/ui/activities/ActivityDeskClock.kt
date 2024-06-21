@@ -10,8 +10,6 @@ import java.util.Locale
 
 class ActivityDeskClock : UniversalActivityBase(R.layout.activity_desk_clock) {
 
-//    override fun getLayoutResourceId() = R.layout.activity_desk_clock
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         // 获取TextView实例
         val dateTextView = findViewById<TextView>(R.id.date)

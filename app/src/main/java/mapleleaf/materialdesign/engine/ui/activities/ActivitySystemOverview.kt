@@ -17,8 +17,6 @@ import mapleleaf.materialdesign.engine.utils.getStatusBarHeight
 
 class ActivitySystemOverview : UniversalActivityBase(R.layout.activity_system_overview) {
 
-//    override fun getLayoutResourceId() = R.layout.activity_system_overview
-
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun initializeComponents(savedInstanceState: Bundle?) {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)

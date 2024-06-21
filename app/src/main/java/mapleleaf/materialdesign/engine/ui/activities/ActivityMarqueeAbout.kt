@@ -32,9 +32,7 @@ class ActivityMarqueeAbout : UniversalActivityBase(R.layout.marquee_activity_abo
         }
     }
 
-    override fun initializeComponents(savedInstanceState: Bundle?) {
-        initView()
-    }
+    override fun initializeComponents(savedInstanceState: Bundle?) { initView() }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun initView() {

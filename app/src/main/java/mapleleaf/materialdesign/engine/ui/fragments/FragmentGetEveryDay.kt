@@ -18,7 +18,7 @@ import mapleleaf.materialdesign.engine.base.UniversalFragmentBase
 import mapleleaf.materialdesign.engine.utils.helper.CustomWebView
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
-class FragmentGetEveryDay : UniversalFragmentBase() {
+class FragmentGetEveryDay : UniversalFragmentBase(R.layout.fragment_every_day) {
 
     private lateinit var progressBar: ProgressBar
     private var webView: WebView? = null
@@ -26,8 +26,6 @@ class FragmentGetEveryDay : UniversalFragmentBase() {
     private val randomUrls = arrayOf(
         "https://api.jun.la/60s.php?format=image"
     )
-    override val layoutResId: Int
-        get() = R.layout.fragment_every_day
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(rootView, savedInstanceState)

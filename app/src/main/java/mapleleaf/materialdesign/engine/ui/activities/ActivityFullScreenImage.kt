@@ -51,8 +51,6 @@ class ActivityFullScreenImage : UniversalActivityBase(R.layout.activity_fullscre
     private lateinit var imagePosition: TextView
     private lateinit var imageSize: TextView
 
-//    override fun getLayoutResourceId() = R.layout.activity_fullscreen_image
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         viewPager = findViewById(R.id.viewPager)

@@ -42,8 +42,6 @@ class ActivityProcess : UniversalActivityBase(R.layout.activity_process) {
     private var supported: Boolean = false
     private val handle = Handler(Looper.getMainLooper())
 
-//    override fun getLayoutResourceId() = R.layout.activity_process
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         supported = processUtils.supported(this)
         val processUnsupported = findViewById<TextView>(R.id.process_unsupported)

@@ -48,8 +48,6 @@ class ActivityHotSearch : UniversalActivityBase(R.layout.activity_hot_search) {
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
     private var currentUrl: String? = "https://api.vvhan.com/api/hotlist/wbHot"
 
-//    override fun getLayoutResourceId() = R.layout.activity_hot_search
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

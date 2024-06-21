@@ -29,8 +29,6 @@ class ActivitySystemIcons : UniversalActivityBase(R.layout.activity_system_icons
     private lateinit var finger: AppCompatImageView
     private var isAnimation1Playing = true
 
-//    override fun getLayoutResourceId() = R.layout.activity_system_icons_style
-
     override fun initializeComponents(savedInstanceState: Bundle?) {
         setToolbarTitle(getString(R.string.toolbar_title_activity_system_icons))
         initializeAnimations()

@@ -285,8 +285,8 @@ class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_dialog_sho
         }
 
         btnFullScreenDialogFragment.setOnClickListener {
-            val fragmentCustomView = FragmentCustomView()
-                .setAddButtonClickListener { v12 -> btnFullScreenDialogFragment.callOnClick() }
+            val fragmentCustomView = FragmentCustomView(R.layout.fragment_custom)
+                .setAddButtonClickListener { _ -> btnFullScreenDialogFragment.callOnClick() }
             FullScreenDialog.build(object : OnBindView<FullScreenDialog>(fragmentCustomView) {
                 override fun onBind(dialog: FullScreenDialog, v: View) {
                 }
