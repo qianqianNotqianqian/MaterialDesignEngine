@@ -16,17 +16,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mapleleaf.materialdesign.engine.R;
+import mapleleaf.materialdesign.engine.base.UniversalFragmentBase;
 import mapleleaf.materialdesign.engine.view.SunfushengMarqueeView;
 
 /**
  * @author sunfusheng on 2018/2/6.
  */
-public class FragmentMarqueeRecycleView extends Fragment {
+public class FragmentMarqueeRecycleView extends UniversalFragmentBase {
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.marquee_layout_recyclerview, container, false);
+    public FragmentMarqueeRecycleView() {
+        super(R.layout.marquee_layout_recyclerview);
     }
 
     @Override
