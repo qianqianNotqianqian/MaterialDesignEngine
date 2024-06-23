@@ -11,8 +11,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Environment
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -354,7 +352,8 @@ class FragmentGetRandomCosplay : UniversalFragmentBase(R.layout.fragment_get_bea
 
                         // 如果有占位图，重新加载占位图
                         if (model is String && model.isNotEmpty()) {
-                            Handler(Looper.getMainLooper()).postDelayed({
+                            CoroutineScope(Dispatchers.Main).launch {
+                                delay(1000)
                                 Glide.with(context)
                                     .load(model)
                                     .apply(
@@ -373,7 +372,8 @@ class FragmentGetRandomCosplay : UniversalFragmentBase(R.layout.fragment_get_bea
                                             isFirstResource: Boolean,
                                         ): Boolean {
                                             Log.e("GlideLog", "重新加载图片失败，URL: $model", e)
-                                            Handler(Looper.getMainLooper()).postDelayed({
+                                            CoroutineScope(Dispatchers.Main).launch {
+                                                delay(1000)
                                                 Glide.with(context)
                                                     .load(model)
                                                     .apply(
@@ -396,7 +396,91 @@ class FragmentGetRandomCosplay : UniversalFragmentBase(R.layout.fragment_get_bea
                                                                 "重新加载图片失败，URL: $model",
                                                                 e
                                                             )
-                                                            // 显示默认错误图像或其他反馈机制
+                                                            CoroutineScope(Dispatchers.Main).launch {
+                                                                delay(1000)
+                                                                Glide.with(context)
+                                                                    .load(model)
+                                                                    .apply(
+                                                                        RequestOptions()
+                                                                            .transform(CenterCrop())
+                                                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                                            .placeholder(R.color.background)
+                                                                            .error(R.drawable.ic_error)
+                                                                    )
+                                                                    .transition(DrawableTransitionOptions.withCrossFade())
+                                                                    .listener(object : RequestListener<Drawable> {
+                                                                        override fun onLoadFailed(
+                                                                            e: GlideException?,
+                                                                            model: Any?,
+                                                                            target: Target<Drawable>,
+                                                                            isFirstResource: Boolean,
+                                                                        ): Boolean {
+                                                                            Log.e("GlideLog", "重新加载图片失败，URL: $model", e)
+                                                                            CoroutineScope(Dispatchers.Main).launch {
+                                                                                delay(1000)
+                                                                                Glide.with(context)
+                                                                                    .load(model)
+                                                                                    .apply(
+                                                                                        RequestOptions()
+                                                                                            .transform(CenterCrop())
+                                                                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                                                            .placeholder(R.color.background)
+                                                                                            .error(R.drawable.ic_error)
+                                                                                    )
+                                                                                    .transition(DrawableTransitionOptions.withCrossFade())
+                                                                                    .listener(object : RequestListener<Drawable> {
+                                                                                        override fun onLoadFailed(
+                                                                                            e: GlideException?,
+                                                                                            model: Any?,
+                                                                                            target: Target<Drawable>,
+                                                                                            isFirstResource: Boolean,
+                                                                                        ): Boolean {
+                                                                                            Log.e(
+                                                                                                "GlideLog",
+                                                                                                "重新加载图片失败，URL: $model",
+                                                                                                e
+                                                                                            )
+                                                                                            // 显示默认错误图像或其他反馈机制
+                                                                                            holder.imageView.setImageResource(R.drawable.ic_error)
+                                                                                            return true
+                                                                                        }
+
+                                                                                        override fun onResourceReady(
+                                                                                            resource: Drawable,
+                                                                                            model: Any,
+                                                                                            target: Target<Drawable>?,
+                                                                                            dataSource: DataSource,
+                                                                                            isFirstResource: Boolean,
+                                                                                        ): Boolean {
+                                                                                            Log.d(
+                                                                                                "GlideLog",
+                                                                                                "重新加载图片成功，URL: $model"
+                                                                                            )
+                                                                                            // 清除之前加载失败的错误信息
+                                                                                            holder.imageView.setImageDrawable(null)
+                                                                                            return false
+                                                                                        }
+                                                                                    })
+                                                                                    .into(target)
+                                                                            }
+                                                                            return true
+                                                                        }
+
+                                                                        override fun onResourceReady(
+                                                                            resource: Drawable,
+                                                                            model: Any,
+                                                                            target: Target<Drawable>?,
+                                                                            dataSource: DataSource,
+                                                                            isFirstResource: Boolean,
+                                                                        ): Boolean {
+                                                                            Log.d("GlideLog", "重新加载图片成功，URL: $model")
+                                                                            // 清除之前加载失败的错误信息
+                                                                            holder.imageView.setImageDrawable(null)
+                                                                            return false
+                                                                        }
+                                                                    })
+                                                                    .into(target)
+                                                            }
                                                             holder.imageView.setImageResource(R.drawable.ic_error)
                                                             return true
                                                         }
@@ -418,7 +502,7 @@ class FragmentGetRandomCosplay : UniversalFragmentBase(R.layout.fragment_get_bea
                                                         }
                                                     })
                                                     .into(target)
-                                            }, 1000)
+                                            }
                                             return true
                                         }
 
@@ -436,7 +520,7 @@ class FragmentGetRandomCosplay : UniversalFragmentBase(R.layout.fragment_get_bea
                                         }
                                     })
                                     .into(target)
-                            }, 1000)
+                            }
                         }
                         return true
                     }
@@ -529,7 +613,7 @@ class FragmentGetRandomCosplay : UniversalFragmentBase(R.layout.fragment_get_bea
 
         private val STORAGE_PERMISSION_REQUEST_CODE = 1
 
-        private val handler = Handler(Looper.getMainLooper())
+        private val handler = CoroutineScope(Dispatchers.Main)
 
         private fun saveImage(context: Context, bitmap: Bitmap) {
             // 检查写入外部存储的权限
@@ -581,12 +665,12 @@ class FragmentGetRandomCosplay : UniversalFragmentBase(R.layout.fragment_get_bea
                     fos.flush()
                 }
                 Log.d("ImagePagerAdapter", "保存成功: ${imageFile.absolutePath}")
-                handler.post {
+                handler.launch {
                     toast("保存成功: ${imageFile.absolutePath}")
                 }
             } catch (e: IOException) {
                 Log.e("ImagePagerAdapter", "保存失败: ${e.message}")
-                handler.post {
+                handler.launch {
                     toast("保存失败: ${e.message}")
                 }
             }

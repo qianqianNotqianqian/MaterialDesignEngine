@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/componentCardView"
     style="@style/Widget.AppTheme.CardView.ListItem.Outlined"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="6dp"
     android:layout_marginHorizontal="6dp"
+    android:layout_marginBottom="6dp"
     android:descendantFocusability="beforeDescendants"
-    app:cardElevation="0dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:cardElevation="0dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -44,19 +43,19 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:textIsSelectable="true"
                     android:textAppearance="?android:attr/textAppearanceListItem"
+                    android:textIsSelectable="true"
                     tools:text="@tools:sample/lorem" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/orientationTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textIsSelectable="true"
                     android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:textIsSelectable="true"
                     android:textSize="10sp"
-                    tools:text="@tools:sample/lorem"
-                    tools:ignore="SmallSp" />
+                    tools:ignore="SmallSp"
+                    tools:text="@tools:sample/lorem" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -75,49 +74,49 @@
             android:id="@+id/softInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
             android:textAppearance="?attr/textAppearanceBodySmall"
-            tools:text="@tools:sample/lorem"
-            tools:ignore="SmallSp" />
+            android:textIsSelectable="true"
+            tools:ignore="SmallSp"
+            tools:text="@tools:sample/lorem" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/launchMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
             android:textAppearance="?attr/textAppearanceBodySmall"
-            tools:text="@tools:sample/lorem"
-            tools:ignore="SmallSp" />
+            android:textIsSelectable="true"
+            tools:ignore="SmallSp"
+            tools:text="@tools:sample/lorem" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/process_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
             android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textIsSelectable="true"
             android:textSize="9sp"
             android:visibility="gone"
-            tools:text="@tools:sample/lorem"
-            tools:ignore="SmallSp" />
+            tools:ignore="SmallSp"
+            tools:text="@tools:sample/lorem" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/taskAffinity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:textIsSelectable="true"
             android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textIsSelectable="true"
             tools:text="@tools:sample/lorem" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/componentName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
             android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textIsSelectable="true"
             tools:text="@tools:sample/lorem" />
 
-<!--        android:fontFamily="monospace"-->
+        <!--        android:fontFamily="monospace"-->
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/action_launch_and_shortcut"
@@ -135,8 +134,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:singleLine="true"
-                android:textSize="11sp"
                 android:text="@string/launch"
+                android:textSize="11sp"
                 tools:ignore="SmallSp" />
 
             <com.google.android.material.button.MaterialButton
@@ -145,10 +144,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:singleLine="true"
                 android:clickable="true"
-                android:textSize="11sp"
+                android:singleLine="true"
                 android:text="@string/create_shortcut"
+                android:textSize="11sp"
                 tools:ignore="SmallSp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

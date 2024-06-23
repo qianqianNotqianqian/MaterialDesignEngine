@@ -40,7 +40,7 @@ class ActivityProcess : UniversalActivityBase(R.layout.activity_process) {
 
     private val processUtils = ProcessUtils()
     private var supported: Boolean = false
-    private val handle = Handler(Looper.getMainLooper())
+    private val handle = lifecycleScope
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         supported = processUtils.supported(this)
@@ -142,7 +142,7 @@ class ActivityProcess : UniversalActivityBase(R.layout.activity_process) {
     private fun updateData() {
         val processList = findViewById<ListView>(R.id.process_list)
         val data = processUtils.allProcess
-        handle.post {
+        handle.launch {
             val adapter = processList.adapter as? AdapterProcess
             adapter?.setList(data)
             adapter?.notifyDataSetChanged()

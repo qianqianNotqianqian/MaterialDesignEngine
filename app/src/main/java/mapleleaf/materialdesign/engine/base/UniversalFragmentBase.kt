@@ -25,7 +25,7 @@ abstract class UniversalFragmentBase(@LayoutRes private val layoutRes: Int) : Fr
         return view
     }
 
-    private fun initToolbar(view: View) {
+    fun initToolbar(view: View) {
         toolbar = view.findViewById(R.id.toolbar)
         toolbar?.post {
             val layoutParams = toolbar!!.layoutParams as? ConstraintLayout.LayoutParams

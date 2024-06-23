@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingVertical="12dp"
-    android:paddingHorizontal="12dp">
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="12dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ProcessIcon"

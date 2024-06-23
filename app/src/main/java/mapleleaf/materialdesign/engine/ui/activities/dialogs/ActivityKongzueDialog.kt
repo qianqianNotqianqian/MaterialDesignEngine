@@ -9,8 +9,6 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.view.Gravity
@@ -27,6 +25,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.kongzue.baseframework.BaseApp.dip2px
@@ -58,21 +57,22 @@ import com.kongzue.dialogx.style.KongzueStyle
 import com.kongzue.dialogx.style.MIUIStyle
 import com.kongzue.dialogx.style.MaterialStyle
 import com.kongzue.dialogx.util.TextInfo
-import mapleleaf.materialdesign.engine.ui.fragments.FragmentCustomView
 import com.kongzue.dialogxmaterialyou.style.MaterialYouStyle
 import com.xuexiang.xui.utils.XToastUtils.toast
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
+import mapleleaf.materialdesign.engine.ui.fragments.FragmentCustomView
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.Random
 
-class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_dialog_show) {
+class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_kongzue_dialog) {
 
     private val singleSelectMenuText = arrayOf("拒绝", "询问", "始终允许", "仅在使用中允许")
     private val multiSelectMenuText = arrayOf("上海", "北京", "广州", "深圳")
 
-    private lateinit var handler: Handler
     private lateinit var grpStyle: MaterialButtonToggleGroup
     private lateinit var rdoMaterial: MaterialButton
     private lateinit var rdoIos: MaterialButton
@@ -278,14 +278,14 @@ class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_dialog_sho
 
         btnSelectMenu.setOnClickListener { view ->
             PopMenu.show(view, arrayOf("选项1", "选项2", "选项3"))
-                .setOnMenuItemClickListener { dialog, text, index ->
+                .setOnMenuItemClickListener { _, text, _ ->
                     btnSelectMenu.text = text
                     false
                 }
         }
 
         btnFullScreenDialogFragment.setOnClickListener {
-            val fragmentCustomView = FragmentCustomView(R.layout.fragment_custom)
+            val fragmentCustomView = FragmentCustomView()
                 .setAddButtonClickListener { _ -> btnFullScreenDialogFragment.callOnClick() }
             FullScreenDialog.build(object : OnBindView<FullScreenDialog>(fragmentCustomView) {
                 override fun onBind(dialog: FullScreenDialog, v: View) {
@@ -383,7 +383,10 @@ class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_dialog_sho
                     PopTip.show("按下返回")
                     false
                 }
-            handler.postDelayed({ WaitDialog.dismiss() }, 1500)
+            lifecycleScope.launch {
+                delay(1500)
+                WaitDialog.dismiss()
+            }
         }
 
         var closeFlag: Boolean
@@ -398,12 +401,12 @@ class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_dialog_sho
                 }
                 false
             }
-            if (!closeFlag) {
-                handler.postDelayed({
-                    if (!closeFlag) {
-                        TipDialog.show("完成！", WaitDialog.TYPE.SUCCESS)
-                    }
-                }, 1500 + Random().nextInt(1000).toLong())
+            lifecycleScope.launch {
+                val delayTime = 1500 + Random().nextInt(1000).toLong()
+                delay(delayTime)
+                if (!closeFlag) {
+                    TipDialog.show("完成！", WaitDialog.TYPE.SUCCESS)
+                }
             }
         }
 
@@ -430,29 +433,26 @@ class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_dialog_sho
                     }
                 false
             }
-            handler.postDelayed({
+            // 在适当的作用域内启动协程
+            lifecycleScope.launch {
+                delay(3000)
                 if (waitId != 0) {
-                    return@postDelayed
+                    return@launch
                 }
-                val cycleRunner = object : Runnable {
-                    var progress = 0f
-                    override fun run() {
-                        if (waitId != 0) {
-                            handler.removeCallbacks(this)
-                            return
-                        }
-                        progress += 0.1f
-                        if (progress < 1f) {
-                            WaitDialog.show("假装加载" + ((progress * 100).toInt()) + "%", progress)
-                            handler.postDelayed(this, 1000)
-                        } else {
-                            TipDialog.show("加载完成", WaitDialog.TYPE.SUCCESS)
-                            handler.removeCallbacks(this)
-                        }
+                var progress = 0f
+                while (true) {
+                    if (waitId != 0) {
+                        return@launch
+                    }
+                    progress += 0.1f
+                    WaitDialog.show("假装加载${(progress * 100).toInt()}%", progress)
+                    delay(1000)
+                    if (progress >= 1f) {
+                        TipDialog.show("加载完成", WaitDialog.TYPE.SUCCESS)
+                        break
                     }
                 }
-                handler.post(cycleRunner)
-            }, 3000)
+            }
         }
 
         btnBottomDialog.setOnClickListener {
@@ -856,8 +856,10 @@ class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_dialog_sho
             intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
 
-            // 等待一秒后显示
-            Handler(Looper.getMainLooper()).postDelayed({
+            // 使用协程实现延迟操作
+            lifecycleScope.launch {
+                delay(1000)
+
                 PopNotification.build()
                     .setDialogImplMode(DialogX.IMPL_MODE.WINDOW)
                     .setTitle("这是一条消息 $notificationIndex")
@@ -869,7 +871,7 @@ class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_dialog_sho
                         false
                     }
                     .showLong()
-            }, 1000)
+            }
         }
 
         btnPopnotificationBigMessage.setOnClickListener {
@@ -929,7 +931,6 @@ class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_dialog_sho
                 }
                 .setSelection(selectMenuIndexArray)
         }
-        handler = Handler(Looper.getMainLooper())
         setToolbarTitle(getString(R.string.toolbar_title_activity_kongzue_dialog))
     }
 

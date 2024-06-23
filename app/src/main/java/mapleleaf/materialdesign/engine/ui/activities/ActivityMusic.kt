@@ -6,8 +6,6 @@ import android.content.Context
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +24,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -104,7 +103,7 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music), MusicScann
         private var mediaPlayer: MediaPlayer? = null
         private var musicList = listOf<Music>()
         private var mediaPlayerReleased = false
-        private var handler = Handler(Looper.getMainLooper())
+        private var coroutineScope = CoroutineScope(Dispatchers.Main)
         private var shouldPlayAudio = true
 
         @SuppressLint("NotifyDataSetChanged")
@@ -259,7 +258,7 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music), MusicScann
                             if (player.isPlaying) {
                                 player.pause()
                                 btnPlayPause.text = "播放"
-                                handler.removeCallbacksAndMessages(null)
+                                coroutineScope.cancel()
                             } else {
                                 player.start()
                                 btnPlayPause.text = "暂停"

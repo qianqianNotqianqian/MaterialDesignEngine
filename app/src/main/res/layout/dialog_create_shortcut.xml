@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp" >
+                android:padding="12dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -41,11 +41,11 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/shortcut_icon"
                     android:layout_marginTop="12dp"
-                    app:endIconMode="custom"
-                    app:endIconDrawable="@drawable/ic_refresh"
+                    android:hint="@string/shortcut_icon"
                     app:endIconContentDescription="@string/icon_picker"
+                    app:endIconDrawable="@drawable/ic_refresh"
+                    app:endIconMode="custom"
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true">
 
@@ -64,19 +64,19 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="6dp"
-                    android:padding="12dp"
+                    android:background="@drawable/dashed_border"
                     android:orientation="vertical"
-                    android:background="@drawable/dashed_border">
+                    android:padding="12dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/icon"
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:layout_gravity="center"
-                        android:scaleType="fitCenter"
                         android:adjustViewBounds="true"
-                        android:minHeight="200dp"
                         android:minWidth="200dp"
+                        android:minHeight="200dp"
+                        android:scaleType="fitCenter"
                         app:shapeAppearanceOverlay="@style/ShapeAppearance.AppTheme.CircleComponent"
                         app:srcCompat="@drawable/ic_image" />
 
@@ -84,10 +84,10 @@
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
                         android:layout_marginTop="12dp"
-                        android:maxLines="1"
                         android:ellipsize="end"
+                        android:gravity="center_horizontal"
+                        android:maxLines="1"
                         tools:text="@tools:sample/lorem[4]" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>

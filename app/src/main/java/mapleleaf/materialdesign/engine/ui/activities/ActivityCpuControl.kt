@@ -2,8 +2,6 @@ package mapleleaf.materialdesign.engine.ui.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.CheckBox
@@ -15,6 +13,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
@@ -40,7 +40,7 @@ class ActivityCpuControl : UniversalActivityBase(R.layout.activity_cpu_control) 
     private var cpuModeName: String? = null
     private lateinit var themeMode: ThemeMode
     private var clusterCount = 0
-    private var handler = Handler(Looper.getMainLooper())
+    private var lifecycleCoroutineScope = lifecycleScope
     private var coreCount = 0
     private var cores = arrayListOf<CheckBox>()
     private var exynosHMP = false
@@ -117,7 +117,7 @@ class ActivityCpuControl : UniversalActivityBase(R.layout.activity_cpu_control) 
             adrenoPLevels = GpuUtils.getAdrenoGPUPowerLevels()
         }
 
-        handler.post {
+        lifecycleCoroutineScope.launch {
             try {
                 if (exynosHMP || exynosCpuHotPlugSupport) {
                     binding.cpuExynos.isVisible = true
@@ -202,7 +202,7 @@ class ActivityCpuControl : UniversalActivityBase(R.layout.activity_cpu_control) 
             }
 
             for (cluster in 0 until clusterCount) {
-                handler.post {
+                lifecycleCoroutineScope.launch {
                     bindClusterConfig(cluster)
                 }
             }
@@ -694,7 +694,7 @@ class ActivityCpuControl : UniversalActivityBase(R.layout.activity_cpu_control) 
             status.cpusetRestricted = KernelProp.getProp("/dev/cpuset/restricted/cpus")
             status.cpusetTopApp = KernelProp.getProp("/dev/cpuset/top-app/cpus")
 
-            handler.post {
+            lifecycleCoroutineScope.launch {
                 updateUI()
             }
         } catch (ex: Exception) {

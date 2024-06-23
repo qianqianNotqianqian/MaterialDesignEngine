@@ -50,10 +50,14 @@ class FragmentGetWallpaper : UniversalFragmentBase(R.layout.fragment_get_image) 
 
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(rootView, savedInstanceState)
+
+        progressBar = rootView.findViewById(R.id.progressBar)
+        progressBar?.isVisible = true
+        progressBar?.isIndeterminate = true
+
         lifecycleScope.launch {
             withContext(Dispatchers.Default) {
                 wallpaperImageView = rootView.findViewById(R.id.wallpaperImageView)
-                progressBar = rootView.findViewById(R.id.progressBar)
                 relativeLayoutImg = rootView.findViewById(R.id.relativeLayout_img)
                 menuDownload = rootView.findViewById(R.id.get_image_download)
                 menuShare = rootView.findViewById(R.id.get_image_share)
@@ -70,8 +74,6 @@ class FragmentGetWallpaper : UniversalFragmentBase(R.layout.fragment_get_image) 
             toolbar.setBackgroundColor(blendedColor)
 
             withContext(Dispatchers.Main) {
-                progressBar?.isVisible = true
-                progressBar?.isIndeterminate = true
 
                 val colorRed = ContextCompat.getColor(requireContext(), R.color.red1)
                 val colorGreen = ContextCompat.getColor(requireContext(), R.color.lawngreen)

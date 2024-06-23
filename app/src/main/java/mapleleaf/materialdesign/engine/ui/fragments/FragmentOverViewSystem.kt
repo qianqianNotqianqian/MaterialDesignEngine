@@ -10,8 +10,6 @@ import android.content.SharedPreferences
 import android.os.BatteryManager
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
@@ -61,7 +59,7 @@ class FragmentOverViewSystem : Fragment() {
     private var timer: Timer? = null
 
     private lateinit var spf: SharedPreferences
-    private var myHandler = Handler(Looper.getMainLooper())
+    private var lifecycleCoroutineScope = lifecycleScope
     private var cpuLoadUtils = CpuLoadUtils()
     private val memoryUtils = MemoryUtils()
 
@@ -221,7 +219,7 @@ class FragmentOverViewSystem : Fragment() {
                 // home_swapstate.text = swapInfo.substring(swapInfo.indexOf(" "), swapInfo.lastIndexOf(" ")).trim()
             }
 
-            myHandler.post {
+            lifecycleCoroutineScope.launch {
                 if (binding != null) {
                     binding!!.homeRaminfoText.text =
                         "${((totalMem - availMem) * 100 / totalMem)}% (${totalMem / 1024 + 1}GB)"
@@ -263,7 +261,7 @@ class FragmentOverViewSystem : Fragment() {
     private fun updateInfo() {
         if (coreCount < 1) {
             coreCount = cpuFrequencyUtil.coreCount
-            myHandler.post {
+            lifecycleCoroutineScope.launch {
                 try {
                     binding!!.cpuCoreCount.text = "$coreCount 核心"
                 } catch (ex: Exception) {
@@ -313,7 +311,7 @@ class FragmentOverViewSystem : Fragment() {
         updateRamInfo()
         val memInfo = memoryUtils.memoryInfo
 
-        myHandler.post {
+        lifecycleCoroutineScope.launch {
             try {
                 binding!!.homeSwapCached.text = "" + (memInfo.swapCached / 1024) + "MB"
                 binding!!.homeBuffers.text = "" + (memInfo.buffers / 1024) + "MB"

@@ -4,25 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <include
-            android:id="@+id/include"
-            layout="@layout/this_application_toolbar" />
-
-    </LinearLayout>
+    <include
+        android:id="@+id/include"
+        layout="@layout/this_application_toolbar" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/include">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -32,6 +23,7 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <!-- 空列表占位符布局 -->
     <LinearLayout
         android:id="@+id/emptyList"
         android:layout_width="240dp"
@@ -46,5 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_loading_list" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

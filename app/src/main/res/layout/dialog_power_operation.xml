@@ -44,10 +44,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
                     android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="12dp" >
+                    android:layout_marginTop="12dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/power_shutdown"
@@ -144,12 +144,12 @@
                     android:id="@+id/power_hot_reboot"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/in_card_item"
                     android:orientation="horizontal"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="12dp"
-                    android:padding="6dp" >
+                    android:padding="6dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="35dp"

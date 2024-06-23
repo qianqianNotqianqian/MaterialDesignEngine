@@ -4,11 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.permissions.CheckRootStatus
@@ -66,20 +67,20 @@ class ActivityCheckPermission : UniversalActivityBase(R.layout.activity_check_pe
      */
     private fun startToFinish() {
         startStateText.text = "启动完成！"
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
+        lifecycleScope.launch {
+            delay(1000)
             ActivityCompat.startActivity(
-                this,
+                this@ActivityCheckPermission,
                 Intent(this@ActivityCheckPermission, ActivitySystemOverview::class.java),
                 ActivityOptionsCompat.makeCustomAnimation(
-                    this,
+                    this@ActivityCheckPermission,
                     R.anim.activity_fade_in_up,
                     R.anim.activity_fade_out_up
                 ).toBundle()
             )
             finished = true
             finish()
-        }, 600)
+        }
     }
 
 }

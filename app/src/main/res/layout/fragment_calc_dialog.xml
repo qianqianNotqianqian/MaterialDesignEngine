@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingVertical="6dp" >
+            android:paddingVertical="6dp">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="12dp" >
+                    android:padding="12dp">
 
                     <TextView
                         android:id="@+id/calc_options_txv"
@@ -310,7 +310,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="12dp" >
+                    android:padding="12dp">
 
                     <TextView
                         android:id="@+id/nbfmt_options_txv"
@@ -451,10 +451,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="12dp"
+        android:contentDescription="@string/todo"
         android:src="@drawable/ic_edit"
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

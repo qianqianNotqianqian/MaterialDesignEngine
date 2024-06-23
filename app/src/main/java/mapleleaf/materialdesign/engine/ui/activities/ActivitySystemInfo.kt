@@ -9,20 +9,18 @@ import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.view.View
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.card.MaterialCardView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.MaterialDesignEngine
@@ -252,8 +250,8 @@ class ActivitySystemInfo : UniversalActivityBase(R.layout.activity_device_info) 
     }
 
     private fun removeDelayedTasks() {
-        val mainHandler = Handler(Looper.getMainLooper())
-        mainHandler.removeCallbacksAndMessages(null)
+        val lifecycleCoroutineScope = lifecycleScope
+        lifecycleCoroutineScope.cancel()
     }
 
     private fun updateUI(deviceInfo: DeviceInfo) {
