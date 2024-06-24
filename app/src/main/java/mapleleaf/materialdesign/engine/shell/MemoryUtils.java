@@ -1,7 +1,5 @@
 package mapleleaf.materialdesign.engine.shell;
 
-import mapleleaf.materialdesign.engine.shell.KernelProp;
-
 public class MemoryUtils {
     // 提取 /proc/meminfo 里某一行的数值，
     // 例： [MemFree:          138828 kB] => [138828]

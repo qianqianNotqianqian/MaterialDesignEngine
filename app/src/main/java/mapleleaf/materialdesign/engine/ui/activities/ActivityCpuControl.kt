@@ -19,11 +19,11 @@ import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.databinding.ActivityCpuControlBinding
-import mapleleaf.materialdesign.engine.shell.GpuUtils
 import mapleleaf.materialdesign.engine.model.CpuClusterStatus
 import mapleleaf.materialdesign.engine.model.CpuStatus
 import mapleleaf.materialdesign.engine.model.SelectItem
 import mapleleaf.materialdesign.engine.shell.CpuFrequencyUtils
+import mapleleaf.materialdesign.engine.shell.GpuUtils
 import mapleleaf.materialdesign.engine.shell.KernelProp
 import mapleleaf.materialdesign.engine.shell.ThermalControlUtils
 import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper

@@ -34,7 +34,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalFragmentBase
-import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.regex.Pattern
@@ -249,7 +248,8 @@ class FragmentComponentWidgetInfo : UniversalFragmentBase(R.layout.fragment_comp
             private val widgetIcon: ImageView = itemView.findViewById(R.id.componentIcon)
             private val nameTextView: TextView = itemView.findViewById(R.id.componentName)
             private val labelTextView: TextView = itemView.findViewById(R.id.componentLabel)
-            private val actionLaunchAndShortcut: LinearLayoutCompat = itemView.findViewById(R.id.action_launch_and_shortcut)
+            private val actionLaunchAndShortcut: LinearLayoutCompat =
+                itemView.findViewById(R.id.action_launch_and_shortcut)
             private val componentMaterialCardView: MaterialCardView =
                 itemView.findViewById(R.id.componentCardView)
             private val componentStatus: MaterialSwitch =

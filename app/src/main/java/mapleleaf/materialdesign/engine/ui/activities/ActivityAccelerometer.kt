@@ -22,7 +22,8 @@ import me.zhanghai.android.fastscroll.FastScrollNestedScrollView
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.Locale
 
-class ActivityAccelerometer : UniversalActivityBase(R.layout.activity_accelerometer), SensorEventListener {
+class ActivityAccelerometer : UniversalActivityBase(R.layout.activity_accelerometer),
+    SensorEventListener {
 
     private lateinit var sensorManager: SensorManager
     private lateinit var accelerometerSensor: Sensor

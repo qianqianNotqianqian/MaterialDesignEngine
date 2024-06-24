@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.TextView
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.shell.KeepShellPublic
-import org.w3c.dom.Text
 
 class DialogPower(var context: Activity) {
     @SuppressLint("InflateParams")

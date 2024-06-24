@@ -6,8 +6,6 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import mapleleaf.materialdesign.engine.model.ProcessInfo;
-import mapleleaf.materialdesign.engine.shell.KeepShellPublic;
-import mapleleaf.materialdesign.engine.shell.KernelProp;
 import mapleleaf.materialdesign.engine.shell_utils.ToolboxInstaller;
 
 /**

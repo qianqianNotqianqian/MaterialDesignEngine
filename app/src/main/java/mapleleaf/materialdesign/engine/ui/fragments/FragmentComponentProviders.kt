@@ -3,7 +3,6 @@ package mapleleaf.materialdesign.engine.ui.fragments
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.content.pm.ProviderInfo
 import android.graphics.Paint
@@ -35,7 +34,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalFragmentBase
-import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.regex.Pattern
@@ -253,7 +251,8 @@ class FragmentComponentProviders : UniversalFragmentBase(R.layout.fragment_compo
             private val providerIcon: ImageView = itemView.findViewById(R.id.componentIcon)
             private val providerLabelTextView: TextView = itemView.findViewById(R.id.componentLabel)
             private val providerNameTextView: TextView = itemView.findViewById(R.id.componentName)
-            private val actionLaunchAndShortcut: LinearLayoutCompat = itemView.findViewById(R.id.action_launch_and_shortcut)
+            private val actionLaunchAndShortcut: LinearLayoutCompat =
+                itemView.findViewById(R.id.action_launch_and_shortcut)
             private val softInputTextView: TextView = itemView.findViewById(R.id.softInput)
             private val launchModeTextView: TextView = itemView.findViewById(R.id.launchMode)
             private val taskAffinityTextView: TextView = itemView.findViewById(R.id.taskAffinity)

@@ -20,7 +20,6 @@ import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
@@ -142,7 +141,13 @@ class ActivityInfiniteList : UniversalActivityBase(R.layout.activity_infinite_re
             init {
                 colorMaterialCardView.setOnClickListener(this)
                 val baseColor = ContextCompat.getColor(context, R.color.background)
-                colorMaterialCardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+                colorMaterialCardView.setCardBackgroundColor(
+                    ColorUtils.blendARGB(
+                        baseColor,
+                        primaryColor,
+                        0.15f
+                    )
+                )
             }
 
             fun bind(data: Long) {

@@ -403,32 +403,52 @@ class FragmentGetRandomCosplay : UniversalFragmentBase(R.layout.fragment_get_bea
                                                                     .apply(
                                                                         RequestOptions()
                                                                             .transform(CenterCrop())
-                                                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                                            .diskCacheStrategy(
+                                                                                DiskCacheStrategy.ALL
+                                                                            )
                                                                             .placeholder(R.color.background)
                                                                             .error(R.drawable.ic_error)
                                                                     )
-                                                                    .transition(DrawableTransitionOptions.withCrossFade())
-                                                                    .listener(object : RequestListener<Drawable> {
+                                                                    .transition(
+                                                                        DrawableTransitionOptions.withCrossFade()
+                                                                    )
+                                                                    .listener(object :
+                                                                        RequestListener<Drawable> {
                                                                         override fun onLoadFailed(
                                                                             e: GlideException?,
                                                                             model: Any?,
                                                                             target: Target<Drawable>,
                                                                             isFirstResource: Boolean,
                                                                         ): Boolean {
-                                                                            Log.e("GlideLog", "重新加载图片失败，URL: $model", e)
-                                                                            CoroutineScope(Dispatchers.Main).launch {
+                                                                            Log.e(
+                                                                                "GlideLog",
+                                                                                "重新加载图片失败，URL: $model",
+                                                                                e
+                                                                            )
+                                                                            CoroutineScope(
+                                                                                Dispatchers.Main
+                                                                            ).launch {
                                                                                 delay(1000)
                                                                                 Glide.with(context)
                                                                                     .load(model)
                                                                                     .apply(
                                                                                         RequestOptions()
-                                                                                            .transform(CenterCrop())
-                                                                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                                                                            .placeholder(R.color.background)
+                                                                                            .transform(
+                                                                                                CenterCrop()
+                                                                                            )
+                                                                                            .diskCacheStrategy(
+                                                                                                DiskCacheStrategy.ALL
+                                                                                            )
+                                                                                            .placeholder(
+                                                                                                R.color.background
+                                                                                            )
                                                                                             .error(R.drawable.ic_error)
                                                                                     )
-                                                                                    .transition(DrawableTransitionOptions.withCrossFade())
-                                                                                    .listener(object : RequestListener<Drawable> {
+                                                                                    .transition(
+                                                                                        DrawableTransitionOptions.withCrossFade()
+                                                                                    )
+                                                                                    .listener(object :
+                                                                                        RequestListener<Drawable> {
                                                                                         override fun onLoadFailed(
                                                                                             e: GlideException?,
                                                                                             model: Any?,
@@ -441,7 +461,9 @@ class FragmentGetRandomCosplay : UniversalFragmentBase(R.layout.fragment_get_bea
                                                                                                 e
                                                                                             )
                                                                                             // 显示默认错误图像或其他反馈机制
-                                                                                            holder.imageView.setImageResource(R.drawable.ic_error)
+                                                                                            holder.imageView.setImageResource(
+                                                                                                R.drawable.ic_error
+                                                                                            )
                                                                                             return true
                                                                                         }
 
@@ -457,7 +479,9 @@ class FragmentGetRandomCosplay : UniversalFragmentBase(R.layout.fragment_get_bea
                                                                                                 "重新加载图片成功，URL: $model"
                                                                                             )
                                                                                             // 清除之前加载失败的错误信息
-                                                                                            holder.imageView.setImageDrawable(null)
+                                                                                            holder.imageView.setImageDrawable(
+                                                                                                null
+                                                                                            )
                                                                                             return false
                                                                                         }
                                                                                     })
@@ -473,9 +497,14 @@ class FragmentGetRandomCosplay : UniversalFragmentBase(R.layout.fragment_get_bea
                                                                             dataSource: DataSource,
                                                                             isFirstResource: Boolean,
                                                                         ): Boolean {
-                                                                            Log.d("GlideLog", "重新加载图片成功，URL: $model")
+                                                                            Log.d(
+                                                                                "GlideLog",
+                                                                                "重新加载图片成功，URL: $model"
+                                                                            )
                                                                             // 清除之前加载失败的错误信息
-                                                                            holder.imageView.setImageDrawable(null)
+                                                                            holder.imageView.setImageDrawable(
+                                                                                null
+                                                                            )
                                                                             return false
                                                                         }
                                                                     })

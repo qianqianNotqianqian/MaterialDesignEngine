@@ -8,8 +8,8 @@ import android.os.Build
 import android.view.View
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
-import mapleleaf.materialdesign.engine.shell.PropsUtils
 import mapleleaf.materialdesign.engine.services.CompileService
+import mapleleaf.materialdesign.engine.shell.PropsUtils
 import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.utils.CommonCommands
 import mapleleaf.materialdesign.engine.utils.toast

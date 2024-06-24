@@ -26,11 +26,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import mapleleaf.materialdesign.engine.R
+import mapleleaf.materialdesign.engine.shell.CpuFrequencyUtils
+import mapleleaf.materialdesign.engine.shell.CpuLoadUtils
 import mapleleaf.materialdesign.engine.shell.FpsUtils
 import mapleleaf.materialdesign.engine.shell.GpuUtils
 import mapleleaf.materialdesign.engine.shell.PlatformUtils
-import mapleleaf.materialdesign.engine.shell.CpuFrequencyUtils
-import mapleleaf.materialdesign.engine.shell.CpuLoadUtils
 import mapleleaf.materialdesign.engine.store.SpfConfig
 import mapleleaf.materialdesign.engine.utils.toast
 import mapleleaf.materialdesign.engine.view.FloatMonitorBatteryView

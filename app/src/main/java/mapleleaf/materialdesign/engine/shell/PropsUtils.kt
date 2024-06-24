@@ -1,7 +1,5 @@
 package mapleleaf.materialdesign.engine.shell
 
-import mapleleaf.materialdesign.engine.shell.KeepShellPublic
-
 /**
  * Created by Hello on 2017/8/8.
  */

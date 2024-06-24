@@ -250,8 +250,10 @@ class FragmentComponentReceivers : UniversalFragmentBase(R.layout.fragment_compo
             private val receiverIcon: ImageView = itemView.findViewById(R.id.componentIcon)
             private val receiverLabelTextView: TextView = itemView.findViewById(R.id.componentLabel)
             private val receiverNameTextView: TextView = itemView.findViewById(R.id.componentName)
-            private val orientationTextView: TextView = itemView.findViewById(R.id.orientationTextView)
-            private val actionLaunchAndShortcut: LinearLayoutCompat = itemView.findViewById(R.id.action_launch_and_shortcut)
+            private val orientationTextView: TextView =
+                itemView.findViewById(R.id.orientationTextView)
+            private val actionLaunchAndShortcut: LinearLayoutCompat =
+                itemView.findViewById(R.id.action_launch_and_shortcut)
             private val taskAffinityTextView: TextView = itemView.findViewById(R.id.taskAffinity)
             private val launchModeTextView: TextView = itemView.findViewById(R.id.launchMode)
             private val softInput: TextView = itemView.findViewById(R.id.softInput)
@@ -281,7 +283,10 @@ class FragmentComponentReceivers : UniversalFragmentBase(R.layout.fragment_compo
                 val packageName = receiverInfo.packageName
 
                 // 获取服务声明的权限信息
-                val packageInfo = context.packageManager.getPackageInfo(packageName, PackageManager.GET_RECEIVERS or PackageManager.GET_PERMISSIONS)
+                val packageInfo = context.packageManager.getPackageInfo(
+                    packageName,
+                    PackageManager.GET_RECEIVERS or PackageManager.GET_PERMISSIONS
+                )
                 val receivers = packageInfo.receivers ?: emptyArray()
 
                 val servicePermissions = mutableListOf<String>()
@@ -326,7 +331,9 @@ class FragmentComponentReceivers : UniversalFragmentBase(R.layout.fragment_compo
 
                 receiverIcon.setImageDrawable(receiverInfo.loadIcon(context.packageManager))
 
-                launchModeTextView.text = "启动模式：${getLaunchModeString(launchMode)} | 屏幕旋转：${getScreenOrientationString(screenOrientation)}"
+                launchModeTextView.text = "启动模式：${getLaunchModeString(launchMode)} | 屏幕旋转：${
+                    getScreenOrientationString(screenOrientation)
+                }"
                 taskAffinityTextView.text = "任务关联：$taskAffinity"
             }
 

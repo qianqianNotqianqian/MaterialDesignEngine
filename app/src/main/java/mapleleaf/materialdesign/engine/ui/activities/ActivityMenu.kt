@@ -191,7 +191,8 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             val dialogView = layoutInflater.inflate(R.layout.dialog_confirm, null)
             val dialog = DialogHelper.customDialog(this, dialogView)
 
-            dialogView.findViewById<TextView>(R.id.confirm_message).text = getString(R.string.menu_confirm_perfmon_plus)
+            dialogView.findViewById<TextView>(R.id.confirm_message).text =
+                getString(R.string.menu_confirm_perfmon_plus)
 
             dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
                 dialog.dismiss()
@@ -1087,7 +1088,8 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         inner class IconViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             private val iconImageView: ImageView = itemView.findViewById(R.id.iconPreview)
             private val titleTextView: TextView = itemView.findViewById(R.id.iconTitle)
-            private val materialCardView: MaterialCardView = itemView.findViewById(R.id.materialCardView)
+            private val materialCardView: MaterialCardView =
+                itemView.findViewById(R.id.materialCardView)
 
             @SuppressLint("NotifyDataSetChanged")
             fun bind(icon: Pair<Int, String>, isSelected: Boolean) {

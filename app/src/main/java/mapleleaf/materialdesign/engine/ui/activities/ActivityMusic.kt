@@ -35,7 +35,8 @@ import mapleleaf.materialdesign.engine.interfaces.MusicScanner
 import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 
-class ActivityMusic : UniversalActivityBase(R.layout.activity_music), MusicScanner.MusicScanListener {
+class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
+    MusicScanner.MusicScanListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var musicAdapter: AdapterMusic

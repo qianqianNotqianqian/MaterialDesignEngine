@@ -16,7 +16,6 @@ import com.drakeet.about.Card
 import com.drakeet.about.Category
 import com.drakeet.about.Contributor
 import com.drakeet.about.License
-import com.drakeet.about.Recommendation
 import com.drakeet.about.provided.PicassoImageLoader
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
@@ -26,7 +25,12 @@ import mapleleaf.materialdesign.engine.utils.toast
 
 class ActivityAbout : AbsAboutActivity() {
 
-    override fun onCreateHeader(icon: ImageView, slogan: TextView, version: TextView, collapsingToolbar: CollapsingToolbarLayout) {
+    override fun onCreateHeader(
+        icon: ImageView,
+        slogan: TextView,
+        version: TextView,
+        collapsingToolbar: CollapsingToolbarLayout,
+    ) {
         icon.setImageResource(R.mipmap.ic_launcher_sa)
 
         val textColor = ContextCompat.getColor(context, R.color.text_color)
@@ -44,7 +48,12 @@ class ActivityAbout : AbsAboutActivity() {
         }
 
         toolbar.setTitleTextColor(ContextCompat.getColor(context, R.color.text_color))
-        collapsingToolbar.setCollapsedTitleTextColor(ContextCompat.getColor(context, R.color.text_color))
+        collapsingToolbar.setCollapsedTitleTextColor(
+            ContextCompat.getColor(
+                context,
+                R.color.text_color
+            )
+        )
         setImageLoader(PicassoImageLoader())
     }
 

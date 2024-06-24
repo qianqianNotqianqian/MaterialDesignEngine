@@ -9,7 +9,6 @@ import java.util.List;
 
 import mapleleaf.materialdesign.engine.model.ProcessInfo;
 import mapleleaf.materialdesign.engine.model.ThreadInfo;
-import mapleleaf.materialdesign.engine.shell.KeepShellPublic;
 import mapleleaf.materialdesign.engine.shell_utils.ToolboxInstaller;
 
 /*

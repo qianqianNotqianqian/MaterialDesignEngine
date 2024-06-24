@@ -276,8 +276,10 @@ class FragmentComponentActivities : UniversalFragmentBase(R.layout.fragment_comp
             private val softInputTextView: TextView = itemView.findViewById(R.id.softInput)
             private val launchModeTextView: TextView = itemView.findViewById(R.id.launchMode)
             private val taskAffinityTextView: TextView = itemView.findViewById(R.id.taskAffinity)
-            private val editShortcutBtn: MaterialButton = itemView.findViewById(R.id.editShortcutBtn)
-            private val additionalAttributesTextView: TextView = itemView.findViewById(R.id.orientationTextView)
+            private val editShortcutBtn: MaterialButton =
+                itemView.findViewById(R.id.editShortcutBtn)
+            private val additionalAttributesTextView: TextView =
+                itemView.findViewById(R.id.orientationTextView)
 
             init {
                 activityLaunch.setOnClickListener(this)
@@ -315,7 +317,8 @@ class FragmentComponentActivities : UniversalFragmentBase(R.layout.fragment_comp
                             }
                         } else {
                             try {
-                                val command = "am start -n ${activitiesInfo.activityInfo.packageName}/${activitiesInfo.activityInfo.name}"
+                                val command =
+                                    "am start -n ${activitiesInfo.activityInfo.packageName}/${activitiesInfo.activityInfo.name}"
                                 Runtime.getRuntime().exec(arrayOf("su", "-c", command))
                             } catch (e: SecurityException) {
                                 toast("您没有权限运行此 Activity")
@@ -324,10 +327,12 @@ class FragmentComponentActivities : UniversalFragmentBase(R.layout.fragment_comp
                             }
                         }
                     }
+
                     R.id.editShortcutBtn -> {
 
                         val dialogView =
-                            LayoutInflater.from(context).inflate(R.layout.dialog_create_shortcut, null)
+                            LayoutInflater.from(context)
+                                .inflate(R.layout.dialog_create_shortcut, null)
                         val dialog = DialogHelper.customDialog(context, dialogView)
 
                     }
@@ -398,7 +403,9 @@ class FragmentComponentActivities : UniversalFragmentBase(R.layout.fragment_comp
                     additionalAttributesTextView.text = ""
                 }
 
-                launchModeTextView.text = "启动模式：${getLaunchModeString(launchMode)} | 屏幕旋转：${getScreenOrientationString(screenOrientation)}"
+                launchModeTextView.text = "启动模式：${getLaunchModeString(launchMode)} | 屏幕旋转：${
+                    getScreenOrientationString(screenOrientation)
+                }"
                 taskAffinityTextView.text = "任务关联：$taskAffinity"
             }
 

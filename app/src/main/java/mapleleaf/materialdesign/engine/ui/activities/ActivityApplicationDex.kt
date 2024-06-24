@@ -84,6 +84,7 @@ class ActivityApplicationDex : UniversalActivityBase(R.layout.activity_applicati
             }
         }
     }
+
     private fun loadDexMethods(packageName: String) {
         lifecycleScope.launch {
             val dexClasses = getDexClasses(packageName)
@@ -119,6 +120,7 @@ class ActivityApplicationDex : UniversalActivityBase(R.layout.activity_applicati
             }
         }
     }
+
     private suspend fun getDexClasses(packageName: String): List<String> =
         withContext(Dispatchers.IO) {
             val dexClasses = ArrayList<String>()

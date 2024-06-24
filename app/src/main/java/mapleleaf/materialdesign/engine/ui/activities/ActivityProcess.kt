@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -28,8 +26,8 @@ import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
-import mapleleaf.materialdesign.engine.shell.ProcessUtils
 import mapleleaf.materialdesign.engine.model.ProcessInfo
+import mapleleaf.materialdesign.engine.shell.ProcessUtils
 import mapleleaf.materialdesign.engine.ui.adapter.AdapterProcess
 import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.utils.toast

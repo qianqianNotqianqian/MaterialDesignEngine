@@ -2,7 +2,6 @@ package mapleleaf.materialdesign.engine.ui.activities
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.Menu
@@ -32,7 +31,9 @@ class ActivityMarqueeAbout : UniversalActivityBase(R.layout.marquee_activity_abo
         }
     }
 
-    override fun initializeComponents(savedInstanceState: Bundle?) { initView() }
+    override fun initializeComponents(savedInstanceState: Bundle?) {
+        initView()
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun initView() {

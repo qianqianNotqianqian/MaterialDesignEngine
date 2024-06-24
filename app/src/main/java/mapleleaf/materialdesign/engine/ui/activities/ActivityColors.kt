@@ -2,7 +2,6 @@ package mapleleaf.materialdesign.engine.ui.activities
 
 import android.os.Bundle
 import android.widget.ProgressBar
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.core.view.isVisible

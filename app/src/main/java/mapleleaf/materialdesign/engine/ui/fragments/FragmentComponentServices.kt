@@ -34,7 +34,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalFragmentBase
-import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.util.regex.Pattern
@@ -251,8 +250,10 @@ class FragmentComponentServices : UniversalFragmentBase(R.layout.fragment_compon
             private val serviceIcon: ImageView = itemView.findViewById(R.id.componentIcon)
             private val serviceLabelTextView: TextView = itemView.findViewById(R.id.componentLabel)
             private val serviceNameTextView: TextView = itemView.findViewById(R.id.componentName)
-            private val orientationTextView: TextView = itemView.findViewById(R.id.orientationTextView)
-            private val actionLaunchAndShortcut: LinearLayoutCompat = itemView.findViewById(R.id.action_launch_and_shortcut)
+            private val orientationTextView: TextView =
+                itemView.findViewById(R.id.orientationTextView)
+            private val actionLaunchAndShortcut: LinearLayoutCompat =
+                itemView.findViewById(R.id.action_launch_and_shortcut)
             private val taskAffinity: TextView = itemView.findViewById(R.id.taskAffinity)
             private val launchMode: TextView = itemView.findViewById(R.id.launchMode)
             private val softInput: TextView = itemView.findViewById(R.id.softInput)
@@ -282,7 +283,10 @@ class FragmentComponentServices : UniversalFragmentBase(R.layout.fragment_compon
                 val packageName = serviceInfo.packageName
 
                 // 获取服务声明的权限信息
-                val packageInfo = context.packageManager.getPackageInfo(packageName, PackageManager.GET_SERVICES or PackageManager.GET_PERMISSIONS)
+                val packageInfo = context.packageManager.getPackageInfo(
+                    packageName,
+                    PackageManager.GET_SERVICES or PackageManager.GET_PERMISSIONS
+                )
                 val services = packageInfo.services ?: emptyArray()
 
                 val servicePermissions = mutableListOf<String>()

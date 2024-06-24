@@ -15,8 +15,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import mapleleaf.materialdesign.engine.R
-import mapleleaf.materialdesign.engine.utils.AppInfoLoader
 import mapleleaf.materialdesign.engine.model.ProcessInfo
+import mapleleaf.materialdesign.engine.utils.AppInfoLoader
 
 /**
  * Created by Hello on 2018/01/26.

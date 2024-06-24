@@ -74,7 +74,12 @@ object MDEngineHelpers {
                 dialog.dismiss() // 关闭对话框
             }
             dialog.findViewById<View>(R.id.btn_more).setOnClickListener { v: View? ->
-                startActivity(Intent(requireActivity(), ActivityAbout::class.java)) // 启动ActivityAbout界面
+                startActivity(
+                    Intent(
+                        requireActivity(),
+                        ActivityAbout::class.java
+                    )
+                ) // 启动ActivityAbout界面
                 dialog.dismiss()
             }
             return dialog
