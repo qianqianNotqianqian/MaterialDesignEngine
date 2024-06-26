@@ -31,6 +31,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
@@ -55,6 +56,8 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
     private lateinit var webView: WebView
     private lateinit var progressBar: ProgressBar
     private lateinit var titleTextView: TextView
+    private var pendingPermissionRequest: PermissionRequest? = null
+    private var pendingPermissions: MutableList<String> = mutableListOf()
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initializeComponents(savedInstanceState: Bundle?) {
@@ -84,35 +87,42 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
 
         webView.webChromeClient = object : WebChromeClient() {
             override fun onPermissionRequest(request: PermissionRequest) {
-                Log.d(tag, "onPermissionRequest=" + Arrays.toString(request.resources))
+                Log.d(tag, "onPermissionRequest=" + request.resources.contentToString())
                 val permissions = request.resources
-                var granted = true
+                val permissionsToRequest = mutableListOf<String>()
+
                 for (permission in permissions) {
                     if (permission == PermissionRequest.RESOURCE_AUDIO_CAPTURE &&
                         ContextCompat.checkSelfPermission(
                             this@ActivityBrowser,
                             android.Manifest.permission.RECORD_AUDIO
-                        )
-                        != PackageManager.PERMISSION_GRANTED
+                        ) != PackageManager.PERMISSION_GRANTED
                     ) {
-                        granted = false
-                        break
+                        permissionsToRequest.add(android.Manifest.permission.RECORD_AUDIO)
                     }
                     if (permission == PermissionRequest.RESOURCE_VIDEO_CAPTURE &&
                         ContextCompat.checkSelfPermission(
                             this@ActivityBrowser,
                             android.Manifest.permission.CAMERA
-                        )
-                        != PackageManager.PERMISSION_GRANTED
+                        ) != PackageManager.PERMISSION_GRANTED
                     ) {
-                        granted = false
-                        break
+                        permissionsToRequest.add(android.Manifest.permission.CAMERA)
                     }
                 }
-                if (granted) {
-                    request.grant(permissions)
+
+                // 如果需要请求的权限列表不为空，则请求权限
+                if (permissionsToRequest.isNotEmpty()) {
+                    ActivityCompat.requestPermissions(
+                        this@ActivityBrowser,
+                        permissionsToRequest.toTypedArray(),
+                        PERMISSION_REQUEST_CODE
+                    )
+
+                    // 将权限请求的结果保存下来，以便后续处理
+                    pendingPermissionRequest = request
                 } else {
-                    request.deny()
+                    // 所有权限已经授予，直接通过
+                    request.grant(permissions)
                 }
             }
 
@@ -191,7 +201,6 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
         )
     }
 
-    // 辅助函数：检查特定包名的应用是否已安装
     private fun isPackageInstalled(packageName: String): Boolean {
         return try {
             context.packageManager.getPackageInfo(packageName, 0)
@@ -207,20 +216,28 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
         grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
         if (requestCode == PERMISSION_REQUEST_CODE) {
             var allPermissionsGranted = true
+
             for (grantResult in grantResults) {
                 if (grantResult != PackageManager.PERMISSION_GRANTED) {
                     allPermissionsGranted = false
                     break
                 }
             }
-            if (allPermissionsGranted) {
-                webView.reload()
-            } else {
 
-                toast("权限被拒绝，无法录音")
+            // 根据权限请求的结果处理 WebView 中的权限请求
+            pendingPermissionRequest?.let { request ->
+                if (allPermissionsGranted) {
+                    request.grant(request.resources)
+                } else {
+                    request.deny()
+                }
             }
+
+            // 清空 pendingPermissionRequest，避免重复处理
+            pendingPermissionRequest = null
         }
     }
 
@@ -271,26 +288,37 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) finish()
-        else if (item.itemId == R.id.menu_copy_link) {
-            copyCurrentPageLink()
-            return true
-        } else if (item.itemId == R.id.open_in_browser) openInExternalBrowser()
-        else if (item.itemId == R.id.back) {
-            if (webView.canGoBack()) webView.goBack()
-        } else if (item.itemId == R.id.stop_loading) webView.stopLoading()
-        else if (item.itemId == R.id.refresh) webView.reload()
-        else if (item.itemId == R.id.clear_all) {
-            webView.clearCache(true)
-            webView.clearFormData()
-            webView.clearHistory()
-            webView.clearMatches()
-            deleteDatabase("WebView.db")
-            deleteDatabase("WebViewCache.db")
-            cacheDir
-            toast("已清除所有数据")
-        } else if (item.itemId == R.id.forward) {
-            if (webView.canGoForward()) webView.goForward()
+        when (item.itemId) {
+            android.R.id.home -> finish()
+            R.id.menu_copy_link -> {
+                copyCurrentPageLink()
+                return true
+            }
+
+            R.id.open_in_browser -> openInExternalBrowser()
+
+            R.id.back -> {
+                if (webView.canGoBack()) webView.goBack()
+            }
+
+            R.id.stop_loading -> webView.stopLoading()
+
+            R.id.refresh -> webView.reload()
+
+            R.id.clear_all -> {
+                webView.clearCache(true)
+                webView.clearFormData()
+                webView.clearHistory()
+                webView.clearMatches()
+                deleteDatabase("WebView.db")
+                deleteDatabase("WebViewCache.db")
+                cacheDir
+                toast("已清除所有数据")
+            }
+
+            R.id.forward -> {
+                if (webView.canGoForward()) webView.goForward()
+            }
         }
         return true
     }

@@ -27,8 +27,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="6dp"
-                android:layout_weight="0"
-                android:contentDescription="@string/str_logo" />
+                android:layout_weight="0" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="0dp"
@@ -134,7 +133,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:singleLine="true"
-                android:text="@string/launch"
+                android:text="@string/component_launch_activity"
                 android:textSize="11sp"
                 tools:ignore="SmallSp" />
 
@@ -146,7 +145,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:singleLine="true"
-                android:text="@string/create_shortcut"
+                android:text="@string/component_create_shortcut"
                 android:textSize="11sp"
                 tools:ignore="SmallSp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
