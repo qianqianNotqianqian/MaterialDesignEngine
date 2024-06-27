@@ -7,6 +7,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.net.http.SslError
 import android.os.Bundle
@@ -154,36 +155,25 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
 
         webView.setDownloadListener { url: String?, _: String?, _: String?, _: String?, _: Long ->
             try {
-                // 检查 IDM 是否安装
-                val isIDMInstalled = isPackageInstalled(packageName)
-                if (isIDMInstalled) {
-                    // IDM 安装了，启动 IDM 下载
-                    Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
-                        setPackage("idm.internet.download.manager.plus")
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }.also { context.startActivity(it) }
+                // 创建下载的 Intent
+                val downloadIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                downloadIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
+                // 获取所有能够处理下载 Intent 的应用列表
+                val activities: List<ResolveInfo> = context.packageManager.queryIntentActivities(downloadIntent, PackageManager.MATCH_DEFAULT_ONLY)
+
+                if (activities.isNotEmpty()) {
+                    // 如果有能够处理下载 Intent 的应用，显示系统的选择列表
+                    val chooserIntent = Intent.createChooser(downloadIntent, "选择应用下载")
+                    chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    context.startActivity(chooserIntent)
                 } else {
-                    // IDM 未安装，检查是否有活动可以处理该 Intent
-                    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    val packageManager: PackageManager = context.packageManager
-                    val resolveInfo = packageManager.resolveActivity(
-                        browserIntent,
-                        PackageManager.MATCH_DEFAULT_ONLY
-                    )
-                    if (resolveInfo != null) {
-
-                        browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            .also { context.startActivity(it) }
-                        // 添加 FLAG_ACTIVITY_NEW_TASK
-                    } else {
-                        // 没有活动可以处理该 Intent，显示错误消息
-                        toast("没有找到可以处理此请求的活动。")
-                    }
+                    // 没有能够处理下载 Intent 的应用，显示错误消息或者执行其他逻辑
+                    toast("没有找到可以处理此下载请求的应用。")
                 }
             } catch (e: ActivityNotFoundException) {
                 // 处理未找到活动的异常
-                toast("没有找到可以处理此请求的活动。")
+                toast("没有找到可以处理此下载请求的活动。")
             }
         }
 
