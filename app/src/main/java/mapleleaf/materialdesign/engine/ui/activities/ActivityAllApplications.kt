@@ -511,7 +511,7 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
          * Set custom animation.
          * 设置自定义动画
          */
-        var itemAnimation: ItemAnimator? = null
+        private var itemAnimation: ItemAnimator? = null
             set(value) {
                 animationEnable = true
                 field = value
@@ -525,10 +525,7 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
 
         @SuppressLint("NotifyDataSetChanged")
         fun setAppsList(newAppsList: List<AppInfo>) {
-//            val diffResult = DiffUtil.calculateDiff(DiffCallback(appsList, newAppsList))
-//            appsList.clear()
-//            appsList.addAll(newAppsList)
-//            diffResult.dispatchUpdatesTo(this)
+
             appsList.clear()
             appsList.addAll(newAppsList)
             notifyDataSetChanged()
@@ -546,13 +543,6 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
         override fun onBindViewHolder(holder: AllApplicationViewHolder, position: Int) {
             val appInfo = appsList[position]
             holder.bind(appInfo)
-//            val layoutParams = holder.itemView.layoutParams as RecyclerView.LayoutParams
-//            layoutParams.topMargin = if (position == 0) 18 else 0
-//            val columnCount = 2
-//            val itemPositionInRow = position % columnCount
-//            layoutParams.topMargin = if (itemPositionInRow == 0 || itemPositionInRow == 1) 18 else 0
-//            layoutParams.bottomMargin = if (position == itemCount - 1) 18 else 0
-//            holder.itemView.layoutParams = layoutParams
 
             holder.appIconImageView.setImageDrawable(null)
             val iconDrawable = iconCache[appInfo.packageName]
@@ -589,10 +579,7 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
 
         override fun onViewAttachedToWindow(holder: AllApplicationViewHolder) {
             super.onViewAttachedToWindow(holder)
-
             runAnimator(holder)
-
-//            setFadeAnimation(holder.itemView)
         }
 
         inner class AllApplicationViewHolder(itemView: View, private val context: Context) :
@@ -815,12 +802,6 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
                 }
             }
         }
-
-//        private fun setFadeAnimation(view: View) {
-//            val animator = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f)
-//            animator.duration = 320
-//            animator.start()
-//        }
 
         fun setScrolling(scrolling: Boolean) {
             isScrolling = scrolling

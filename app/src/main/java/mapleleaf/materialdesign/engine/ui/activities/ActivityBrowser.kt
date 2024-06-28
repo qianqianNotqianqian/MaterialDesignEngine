@@ -45,12 +45,11 @@ import mapleleaf.materialdesign.engine.utils.toast
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import java.lang.reflect.Method
 import java.net.URISyntaxException
-import java.util.Arrays
 
 class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
 
     private val keyMyView = "key_my_view"
-    private val PERMISSION_REQUEST_CODE = 102
+    private val permissionRequestCode = 102
 
     private val tag: String = this::class.java.name
     private var myView: View? = null
@@ -58,7 +57,6 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
     private lateinit var progressBar: ProgressBar
     private lateinit var titleTextView: TextView
     private var pendingPermissionRequest: PermissionRequest? = null
-    private var pendingPermissions: MutableList<String> = mutableListOf()
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initializeComponents(savedInstanceState: Bundle?) {
@@ -111,18 +109,14 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                     }
                 }
 
-                // 如果需要请求的权限列表不为空，则请求权限
                 if (permissionsToRequest.isNotEmpty()) {
                     ActivityCompat.requestPermissions(
                         this@ActivityBrowser,
                         permissionsToRequest.toTypedArray(),
-                        PERMISSION_REQUEST_CODE
+                        permissionRequestCode
                     )
-
-                    // 将权限请求的结果保存下来，以便后续处理
                     pendingPermissionRequest = request
                 } else {
-                    // 所有权限已经授予，直接通过
                     request.grant(permissions)
                 }
             }
@@ -155,24 +149,19 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
 
         webView.setDownloadListener { url: String?, _: String?, _: String?, _: String?, _: Long ->
             try {
-                // 创建下载的 Intent
                 val downloadIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 downloadIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
-                // 获取所有能够处理下载 Intent 的应用列表
                 val activities: List<ResolveInfo> = context.packageManager.queryIntentActivities(downloadIntent, PackageManager.MATCH_DEFAULT_ONLY)
 
                 if (activities.isNotEmpty()) {
-                    // 如果有能够处理下载 Intent 的应用，显示系统的选择列表
                     val chooserIntent = Intent.createChooser(downloadIntent, "选择应用下载")
                     chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     context.startActivity(chooserIntent)
                 } else {
-                    // 没有能够处理下载 Intent 的应用，显示错误消息或者执行其他逻辑
                     toast("没有找到可以处理此下载请求的应用。")
                 }
             } catch (e: ActivityNotFoundException) {
-                // 处理未找到活动的异常
                 toast("没有找到可以处理此下载请求的活动。")
             }
         }
@@ -191,15 +180,6 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
         )
     }
 
-    private fun isPackageInstalled(packageName: String): Boolean {
-        return try {
-            context.packageManager.getPackageInfo(packageName, 0)
-            true
-        } catch (e: PackageManager.NameNotFoundException) {
-            false
-        }
-    }
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -207,7 +187,7 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        if (requestCode == PERMISSION_REQUEST_CODE) {
+        if (requestCode == permissionRequestCode) {
             var allPermissionsGranted = true
 
             for (grantResult in grantResults) {
@@ -217,7 +197,6 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                 }
             }
 
-            // 根据权限请求的结果处理 WebView 中的权限请求
             pendingPermissionRequest?.let { request ->
                 if (allPermissionsGranted) {
                     request.grant(request.resources)
@@ -226,7 +205,6 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                 }
             }
 
-            // 清空 pendingPermissionRequest，避免重复处理
             pendingPermissionRequest = null
         }
     }

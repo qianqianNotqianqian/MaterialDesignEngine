@@ -1,151 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:orientation="vertical"
+    android:padding="12dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp">
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="12dp">
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/background"
-            app:cardCornerRadius="12dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/confirm_title"
+                style="@style/dialogTitle"
+                android:text="提示信息" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/confirm_message"
+                style="@style/dialogDesc"
+                android:text="提示内容" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/textSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:background="@drawable/in_card_item"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="12dp"
+                android:text="@string/dialog_float_instructions_power" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/confirm_title"
-                    style="@style/dialogTitle"
-                    android:text="提示信息" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/confirm_message"
-                    style="@style/dialogDesc"
-                    android:text="提示内容" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/textSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:background="@drawable/in_card_item"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="12dp"
-                    android:text="@string/dialog_float_instructions_power" />
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="12dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="12dp"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/power_shutdown"
-                        android:layout_width="match_parent"
-                        android:layout_height="65dp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/in_card_item"
-                        android:orientation="horizontal"
-                        android:padding="6dp">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginEnd="12dp"
-                            android:alpha="0.8"
-                            android:background="@drawable/dialog_icon_bg"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/power_shutdown"
-                            app:tint="#ffffff" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
-                                android:text="关机" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textSmall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="正常关机" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/power_reboot"
-                        android:layout_width="match_parent"
-                        android:layout_height="65dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/in_card_item"
-                        android:orientation="horizontal"
-                        android:padding="6dp">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginEnd="12dp"
-                            android:alpha="0.8"
-                            android:background="@drawable/dialog_icon_bg"
-                            android:backgroundTint="#8BC34A"
-                            android:padding="8dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/power_reboot"
-                            app:tint="#ffffff" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
-                                android:text="重启" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textSmall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="正常重启" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/power_hot_reboot"
+                    android:id="@+id/power_shutdown"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/in_card_item"
                     android:orientation="horizontal"
@@ -159,9 +63,8 @@
                         android:layout_marginEnd="12dp"
                         android:alpha="0.8"
                         android:background="@drawable/dialog_icon_bg"
-                        android:backgroundTint="#00BCD4"
                         android:scaleType="centerInside"
-                        android:src="@drawable/power_hot_reboot"
+                        android:src="@drawable/power_shutdown"
                         app:tint="#ffffff" />
 
                     <LinearLayout
@@ -176,23 +79,20 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:text="热重启" />
+                            android:text="关机" />
 
                         <com.google.android.material.textview.MaterialTextView
                             style="@style/textSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="只重启系界面而不重新引导系统（可能引发Bug）" />
+                            android:text="正常关机" />
                     </LinearLayout>
-
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/power_recovery"
+                    android:id="@+id/power_reboot"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/in_card_item"
                     android:orientation="horizontal"
@@ -206,9 +106,10 @@
                         android:layout_marginEnd="12dp"
                         android:alpha="0.8"
                         android:background="@drawable/dialog_icon_bg"
-                        android:backgroundTint="#C8787878"
+                        android:backgroundTint="#8BC34A"
+                        android:padding="8dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/power_recovery"
+                        android:src="@drawable/power_reboot"
                         app:tint="#ffffff" />
 
                     <LinearLayout
@@ -223,127 +124,221 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:text="Recovery" />
+                            android:text="重启" />
 
                         <com.google.android.material.textview.MaterialTextView
                             style="@style/textSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="重启到Recovery模式（俗称卡刷模式）" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/power_fastboot"
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/in_card_item"
-                    android:orientation="horizontal"
-                    android:padding="6dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:alpha="0.8"
-                        android:background="@drawable/dialog_icon_bg"
-                        android:backgroundTint="#C8787878"
-                        android:padding="10dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/power_fastboot"
-                        app:tint="#ffffff" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.textview.MaterialTextView
-                            style="@style/textTitle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:text="Fastboot" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            style="@style/textSmall"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="重启到Fastboot模式（俗称USB线刷模式）" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/power_emergency_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginVertical="12dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/in_card_item"
-                    android:orientation="horizontal"
-                    android:padding="6dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:alpha="0.8"
-                        android:background="@drawable/dialog_icon_bg"
-                        android:backgroundTint="#C8787878"
-                        android:padding="11dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/power_emergency"
-                        app:tint="#ffffff" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.textview.MaterialTextView
-                            style="@style/textTitle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:text="9008(EDL 点击查看更多)" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            style="@style/textSmall"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="重启到9008模式，*此模式仅限部分骁龙设备可用" />
+                            android:text="正常重启" />
                     </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+            <LinearLayout
+                android:id="@+id/power_hot_reboot"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/in_card_item"
+                android:orientation="horizontal"
+                android:padding="6dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:alpha="0.8"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#00BCD4"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/power_hot_reboot"
+                    app:tint="#ffffff" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_cancel"
-                style="@style/dialogCancelBtn"
-                android:background="@drawable/btn_bg_large_warning"
-                android:text="@string/cancel" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="热重启" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="只重启系界面而不重新引导系统（可能引发Bug）" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/power_recovery"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/in_card_item"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:alpha="0.8"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#C8787878"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/power_recovery"
+                    app:tint="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Recovery" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="重启到Recovery模式（俗称卡刷模式）" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/power_fastboot"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/in_card_item"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:alpha="0.8"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#C8787878"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/power_fastboot"
+                    app:tint="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Fastboot" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="重启到Fastboot模式（俗称USB线刷模式）" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/power_emergency_detail"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/in_card_item"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:alpha="0.8"
+                    android:background="@drawable/dialog_icon_bg"
+                    android:backgroundTint="#C8787878"
+                    android:padding="11dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/power_emergency"
+                    app:tint="#ffffff" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="9008(EDL 点击查看更多)" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/textSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="重启到9008模式，*此模式仅限部分骁龙设备可用" />
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancel"
+            style="@style/dialogCancelBtn"
+            android:background="@drawable/btn_bg_large_warning"
+            android:text="@string/cancel" />
+
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</LinearLayout>

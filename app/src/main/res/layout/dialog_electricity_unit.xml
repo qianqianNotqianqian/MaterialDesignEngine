@@ -42,6 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:layout_marginHorizontal="12dp"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -77,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="12dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -97,9 +99,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="6dp"
-                android:layout_marginBottom="12dp"
-                android:paddingTop="12dp"
+                android:layout_margin="12dp"
                 android:text="@string/electricity_unit_adj_desc2"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_red_dark"

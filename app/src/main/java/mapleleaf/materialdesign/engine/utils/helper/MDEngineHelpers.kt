@@ -26,15 +26,15 @@ import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 object MDEngineHelpers {
 
     fun showAbout(activity: FragmentActivity) {
-        val fm: FragmentManager = activity.supportFragmentManager
-        val ft: FragmentTransaction = fm.beginTransaction()
-        val prev: Fragment? = fm.findFragmentByTag("dialog_about")
+        val fragmentManager: FragmentManager = activity.supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        val prev: Fragment? = fragmentManager.findFragmentByTag("dialog_about")
         if (prev != null) {
-            ft.remove(prev)
+            fragmentTransaction.remove(prev)
         }
-        ft.addToBackStack(null)
+        fragmentTransaction.addToBackStack(null)
 
-        AboutDialog().show(ft, "dialog_about")
+        AboutDialog().show(fragmentTransaction, "dialog_about")
     }
 
     class AboutDialog : DialogFragment() {
@@ -50,7 +50,7 @@ object MDEngineHelpers {
                     val version: String = pInfo.versionName
                     val versionCode: Long = PackageInfoCompat.getLongVersionCode(pInfo)
                     appName = "MDEngine $version\nVerCode $versionCode"
-                    // 接下来的操作...
+
                 } catch (e: PackageManager.NameNotFoundException) {
                     Log.e(
                         "应用版本获取",
@@ -60,7 +60,7 @@ object MDEngineHelpers {
             }
 
             val dialogView: View =
-                LayoutInflater.from(getActivity()).inflate(R.layout.dialog_confirm, null)
+                LayoutInflater.from(requireActivity()).inflate(R.layout.dialog_about_info, null)
             val dialog = DialogHelper.customDialog(requireContext(), dialogView).dialog
             val messageTextView: TextView = dialogView.findViewById(R.id.confirm_message)
             val titleTextView: TextView = dialogView.findViewById(R.id.confirm_title)
@@ -70,16 +70,11 @@ object MDEngineHelpers {
             messageTextView.movementMethod = LinkMovementMethod.getInstance()
             titleTextView.text = appName
 
-            dialog.findViewById<View>(R.id.btn_confirm).setOnClickListener { v: View? ->
-                dialog.dismiss() // 关闭对话框
+            dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                dialog.dismiss()
             }
-            dialog.findViewById<View>(R.id.btn_more).setOnClickListener { v: View? ->
-                startActivity(
-                    Intent(
-                        requireActivity(),
-                        ActivityAbout::class.java
-                    )
-                ) // 启动ActivityAbout界面
+            dialogView.findViewById<View>(R.id.btn_more).setOnClickListener {
+                startActivity(Intent(requireActivity(), ActivityAbout::class.java))
                 dialog.dismiss()
             }
             return dialog

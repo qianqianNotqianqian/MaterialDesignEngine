@@ -1,250 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:padding="12dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="12dp">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="12dp">
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/background"
-            app:cardCornerRadius="12dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/confirm_title"
+                style="@style/textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/choose_compile_mode" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/confirm_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/system_modify_pm_dex2oat_desc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:orientation="vertical">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/confirm_title"
-                    style="@style/textTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="12dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="12dp"
-                    android:text="@string/choose_compile_mode" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/confirm_message"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="12dp"
-                    android:paddingTop="12dp"
-                    android:paddingEnd="12dp"
-                    android:text="@string/system_modify_pm_dex2oat_desc" />
-
                 <LinearLayout
+                    android:id="@+id/mode_speed_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
-                    android:orientation="vertical">
+                    android:background="@drawable/in_card_item"
+                    android:gravity="center_vertical"
+                    android:minHeight="70dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/dialog_icon_bg"
+                        android:backgroundTint="@color/color_balance_bg"
+                        android:contentDescription="@string/todo"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/mode_balance"
+                        app:tint="#ffffff" />
 
                     <LinearLayout
-                        android:id="@+id/mode_speed_profile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/in_card_item"
-                        android:gravity="center_vertical"
-                        android:minHeight="70dp"
-                        android:orientation="horizontal"
-                        android:padding="6dp">
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="12dp"
+                        android:orientation="vertical">
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginEnd="12dp"
-                            android:background="@drawable/dialog_icon_bg"
-                            android:backgroundTint="@color/color_balance_bg"
-                            android:contentDescription="@string/todo"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/mode_balance"
-                            app:tint="#ffffff" />
-
-                        <LinearLayout
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="12dp"
-                            android:orientation="vertical">
+                            android:layout_marginBottom="4dp"
+                            android:text="@string/compile_mode_speed_profile" />
 
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
-                                android:text="@string/compile_mode_speed_profile" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textSmall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/compile_mode_speed_profile_instructions" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/mode_speed"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:background="@drawable/in_card_item"
-                        android:gravity="center_vertical"
-                        android:minHeight="70dp"
-                        android:orientation="horizontal"
-                        android:padding="6dp">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginEnd="12dp"
-                            android:background="@drawable/dialog_icon_bg"
-                            android:backgroundTint="@color/color_performance_bg"
-                            android:contentDescription="@string/todo"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/mode_performance"
-                            app:tint="#ffffff" />
-
-                        <LinearLayout
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textSmall"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="12dp"
-                            android:orientation="vertical">
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
-                                android:text="@string/compile_mode_speed" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textSmall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/compile_mode_speed_instructions" />
-                        </LinearLayout>
-
+                            android:text="@string/compile_mode_speed_profile_instructions" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/mode_everything"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:background="@drawable/in_card_item"
-                        android:gravity="center_vertical"
-                        android:minHeight="70dp"
-                        android:orientation="horizontal"
-                        android:padding="6dp">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginEnd="12dp"
-                            android:background="@drawable/dialog_icon_bg"
-                            android:backgroundTint="@color/color_fast_bg"
-                            android:contentDescription="@string/todo"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/mode_fast"
-                            app:tint="#ffffff" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="12dp"
-                            android:orientation="vertical">
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
-                                android:text="@string/compile_mode_everything" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textSmall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/compile_mode_everything_instructions" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/mode_reset"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:background="@drawable/in_card_item"
-                        android:gravity="center_vertical"
-                        android:minHeight="70dp"
-                        android:orientation="horizontal"
-                        android:padding="6dp">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginEnd="12dp"
-                            android:alpha="0.8"
-                            android:background="@drawable/dialog_icon_bg"
-                            android:contentDescription="@string/todo"
-                            android:padding="10dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/mode_empty"
-                            app:tint="#ffffff" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="12dp"
-                            android:orientation="vertical">
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
-                                android:text="@string/compile_mode_reset_compilation" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                style="@style/textSmall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/compile_mode_reset_compilation_instructions" />
-                        </LinearLayout>
-                    </LinearLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/mode_speed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
+                    android:gravity="center_vertical"
+                    android:minHeight="70dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/dialog_icon_bg"
+                        android:backgroundTint="@color/color_performance_bg"
+                        android:contentDescription="@string/todo"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/mode_performance"
+                        app:tint="#ffffff" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="12dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="@string/compile_mode_speed" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/compile_mode_speed_instructions" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mode_everything"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
+                    android:gravity="center_vertical"
+                    android:minHeight="70dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/dialog_icon_bg"
+                        android:backgroundTint="@color/color_fast_bg"
+                        android:contentDescription="@string/todo"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/mode_fast"
+                        app:tint="#ffffff" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="12dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="@string/compile_mode_everything" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/compile_mode_everything_instructions" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mode_reset"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/in_card_item"
+                    android:gravity="center_vertical"
+                    android:minHeight="70dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:alpha="0.8"
+                        android:background="@drawable/dialog_icon_bg"
+                        android:contentDescription="@string/todo"
+                        android:padding="10dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/mode_empty"
+                        app:tint="#ffffff" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="12dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="@string/compile_mode_reset_compilation" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/textSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/compile_mode_reset_compilation_instructions" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/faq"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/item_app_bg"
-            android:text="@string/understand_how_it_works" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/faq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/item_app_bg"
+        android:text="@string/understand_how_it_works" />
 
-</androidx.core.widget.NestedScrollView>
+</LinearLayout>
