@@ -331,10 +331,14 @@ class FragmentComponentActivities : UniversalFragmentBase(R.layout.fragment_comp
                     R.id.editShortcutBtn -> {
 
                         val dialogView =
-                            LayoutInflater.from(context)
-                                .inflate(R.layout.dialog_create_shortcut, null)
+                            LayoutInflater.from(context).inflate(R.layout.dialog_create_shortcut, null)
                         val dialog = DialogHelper.customDialog(context, dialogView)
-
+                        dialogView.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                            dialog.dismiss()
+                        }
+                        dialogView.findViewById<View>(R.id.btn_cancel).setOnClickListener {
+                            dialog.dismiss()
+                        }
                     }
                 }
             }

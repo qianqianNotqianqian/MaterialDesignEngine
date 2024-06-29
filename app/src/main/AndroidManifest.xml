@@ -143,12 +143,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityBilibiliParse"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityBrowser"
             android:exported="true"
             android:launchMode="singleTask"

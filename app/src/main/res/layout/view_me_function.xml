@@ -30,4 +30,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:src="@drawable/ic_arrow_right_v3" />
+
 </LinearLayout>

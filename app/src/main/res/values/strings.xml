@@ -498,7 +498,6 @@
     <string name="menu_start_rpg">随机人格</string>
     <string name="menu_start_hot_search">实时热搜</string>
     <string name="menu_start_infinite_list">无限列表</string>
-    <string name="menu_start_bilibili_parse">哔哩哔哩解析</string>
     <string name="menu_start_dictionary">字典</string>
     <string name="menu_start_marquee_view">跑马灯</string>
     <string name="menu_start_calcDialog">Calc对话框</string>

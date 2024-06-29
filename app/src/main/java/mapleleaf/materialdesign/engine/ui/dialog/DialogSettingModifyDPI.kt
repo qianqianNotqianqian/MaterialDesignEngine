@@ -63,11 +63,11 @@ class DialogSettingModifyDPI(var context: Activity) {
     @SuppressLint("InflateParams")
     fun modifyDPI(display: Display, context: Activity) {
         val layoutInflater = LayoutInflater.from(context)
-        val dialog = layoutInflater.inflate(R.layout.dialog_system_modify_dpi, null)
-        val dpiInput: EditText = dialog.findViewById(R.id.dialog_system_modify_input_dpi)
-        val widthInput: EditText = dialog.findViewById(R.id.dialog_system_modify_dpi_width)
-        val heightInput: EditText = dialog.findViewById(R.id.dialog_system_modify_dpi_height)
-        val quickChange: CheckBox = dialog.findViewById(R.id.dialog_system_modify_dpi_quickchange)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_system_modify_dpi, null)
+        val dpiInput: EditText = dialogView.findViewById(R.id.dialog_system_modify_input_dpi)
+        val widthInput: EditText = dialogView.findViewById(R.id.dialog_system_modify_dpi_width)
+        val heightInput: EditText = dialogView.findViewById(R.id.dialog_system_modify_dpi_height)
+        val quickChange: CheckBox = dialogView.findViewById(R.id.dialog_system_modify_dpi_quickchange)
 
         val dm = DisplayMetrics()
         display.getMetrics(dm)
@@ -80,38 +80,36 @@ class DialogSettingModifyDPI(var context: Activity) {
         widthInput.setText(point.x.toString())
         heightInput.setText(point.y.toString())
 
-        if (Build.VERSION.SDK_INT >= 24) {
-            quickChange.isChecked = true
-        }
+        quickChange.isChecked = true
 
         val rate = dm.heightPixels / 1.0 / dm.widthPixels
-        dialog.findViewById<Button>(R.id.dialog_dpi_720).setOnClickListener {
+        dialogView.findViewById<Button>(R.id.dialog_dpi_720).setOnClickListener {
             val width = 720
             widthInput.setText(width.toString())
             val height = getHeightScaleValue(width)
             heightInput.setText(height.toString())
             dpiInput.setText((dm.densityDpi.toFloat() * width / point.x).toInt().toString())
         }
-        dialog.findViewById<Button>(R.id.dialog_dpi_1080).setOnClickListener {
+        dialogView.findViewById<Button>(R.id.dialog_dpi_1080).setOnClickListener {
             val width = 1080
             widthInput.setText(width.toString())
             heightInput.setText(getHeightScaleValue(width).toString())
             dpiInput.setText(getDpiScaleValue(width).toString())
         }
-        dialog.findViewById<Button>(R.id.dialog_dpi_2k).setOnClickListener {
+        dialogView.findViewById<Button>(R.id.dialog_dpi_2k).setOnClickListener {
             val width = 1440
             widthInput.setText(width.toString())
             heightInput.setText(getHeightScaleValue(width).toString())
             dpiInput.setText(getDpiScaleValue(width).toString())
         }
-        dialog.findViewById<Button>(R.id.dialog_dpi_4k).setOnClickListener {
+        dialogView.findViewById<Button>(R.id.dialog_dpi_4k).setOnClickListener {
             val width = 2160
             widthInput.setText(width.toString())
             heightInput.setText(getHeightScaleValue(width).toString())
             dpiInput.setText(getDpiScaleValue(width).toString())
         }
 
-        val dialogInstance = DialogHelper.confirm(context, "DPI、分辨率", "", dialog, {
+        val dialogInstance = DialogHelper.confirm(context, "DPI、分辨率", "", dialogView, {
             val dpi = if (dpiInput.text.isNotEmpty()) (dpiInput.text.toString().toInt()) else (0)
             val width =
                 if (widthInput.text.isNotEmpty()) (widthInput.text.toString().toInt()) else (0)
@@ -159,7 +157,7 @@ class DialogSettingModifyDPI(var context: Activity) {
 
         })
 
-        dialog.findViewById<Button>(R.id.dialog_dpi_reset).setOnClickListener {
+        dialogView.findViewById<Button>(R.id.dialog_dpi_reset).setOnClickListener {
             if (dialogInstance.isShowing) {
                 try {
                     dialogInstance.dismiss()
@@ -197,7 +195,7 @@ class DialogSettingModifyDPI(var context: Activity) {
                     } else {
                         handler.post {
                             try {
-                                timeoutView.setText(timeOut.toString())
+                                timeoutView.text = timeOut.toString()
                             } catch (ex: Exception) {
                             }
                         }

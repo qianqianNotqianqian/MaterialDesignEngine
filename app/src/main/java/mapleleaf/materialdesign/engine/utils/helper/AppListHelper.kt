@@ -6,6 +6,7 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
+import android.util.Log
 import mapleleaf.materialdesign.engine.model.AppInfo
 import mapleleaf.materialdesign.engine.utils.CommonCommands
 import java.io.File
@@ -30,7 +31,7 @@ class AppListHelper(context: Context, private val getTags: Boolean = true) {
 
     private fun getTags(applicationInfo: ApplicationInfo): String {
         val stateTags = StringBuilder()
-//        val readDir = CommonCommands.AbsBackUpDir
+
         try {
             if (!applicationInfo.enabled) {
                 stateTags.append("❄已冻结 ")
@@ -41,24 +42,8 @@ class AppListHelper(context: Context, private val getTags: Boolean = true) {
             if (isSystemApp(applicationInfo) && applicationInfo.sourceDir.startsWith("/data")) {
                 stateTags.append("🔒更新的系统应用 ")
             }
-//            val packageName = applicationInfo.packageName
-//            val absPath = "$readDir$packageName.apk"
-//            if (File(absPath).exists()) {
-//                val backupInfo =
-//                    packageManager.getPackageArchiveInfo(absPath, PackageManager.GET_ACTIVITIES)!!
-//                val installInfo =
-//                    packageManager.getPackageInfo(applicationInfo.packageName, 0) ?: return ""
-//                if (backupInfo.versionCode == installInfo.versionCode) {
-//                    stateTags.append("⭐已备份 ")
-//                } else if (backupInfo.versionCode > installInfo.versionCode) {
-//                    stateTags.append("💔低于备份版本 ")
-//                } else {
-//                    stateTags.append("♻高于备份版本 ")
-//                }
-//            } else if (File("$readDir$packageName.tar.gz").exists()) {
-//                stateTags.append("🔄有备份数据 ")
-//            }
         } catch (ex: Exception) {
+            Log.d("getTag", "error:${ex}")
         }
         return stateTags.toString().trim()
     }
@@ -81,16 +66,16 @@ class AppListHelper(context: Context, private val getTags: Boolean = true) {
         }
     }
 
-    fun isSystemApp(applicationInfo: ApplicationInfo): Boolean {
+    private fun isSystemApp(applicationInfo: ApplicationInfo): Boolean {
         return (applicationInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0
     }
 
-    fun getAppList(systemApp: Boolean? = null, removeIgnore: Boolean = true): ArrayList<AppInfo> {
-        val packageInfos = packageManager.getInstalledApplications(0)
+    private fun getAppList(systemApp: Boolean? = null, removeIgnore: Boolean = true): ArrayList<AppInfo> {
+        val packageInfo = packageManager.getInstalledApplications(0)
 
         val list = ArrayList<AppInfo>()/*在数组中存放数据*/
-        for (i in packageInfos.indices) {
-            val applicationInfo = packageInfos[i]
+        for (i in packageInfo.indices) {
+            val applicationInfo = packageInfo[i]
 
             val appInfo = getApplicationInfo(applicationInfo, systemApp, removeIgnore)
             if (appInfo != null) {

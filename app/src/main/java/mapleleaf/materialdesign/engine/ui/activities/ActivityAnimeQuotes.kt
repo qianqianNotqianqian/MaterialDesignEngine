@@ -3,14 +3,22 @@ package mapleleaf.materialdesign.engine.ui.activities
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.TimeoutCancellationException
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
+import mapleleaf.materialdesign.engine.utils.toast
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
@@ -22,6 +30,7 @@ class ActivityAnimeQuotes : UniversalActivityBase(R.layout.activity_anime_quotes
     private lateinit var buttonClear: MaterialButton
     private lateinit var msgMaterialCardView: MaterialCardView
     private var searchTextWatcher: SearchTextWatcher? = null
+    private val client = OkHttpClient()
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         textView = findViewById(R.id.text_view)
@@ -70,25 +79,36 @@ class ActivityAnimeQuotes : UniversalActivityBase(R.layout.activity_anime_quotes
     }
 
     private fun fetchText(query: String, callback: (String?) -> Unit) {
-        val client = OkHttpClient()
         val url = "https://www.hhlqilongzhu.cn/api/wenan_sou.php?msg=${query}"
 
         val request = Request.Builder()
             .url(url)
             .build()
 
-        client.newCall(request).enqueue(object : okhttp3.Callback {
-            override fun onFailure(call: okhttp3.Call, e: IOException) {
-                callback(null)
-            }
-
-            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
-                if (response.isSuccessful) {
-                    callback(response.body?.string())
-                } else {
-                    callback(null)
+        lifecycleScope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    val response = client.newCall(request).execute()
+                    if (response.isSuccessful) {
+                        callback(response.body?.string())
+                    } else {
+                        callback(null)
+                    }
+                }
+            } catch (e: IOException) {
+                // 输出日志
+                Log.d("network","IOException: ${e.message}")
+                // 在协程的上下文中显示 Toast 提示
+                withContext(Dispatchers.Main) {
+                    toast("网络请求失败")
+                }
+            } catch (e: TimeoutCancellationException) {
+                // 超时取消异常
+                Log.d("network","Timeout: ${e.message}")
+                withContext(Dispatchers.Main) {
+                    toast("网络请求超时")
                 }
             }
-        })
+        }
     }
 }

@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -83,7 +84,7 @@ class AdapterProcess(
     private fun filterAppList(): ArrayList<ProcessInfo> {
         val text = keywords.toLowerCase()
         val keywordsEmpty = text.isEmpty()
-        return ArrayList(processes.filter { it ->
+        return ArrayList(processes.filter {
             (keywordsEmpty || keywordSearch(it, text)) && (
                     when (filterMode) {
                         FILTER_ALL -> true
@@ -130,7 +131,7 @@ class AdapterProcess(
             return
         } else {
             if (isAndroidProcess(item)) {
-                GlobalScope.launch(Dispatchers.Main) {
+                CoroutineScope(Dispatchers.Main).launch {
                     var icon: Drawable? = null
                     try {
                         val name = if (item.name.contains(":")) item.name.substring(

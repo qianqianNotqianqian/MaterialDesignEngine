@@ -61,6 +61,7 @@ import kotlinx.coroutines.withContext
 import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
+import mapleleaf.materialdesign.engine.data.MenuItemInfo
 import mapleleaf.materialdesign.engine.store.SpfConfig
 import mapleleaf.materialdesign.engine.ui.dialog.DialogHelper
 import mapleleaf.materialdesign.engine.ui.dialog.DialogMonitor
@@ -386,151 +387,145 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         val menuItems = arrayOf(
             MenuItemInfo(
                 R.id.Browser,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_bing,
                 R.string.menu_start_browser,
                 ActivityBrowser::class.java
             ),
             MenuItemInfo(
                 R.id.Accelerometer,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_accelerometer,
                 R.string.menu_start_accelerometer,
                 ActivityAccelerometer::class.java
             ),
             MenuItemInfo(
                 R.id.AppManager,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_app_manager,
                 R.string.menu_start_application_manager,
                 ActivityApplications::class.java
             ),
             MenuItemInfo(
                 R.id.DeskClock,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_clock_fill,
                 R.string.menu_start_desk_clock,
                 ActivityDeskClock::class.java
             ),
             MenuItemInfo(
                 R.id.Functions,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_function,
                 R.string.menu_start_functions,
                 ActivityFunctions::class.java
             ),
             MenuItemInfo(
                 R.id.SystemVibration,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_vibrate,
                 R.string.menu_start_system_vibration,
                 ActivitySystemVibration::class.java
             ),
             MenuItemInfo(
                 R.id.SystemInformation,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_system_info,
                 R.string.menu_start_system_information,
                 ActivitySystemInfo::class.java
             ),
             MenuItemInfo(
                 R.id.SystemSensorInfo,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_float_monitor,
                 R.string.menu_start_system_sensors,
                 ActivitySystemSensors::class.java
             ),
             MenuItemInfo(
                 R.id.SystemIconStyle,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_system_info,
                 R.string.menu_start_system_icons,
                 ActivitySystemIcons::class.java
             ),
             MenuItemInfo(
                 R.id.SystemProcess,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_float_monitor,
                 R.string.menu_start_system_process,
                 ActivityProcess::class.java
             ),
             MenuItemInfo(
                 R.id.SystemSundry,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_function,
                 R.string.menu_start_system_sundry,
                 ActivitySystemModify::class.java
             ),
             MenuItemInfo(
                 R.id.SystemOverView,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_system_info,
                 R.string.menu_start_system_overview,
                 ActivityCheckPermission::class.java
             ),
             MenuItemInfo(
                 R.id.SystemCpuControl,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_system_info,
                 R.string.menu_start_system_cpu_control,
                 ActivityCpuControl::class.java
             ),
             MenuItemInfo(
                 R.id.Colors,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_color,
                 R.string.menu_start_colors,
                 ActivityColors::class.java
             ),
             MenuItemInfo(
                 R.id.J2box,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_j2box,
                 R.string.menu_start_j2box,
                 ActivityJ2box::class.java
             ),
             MenuItemInfo(
                 R.id.Text2MD5,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_text2md5,
                 R.string.menu_start_text2md5,
                 ActivityText2MD5::class.java
             ),
             MenuItemInfo(
                 R.id.TTS,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_tts,
                 R.string.menu_start_tts,
                 ActivityTTS::class.java
             ),
             MenuItemInfo(
                 R.id.Music,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_music,
                 R.string.menu_start_music,
                 ActivityMusic::class.java
             ),
             MenuItemInfo(
                 R.id.AnimeQuotes,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_anime_quotes,
                 R.string.menu_start_anime_quotes,
                 ActivityAnimeQuotes::class.java
             ),
             MenuItemInfo(
                 R.id.RPG,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_personality,
                 R.string.menu_start_rpg,
                 ActivityRandomPersonality::class.java
             ),
             MenuItemInfo(
                 R.id.HotSearch,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_fire,
                 R.string.menu_start_hot_search,
                 ActivityHotSearch::class.java
             ),
             MenuItemInfo(
                 R.id.InfiniteList,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_infinite_list,
                 R.string.menu_start_infinite_list,
                 ActivityInfiniteList::class.java
             ),
             MenuItemInfo(
-                R.id.BilibiliParse,
-                R.drawable.ic_bilibili,
-                R.string.menu_start_bilibili_parse,
-                ActivityBilibiliParse::class.java
-            ),
-            MenuItemInfo(
                 R.id.Dictionary,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_dictionary,
                 R.string.menu_start_dictionary,
                 ActivityDictionary::class.java
             ),
             MenuItemInfo(
                 R.id.MarqueeView,
-                R.drawable.ic_bilibili,
+                R.drawable.ic_marquee,
                 R.string.menu_start_marquee_view,
                 ActivityMarqueeView::class.java
             )
@@ -611,13 +606,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             }
         }
     }
-
-    data class MenuItemInfo(
-        val itemId: Int,
-        val iconResId: Int,
-        val textResId: Int,
-        val activityClass: Class<*>,
-    )
 
     private fun loadHeaderImage() {
         CoroutineScope(Dispatchers.IO).launch {

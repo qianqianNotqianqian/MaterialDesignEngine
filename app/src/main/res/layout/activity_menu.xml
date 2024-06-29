@@ -17,7 +17,6 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/toolbar_color"
             app:layout_constraintTop_toTopOf="parent">
 
             <include
@@ -264,22 +263,10 @@
                     <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
 
                         <include
-                            android:id="@+id/BilibiliParse"
-                            layout="@layout/this_app_card_view" />
-
-                    </LinearLayout>
-
-                    <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
-
-                        <include
                             android:id="@+id/Dictionary"
                             layout="@layout/this_app_card_view" />
 
                     </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout style="@style/CustomMainLinearLayoutForMenu">
 
                     <LinearLayout style="@style/CustomLinearLayoutWeightForMenu">
 

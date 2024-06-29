@@ -145,7 +145,7 @@
     </style>
 
     <style name="textSmallTitle" parent="textTitle">
-        <item name="android:textSize">11sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="textDefault">

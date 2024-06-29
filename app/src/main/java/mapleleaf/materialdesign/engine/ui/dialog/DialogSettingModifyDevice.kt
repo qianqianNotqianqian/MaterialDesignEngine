@@ -49,17 +49,26 @@ class DialogSettingModifyDevice(var context: UniversalActivityBase) {
     fun modifyDeviceInfo() {
 
         val layoutInflater = LayoutInflater.from(context)
-        val dialog = layoutInflater.inflate(R.layout.dialog_system_modify_device, null)
-        editModel = dialog.findViewById(R.id.dialog_system_modify_model)!!
-        editBrand = dialog.findViewById(R.id.dialog_system_modify_brand)!!
-        editProductName = dialog.findViewById(R.id.dialog_system_modify_name)!!
-        editDevice = dialog.findViewById(R.id.dialog_system_modify_device)!!
-        editManufacturer = dialog.findViewById(R.id.dialog_system_modify_manufacturer)!!
+        val dialogView = layoutInflater.inflate(R.layout.dialog_system_modify_device, null)
+        val dialog = DialogHelper.customDialog(context, dialogView)
 
-        (dialog.findViewById<Button>(R.id.dialog_system_modify_default)!!).setOnClickListener {
+        editModel = dialogView.findViewById(R.id.dialog_system_modify_model)!!
+        editBrand = dialogView.findViewById(R.id.dialog_system_modify_brand)!!
+        editProductName = dialogView.findViewById(R.id.dialog_system_modify_name)!!
+        editDevice = dialogView.findViewById(R.id.dialog_system_modify_device)!!
+        editManufacturer = dialogView.findViewById(R.id.dialog_system_modify_manufacturer)!!
+
+        dialogView.findViewById<Button>(R.id.dialog_system_modify_default).setOnClickListener {
             setDefault()
         }
-        DialogHelper.confirm(context, "", "", dialog, DialogHelper.DialogButton("保存重启", {
+        dialogView.findViewById<Button>(R.id.btn_help).setOnClickListener {
+            DialogHelper.alert(
+                context,
+                "使用帮助",
+                context.getString(R.string.dialog_system_modify_device_desc)
+            )
+        }
+        dialogView.findViewById<Button>(R.id.btn_restart).setOnClickListener {
             val model = editModel.text.trim()
             val brand = editBrand.text.trim()
             val product = editProductName.text.trim()
@@ -124,13 +133,8 @@ class DialogSettingModifyDevice(var context: UniversalActivityBase) {
             } else {
                 toast("什么也没有修改！")
             }
-        }), DialogHelper.DialogButton("使用帮助", {
-            DialogHelper.alert(
-                context,
-                "使用帮助",
-                context.getString(R.string.dialog_system_modify_device_desc)
-            )
-        }, false))
+        }
+
         loadCurrent()
 
         try {
@@ -174,30 +178,30 @@ class DialogSettingModifyDevice(var context: UniversalActivityBase) {
         if (getBackupProp(BACKUP_SUCCESS, "false") != "true") {
             return
         } else {
-            editBrand.setText(android.os.Build.BRAND)
-            editModel.setText(android.os.Build.MODEL)
-            editProductName.setText(android.os.Build.PRODUCT)
-            editDevice.setText(android.os.Build.DEVICE)
-            editManufacturer.setText(android.os.Build.MANUFACTURER)
+            editBrand.setText(Build.BRAND)
+            editModel.setText(Build.MODEL)
+            editProductName.setText(Build.PRODUCT)
+            editDevice.setText(Build.DEVICE)
+            editManufacturer.setText(Build.MANUFACTURER)
         }
     }
 
     private fun setDefault() {
         if (getBackupProp(BACKUP_SUCCESS, "false") != "true") {
-            editBrand.setText(android.os.Build.BRAND)
-            editModel.setText(android.os.Build.MODEL)
-            editProductName.setText(android.os.Build.PRODUCT)
-            editDevice.setText(android.os.Build.DEVICE)
-            editManufacturer.setText(android.os.Build.MANUFACTURER)
+            editBrand.setText(Build.BRAND)
+            editModel.setText(Build.MODEL)
+            editProductName.setText(Build.PRODUCT)
+            editDevice.setText(Build.DEVICE)
+            editManufacturer.setText(Build.MANUFACTURER)
         } else {
-            editBrand.setText(getBackupProp(BACKUP_BRAND, android.os.Build.BRAND))
-            editModel.setText(getBackupProp(BACKUP_MODEL, android.os.Build.MODEL))
-            editProductName.setText(getBackupProp(BACKUP_PRODUCT, android.os.Build.PRODUCT))
-            editDevice.setText(getBackupProp(BACKUP_DEVICE, android.os.Build.DEVICE))
+            editBrand.setText(getBackupProp(BACKUP_BRAND, Build.BRAND))
+            editModel.setText(getBackupProp(BACKUP_MODEL, Build.MODEL))
+            editProductName.setText(getBackupProp(BACKUP_PRODUCT, Build.PRODUCT))
+            editDevice.setText(getBackupProp(BACKUP_DEVICE, Build.DEVICE))
             editManufacturer.setText(
                 getBackupProp(
                     BACKUP_MANUFACTURER,
-                    android.os.Build.MANUFACTURER
+                    Build.MANUFACTURER
                 )
             )
         }
@@ -206,11 +210,11 @@ class DialogSettingModifyDevice(var context: UniversalActivityBase) {
     @SuppressLint("ApplySharedPref")
     private fun backupDefault() {
         if (getBackupProp(BACKUP_SUCCESS, "false") != "true") {
-            PropsUtils.setPorp(BACKUP_BRAND, android.os.Build.BRAND)
-            PropsUtils.setPorp(BACKUP_MODEL, android.os.Build.MODEL)
-            PropsUtils.setPorp(BACKUP_PRODUCT, android.os.Build.PRODUCT)
-            PropsUtils.setPorp(BACKUP_DEVICE, android.os.Build.DEVICE)
-            PropsUtils.setPorp(BACKUP_MANUFACTURER, android.os.Build.MANUFACTURER)
+            PropsUtils.setPorp(BACKUP_BRAND, Build.BRAND)
+            PropsUtils.setPorp(BACKUP_MODEL, Build.MODEL)
+            PropsUtils.setPorp(BACKUP_PRODUCT, Build.PRODUCT)
+            PropsUtils.setPorp(BACKUP_DEVICE, Build.DEVICE)
+            PropsUtils.setPorp(BACKUP_MANUFACTURER, Build.MANUFACTURER)
             PropsUtils.setPorp(BACKUP_SUCCESS, "true")
         }
     }
