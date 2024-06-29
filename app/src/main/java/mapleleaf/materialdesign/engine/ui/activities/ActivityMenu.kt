@@ -12,7 +12,6 @@ import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
@@ -36,7 +35,6 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.ColorUtils
-import androidx.core.text.HtmlCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
@@ -399,7 +397,7 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             ),
             MenuItemInfo(
                 R.id.AppManager,
-                R.drawable.ic_app_manager,
+                R.drawable.ic_package,
                 R.string.menu_start_application_manager,
                 ActivityApplications::class.java
             ),
@@ -459,7 +457,7 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             ),
             MenuItemInfo(
                 R.id.SystemCpuControl,
-                R.drawable.ic_system_info,
+                R.drawable.ic_cpu_control,
                 R.string.menu_start_system_cpu_control,
                 ActivityCpuControl::class.java
             ),
@@ -507,7 +505,7 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             ),
             MenuItemInfo(
                 R.id.HotSearch,
-                R.drawable.ic_fire,
+                R.drawable.ic_hot_list,
                 R.string.menu_start_hot_search,
                 ActivityHotSearch::class.java
             ),
