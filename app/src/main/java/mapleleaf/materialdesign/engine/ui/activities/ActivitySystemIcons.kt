@@ -27,6 +27,7 @@ class ActivitySystemIcons : UniversalActivityBase(R.layout.activity_system_icons
     private lateinit var speed: AppCompatImageView
     private lateinit var loop: AppCompatImageView
     private lateinit var finger: AppCompatImageView
+    private lateinit var overFlow: AppCompatImageView
     private var isAnimation1Playing = true
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
@@ -43,6 +44,7 @@ class ActivitySystemIcons : UniversalActivityBase(R.layout.activity_system_icons
         speed = findViewById(R.id.speed)
         loop = findViewById(R.id.loop)
         finger = findViewById(R.id.finger)
+        overFlow = findViewById(R.id.overFlow)
 
         // 初始化手指动画
         playAnimatedVectorDrawable(finger, R.drawable.fingerprint_dialog_error_to_fp)
@@ -56,6 +58,9 @@ class ActivitySystemIcons : UniversalActivityBase(R.layout.activity_system_icons
 
         // 播放循环动画
         playAnimatedVectorDrawable(loop, R.drawable.avd_flip)
+
+        //播放溢出菜单折叠动画
+        playAnimatedVectorDrawable(overFlow, R.drawable.ft_avd_tooverflow_animation)
     }
 
     private fun setupButtonClick() {
@@ -75,6 +80,9 @@ class ActivitySystemIcons : UniversalActivityBase(R.layout.activity_system_icons
             finger.setImageDrawable(animationDrawable)
             animationDrawable?.start()
             isAnimation1Playing = !isAnimation1Playing
+
+            //播放溢出菜单折叠动画
+            playAnimatedVectorDrawable(overFlow, R.drawable.ft_avd_toarrow_animation)
         }
     }
 
