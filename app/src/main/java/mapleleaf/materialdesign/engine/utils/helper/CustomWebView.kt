@@ -44,8 +44,9 @@ object CustomWebView {
         swipeRefreshLayout: SwipeRefreshLayout,
     ) {
         val webSettings = webView.settings
-        webSettings.builtInZoomControls = false//**
+        webSettings.builtInZoomControls = true
         webSettings.displayZoomControls = false
+        webSettings.setSupportZoom(true)
         webSettings.supportMultipleWindows()
         webSettings.javaScriptEnabled = true
         // 允许javascript出错
@@ -64,7 +65,6 @@ object CustomWebView {
         webSettings.domStorageEnabled = true
         webSettings.loadWithOverviewMode = true
         webSettings.useWideViewPort = true
-        webSettings.setSupportZoom(false)//**
         webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
         webSettings.cacheMode = WebSettings.LOAD_NO_CACHE
 

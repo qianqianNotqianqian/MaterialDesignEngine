@@ -113,16 +113,20 @@ class ActivitySystemInfo : UniversalActivityBase(R.layout.activity_device_info) 
 
         val scrollingView = findViewById<FastScrollNestedScrollView>(R.id.nestedScrollView2)
         FastScrollerBuilder(scrollingView).build()
-
-        val materialCardView = findViewById<MaterialCardView>(R.id.materialCardView)
-        val materialCardView2 = findViewById<MaterialCardView>(R.id.materialCardView2)
         val baseColor =
             ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
         val primaryColor =
             ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-        materialCardView.setCardBackgroundColor(blendedColor)
-        materialCardView2.setCardBackgroundColor(blendedColor)
+        findViewById<MaterialCardView>(R.id.materialCardView).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(blendedColor)
+        }
+        findViewById<MaterialCardView>(R.id.materialCardView2).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(blendedColor)
+        }
+
     }
 
     private fun checkPermission() {

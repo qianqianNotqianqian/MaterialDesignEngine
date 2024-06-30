@@ -134,6 +134,7 @@
                 android:clickable="true"
                 android:singleLine="true"
                 android:text="@string/component_launch_activity"
+                app:strokeColor="?colorPrimary"
                 android:textSize="11sp"
                 tools:ignore="SmallSp" />
 
@@ -147,7 +148,9 @@
                 android:singleLine="true"
                 android:text="@string/component_create_shortcut"
                 android:textSize="11sp"
+                app:strokeColor="?colorPrimary"
                 tools:ignore="SmallSp" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

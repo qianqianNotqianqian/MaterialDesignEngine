@@ -122,7 +122,8 @@ class ActivityDictionary : UniversalActivityBase(R.layout.activity_dictionary) {
     }
 
     private fun setCardBackground(cardView: MaterialCardView, baseColor: Int, primaryColor: Int) {
-        cardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+        cardView.setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+        cardView.strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
     }
 
 

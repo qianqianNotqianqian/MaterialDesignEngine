@@ -1,25 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_copy_link"
+        android:id="@+id/html_copy_link"
         android:title="@string/copy_link" />
     <item
-        android:id="@+id/open_in_browser"
+        android:id="@+id/html_open_browser"
         android:title="@string/external_application_opening" />
     <item
-        android:id="@+id/back"
+        android:id="@+id/html_back"
         android:title="@string/html_back" />
     <item
-        android:id="@+id/stop_loading"
+        android:id="@+id/html_stop"
         android:title="@string/html_stop" />
     <item
-        android:id="@+id/refresh"
+        android:id="@+id/html_refresh"
         android:title="@string/html_refresh" />
     <item
-        android:id="@+id/clear_all"
+        android:id="@+id/html_clear_all"
         android:title="@string/html_clear_all" />
     <item
-        android:id="@+id/forward"
+        android:id="@+id/html_forward"
         android:title="@string/html_forward" />
 
 </menu>

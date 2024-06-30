@@ -121,17 +121,12 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
         appsSearchBox.isVisible = false
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_application_manager))
-
-        val materialCardView = findViewById<MaterialCardView>(R.id.materialCardView)
         val baseColor = ContextCompat.getColor(context, R.color.background)
         val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-        materialCardView.setCardBackgroundColor(
-            ColorUtils.blendARGB(
-                baseColor,
-                primaryColor,
-                0.15f
-            )
-        )
+        findViewById<MaterialCardView>(R.id.materialCardView).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+        }
 
 //        recyclerView.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -596,26 +591,22 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
             var packageName: String? = null
 
             init {
-                val materialCardView =
-                    itemView.findViewById<MaterialCardView>(R.id.app_material_cardView)
                 val baseColor = ContextCompat.getColor(context, R.color.background)
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-                materialCardView.setCardBackgroundColor(
-                    ColorUtils.blendARGB(
-                        baseColor,
-                        primaryColor,
-                        0.15f
-                    )
-                )
-                appMaterialCardView.setOnClickListener {
-                    val position = bindingAdapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        val selectedApp: AppInfo = appsList[position]
-                        showAppDetailsDialog(selectedApp)
-                    } else {
-                        toast("应用已被删除")
+                itemView.findViewById<MaterialCardView>(R.id.app_material_cardView).apply {
+                    strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+                    setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+                    setOnClickListener {
+                        val position = bindingAdapterPosition
+                        if (position != RecyclerView.NO_POSITION) {
+                            val selectedApp: AppInfo = appsList[position]
+                            showAppDetailsDialog(selectedApp)
+                        } else {
+                            toast("应用已被删除")
+                        }
                     }
                 }
+
             }
 
             fun bind(appInfo: AppInfo) {

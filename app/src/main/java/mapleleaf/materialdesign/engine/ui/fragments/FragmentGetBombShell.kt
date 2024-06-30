@@ -41,6 +41,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
+import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -303,8 +304,15 @@ class FragmentGetBombShell : UniversalFragmentBase(R.layout.fragment_get_beautif
     class AdapterBombShell(private val imageUrls: List<String>, private val context: Context) :
         RecyclerView.Adapter<AdapterBombShell.ViewHolder>() {
 
-        class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val imageView: ImageView = itemView.findViewById(R.id.imageView)
+            init {
+                val baseColor = ContextCompat.getColor(context, R.color.background)
+                val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                itemView.findViewById<MaterialCardView>(R.id.materialCardView).apply {
+                    strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+                }
+            }
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

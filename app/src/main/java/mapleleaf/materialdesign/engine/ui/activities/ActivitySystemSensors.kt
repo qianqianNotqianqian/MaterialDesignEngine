@@ -200,10 +200,12 @@ class ActivitySystemSensors : UniversalActivityBase(R.layout.activity_sensor_inf
                 val primaryColor =
                     ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
                 val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-                deviceSensorMaterialCardView.setBackgroundColor(blendedColor)
-                deviceSensorMaterialCardView.setOnClickListener(this)
+                deviceSensorMaterialCardView.apply {
+                    setOnClickListener(this@SensorViewHolder)
+                    strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+                    setCardBackgroundColor(blendedColor)
+                }
             }
-
 
             @SuppressLint("SetTextI18n")
             fun bind(

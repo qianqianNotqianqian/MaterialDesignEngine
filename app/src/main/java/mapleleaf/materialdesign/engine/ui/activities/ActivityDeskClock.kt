@@ -2,6 +2,10 @@ package mapleleaf.materialdesign.engine.ui.activities
 
 import android.os.Bundle
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
+import com.google.android.material.card.MaterialCardView
+import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import java.text.SimpleDateFormat
@@ -19,6 +23,13 @@ class ActivityDeskClock : UniversalActivityBase(R.layout.activity_desk_clock) {
         val currentDateAndDayOfWeek = dateFormat.format(calendar.time)
         // 将当前日期和星期设置到TextView中
         dateTextView.text = currentDateAndDayOfWeek
+
+        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background)
+        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+        findViewById<MaterialCardView>(R.id.main_clock).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+        }
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_clock))
     }

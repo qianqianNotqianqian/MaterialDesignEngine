@@ -46,18 +46,14 @@ class ActivityRandomPersonality : UniversalActivityBase(R.layout.activity_random
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_random_personality))
 
-        val materialCardView =
-            findViewById<MaterialCardView>(R.id.random_personality_materialCardView)
         val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background)
-        val primaryColor =
-            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-        materialCardView.setCardBackgroundColor(
-            ColorUtils.blendARGB(
-                baseColor,
-                primaryColor,
-                0.15f
-            )
-        )
+        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+
+        findViewById<MaterialCardView>(R.id.random_personality_materialCardView).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+        }
+
     }
 
     private fun randomPersonality() {

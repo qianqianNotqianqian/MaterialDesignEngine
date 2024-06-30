@@ -328,23 +328,19 @@ class ActivityHotSearch : UniversalActivityBase(R.layout.activity_hot_search) {
                 itemView.findViewById<MaterialTextView>(R.id.indexTextView)
             val titleTextView: TextView = itemView.findViewById<MarqueeTextView>(R.id.titleTextView)
             val hotTextView: TextView = itemView.findViewById<MaterialTextView>(R.id.hotTextView)
-            private val hotMaterialCardView: MaterialCardView =
-                itemView.findViewById(R.id.hotMaterialCardView)
 
             init {
                 indexTextView.setTextColor(fusionColor)
                 titleTextView.setTextColor(fusionColor)
                 hotTextView.setTextColor(fusionColor)
-                hotMaterialCardView.setOnClickListener(this)
+
                 val baseColor = ContextCompat.getColor(context, R.color.background)
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-                hotMaterialCardView.setCardBackgroundColor(
-                    ColorUtils.blendARGB(
-                        baseColor,
-                        primaryColor,
-                        0.15f
-                    )
-                )
+                itemView.findViewById<MaterialCardView>(R.id.hotMaterialCardView).apply {
+                    strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+                    setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+                    setOnClickListener(this@HotSearchViewHolder)
+                }
             }
 
             override fun onClick(view: View) {

@@ -11,12 +11,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
@@ -58,72 +55,65 @@ class ActivityAppComponents : UniversalActivityBase(R.layout.activity_app_compon
             toast("缺少必要参数:packageName")
         } else {
             viewPager.offscreenPageLimit = 4
-            progressBar?.isIndeterminate = true
-            progressBar?.isVisible = true
-
-            lifecycleScope.launch(Dispatchers.Main) {
-                val fragmentList = listOf(
-                    FragmentComponentActivities().apply {
-                        arguments = Bundle().apply {
-                            putString("packageName", packageName)
-                        }
-                    },
-                    FragmentComponentProviders().apply {
-                        arguments = Bundle().apply {
-                            putString("packageName", packageName)
-                        }
-                    },
-                    FragmentComponentReceivers().apply {
-                        arguments = Bundle().apply {
-                            putString("packageName", packageName)
-                        }
-                    },
-                    FragmentComponentServices().apply {
-                        arguments = Bundle().apply {
-                            putString("packageName", packageName)
-                        }
-                    },
-                    FragmentComponentWidgetInfo().apply {
-                        arguments = Bundle().apply {
-                            putString("packageName", packageName)
-                        }
+            val fragmentList = listOf(
+                FragmentComponentActivities().apply {
+                    arguments = Bundle().apply {
+                        putString("packageName", packageName)
                     }
-                )
-
-                val fragmentTitleList = listOf(
-                    "活动", "内容提供", "广播接收", "服务", "小部件"
-                )
-
-                val adapter = ViewPagerAdapter(
-                    this@ActivityAppComponents,
-                    fragmentList,
-                    fragmentTitleList
-                )
-                viewPager.adapter = adapter
-                tabLayout.setupWithViewPager(viewPager)
-                viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                    override fun onPageScrolled(
-                        position: Int,
-                        positionOffset: Float,
-                        positionOffsetPixels: Int,
-                    ) {
-                        // Do nothing
+                },
+                FragmentComponentProviders().apply {
+                    arguments = Bundle().apply {
+                        putString("packageName", packageName)
                     }
-
-                    override fun onPageSelected(position: Int) {
-                        val fragment = adapter.getItem(position) as? ContentLoadable
-                        fragment?.loadContent()
-                        invalidateOptionsMenu()
+                },
+                FragmentComponentReceivers().apply {
+                    arguments = Bundle().apply {
+                        putString("packageName", packageName)
                     }
-
-                    override fun onPageScrollStateChanged(state: Int) {
-                        // Do nothing
+                },
+                FragmentComponentServices().apply {
+                    arguments = Bundle().apply {
+                        putString("packageName", packageName)
                     }
-                })
-                tabLayout.getTabAt(0)?.select()
-                progressBar?.isVisible = false
-            }
+                },
+                FragmentComponentWidgetInfo().apply {
+                    arguments = Bundle().apply {
+                        putString("packageName", packageName)
+                    }
+                }
+            )
 
+            val fragmentTitleList = listOf(
+                "活动", "内容提供", "广播接收", "服务", "小部件"
+            )
+
+            val adapter = ViewPagerAdapter(
+                this@ActivityAppComponents,
+                fragmentList,
+                fragmentTitleList
+            )
+            viewPager.adapter = adapter
+            tabLayout.setupWithViewPager(viewPager)
+            viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int,
+                ) {
+                    // Do nothing
+                }
+
+                override fun onPageSelected(position: Int) {
+                    val fragment = adapter.getItem(position) as? ContentLoadable
+                    fragment?.loadContent()
+                    invalidateOptionsMenu()
+                }
+
+                override fun onPageScrollStateChanged(state: Int) {
+                    // Do nothing
+                }
+            })
+            tabLayout.getTabAt(0)?.select()
             packageName.let {
                 val appInfo = packageManager.getApplicationInfo(it, 0)
                 val label = packageManager.getApplicationLabel(appInfo).toString()

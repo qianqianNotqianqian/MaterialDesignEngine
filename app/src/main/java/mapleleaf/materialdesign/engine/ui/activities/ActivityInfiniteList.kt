@@ -75,11 +75,15 @@ class ActivityInfiniteList : UniversalActivityBase(R.layout.activity_infinite_re
         appsSearchBox.addTextChangedListener(searchTextWatcher)
 
         loadMoreItems()
-        val materialCardView = findViewById<MaterialCardView>(R.id.materialCardView)
+
         val baseColor = ContextCompat.getColor(context, R.color.background)
         val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-        val fusionColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.15f)
-        materialCardView.setCardBackgroundColor(fusionColor)
+        val fusionColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
+        findViewById<MaterialCardView>(R.id.materialCardView).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(fusionColor)
+        }
+
     }
 
     // 适配器中的回调接口
@@ -134,20 +138,15 @@ class ActivityInfiniteList : UniversalActivityBase(R.layout.activity_infinite_re
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
             View.OnClickListener {
             private val textView: TextView = itemView.findViewById(R.id.textView)
-            private val colorMaterialCardView: MaterialCardView =
-                itemView.findViewById(R.id.colorMaterialCardView)
             val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
 
             init {
-                colorMaterialCardView.setOnClickListener(this)
                 val baseColor = ContextCompat.getColor(context, R.color.background)
-                colorMaterialCardView.setCardBackgroundColor(
-                    ColorUtils.blendARGB(
-                        baseColor,
-                        primaryColor,
-                        0.15f
-                    )
-                )
+                itemView.findViewById<MaterialCardView>(R.id.colorMaterialCardView).apply {
+                    strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+                    setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+                    setOnClickListener(this@ViewHolder)
+                }
             }
 
             fun bind(data: Long) {

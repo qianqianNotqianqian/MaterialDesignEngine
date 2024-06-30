@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
@@ -15,6 +17,7 @@ import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
+import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.utils.SearchTextWatcher
@@ -29,6 +32,7 @@ class ActivityAnimeQuotes : UniversalActivityBase(R.layout.activity_anime_quotes
     private lateinit var editText: EditText
     private lateinit var buttonClear: MaterialButton
     private lateinit var msgMaterialCardView: MaterialCardView
+    private lateinit var materialCardView: MaterialCardView
     private var searchTextWatcher: SearchTextWatcher? = null
     private val client = OkHttpClient()
 
@@ -37,6 +41,7 @@ class ActivityAnimeQuotes : UniversalActivityBase(R.layout.activity_anime_quotes
         editText = findViewById(R.id.edit_text)
         buttonClear = findViewById(R.id.button_clear)
         msgMaterialCardView = findViewById(R.id.msgMaterialCardView)
+        materialCardView = findViewById(R.id.materialCardView)
 
         buttonClear.setOnClickListener {
             editText.text.clear()
@@ -75,6 +80,18 @@ class ActivityAnimeQuotes : UniversalActivityBase(R.layout.activity_anime_quotes
             }
         })
         msgMaterialCardView.visibility = if (editText.text.isEmpty()) View.GONE else View.VISIBLE
+
+        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background)
+        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+
+        findViewById<MaterialCardView>(R.id.msgMaterialCardView).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+        }
+        findViewById<MaterialCardView>(R.id.materialCardView).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+        }
         setToolbarTitle(getString(R.string.toolbar_title_activity_anime_quotes))
     }
 

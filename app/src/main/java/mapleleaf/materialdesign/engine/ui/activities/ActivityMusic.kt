@@ -67,13 +67,12 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(progressColors)
         val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
         val baseColor = ContextCompat.getColor(context, R.color.background)
-        materialCardView.setCardBackgroundColor(
-            ColorUtils.blendARGB(
-                baseColor,
-                primaryColor,
-                0.15f
-            )
-        )
+
+        materialCardView.apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+        }
+
         musicScan()
 
         swipeRefreshLayout.setOnRefreshListener {
@@ -166,28 +165,25 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
             private val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
             private val artistTextView: TextView = itemView.findViewById(R.id.artistTextView)
             private val durationTextView: TextView = itemView.findViewById(R.id.durationTextView)
-            private val musicMaterialCardView: MaterialCardView =
-                itemView.findViewById(R.id.musicMaterialCardView)
+
             private val musicIconImageView: ImageView =
                 itemView.findViewById(R.id.musicIconImageView)
 
             init {
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
                 val baseColor = ContextCompat.getColor(context, R.color.background)
-                musicMaterialCardView.setCardBackgroundColor(
-                    ColorUtils.blendARGB(
-                        baseColor,
-                        primaryColor,
-                        0.15f
-                    )
-                )
-                musicMaterialCardView.setOnClickListener {
-                    val position = bindingAdapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        val music = musicList[position]
-                        CoroutineScope(Dispatchers.Main).launch {
-                            playMusic(music, it.context)
-                            mediaPlayerReleased = false
+
+                itemView.findViewById<MaterialCardView>(R.id.musicMaterialCardView).apply {
+                    strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+                    setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+                    setOnClickListener {
+                        val position = bindingAdapterPosition
+                        if (position != RecyclerView.NO_POSITION) {
+                            val music = musicList[position]
+                            CoroutineScope(Dispatchers.Main).launch {
+                                playMusic(music, it.context)
+                                mediaPlayerReleased = false
+                            }
                         }
                     }
                 }

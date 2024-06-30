@@ -54,8 +54,6 @@ class ActivityApplications : UniversalActivityBase(R.layout.activity_application
     private val fragmentApplicationUser = FragmentApplicationUser(myHandler)
     private val fragmentApplicationSystem = FragmentApplicationSystem(myHandler)
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var materialCardView: MaterialCardView
-    private lateinit var materialCardViewEdit: MaterialCardView
     private var openActivityCount = 0
     private val maxOpenCount = 20
     private lateinit var buttonClear: AppCompatImageButton
@@ -66,8 +64,18 @@ class ActivityApplications : UniversalActivityBase(R.layout.activity_application
         val appsSearchBox = findViewById<EditText>(R.id.apps_search_box)
 
         buttonClear = findViewById(R.id.buttonClear)
-        materialCardView = findViewById(R.id.materialCardView)
-        materialCardViewEdit = findViewById(R.id.materialCardViewEdit)
+
+        val baseColor = ContextCompat.getColor(context, R.color.background)
+        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
+
+        findViewById<MaterialCardView>(R.id.materialCardView).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+        }
+        findViewById<MaterialCardView>(R.id.materialCardViewEdit).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+        }
 
         CoroutineScope(Dispatchers.Main).launch {
             TabIcon(
@@ -148,22 +156,7 @@ class ActivityApplications : UniversalActivityBase(R.layout.activity_application
             sharedPreferences.edit().putInt("open_count", openActivityCount).apply()
         }
 
-        val baseColor = ContextCompat.getColor(context, R.color.background)
-        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-        materialCardView.setCardBackgroundColor(
-            ColorUtils.blendARGB(
-                baseColor,
-                primaryColor,
-                0.15f
-            )
-        )
-        materialCardViewEdit.setCardBackgroundColor(
-            ColorUtils.blendARGB(
-                baseColor,
-                primaryColor,
-                0.15f
-            )
-        )
+
     }
 
     private fun showDonateSnackbar() {

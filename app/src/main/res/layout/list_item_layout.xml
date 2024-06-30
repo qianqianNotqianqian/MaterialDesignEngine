@@ -7,7 +7,7 @@
     android:paddingEnd="3dp">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardView"
+        android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="360dp"
         app:cardBackgroundColor="@color/background"

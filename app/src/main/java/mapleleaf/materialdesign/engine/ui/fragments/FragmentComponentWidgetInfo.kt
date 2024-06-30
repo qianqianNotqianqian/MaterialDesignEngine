@@ -63,17 +63,12 @@ class FragmentComponentWidgetInfo : UniversalFragmentBase(R.layout.fragment_comp
         val imageView = rootView.findViewById<ImageView>(R.id.null_list)
         appsSearchBox = rootView.findViewById(R.id.apps_search_box)
 
-        val materialCardViewEdit =
-            rootView.findViewById<MaterialCardView>(R.id.materialCardViewEdit)
         val baseColor = ContextCompat.getColor(requireContext(), R.color.background)
         val primaryColor = ContextCompat.getColor(requireContext(), R.color.colorPrimary)
-        materialCardViewEdit.setCardBackgroundColor(
-            ColorUtils.blendARGB(
-                baseColor,
-                primaryColor,
-                0.15f
-            )
-        )
+        rootView.findViewById<MaterialCardView>(R.id.materialCardViewEdit).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+        }
 
         lifecycleScope.launch(Dispatchers.Main) {
 
@@ -265,13 +260,10 @@ class FragmentComponentWidgetInfo : UniversalFragmentBase(R.layout.fragment_comp
                 softInput.isVisible = false
                 val baseColor = ContextCompat.getColor(requireContext(), R.color.background)
                 val primaryColor = ContextCompat.getColor(requireContext(), R.color.colorPrimary)
-                componentMaterialCardView.setCardBackgroundColor(
-                    ColorUtils.blendARGB(
-                        baseColor,
-                        primaryColor,
-                        0.15f
-                    )
-                )
+                itemView.findViewById<MaterialCardView>(R.id.componentCardView).apply {
+                    strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+                    setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+                }
             }
 
             fun bind(widgetInfo: AppWidgetProviderInfo) {

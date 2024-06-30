@@ -125,7 +125,7 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         }
         setNavigationViewMenuItem(
             R.id.item_app_manager,
-            R.drawable.ic_app_manager,
+            R.drawable.ic_package,
             R.string.application_manager
         ) {
             this@ActivityMenu.startActivity(
@@ -592,8 +592,13 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
             findViewById<MaterialCardView>(menuItemInfo.itemId).apply {
                 val baseColor = ContextCompat.getColor(context, R.color.background)
                 setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+                strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
             }
-            findViewById<AppCompatImageView>(R.id.menuIcon).setImageResource(menuItemInfo.iconResId)
+            findViewById<AppCompatImageView>(R.id.menuIcon).apply {
+                setImageResource(menuItemInfo.iconResId)
+                val baseColor = ContextCompat.getColor(context, R.color.text_color)
+                setColorFilter(ColorUtils.blendARGB(baseColor, primaryColor, 0.5f))
+            }
             findViewById<MaterialTextView>(R.id.menuText).apply {
                 setText(menuItemInfo.textResId)
                 val baseColor = ContextCompat.getColor(context, R.color.text_color)

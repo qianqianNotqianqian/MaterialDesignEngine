@@ -10,8 +10,12 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import androidx.core.view.isVisible
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import mapleleaf.materialdesign.engine.MaterialDesignEngine
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.utils.toast
@@ -207,6 +211,14 @@ class ActivitySystemVibration : UniversalActivityBase(R.layout.activity_vibratio
             if (!hasFocus) {
                 inputMethodManager.hideSoftInputFromWindow(durationEditText.windowToken, 0)
             }
+        }
+
+        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background)
+        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+        val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
+        findViewById<MaterialCardView>(R.id.materialCardView).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(blendedColor)
         }
     }
 

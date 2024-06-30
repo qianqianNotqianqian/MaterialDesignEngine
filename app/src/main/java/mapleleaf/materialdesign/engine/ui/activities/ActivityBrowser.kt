@@ -77,9 +77,10 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
         webView.settings.domStorageEnabled = true
         webView.settings.loadWithOverviewMode = true
         webView.settings.useWideViewPort = true
+        webView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
         webView.settings.builtInZoomControls = true
         webView.settings.displayZoomControls = false
-        webView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
+        webView.settings.setSupportZoom(true)
 
         val webViewClient = MyWebViewClient()
         webView.webViewClient = webViewClient
@@ -136,7 +137,6 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                 }
             }
 
-            //扩展支持alert事件
             override fun onJsAlert(
                 view: WebView,
                 url: String,
@@ -147,23 +147,28 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
             }
         }
 
-        webView.setDownloadListener { url: String?, _: String?, _: String?, _: String?, _: Long ->
-            try {
-                val downloadIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                downloadIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        webView.setDownloadListener { url, _, _, _, _ ->
+            val snackbar = Snackbar.make(webView, "确认下载文件?", Snackbar.LENGTH_LONG)
+                .setAction("是") {
+                    try {
+                        val downloadIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        downloadIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
-                val activities: List<ResolveInfo> = context.packageManager.queryIntentActivities(downloadIntent, PackageManager.MATCH_DEFAULT_ONLY)
+                        val activities: List<ResolveInfo> = context.packageManager.queryIntentActivities(downloadIntent, PackageManager.MATCH_DEFAULT_ONLY)
 
-                if (activities.isNotEmpty()) {
-                    val chooserIntent = Intent.createChooser(downloadIntent, "选择应用下载")
-                    chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    context.startActivity(chooserIntent)
-                } else {
-                    toast("没有找到可以处理此下载请求的应用。")
+                        if (activities.isNotEmpty()) {
+                            val chooserIntent = Intent.createChooser(downloadIntent, "选择应用下载")
+                            chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            context.startActivity(chooserIntent)
+                        } else {
+                            toast("没有找到可以处理此下载请求的应用。")
+                        }
+                    } catch (e: ActivityNotFoundException) {
+                        toast("没有找到可以处理此下载请求的活动。")
+                    }
                 }
-            } catch (e: ActivityNotFoundException) {
-                toast("没有找到可以处理此下载请求的活动。")
-            }
+
+            snackbar.show()
         }
 
         val url = intent.getStringExtra("url")
@@ -258,22 +263,22 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> finish()
-            R.id.menu_copy_link -> {
+            R.id.html_copy_link -> {
                 copyCurrentPageLink()
                 return true
             }
 
-            R.id.open_in_browser -> openInExternalBrowser()
+            R.id.html_open_browser -> openInExternalBrowser()
 
-            R.id.back -> {
+            R.id.html_back -> {
                 if (webView.canGoBack()) webView.goBack()
             }
 
-            R.id.stop_loading -> webView.stopLoading()
+            R.id.html_stop -> webView.stopLoading()
 
-            R.id.refresh -> webView.reload()
+            R.id.html_refresh -> webView.reload()
 
-            R.id.clear_all -> {
+            R.id.html_clear_all -> {
                 webView.clearCache(true)
                 webView.clearFormData()
                 webView.clearHistory()
@@ -284,7 +289,7 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                 toast("已清除所有数据")
             }
 
-            R.id.forward -> {
+            R.id.html_forward -> {
                 if (webView.canGoForward()) webView.goForward()
             }
         }
@@ -348,22 +353,28 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
             val url = uri.toString()
 
             return if (url.startsWith("http://") || url.startsWith("https://")) {
-                false
+                false // 继续让 WebView 加载 HTTP/HTTPS 开头的 URL
             } else {
                 try {
                     val intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME)
                     if (intent != null) {
                         when {
-                            url.startsWith("zhihu://") -> {
+                            url.startsWith("zhihu://") ||
+                                    url.startsWith("mqq://") ||
+                                    url.startsWith("newsapp://") ||
+                                    url.startsWith("mobilenotes://") ||
+                                    url.startsWith("sohunews://") ||
+                                    url.startsWith("dingtalk://") ||
+                                    url.startsWith("taobao://") ||
+                                    url.startsWith("qqmusic://") ||
+                                    url.startsWith("qqmail://") ||
+                                    url.startsWith("weiyun://") ||
+                                    url.startsWith("sosomap://") ||
+                                    url.startsWith("weixin://") ||
+                                    url.startsWith("wechat://") -> {
                                 showOpenAppSnackBar(intent)
-                                return true
+                                true
                             }
-
-                            url.startsWith("mqq://") -> {
-                                showOpenAppSnackBar(intent)
-                                return true
-                            }
-
                             url.startsWith("sms://") -> {
                                 try {
                                     // 获取短信号码
@@ -376,9 +387,8 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                                     Log.e(tag, "Error handling SMS URL: ${e.message}")
                                     // 处理异常情况
                                 }
-                                return true
+                                true // 返回 true 表示已经处理了该 URL
                             }
-
                             url.startsWith("itms-apps://") -> {
                                 try {
                                     // 在这里执行打开App Store的逻辑
@@ -387,9 +397,8 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                                     Log.e(tag, "Error handling App Store URL: ${e.message}")
                                     // 处理异常情况
                                 }
-                                return true
+                                true // 返回 true 表示已经处理了该 URL
                             }
-
                             url.startsWith("tel://") -> {
                                 try {
                                     // 获取电话号码
@@ -403,76 +412,37 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
 
                                 } catch (e: Exception) {
                                     Log.e(tag, "Error handling Tel URL: ${e.message}")
-                                    // 处理异常情况
                                 }
-                                return true
+                                true
                             }
-
-                            url.startsWith("mobilenotes://") -> {
-                                showOpenAppSnackBar(intent)
-                                return true
-                            }
-
-                            url.startsWith("dingtalk://") -> {
-                                showOpenAppSnackBar(intent)
-                                return true
-                            }
-
-                            url.startsWith("taobao://") -> {
-                                showOpenAppSnackBar(intent)
-                                return true
-                            }
-
-                            url.startsWith("qqmusic://") -> {
-                                showOpenAppSnackBar(intent)
-                                return true
-                            }
-
-                            url.startsWith("qqmail://") -> {
-                                showOpenAppSnackBar(intent)
-                                return true
-                            }
-
-                            url.startsWith("weiyun://") -> {
-                                showOpenAppSnackBar(intent)
-                                return true
-                            }
-
-                            url.startsWith("sosomap://") -> {
-                                showOpenAppSnackBar(intent)
-                                return true
-                            }
-
-                            url.startsWith("weixin://") -> {
-                                showOpenAppSnackBar(intent)
-                                return true
-                            }
-
-                            url.startsWith("wechat://") -> {
-                                showOpenAppSnackBar(intent)
-                                return true
-                            }
-
                             else -> {
-                                showOpenAppSnackBar(intent)
-                                return true
+                                false
                             }
                         }
+                    } else {
+                        false
                     }
                 } catch (e: URISyntaxException) {
                     Log.e(tag, "URISyntaxException: ${e.message}")
+                    false
                 } catch (e: ActivityNotFoundException) {
                     // 处理异常，例如没有可处理该 Intent 的应用
                     Log.e(tag, "Activity not found to handle Intent: $url")
                     handleWebViewError()
-                    return true
+                    true // 返回 true 表示已经处理了该 URL
                 }
-                false
             }
         }
 
+        private var snackbar: Snackbar? = null
+        private var isActionClicked = false
+
         @SuppressLint("QueryPermissionsNeeded")
         private fun showOpenAppSnackBar(intent: Intent) {
+            // 如果已经有 Snackbar 在显示，并且 Action 已经点击，则直接返回，不再显示新的 Snackbar
+            if (snackbar != null && (snackbar!!.isShownOrQueued || isActionClicked)) {
+                return
+            }
             // 使用PackageManager检查是否有应用能够处理该Intent
             if (intent.resolveActivity(packageManager) != null) {
                 try {
@@ -483,28 +453,31 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
                     val appName =
                         applicationInfo?.let { packageManager.getApplicationLabel(it) } as String
 
-                    val openAppSnackbar =
-                        Snackbar.make(webView, "是否允许打开 $appName 应用？", Snackbar.LENGTH_SHORT)
-                            .setAction("允许") { _ ->
-                                try {
-                                    startActivity(intent)
-                                } catch (e: ActivityNotFoundException) {
-                                    // 处理启动Activity时应用未找到的异常
-                                    e.printStackTrace()
-                                    // 可以显示一个提示或者其他处理逻辑
-                                } catch (e: Exception) {
-                                    // 处理其他异常
-                                    e.printStackTrace()
-                                }
+                    // 创建新的 Snackbar 实例并保存到成员变量中
+                    snackbar = Snackbar.make(webView, "是否允许打开 $appName 应用？", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("允许") { _ ->
+                            isActionClicked = true // 设置标志位为 true，表示用户已经点击了 Action
+
+                            try {
+                                startActivity(intent)
+                            } catch (e: ActivityNotFoundException) {
+                                // 处理启动Activity时应用未找到的异常
+                                e.printStackTrace()
+                                // 可以显示一个提示或者其他处理逻辑
+                            } catch (e: Exception) {
+                                // 处理其他异常
+                                e.printStackTrace()
                             }
-                    openAppSnackbar.show()
+                        }
+                    // 显示 Snackbar
+                    snackbar!!.show()
                 } catch (e: Exception) {
                     // 处理Snackbar显示时的异常
                     e.printStackTrace()
                 }
             } else {
                 // 如果没有应用可以处理Intent，可以显示一个提示
-//                toast("没有应用可以处理该操作")
+                toast("没有应用可以处理该操作")
             }
         }
 

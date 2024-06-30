@@ -49,17 +49,23 @@ class ActivityProcess : UniversalActivityBase(R.layout.activity_process) {
         val processSortMode = findViewById<Spinner>(R.id.process_sort_mode)
         val processFilter = findViewById<Spinner>(R.id.process_filter)
 
-        val materialCardView = findViewById<MaterialCardView>(R.id.materialCardView)
-        val materialCardView2 = findViewById<MaterialCardView>(R.id.materialCardView2)
-        val materialCardView3 = findViewById<MaterialCardView>(R.id.materialCardView3)
-        val baseColor =
-            ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
-        val primaryColor =
-            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
+        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-        materialCardView.setCardBackgroundColor(blendedColor)
-        materialCardView2.setCardBackgroundColor(blendedColor)
-        materialCardView3.setCardBackgroundColor(blendedColor)
+
+        findViewById<MaterialCardView>(R.id.materialCardView).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(blendedColor)
+        }
+        findViewById<MaterialCardView>(R.id.materialCardView2).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(blendedColor)
+        }
+        findViewById<MaterialCardView>(R.id.materialCardView3).apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(blendedColor)
+        }
+
         if (supported) {
             processUnsupported.isVisible = false
             processView.isVisible = true
