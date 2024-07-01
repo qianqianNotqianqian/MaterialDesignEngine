@@ -68,7 +68,7 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
         webView = findViewById(R.id.webView)
         titleTextView = findViewById(R.id.titleTextView)
 
-        FastScrollerBuilder(webView).build()
+        FastScrollerBuilder(webView).useMd2Style().build()
         webView.settings.javaScriptEnabled = true
         webView.settings.cacheMode = WebSettings.LOAD_DEFAULT
         webView.settings.databaseEnabled = true

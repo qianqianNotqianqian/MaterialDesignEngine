@@ -105,7 +105,7 @@ class ActivitySystemIcons : UniversalActivityBase(R.layout.activity_system_icons
     private fun setupFastScroller() {
         // 设置快速滚动
         val nestedScrollView = findViewById<FastScrollNestedScrollView>(R.id.nestedScrollView2)
-        FastScrollerBuilder(nestedScrollView).build()
+        FastScrollerBuilder(nestedScrollView).useMd2Style().build()
     }
 
     // 电量广播接收器

@@ -45,7 +45,7 @@ class FragmentGetWebImage : UniversalFragmentBase(R.layout.fragment_get_web_imag
             val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
             toolbar.setBackgroundColor(blendedColor)
 
-            FastScrollerBuilder(webView!!).build()
+            FastScrollerBuilder(webView!!).useMd2Style().build()
             withContext(Dispatchers.Main) {
                 val colorRed = ContextCompat.getColor(requireContext(), R.color.red1)
                 val colorGreen = ContextCompat.getColor(requireContext(), R.color.lawngreen)

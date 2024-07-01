@@ -51,7 +51,7 @@ class FragmentColorsZH : UniversalFragmentBase(R.layout.fragment_colors) {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         adapter = AdapterColors(requireContext())
         recyclerView.adapter = adapter
-        FastScrollerBuilder(recyclerView).build()
+        FastScrollerBuilder(recyclerView).useMd2Style().build()
 
         loadColorJSON()
 

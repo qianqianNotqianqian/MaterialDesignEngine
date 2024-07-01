@@ -45,7 +45,7 @@ class FragmentUniversalFunctions : UniversalFragmentBase(R.layout.fragment_funct
         swipeRefreshLayout.setColorSchemeColors(colorRed, colorGreen, colorBlue, colorOrange)
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(progressColors)
 
-        FastScrollerBuilder(webView!!).build()
+        FastScrollerBuilder(webView!!).useMd2Style().build()
         randomUrls = arguments?.getStringArray("randomUrls") ?: emptyArray()
 
         lifecycleScope.launch {

@@ -84,7 +84,7 @@ class FragmentComponentActivities : UniversalFragmentBase(R.layout.fragment_comp
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = AdapterComponents(requireContext(), emptyList())
             recyclerView.adapter = adapter
-            FastScrollerBuilder(recyclerView).build()
+            FastScrollerBuilder(recyclerView).useMd2Style().build()
 
             val colorRed = ContextCompat.getColor(requireContext(), R.color.red1)
             val colorGreen = ContextCompat.getColor(requireContext(), R.color.lawngreen)

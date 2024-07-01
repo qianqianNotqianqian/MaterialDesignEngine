@@ -137,7 +137,7 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
             isAnimationFirstOnly = false
         }
         recyclerView.adapter = adapter
-        FastScrollerBuilder(recyclerView).build()
+        FastScrollerBuilder(recyclerView).useMd2Style().build()
 
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {

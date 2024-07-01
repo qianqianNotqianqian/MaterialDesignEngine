@@ -591,8 +591,8 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         findViewById<View>(menuItemInfo.itemId).apply {
             findViewById<MaterialCardView>(menuItemInfo.itemId).apply {
                 val baseColor = ContextCompat.getColor(context, R.color.background)
-                setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
                 strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+                setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
             }
             findViewById<AppCompatImageView>(R.id.menuIcon).apply {
                 setImageResource(menuItemInfo.iconResId)

@@ -54,7 +54,7 @@ class ActivityApplicationDex : UniversalActivityBase(R.layout.activity_applicati
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         adapter = AdapterDexMethodInfo()
         recyclerView.adapter = adapter
-        FastScrollerBuilder(recyclerView).build()
+        FastScrollerBuilder(recyclerView).useMd2Style().build()
 
         loading = findViewById(R.id.loading)
         animatedVectorDrawable = AppCompatResources.getDrawable(

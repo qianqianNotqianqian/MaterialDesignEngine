@@ -100,7 +100,7 @@ class FragmentGetBombShell : UniversalFragmentBase(R.layout.fragment_get_beautif
                 GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
             adapter = AdapterBombShell(imageUrls, requireContext())
             recyclerView.adapter = adapter
-            FastScrollerBuilder(recyclerView).build()
+            FastScrollerBuilder(recyclerView).useMd2Style().build()
 
             withContext(Dispatchers.Main) {
                 val colorRed = ContextCompat.getColor(requireContext(), R.color.red1)

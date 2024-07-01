@@ -59,7 +59,7 @@ class ActivityInfiniteList : UniversalActivityBase(R.layout.activity_infinite_re
         }
 
         recyclerView.adapter = adapter
-        FastScrollerBuilder(recyclerView).build()
+        FastScrollerBuilder(recyclerView).useMd2Style().build()
 
         val searchTextWatcher = SearchTextWatcher {
             // 获取编辑框中输入的条目数

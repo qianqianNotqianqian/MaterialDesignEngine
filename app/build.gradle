@@ -40,8 +40,8 @@ android {
         applicationId namespace
         minSdk 31
         targetSdk 34
-        versionCode 3921
-        versionName '3.9.2.1'
+        versionCode 3970
+        versionName '3.9.7.0'
         project.archivesBaseName = "MaterialDesign引擎"
         ndk {
             // noinspection ChromeOsAbiSupport

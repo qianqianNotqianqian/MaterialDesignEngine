@@ -46,7 +46,7 @@ class ActivityRandomPersonality : UniversalActivityBase(R.layout.activity_random
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         val scrollingView = findViewById<FastScrollNestedScrollView>(R.id.nestedScrollView2)
-        FastScrollerBuilder(scrollingView).build()
+        FastScrollerBuilder(scrollingView).useMd2Style().build()
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
         loading = findViewById(R.id.loading)
         emptyList = findViewById(R.id.emptyList)

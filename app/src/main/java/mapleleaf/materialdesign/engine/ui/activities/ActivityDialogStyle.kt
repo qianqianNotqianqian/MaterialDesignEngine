@@ -22,7 +22,7 @@ class ActivityDialogStyle : UniversalActivityBase(R.layout.activity_dialog_style
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         val scrollingView = findViewById<FastScrollNestedScrollView>(R.id.nestedScrollView)
-        FastScrollerBuilder(scrollingView).build()
+        FastScrollerBuilder(scrollingView).useMd2Style().build()
         val menuItems = arrayOf(
             MenuItemInfo(
                 R.id.KongzueDialog,

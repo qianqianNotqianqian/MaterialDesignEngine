@@ -217,7 +217,7 @@ class ActivityKongzueDialog : UniversalActivityBase(R.layout.activity_kongzue_di
         btnListDialog = findViewById(R.id.btn_listDialog)
 
         val nestedScrollView = findViewById<NestedScrollView>(R.id.nestedScrollView)
-        FastScrollerBuilder(nestedScrollView).build()
+        FastScrollerBuilder(nestedScrollView).useMd2Style().build()
 
         grpMode.addOnButtonCheckedListener { _, checkedId, _ ->
             BaseDialog.cleanAll()

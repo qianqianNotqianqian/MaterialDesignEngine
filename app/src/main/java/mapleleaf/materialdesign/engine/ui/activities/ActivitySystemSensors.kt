@@ -55,7 +55,7 @@ class ActivitySystemSensors : UniversalActivityBase(R.layout.activity_sensor_inf
 
         recyclerView.adapter = adapterSensor
         recyclerView.layoutManager = LinearLayoutManager(this)
-        FastScrollerBuilder(recyclerView).build()
+        FastScrollerBuilder(recyclerView).useMd2Style().build()
         sensorManager = this.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         CoroutineScope(Dispatchers.Main).launch {
             loadSensors()

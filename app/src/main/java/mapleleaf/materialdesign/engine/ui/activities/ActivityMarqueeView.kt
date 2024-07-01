@@ -40,7 +40,7 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
             )
             .build()
         viewPager.adapter = adapter
-        viewPager.offscreenPageLimit = 1
+
         tabLayout.setupWithViewPager(viewPager)
         getToolbar().setBackgroundColor(getColor(R.color.transparent))
 

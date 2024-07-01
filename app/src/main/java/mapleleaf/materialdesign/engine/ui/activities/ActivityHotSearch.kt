@@ -61,7 +61,7 @@ class ActivityHotSearch : UniversalActivityBase(R.layout.activity_hot_search) {
         hotSearchList = ArrayList()
         adapter = AdapterHotSearch(this, hotSearchList)
         recyclerView.adapter = adapter
-        FastScrollerBuilder(recyclerView).build()
+        FastScrollerBuilder(recyclerView).useMd2Style().build()
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
 

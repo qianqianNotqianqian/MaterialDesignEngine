@@ -112,7 +112,7 @@ class ActivitySystemInfo : UniversalActivityBase(R.layout.activity_device_info) 
         }
 
         val scrollingView = findViewById<FastScrollNestedScrollView>(R.id.nestedScrollView2)
-        FastScrollerBuilder(scrollingView).build()
+        FastScrollerBuilder(scrollingView).useMd2Style().build()
         val baseColor =
             ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
         val primaryColor =

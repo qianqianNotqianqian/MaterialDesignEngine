@@ -59,7 +59,7 @@ class ActivityDictionary : UniversalActivityBase(R.layout.activity_dictionary) {
         buttonQuery = findViewById(R.id.buttonQuery)
         progressBar = findViewById(R.id.progressBar)
         val nestedScrollView = findViewById<NestedScrollView>(R.id.nestedScrollView2)
-        FastScrollerBuilder(nestedScrollView).build()
+        FastScrollerBuilder(nestedScrollView).useMd2Style().build()
         progressBar.isIndeterminate = true
 
         val colorRed = ContextCompat.getColor(this, R.color.red1)

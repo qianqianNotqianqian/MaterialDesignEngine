@@ -93,7 +93,7 @@ class ActivityApplicationDetails : UniversalActivityBase(R.layout.activity_appli
         adapter = AdapterAppDetail(this, ArrayList())
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        FastScrollerBuilder(recyclerView).build()
+        FastScrollerBuilder(recyclerView).useMd2Style().build()
         progressBar.isIndeterminate = true
 
         val colorRed = ContextCompat.getColor(this, R.color.red1)

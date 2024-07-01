@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.SeekBar
 import android.widget.TextView
@@ -164,8 +163,8 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
             private val artistTextView: TextView = itemView.findViewById(R.id.artistTextView)
             private val durationTextView: TextView = itemView.findViewById(R.id.durationTextView)
 
-            private val musicIconImageView: ImageView =
-                itemView.findViewById(R.id.musicIconImageView)
+//            private val musicIconImageView: ImageView =
+//                itemView.findViewById(R.id.musicIconImageView)
 
             init {
                 val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
