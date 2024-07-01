@@ -5,12 +5,16 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.AnimatedVectorDrawable
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatImageView
@@ -25,8 +29,11 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 import com.xuexiang.xui.widget.textview.MarqueeTextView
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
+import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.base.UniversalActivityBase
 import mapleleaf.materialdesign.engine.utils.toast
@@ -44,6 +51,7 @@ class ActivityHotSearch : UniversalActivityBase(R.layout.activity_hot_search) {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var hotSearchList: ArrayList<HotSearchItem>
     private lateinit var loading: AppCompatImageView
+    private lateinit var emptyList: LinearLayout
     private var animatedVectorDrawable: AnimatedVectorDrawable? = null
     private var currentUrl: String? = "https://api.vvhan.com/api/hotlist/wbHot"
 
@@ -58,6 +66,7 @@ class ActivityHotSearch : UniversalActivityBase(R.layout.activity_hot_search) {
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
 
         loading = findViewById(R.id.loading)
+        emptyList = findViewById(R.id.emptyList)
         animatedVectorDrawable = AppCompatResources.getDrawable(
             this,
             R.drawable.progress_loading_manager
@@ -226,15 +235,44 @@ class ActivityHotSearch : UniversalActivityBase(R.layout.activity_hot_search) {
     )
 
     private suspend fun fetchHotSearchData(url: String) {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        // 检查网络是否连接
+        if (!isNetworkAvailable(connectivityManager)) {
+            withContext(Dispatchers.Main) {
+                toast("无网络连接")
+                emptyList.isVisible = true
+                animatedVectorDrawable?.stop()
+                loading.isVisible = false
+                swipeRefreshLayout.isRefreshing = false
+            }
+            return
+        }
+
         val client = OkHttpClient()
         val request = Request.Builder()
             .url(url)
             .build()
 
         try {
-            val response = withContext(Dispatchers.IO) {
-                client.newCall(request).execute()
+            val response = withTimeoutOrNull(10_000) {
+                withContext(Dispatchers.IO) {
+                    client.newCall(request).execute()
+                }
             }
+
+            if (response == null) {
+                // 请求超时
+                withContext(Dispatchers.Main) {
+                    toast("请求超时")
+                    emptyList.isVisible = true
+                    animatedVectorDrawable?.stop()
+                    loading.isVisible = false
+                    swipeRefreshLayout.isRefreshing = false
+                }
+                return
+            }
+
             val responseData = response.body?.string()
             val dataArray = responseData?.let { JSONObject(it).optJSONArray("data") }
             val newList = mutableListOf<HotSearchItem>()
@@ -253,6 +291,7 @@ class ActivityHotSearch : UniversalActivityBase(R.layout.activity_hot_search) {
                 if (currentUrl == url) {
                     adapter.updateList(newList)
                 }
+                emptyList.isVisible = false
                 animatedVectorDrawable?.stop()
                 loading.isVisible = false
                 swipeRefreshLayout.isRefreshing = false
@@ -261,15 +300,32 @@ class ActivityHotSearch : UniversalActivityBase(R.layout.activity_hot_search) {
             e.printStackTrace()
             withContext(Dispatchers.Main) {
                 toast("发生错误: ${e.message}")
+                emptyList.isVisible = true
                 animatedVectorDrawable?.stop()
                 loading.isVisible = false
                 swipeRefreshLayout.isRefreshing = false
             }
         } catch (e: JSONException) {
-            toast("解析JSON错误: ${e.message}")
-            animatedVectorDrawable?.stop()
-            loading.isVisible = false
-            swipeRefreshLayout.isRefreshing = false
+            e.printStackTrace()
+            withContext(Dispatchers.Main) {
+                toast("解析JSON错误: ${e.message}")
+                emptyList.isVisible = true
+                animatedVectorDrawable?.stop()
+                loading.isVisible = false
+                swipeRefreshLayout.isRefreshing = false
+            }
+        }
+    }
+
+    // 检查设备的网络连接状态
+    private fun isNetworkAvailable(connectivityManager: ConnectivityManager): Boolean {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network = connectivityManager.activeNetwork ?: return false
+            val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+            return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        } else {
+            val networkInfo = connectivityManager.activeNetworkInfo
+            return networkInfo?.isConnected ?: false
         }
     }
 

@@ -215,10 +215,10 @@ class ActivitySystemVibration : UniversalActivityBase(R.layout.activity_vibratio
 
         val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background)
         val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-        val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
+
         findViewById<MaterialCardView>(R.id.materialCardView).apply {
             strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(blendedColor)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
         }
     }
 

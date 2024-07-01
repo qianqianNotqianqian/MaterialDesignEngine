@@ -317,7 +317,7 @@
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/overFlow"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="420dp"
                             android:padding="12dp"
                             android:scaleType="fitCenter" />
 

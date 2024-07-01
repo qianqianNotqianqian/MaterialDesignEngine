@@ -45,14 +45,18 @@ class ActivityDialogStyle : UniversalActivityBase(R.layout.activity_dialog_style
     }
 
     private fun setMenuItem(menuItemInfo: MenuItemInfo) {
-        val primaryColor =
-            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         findViewById<View>(menuItemInfo.itemId).apply {
             findViewById<MaterialCardView>(menuItemInfo.itemId).apply {
                 val baseColor = ContextCompat.getColor(context, R.color.background)
-                setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+                setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+                strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
             }
-            findViewById<AppCompatImageView>(R.id.menuIcon).setImageResource(menuItemInfo.iconResId)
+            findViewById<AppCompatImageView>(R.id.menuIcon).apply {
+                setImageResource(menuItemInfo.iconResId)
+                val baseColor = ContextCompat.getColor(context, R.color.text_color)
+                setColorFilter(ColorUtils.blendARGB(baseColor, primaryColor, 0.5f))
+            }
             findViewById<MaterialTextView>(R.id.menuText).apply {
                 setText(menuItemInfo.textResId)
                 val baseColor = ContextCompat.getColor(context, R.color.text_color)
@@ -63,5 +67,4 @@ class ActivityDialogStyle : UniversalActivityBase(R.layout.activity_dialog_style
             }
         }
     }
-
 }

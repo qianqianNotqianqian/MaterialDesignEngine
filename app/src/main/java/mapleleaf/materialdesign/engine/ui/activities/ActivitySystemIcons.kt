@@ -29,6 +29,7 @@ class ActivitySystemIcons : UniversalActivityBase(R.layout.activity_system_icons
     private lateinit var finger: AppCompatImageView
     private lateinit var overFlow: AppCompatImageView
     private var isAnimation1Playing = true
+    private var isAnimation2Playing = true
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
         setToolbarTitle(getString(R.string.toolbar_title_activity_system_icons))
@@ -66,23 +67,26 @@ class ActivitySystemIcons : UniversalActivityBase(R.layout.activity_system_icons
     private fun setupButtonClick() {
         val playButton = findViewById<Button>(R.id.playButton)
         playButton.setOnClickListener {
-            // 播放速度动画
+
             playAnimatedVectorDrawable(speed, R.drawable.avd_speed)
 
-            // 播放循环动画
             playAnimatedVectorDrawable(loop, R.drawable.avd_flip)
 
-            // 切换手指动画
-            val drawableId =
-                if (isAnimation1Playing) R.drawable.fingerprint_dialog_error_to_fp else R.drawable.fingerprint_dialog_fp_to_error
-            val animationDrawable =
-                AnimatedVectorDrawableCompat.create(this@ActivitySystemIcons, drawableId)
-            finger.setImageDrawable(animationDrawable)
-            animationDrawable?.start()
-            isAnimation1Playing = !isAnimation1Playing
+            AnimatedVectorDrawableCompat.create(this@ActivitySystemIcons,
+                if (isAnimation1Playing) R.drawable.fingerprint_dialog_error_to_fp else R.drawable.fingerprint_dialog_fp_to_error)?.apply {
+                finger.setImageDrawable(this)
+                start()
+            }
 
-            //播放溢出菜单折叠动画
-            playAnimatedVectorDrawable(overFlow, R.drawable.ft_avd_toarrow_animation)
+            AnimatedVectorDrawableCompat.create(this@ActivitySystemIcons,
+                if (isAnimation2Playing) R.drawable.ft_avd_toarrow_animation else R.drawable.ft_avd_tooverflow_animation)?.apply {
+                overFlow.setImageDrawable(this)
+                start()
+            }
+
+            isAnimation1Playing = !isAnimation1Playing
+            isAnimation2Playing = !isAnimation2Playing
+
         }
     }
 

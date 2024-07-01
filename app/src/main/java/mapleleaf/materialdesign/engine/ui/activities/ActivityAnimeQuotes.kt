@@ -86,11 +86,11 @@ class ActivityAnimeQuotes : UniversalActivityBase(R.layout.activity_anime_quotes
 
         findViewById<MaterialCardView>(R.id.msgMaterialCardView).apply {
             strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
         }
         findViewById<MaterialCardView>(R.id.materialCardView).apply {
             strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
         }
         setToolbarTitle(getString(R.string.toolbar_title_activity_anime_quotes))
     }

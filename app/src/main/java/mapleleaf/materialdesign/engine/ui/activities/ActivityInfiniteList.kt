@@ -78,10 +78,9 @@ class ActivityInfiniteList : UniversalActivityBase(R.layout.activity_infinite_re
 
         val baseColor = ContextCompat.getColor(context, R.color.background)
         val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-        val fusionColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
         findViewById<MaterialCardView>(R.id.materialCardView).apply {
             strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(fusionColor)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
         }
 
     }

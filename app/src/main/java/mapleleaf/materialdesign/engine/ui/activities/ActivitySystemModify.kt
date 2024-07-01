@@ -58,13 +58,10 @@ class ActivitySystemModify : UniversalActivityBase(R.layout.activity_system_modi
         val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background)
         val primaryColor =
             ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-        materialCardView.setCardBackgroundColor(
-            ColorUtils.blendARGB(
-                baseColor,
-                primaryColor,
-                0.15f
-            )
-        )
+        materialCardView.apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+        }
         initItem(this.systemModifyListView)
     }
 

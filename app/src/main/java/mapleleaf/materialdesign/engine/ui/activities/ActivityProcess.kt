@@ -241,14 +241,15 @@ class ActivityProcess : UniversalActivityBase(R.layout.activity_process) {
                 }
                 val dialog = DialogHelper.customDialog(this@ActivityProcess, dialogView)
 
-                val materialCardView =
-                    dialogView.findViewById<MaterialCardView>(R.id.materialCardView)
                 val baseColor =
                     ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
                 val primaryColor =
                     ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
                 val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-                materialCardView.setCardBackgroundColor(blendedColor)
+                dialogView.findViewById<MaterialCardView>(R.id.materialCardView).apply {
+                    setCardBackgroundColor(blendedColor)
+                    strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+                }
 
                 dialogView.run {
                     findViewById<TextView>(R.id.ProcessFriendlyName).text = detail.friendlyName

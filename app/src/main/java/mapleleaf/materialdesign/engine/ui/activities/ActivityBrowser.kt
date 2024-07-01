@@ -8,8 +8,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.Uri
 import android.net.http.SslError
+import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -172,17 +175,36 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
         }
 
         val url = intent.getStringExtra("url")
-        if (url.isNullOrEmpty()) {
-            webView.loadUrl("https://www.bing.com/")
-        } else {
-            webView.loadUrl(url)
-        }
 
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        if (isNetworkAvailable(connectivityManager)) {
+            if (url.isNullOrEmpty()) {
+                webView.loadUrl("https://www.bing.com/")
+            } else {
+                webView.loadUrl(url)
+            }
+        } else {
+            webView.loadUrl("file:///android_asset/disconnected.html")
+        }
+        
         webView.setOnLongClickListener(
             WebViewLongClickListener(
                 this, ImageSaver(this)
             )
         )
+    }
+
+    // 检查设备的网络连接状态
+    private fun isNetworkAvailable(connectivityManager: ConnectivityManager): Boolean {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network = connectivityManager.activeNetwork ?: return false
+            val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+            return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        } else {
+            val networkInfo = connectivityManager.activeNetworkInfo
+            return networkInfo?.isConnected ?: false
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -483,10 +505,7 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
 
         private fun handleWebViewError() {
             // 处理 WebView 加载错误
-            Log.d(
-                tag,
-                "onReceivedError=error=" + "Unknown URL scheme" + ",errorCode=" + "net::ERR_UNKNOWN_URL_SCHEME"
-            )
+            Log.d(tag, "onReceivedError=error=" + "Unknown URL scheme" + ",errorCode=" + "net::ERR_UNKNOWN_URL_SCHEME")
         }
 
         override fun onReceivedError(
@@ -519,17 +538,13 @@ class ActivityBrowser : UniversalActivityBase(R.layout.activity_browser) {
 
         private fun handleWebViewError(error: WebResourceError) {
             // 处理通用的 WebView 加载错误
-            Log.d(
-                tag,
-                "onReceivedError=error=" + error.description + ",errorCode=" + error.errorCode
-            )
-//            showSnackbarWithStyle(webView,"WebView Error: " + error.description);
+            Log.d(tag, "onReceivedError=error=" + error.description + ",errorCode=" + error.errorCode)
+
         }
 
         private fun handleWebViewError(errorResponse: WebResourceResponse) {
             // 处理 HTTP 错误
             Log.d(tag, "onReceivedHttpError=statusCode=" + errorResponse.statusCode)
-//            showSnackbarWithStyle(webView,"HTTP Error: " + errorResponse.statusCode);
         }
 
         private fun handleSslError(error: SslError) {

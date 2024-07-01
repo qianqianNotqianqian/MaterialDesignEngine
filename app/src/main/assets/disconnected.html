@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disconnected</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* 最小高度设置为整个视口高度 */
+      }
+
+      .container {
+        width: 90%; /* 宽度设置为视口宽度的90% */
+        max-width: 400px; /* 最大宽度限制为400px，可根据需要调整 */
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box; /* 包含 padding 和 border 在内的总宽度 */
+        overflow: hidden; /* 防止内容溢出 */
+      }
+
+      h1 {
+        color: var(--header-color);
+      }
+
+      p {
+        color: var(--text-color);
+      }
+
+      /* Light Mode */
+      @media (prefers-color-scheme: light),
+        (prefers-color-scheme: no-preference) {
+        body {
+          --bg-color: #f0f0f0;
+          --text-color: #333;
+          --header-color: #000;
+        }
+
+        .container {
+          background-color: white;
+          color: #333;
+        }
+      }
+
+      /* Dark Mode */
+      @media (prefers-color-scheme: dark) {
+        body {
+          --bg-color: #333;
+          --text-color: #eee;
+          --header-color: #fff;
+        }
+
+        .container {
+          background-color: #222;
+          color: #eee;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Disconnected</h1>
+      <div id="deviceInfo">
+        <p>Loading device information...</p>
+      </div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        var deviceInfoDiv = document.getElementById("deviceInfo");
+
+        // 获取设备信息
+        var deviceInfo = {
+          userAgent: navigator.userAgent,
+          platform: navigator.platform,
+          appName: navigator.appName,
+          appVersion: navigator.appVersion,
+          vendor: navigator.vendor,
+          screenResolution: window.screen.width + "x" + window.screen.height,
+          // 获取浏览器版本
+          browserVersion: navigator.appVersion.match(
+            /(Chrome|Firefox|Safari|Edge|MSIE|Trident)[\/\s](\d+\.\d+)/i
+          )
+            ? navigator.appVersion.match(
+                /(Chrome|Firefox|Safari|Edge|MSIE|Trident)[\/\s](\d+\.\d+)/i
+              )[2]
+            : "Unknown",
+          // 获取语言设置
+          language: navigator.language,
+          // 获取屏幕颜色深度
+          colorDepth: window.screen.colorDepth,
+          // 是否为移动设备
+          isMobile: /Mobi/.test(navigator.userAgent),
+          // 是否为触摸设备
+          isTouchDevice:
+            "ontouchstart" in window ||
+            navigator.maxTouchPoints > 0 ||
+            navigator.msMaxTouchPoints > 0,
+          // 获取网络连接信息
+          connectionType: navigator.connection
+            ? navigator.connection.type
+            : "Unknown",
+          effectiveConnectionType: navigator.connection
+            ? navigator.connection.effectiveType
+            : "Unknown",
+          // 获取设备类型
+          deviceType: navigator.userAgent.match(/Mobile/)
+            ? "Mobile"
+            : "Desktop",
+          // 获取插件信息
+          plugins: Array.from(navigator.plugins).map((plugin) => ({
+            name: plugin.name,
+            filename: plugin.filename,
+            description: plugin.description,
+          })),
+          // 获取操作系统版本
+          osVersion: navigator.oscpu || navigator.platform,
+        };
+
+        // 创建显示设备信息的 HTML 内容
+        var infoHTML =
+          "<p><strong>User Agent:</strong> " +
+          deviceInfo.userAgent +
+          "</p>" +
+          "<p><strong>Platform:</strong> " +
+          deviceInfo.platform +
+          "</p>" +
+          "<p><strong>App Name:</strong> " +
+          deviceInfo.appName +
+          "</p>" +
+          "<p><strong>App Version:</strong> " +
+          deviceInfo.appVersion +
+          "</p>" +
+          "<p><strong>Vendor:</strong> " +
+          deviceInfo.vendor +
+          "</p>" +
+          "<p><strong>Browser Version:</strong> " +
+          deviceInfo.browserVersion +
+          "</p>" +
+          "<p><strong>Language:</strong> " +
+          deviceInfo.language +
+          "</p>" +
+          "<p><strong>Screen Resolution:</strong> " +
+          deviceInfo.screenResolution +
+          "</p>" +
+          "<p><strong>Color Depth:</strong> " +
+          deviceInfo.colorDepth +
+          "-bit</p>" +
+          "<p><strong>Mobile Device:</strong> " +
+          (deviceInfo.isMobile ? "Yes" : "No") +
+          "</p>" +
+          "<p><strong>Touch Device:</strong> " +
+          (deviceInfo.isTouchDevice ? "Yes" : "No") +
+          "</p>" +
+          "<p><strong>Connection Type:</strong> " +
+          deviceInfo.connectionType +
+          "</p>" +
+          "<p><strong>Effective Connection Type:</strong> " +
+          deviceInfo.effectiveConnectionType +
+          "</p>" +
+          "<p><strong>Device Type:</strong> " +
+          deviceInfo.deviceType +
+          "</p>";
+
+        // 插件信息
+        if (deviceInfo.plugins.length > 0) {
+          infoHTML += "<p><strong>Plugins:</strong></p><ul>";
+          deviceInfo.plugins.forEach(function (plugin) {
+            infoHTML +=
+              "<li><strong>Name:</strong> " +
+              plugin.name +
+              ", <strong>Filename:</strong> " +
+              plugin.filename +
+              ", <strong>Description:</strong> " +
+              plugin.description +
+              "</li>";
+          });
+          infoHTML += "</ul>";
+        }
+
+        // 操作系统版本信息
+        infoHTML +=
+          "<p><strong>OS Version:</strong> " + deviceInfo.osVersion + "</p>";
+
+        // 将信息添加到页面中
+        deviceInfoDiv.innerHTML = infoHTML;
+      };
+    </script>
+  </body>
+</html>

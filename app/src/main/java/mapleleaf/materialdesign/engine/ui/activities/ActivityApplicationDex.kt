@@ -255,8 +255,11 @@ class ActivityApplicationDex : UniversalActivityBase(R.layout.activity_applicati
                     ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
                 val primaryColor =
                     ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-                val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-                appDetailsMaterialCardView.setCardBackgroundColor(blendedColor)
+
+                appDetailsMaterialCardView.apply {
+                    strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+                    setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+                }
             }
         }
 

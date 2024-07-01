@@ -28,7 +28,7 @@ class ActivityDeskClock : UniversalActivityBase(R.layout.activity_desk_clock) {
         val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         findViewById<MaterialCardView>(R.id.main_clock).apply {
             strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.15f))
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
         }
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_clock))

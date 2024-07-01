@@ -41,7 +41,6 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
     private lateinit var recyclerView: RecyclerView
     private lateinit var musicAdapter: AdapterMusic
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    private lateinit var materialCardView: MaterialCardView
     private var progressBar: ProgressBar? = null
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
@@ -49,7 +48,6 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
         setToolbarTitle(getString(R.string.toolbar_title_activity_music))
         recyclerView = findViewById(R.id.recyclerView)
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
-        materialCardView = findViewById(R.id.materialCardView)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         musicAdapter = AdapterMusic()
         recyclerView.adapter = musicAdapter
@@ -68,7 +66,7 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
         val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
         val baseColor = ContextCompat.getColor(context, R.color.background)
 
-        materialCardView.apply {
+        findViewById<MaterialCardView>(R.id.materialCardView).apply {
             strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
             setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
         }

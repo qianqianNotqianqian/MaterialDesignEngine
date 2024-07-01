@@ -46,18 +46,24 @@ class FragmentCalcDialog : Fragment(), CalcDialogCallback {
     override fun onViewCreated(view: View, state: Bundle?) {
         val fm = childFragmentManager
         val calcDialog = fm.findFragmentByTag(DIALOG_TAG) as? CalcDialog ?: CalcDialog()
-
-        val materialCardView: MaterialCardView = binding.materialCardView
-        val materialCardView2: MaterialCardView = binding.materialCardView2
-        val materialCardView3: MaterialCardView = binding.materialCardView3
         val baseColor =
             ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
         val primaryColor =
             ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-        materialCardView.setCardBackgroundColor(blendedColor)
-        materialCardView2.setCardBackgroundColor(blendedColor)
-        materialCardView3.setCardBackgroundColor(blendedColor)
+
+        binding.materialCardView.apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(blendedColor)
+        }
+        binding.materialCardView2.apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(blendedColor)
+        }
+        binding.materialCardView3.apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(blendedColor)
+        }
 
         // Dark theme
 //        binding.darkThemeChk.setOnCheckedChangeListener { _, _ ->
