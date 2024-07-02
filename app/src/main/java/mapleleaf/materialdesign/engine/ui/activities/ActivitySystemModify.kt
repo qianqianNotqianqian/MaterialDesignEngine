@@ -54,14 +54,7 @@ class ActivitySystemModify : UniversalActivityBase(R.layout.activity_system_modi
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_sundry))
 
-        val materialCardView = findViewById<MaterialCardView>(R.id.materialCardView)
-        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background)
-        val primaryColor =
-            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-        materialCardView.apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-        }
+        customizeCardView(findViewById(R.id.materialCardView))
         initItem(this.systemModifyListView)
     }
 

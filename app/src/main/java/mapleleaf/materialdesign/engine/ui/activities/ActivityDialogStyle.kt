@@ -47,11 +47,7 @@ class ActivityDialogStyle : UniversalActivityBase(R.layout.activity_dialog_style
     private fun setMenuItem(menuItemInfo: MenuItemInfo) {
         val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
         findViewById<View>(menuItemInfo.itemId).apply {
-            findViewById<MaterialCardView>(menuItemInfo.itemId).apply {
-                val baseColor = ContextCompat.getColor(context, R.color.background)
-                setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-                strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            }
+            customizeCardView(findViewById(menuItemInfo.itemId))
             findViewById<AppCompatImageView>(R.id.menuIcon).apply {
                 setImageResource(menuItemInfo.iconResId)
                 val baseColor = ContextCompat.getColor(context, R.color.text_color)

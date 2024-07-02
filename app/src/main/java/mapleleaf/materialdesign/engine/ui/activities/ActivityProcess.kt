@@ -49,22 +49,9 @@ class ActivityProcess : UniversalActivityBase(R.layout.activity_process) {
         val processSortMode = findViewById<Spinner>(R.id.process_sort_mode)
         val processFilter = findViewById<Spinner>(R.id.process_filter)
 
-        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
-        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-        val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-
-        findViewById<MaterialCardView>(R.id.materialCardView).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(blendedColor)
-        }
-        findViewById<MaterialCardView>(R.id.materialCardView2).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(blendedColor)
-        }
-        findViewById<MaterialCardView>(R.id.materialCardView3).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(blendedColor)
-        }
+        customizeCardView(findViewById(R.id.materialCardView))
+        customizeCardView(findViewById(R.id.materialCardView2))
+        customizeCardView(findViewById(R.id.materialCardView3))
 
         if (supported) {
             processUnsupported.isVisible = false

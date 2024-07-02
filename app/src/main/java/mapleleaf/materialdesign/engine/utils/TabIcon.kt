@@ -28,7 +28,7 @@ class TabIcon(
         }
 
         override fun getItem(position: Int): Fragment {
-            return fragments.get(position)
+            return fragments[position]
         }
 
         override fun getPageTitle(position: Int): CharSequence {

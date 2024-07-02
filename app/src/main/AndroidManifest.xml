@@ -457,13 +457,13 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityTTS"
+            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityWallpaper"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="mapleleaf.materialdesign.engine.ui.activities.ActivityWallpaper"
+            android:name="mapleleaf.materialdesign.engine.ui.activities.MainActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

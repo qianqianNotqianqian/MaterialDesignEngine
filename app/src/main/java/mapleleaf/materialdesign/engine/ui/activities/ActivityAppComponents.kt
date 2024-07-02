@@ -41,12 +41,7 @@ class ActivityAppComponents : UniversalActivityBase(R.layout.activity_app_compon
         appBarLayout = findViewById(R.id.appBarLayout)
         getToolbar().setBackgroundColor(getColor(R.color.transparent))
 
-        val baseColor =
-            ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
-        val primaryColor =
-            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-        val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-        appBarLayout.setBackgroundColor(blendedColor)
+        setAppBarBackgroundColor(findViewById(R.id.appBarLayout))
 
         val packageName = intent.getStringExtra("packageName")
         if (packageName == null) {

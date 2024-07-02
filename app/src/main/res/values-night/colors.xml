@@ -31,4 +31,5 @@
     <color name="toolbar_color">#881D1B26</color>
     <color name="spinner_color">#2E3032</color>
     <color name="spinner_color2">#021625</color>
+    <color name="constraintlayout_color">#06070D</color>
 </resources>

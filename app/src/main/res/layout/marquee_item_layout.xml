@@ -28,11 +28,9 @@
             android:layout_height="match_parent"
             app:mvDirection="bottom_to_top"
             app:mvGravity="left"
-            app:mvTextColor="@color/colorPrimary" />
+            app:mvTextColor="?colorPrimary" />
     </LinearLayout>
 
-
-    <include layout="@layout/marquee_divider_1px" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

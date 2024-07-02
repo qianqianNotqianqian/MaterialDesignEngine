@@ -65,17 +65,8 @@ class ActivityApplications : UniversalActivityBase(R.layout.activity_application
 
         buttonClear = findViewById(R.id.buttonClear)
 
-        val baseColor = ContextCompat.getColor(context, R.color.background)
-        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-
-        findViewById<MaterialCardView>(R.id.materialCardView).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-        }
-        findViewById<MaterialCardView>(R.id.materialCardViewEdit).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-        }
+        customizeCardView(findViewById(R.id.materialCardView))
+        customizeCardView(findViewById(R.id.materialCardViewEdit))
 
         CoroutineScope(Dispatchers.Main).launch {
             TabIcon(

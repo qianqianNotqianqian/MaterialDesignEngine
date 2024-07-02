@@ -428,9 +428,6 @@
     <color name="toolbar_color">#88D6C0FC</color>
     <color name="spinner_bg">#333244</color>
 
-    <color name="divider1">#ebebeb</color>
-    <color name="divider2">#d6d6d6</color>
-
     <color name="background_common">#ebebeb</color>
     <color name="background_common_dark">#d6d6d6</color>
 
@@ -441,4 +438,5 @@
     <color name="colorPrimary">#0099ff</color>
     <color name="colorPrimaryDark">#0077cc</color>
     <color name="colorAccent">#00ccff</color>
+    <color name="constraintlayout_color">#FFFFFF</color>
 </resources>

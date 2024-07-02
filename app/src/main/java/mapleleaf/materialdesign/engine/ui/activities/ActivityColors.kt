@@ -25,14 +25,12 @@ class ActivityColors : UniversalActivityBase(R.layout.activity_colors) {
     private lateinit var viewPager: ViewPager
     private lateinit var tabLayout: TabLayout
     private lateinit var progressBar: ProgressBar
-    private lateinit var appBarLayout: AppBarLayout
 
     override fun initializeComponents(savedInstanceState: Bundle?) {
 
         progressBar = findViewById(R.id.progressBar)
         tabLayout = findViewById(R.id.tab_layout)
         viewPager = findViewById(R.id.view_pager)
-        appBarLayout = findViewById(R.id.appBarLayout)
         progressBar.isIndeterminate = true
         progressBar.isVisible = true
 
@@ -59,12 +57,8 @@ class ActivityColors : UniversalActivityBase(R.layout.activity_colors) {
 
             progressBar.isVisible = false
         }
-        val baseColor =
-            ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
-        val primaryColor =
-            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-        val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-        appBarLayout.setBackgroundColor(blendedColor)
+
+        setAppBarBackgroundColor(findViewById(R.id.appBarLayout))
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_colors))
     }

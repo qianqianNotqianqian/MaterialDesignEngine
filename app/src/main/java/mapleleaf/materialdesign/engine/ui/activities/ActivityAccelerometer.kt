@@ -79,17 +79,8 @@ class ActivityAccelerometer : UniversalActivityBase(R.layout.activity_accelerome
         sensorYTextView = findViewById(R.id.sensor_y)
         sensorZTextView = findViewById(R.id.sensor_z)
 
-        val baseColor = ContextCompat.getColor(context, R.color.background)
-        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-
-        findViewById<MaterialCardView>(R.id.materialCardView).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-        }
-        findViewById<MaterialCardView>(R.id.materialCardView2).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-        }
+        customizeCardView(findViewById(R.id.materialCardView))
+        customizeCardView(findViewById(R.id.materialCardView2))
 
         val nestedScrollView = findViewById<FastScrollNestedScrollView>(R.id.nestedScrollView2)
         FastScrollerBuilder(nestedScrollView).build()

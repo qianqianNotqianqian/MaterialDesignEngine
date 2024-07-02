@@ -98,10 +98,10 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
     @SuppressLint("InflateParams", "SetTextI18n", "CutPasteId")
     override fun initializeComponents(savedInstanceState: Bundle?) {
         val scrollingView = findViewById<FastScrollNestedScrollView>(R.id.nestedScrollView)
-        FastScrollerBuilder(scrollingView).build()
+        FastScrollerBuilder(scrollingView).useMd2Style().build()
         drawerLayout = findViewById(R.id.drawer_layout)
+        setAppBarBackgroundColor(findViewById(R.id.appBarLayout))
 
-        val appBarLayout = findViewById<AppBarLayout>(R.id.appBarLayout)
         val toggle = ActionBarDrawerToggle(
             this,
             drawerLayout,
@@ -480,12 +480,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
                 ActivityText2MD5::class.java
             ),
             MenuItemInfo(
-                R.id.TTS,
-                R.drawable.ic_tts,
-                R.string.menu_start_tts,
-                ActivityTTS::class.java
-            ),
-            MenuItemInfo(
                 R.id.Music,
                 R.drawable.ic_music,
                 R.string.menu_start_music,
@@ -553,11 +547,6 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
         }
         onBackPressedDispatcher.addCallback(this, callback)
 
-        val baseColor = ContextCompat.getColor(context, R.color.background_color)
-        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-        val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-        appBarLayout.setBackgroundColor(blendedColor)
-
     }
 
     private fun loadDate() {
@@ -589,11 +578,9 @@ class ActivityMenu : UniversalActivityBase(R.layout.activity_menu) {
     private fun setMenuItem(menuItemInfo: MenuItemInfo) {
         val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
         findViewById<View>(menuItemInfo.itemId).apply {
-            findViewById<MaterialCardView>(menuItemInfo.itemId).apply {
-                val baseColor = ContextCompat.getColor(context, R.color.background)
-                strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-                setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-            }
+
+            customizeCardView(findViewById(menuItemInfo.itemId))
+
             findViewById<AppCompatImageView>(R.id.menuIcon).apply {
                 setImageResource(menuItemInfo.iconResId)
                 val baseColor = ContextCompat.getColor(context, R.color.text_color)

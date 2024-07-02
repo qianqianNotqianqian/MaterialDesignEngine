@@ -76,13 +76,7 @@ class ActivityInfiniteList : UniversalActivityBase(R.layout.activity_infinite_re
 
         loadMoreItems()
 
-        val baseColor = ContextCompat.getColor(context, R.color.background)
-        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-        findViewById<MaterialCardView>(R.id.materialCardView).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-        }
-
+        customizeCardView(findViewById(R.id.materialCardView))
     }
 
     // 适配器中的回调接口

@@ -24,13 +24,7 @@ class ActivityDeskClock : UniversalActivityBase(R.layout.activity_desk_clock) {
         // 将当前日期和星期设置到TextView中
         dateTextView.text = currentDateAndDayOfWeek
 
-        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background)
-        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-        findViewById<MaterialCardView>(R.id.main_clock).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-        }
-
+        customizeCardView(findViewById(R.id.main_clock))
         setToolbarTitle(getString(R.string.toolbar_title_activity_clock))
     }
 }

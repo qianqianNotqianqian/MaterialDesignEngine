@@ -80,18 +80,9 @@ class ActivityAnimeQuotes : UniversalActivityBase(R.layout.activity_anime_quotes
             }
         })
         msgMaterialCardView.visibility = if (editText.text.isEmpty()) View.GONE else View.VISIBLE
-
-        val baseColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.background)
-        val primaryColor = ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
-
-        findViewById<MaterialCardView>(R.id.msgMaterialCardView).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-        }
-        findViewById<MaterialCardView>(R.id.materialCardView).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-        }
+        
+        customizeCardView(findViewById(R.id.materialCardView))
+        customizeCardView(findViewById(R.id.msgMaterialCardView))
         setToolbarTitle(getString(R.string.toolbar_title_activity_anime_quotes))
     }
 

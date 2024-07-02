@@ -12,7 +12,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.drawable.DrawableCompat
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.card.MaterialCardView
 import mapleleaf.materialdesign.engine.MaterialDesignEngine
+import mapleleaf.materialdesign.engine.MaterialDesignEngine.Companion.context
 import mapleleaf.materialdesign.engine.R
 import mapleleaf.materialdesign.engine.utils.StatusBarColorExtractor
 import mapleleaf.materialdesign.engine.utils.ThemeModeState
@@ -56,9 +59,9 @@ abstract class UniversalActivityBase(@LayoutRes layoutRes: Int) : AppCompatActiv
     private fun initToolbar() {
         toolbar = findViewById(R.id.toolbar)
         val baseColor =
-            ContextCompat.getColor(MaterialDesignEngine.context, R.color.background_color)
+            ContextCompat.getColor(context, R.color.background_color)
         val primaryColor =
-            ContextCompat.getColor(MaterialDesignEngine.context, R.color.colorPrimary)
+            ContextCompat.getColor(context, R.color.colorPrimary)
         val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
         toolbar!!.setBackgroundColor(blendedColor)
         setSupportActionBar(toolbar)
@@ -73,6 +76,20 @@ abstract class UniversalActivityBase(@LayoutRes layoutRes: Int) : AppCompatActiv
 //    @LayoutRes
 //    protected abstract fun getLayoutResourceId(): Int
 
+    protected fun customizeCardView(materialCardView: MaterialCardView) {
+        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
+        val baseColor = ContextCompat.getColor(context, R.color.background)
+        materialCardView.apply {
+            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
+            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
+        }
+    }
+    protected fun setAppBarBackgroundColor(appBarLayout: AppBarLayout) {
+        val baseColor = ContextCompat.getColor(this, R.color.background_color)
+        val primaryColor = ContextCompat.getColor(this, R.color.colorPrimary)
+        val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
+        appBarLayout.setBackgroundColor(blendedColor)
+    }
     protected abstract fun initializeComponents(savedInstanceState: Bundle?)
 
     protected fun setToolbarTitle(title: String) {

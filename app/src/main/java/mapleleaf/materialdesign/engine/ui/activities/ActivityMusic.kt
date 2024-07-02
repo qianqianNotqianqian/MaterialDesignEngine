@@ -50,7 +50,7 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         musicAdapter = AdapterMusic()
         recyclerView.adapter = musicAdapter
-        FastScrollerBuilder(recyclerView).build()
+        FastScrollerBuilder(recyclerView).useMd2Style().build()
 
         progressBar?.isVisible = true
         progressBar?.isIndeterminate = true
@@ -62,13 +62,8 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
         val progressColors = ContextCompat.getColor(this, R.color.swipe_refresh_layout_progress)
         swipeRefreshLayout.setColorSchemeColors(colorRed, colorGreen, colorBlue, colorOrange)
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(progressColors)
-        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-        val baseColor = ContextCompat.getColor(context, R.color.background)
 
-        findViewById<MaterialCardView>(R.id.materialCardView).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-        }
+        customizeCardView(findViewById(R.id.materialCardView))
 
         musicScan()
 
@@ -222,7 +217,6 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
                         setOnPreparedListener { mp ->
                             seekBar.max = mp.duration
                             totalDurationTextView.text = formatTime(mp.duration)
-                            updateSeekBar(seekBar, currentPositionTextView)
                             updateCurrentPosition(seekBar, currentPositionTextView)
                             mp.start()
                             btnPlayPause.text = "暂停"
@@ -257,7 +251,6 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
                                 player.start()
                                 btnPlayPause.text = "暂停"
                                 CoroutineScope(Dispatchers.Main).launch {
-                                    updateSeekBar(seekBar, currentPositionTextView)
                                     updateCurrentPosition(seekBar, currentPositionTextView)
                                 }
                             }
@@ -277,37 +270,29 @@ class ActivityMusic : UniversalActivityBase(R.layout.activity_music),
                 } catch (e: Exception) {
                     Log.e("ActivityMusic", "播放音乐时发生异常", e)
                 } finally {
-//                    isPlayingMusic = false
                 }
             }
 
             private fun updateCurrentPosition(seekBar: SeekBar, currentPositionTextView: TextView) {
                 CoroutineScope(Dispatchers.Main).launch {
-                    while (true) {
-                        mediaPlayer?.let { player ->
-                            if (mediaPlayerIsPrepared(player) && player.isPlaying) {
-                                val currentPosition = player.currentPosition
-                                seekBar.progress = currentPosition
-                                currentPositionTextView.text = formatTime(currentPosition)
-                            }
+                    mediaPlayer?.let { player ->
+                        // 立即执行一次更新操作
+                        updateUI(player, seekBar, currentPositionTextView)
+
+                        // 循环每隔一秒钟更新界面
+                        while (true) {
+                            delay(1000)
+                            updateUI(player, seekBar, currentPositionTextView)
                         }
-                        delay(1000)
                     }
                 }
             }
 
-            private fun updateSeekBar(seekBar: SeekBar, currentPositionTextView: TextView) {
-                CoroutineScope(Dispatchers.Main).launch {
-                    while (true) {
-                        mediaPlayer?.let { player ->
-                            if (mediaPlayerIsPrepared(player) && player.isPlaying) {
-                                val currentPosition = player.currentPosition
-                                seekBar.progress = currentPosition
-                                currentPositionTextView.text = formatTime(currentPosition)
-                            }
-                        }
-                        delay(1000)
-                    }
+            private fun updateUI(player: MediaPlayer, seekBar: SeekBar, currentPositionTextView: TextView) {
+                if (mediaPlayerIsPrepared(player) && player.isPlaying) {
+                    val currentPosition = player.currentPosition
+                    seekBar.progress = currentPosition
+                    currentPositionTextView.text = formatTime(currentPosition)
                 }
             }
 

@@ -23,12 +23,8 @@ class ActivityMarqueeView : UniversalActivityBase(R.layout.activity_marquee_view
         val tabLayout: TabLayout = findViewById(R.id.tab_layout)
         val viewPager: ViewPager = findViewById(R.id.view_pager)
 
-        val appBarLayout = findViewById<AppBarLayout>(R.id.appBarLayout)
-        val baseColor = ContextCompat.getColor(context, R.color.background_color)
-        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-        val blendedColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.2f)
-        appBarLayout.setBackgroundColor(blendedColor)
-
+        setAppBarBackgroundColor(findViewById(R.id.appBarLayout))
+        
         val adapter = AdapterFragmentPagerItem.Builder(this, supportFragmentManager)
             .add(
                 "Common",

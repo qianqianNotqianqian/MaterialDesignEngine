@@ -103,32 +103,13 @@ class ActivityDictionary : UniversalActivityBase(R.layout.activity_dictionary) {
             searchText()
         }
 
-        val materialCardView = findViewById<MaterialCardView>(R.id.materialCardView)
-        val textViewBasicExplainMaterialCardView =
-            findViewById<MaterialCardView>(R.id.textViewBasicExplainMaterialCardView)
-        val textViewDetailExplainMaterialCardView =
-            findViewById<MaterialCardView>(R.id.textViewDetailExplainMaterialCardView)
-        val textViewWordMaterialCardView =
-            findViewById<MaterialCardView>(R.id.textViewWordMaterialCardView)
-
-        val baseColor = ContextCompat.getColor(context, R.color.background)
-        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-
-        setCardBackground(materialCardView, baseColor, primaryColor)
-        setCardBackground(textViewBasicExplainMaterialCardView, baseColor, primaryColor)
-        setCardBackground(textViewDetailExplainMaterialCardView, baseColor, primaryColor)
-        setCardBackground(textViewWordMaterialCardView, baseColor, primaryColor)
+        customizeCardView(findViewById(R.id.materialCardView))
+        customizeCardView(findViewById(R.id.textViewBasicExplainMaterialCardView))
+        customizeCardView(findViewById(R.id.textViewDetailExplainMaterialCardView))
+        customizeCardView(findViewById(R.id.textViewWordMaterialCardView))
 
     }
-
-    private fun setCardBackground(cardView: MaterialCardView, baseColor: Int, primaryColor: Int) {
-        cardView.apply {
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-        }
-    }
-
-
+    
     private fun clearEditFocus() {
         editTextHanzi.clearFocus()
         val inputMethodManager =

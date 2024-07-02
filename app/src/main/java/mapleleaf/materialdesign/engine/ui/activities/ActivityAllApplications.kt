@@ -121,12 +121,8 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
         appsSearchBox.isVisible = false
 
         setToolbarTitle(getString(R.string.toolbar_title_activity_application_manager))
-        val baseColor = ContextCompat.getColor(context, R.color.background)
-        val primaryColor = ContextCompat.getColor(context, R.color.colorPrimary)
-        findViewById<MaterialCardView>(R.id.materialCardView).apply {
-            strokeColor = ColorUtils.blendARGB(baseColor, primaryColor, 0.3f)
-            setCardBackgroundColor(ColorUtils.blendARGB(baseColor, primaryColor, 0.2f))
-        }
+
+        customizeCardView(findViewById(R.id.materialCardView))
 
 //        recyclerView.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -586,8 +582,7 @@ class ActivityAllApplications : UniversalActivityBase(R.layout.activity_all_appl
                 itemView.findViewById(R.id.app_version_text_view)
             private val appSizeTextView: TextView = itemView.findViewById(R.id.app_size_text_view)
             val appIconImageView: ImageView = itemView.findViewById(R.id.app_icon_image_view)
-            private val appMaterialCardView: MaterialCardView =
-                itemView.findViewById(R.id.app_material_cardView)
+
             var packageName: String? = null
 
             init {
